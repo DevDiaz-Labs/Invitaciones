@@ -1,5 +1,14 @@
 ---
 // Recepcion.astro
+interface Props {
+  data: {
+    lugar: string;
+    direccion: string;
+    hora: string;
+    urlMapa: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <section class="pt-24 bg-white">
@@ -8,15 +17,15 @@
         <p
             class="text-lg md:text-xl font-light tracking-[0.2em] mb-2 uppercase"
         >
-            Nombre del salon
+            {data.lugar}
         </p>
         <p class="text-gray-400 italic text-base md:text-lg">
-            nombre del lugar
+            {data.direccion}<br />{data.hora}
         </p>
     </div>
     <div class="full-map-container observe-me fade-in-slow">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4442.971636790663!2d-97.45759865650655!3d20.543951504202933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da6ab6d49c8145%3A0x29bffe5fffaef4d4!2sSal%C3%B3n%20de%20Eventos%20Robert's%20Palace!5e0!3m2!1ses!2smx!4v1773426590753!5m2!1ses!2smx"
+            src={data.urlMapa}
             width="100%"
             height="100%"
             style="border:0;"

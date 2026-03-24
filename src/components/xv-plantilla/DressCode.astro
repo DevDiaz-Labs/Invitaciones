@@ -1,5 +1,13 @@
 ---
 // DressCode.astro
+interface Props {
+  data: {
+    estilo: string;
+    descripcion: string;
+    colorSugerido: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <section
@@ -24,13 +32,12 @@
             <p
                 class="text-2xl md:text-3xl font-serif tracking-[0.3em] uppercase text-gray-800"
             >
-                Formal
+                {data.estilo}
             </p>
             <p
                 class="text-gray-400 italic text-base md:text-lg px-4 md:px-8 mt-4"
             >
-                "Tu elegancia hará brillar esta noche. Se reserva el uso del
-                color rosa, nude o similar exclusivamente para la quinceañera."
+                "{data.descripcion}"
             </p>
         </div>
     </div>

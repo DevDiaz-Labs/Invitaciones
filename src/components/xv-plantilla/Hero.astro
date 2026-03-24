@@ -1,11 +1,21 @@
 ---
 // Hero.astro
+interface Props {
+  data: {
+    etiqueta: string;
+    nombre: string;
+    fechaTexto: string;
+    frase: string;
+    imagenFondo: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <header
     class="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden hero-bg"
 >
-    <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via is:global style o inline) -->
+    <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via inline style prop) -->
 
     <!-- Elementos Decorativos Globales -->
     <div class="floral-bg top-0 left-0 w-64 h-64">
@@ -39,19 +49,19 @@
         <p
             class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
         >
-            Mis XV Años
+            {data.etiqueta}
         </p>
         <h1
             class="text-7xl md:text-9xl font-cursive text-white mb-4 drop-shadow-xl"
         >
-            Nombre de la quinceañera
+            {data.nombre}
         </h1>
         <div class="section-divider bg-white/50"></div>
         <p class="text-xl md:text-2xl font-serif italic mb-2">
-            Fecha de la fiesta
+            {data.fechaTexto}
         </p>
         <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
-            ¡Prepárate para una noche mágica!
+            {data.frase}
         </p>
     </div>
 
@@ -67,11 +77,11 @@
     </div>
 </header>
 
-<style>
+<style define:vars={{ bgImage: `url('${data.imagenFondo}')` }}>
     .hero-bg {
         background:
             linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-            url("https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0");
+            var(--bgImage);
         background-size: cover;
         background-position: center;
     }

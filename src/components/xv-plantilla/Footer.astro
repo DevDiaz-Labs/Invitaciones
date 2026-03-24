@@ -1,5 +1,12 @@
 ---
 // Footer.astro
+interface Props {
+  data: {
+    nombre: string;
+    agradecimiento: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <footer class="py-24 text-center relative overflow-hidden bg-gray-50">
@@ -18,12 +25,12 @@
         <h2
             class="font-cursive text-6xl md:text-7xl text-[var(--gold)] mb-6 relative z-10"
         >
-            Dulce María
+            {data.nombre}
         </h2>
         <p
             class="text-[9px] md:text-[10px] tracking-[0.8em] md:tracking-[1em] text-gray-400 uppercase relative z-10"
         >
-            Te espero con ilusión
+            {data.agradecimiento}
         </p>
     </div>
 

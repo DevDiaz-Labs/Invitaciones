@@ -1,5 +1,14 @@
 ---
 // RSVP.astro
+interface Props {
+  data: {
+    telefono: string;
+    mensajeDefault: string;
+    fechaLimite: string;
+    urlCalendario?: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <section
@@ -11,7 +20,7 @@
         </h3>
         <p class="text-gray-400 italic text-base md:text-lg font-light">
             Será un honor contar con tu presencia. Por favor, confírmanos antes
-            del x de MES.
+            del {data.fechaLimite}.
         </p>
 
         <form id="rsvp-form" class="space-y-6">
@@ -44,15 +53,17 @@
                     Confirmar por WhatsApp
                 </button>
 
+                {data.urlCalendario && (
                 <div class="mt-16 md:mt-20">
                     <a
-                        href="https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+-+Dulce&dates=20260418T180000/20260418T220000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar!&location=Sal%C3%B3n%20de%20Eventos%20Robert's%20Palace&sf=true&output=xml"
+                        href={data.urlCalendario}
                         target="_blank"
                         class="btn-gold px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-[11px] inline-block"
                     >
                         Agendar en mi Calendario
                     </a>
                 </div>
+                )}
             </div>
         </form>
 
@@ -65,7 +76,7 @@
     </div>
 </section>
 
-<script>
+<script define:vars={{ telefonoAPI: data.telefono, mensajeBase: data.mensajeDefault }}>
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("rsvp-form");
         if (!form) return;
@@ -75,18 +86,18 @@
 
             const nameInput = document.getElementById(
                 "guest-name",
-            ) as HTMLInputElement;
+            );
             const countInput = document.getElementById(
                 "guest-count",
-            ) as HTMLSelectElement;
+            );
             const statusMsg = document.getElementById("status-msg");
 
             const name = nameInput?.value;
             const count = countInput?.value;
 
-            const text = `¡Hola! Confirmo mi asistencia a los XV años de Dulce. Nombre: ${name}. Personas: ${count}. ¡Gracias!`;
+            const text = `${mensajeBase} Nombre: ${name}. Personas: ${count}.`;
             // Cambiar aquí el número de teléfono con código de país
-            const url = `https://wa.me/527821234567?text=${encodeURIComponent(text)}`;
+            const url = `https://wa.me/${telefonoAPI}?text=${encodeURIComponent(text)}`;
 
             if (statusMsg) statusMsg.classList.remove("hidden");
 

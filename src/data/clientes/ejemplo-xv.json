@@ -1,0 +1,57 @@
+{
+  "tipo": "xv",
+  "id": "ejemplo-xv",
+  "tema": {
+    "colorPrincipal": "#D4AF37",
+    "colorFondo": "#1A1A1A"
+  },
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Sofia Valeria",
+    "fechaTexto": "15 de Diciembre 2026",
+    "frase": "¡Prepárate para una noche mágica!",
+    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0"
+  },
+  "dedicatoria": {
+    "padres": "Juan Perez y Maria Gomez",
+    "padrinos": "Pedro Sanchez y Rosa Perez",
+    "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-12-15T20:00:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os&dates=20261215T200000/20261216T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar!"
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "18:00 hrs",
+      "lugar": "Parroquia de San Miguel",
+      "direccion": "Calle Principal #123, Centro",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+    },
+    "recepcion": {
+      "hora": "20:00 hrs",
+      "lugar": "Salón Ensueño",
+      "direccion": "Av. Las Rosas #456",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal / Elegante",
+    "descripcion": "Se reserva el color blanco para la quinceañera. Hombres de traje oscuro, mujeres vestido largo de noche.",
+    "colorSugerido": "#000000"
+  },
+  "regalos": {
+    "mensaje": "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, puedes hacerlo de la siguiente manera:",
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "datosBancarios": "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123"
+  },
+  "rsvp": {
+    "telefono": "5215512345678",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
+    "fechaLimite": "01 de Diciembre"
+  },
+  "footer": {
+    "agradecimiento": "¡Te espero para celebrar juntos!"
+  }
+}

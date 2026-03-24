@@ -1,5 +1,14 @@
 ---
 // Ceremonia.astro
+interface Props {
+  data: {
+    lugar: string;
+    direccion: string;
+    hora: string;
+    urlMapa: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <section class="pt-24 bg-white">
@@ -10,15 +19,15 @@
         <p
             class="text-lg md:text-xl font-light tracking-[0.2em] mb-2 uppercase"
         >
-            Nombre del lugar
+            {data.lugar}
         </p>
         <p class="text-gray-400 italic text-base md:text-lg">
-            Aqui va la direccion.<br />18:00 Horas
+            {data.direccion}<br />{data.hora}
         </p>
     </div>
     <div class="full-map-container observe-me fade-in-slow">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.7322491438786!2d-97.4827942!3d20.558133299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da150c78957b31%3A0xdcd5541272d9a279!2sJardin%20de%20eventos%20%22Palapas%20Pepes%22!5e0!3m2!1ses!2smx!4v1773426366043!5m2!1ses!2smx"
+            src={data.urlMapa}
             width="100%"
             height="100%"
             style="border:0;"

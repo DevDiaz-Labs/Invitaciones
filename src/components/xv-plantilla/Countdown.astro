@@ -1,5 +1,12 @@
 ---
 // Countdown.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario: string;
+  };
+}
+const { data } = Astro.props;
 ---
 
 <section
@@ -66,7 +73,7 @@
 
         <div class="mt-16 md:mt-20">
             <a
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+-+Dulce&dates=20260418T180000/20260418T220000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar!&location=Sal%C3%B3n%20de%20Eventos%20Robert's%20Palace&sf=true&output=xml"
+                href={data.urlCalendario}
                 target="_blank"
                 class="btn-gold px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-[11px] inline-block"
             >
@@ -76,9 +83,9 @@
     </div>
 </section>
 
-<script>
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo }}>
     document.addEventListener("DOMContentLoaded", () => {
-        const eventDate = new Date("Apr 18, 2026 18:00:00").getTime();
+        const eventDate = new Date(fechaObjetivoStr).getTime();
 
         function updateTimer() {
             const now = new Date().getTime();
