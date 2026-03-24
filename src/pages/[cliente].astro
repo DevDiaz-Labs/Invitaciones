@@ -9,6 +9,7 @@ import DressCode from "../components/xv-plantilla/DressCode.astro";
 import Regalos from "../components/xv-plantilla/Regalos.astro";
 import RSVP from "../components/xv-plantilla/RSVP.astro";
 import Footer from "../components/xv-plantilla/Footer.astro";
+import MusicPlayer from "../components/xv-plantilla/MusicPlayer.astro";
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -51,4 +52,5 @@ const { data } = Astro.props;
 		<RSVP data={{ ...data.rsvp, urlCalendario: data.countdown.urlCalendario }} />
 	</main>
 	<Footer data={{ ...data.footer, nombre: data.hero.nombre }} />
+	{data.musica?.url && <MusicPlayer url={data.musica.url} />}
 </XVDulceLayout>
