@@ -1,0 +1,29 @@
+---
+import XVDulceLayout from "../layouts/XV.astro";
+import Hero from "../components/xv-plantilla/Hero.astro";
+import Dedicatoria from "../components/xv-plantilla/Dedicatoria.astro";
+import Countdown from "../components/xv-plantilla/Countdown.astro";
+import Ceremonia from "../components/xv-plantilla/Ceremonia.astro";
+import Recepcion from "../components/xv-plantilla/Recepcion.astro";
+import DressCode from "../components/xv-plantilla/DressCode.astro";
+import Regalos from "../components/xv-plantilla/Regalos.astro";
+import RSVP from "../components/xv-plantilla/RSVP.astro";
+import Footer from "../components/xv-plantilla/Footer.astro";
+---
+
+<XVDulceLayout title="Mis XV Años">
+	<!-- Usamos el script de Tailwind por CDN ante problemas de configuración en el entorno -->
+	<script slot="head" src="https://cdn.tailwindcss.com"></script>
+
+	<main>
+		<Hero />
+		<Dedicatoria />
+		<Countdown />
+		<Ceremonia />
+		<Recepcion />
+		<DressCode />
+		<Regalos />
+		<RSVP />
+	</main>
+	<Footer />
+</XVDulceLayout>

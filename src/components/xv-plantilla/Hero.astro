@@ -1,0 +1,78 @@
+---
+// Hero.astro
+---
+
+<header
+    class="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden hero-bg"
+>
+    <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via is:global style o inline) -->
+
+    <!-- Elementos Decorativos Globales -->
+    <div class="floral-bg top-0 left-0 w-64 h-64">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill="var(--gold)"
+                d="M40,20 C60,40 20,60 40,80 C60,100 100,60 80,40 C60,20 20,0 40,20 Z"
+            ></path>
+            <circle cx="150" cy="50" r="20" fill="var(--gold)" opacity="0.5"
+            ></circle>
+        </svg>
+    </div>
+
+    <!-- Mariposas animadas en el Hero -->
+    <svg class="butterfly animate-float top-20 left-[15%]" viewBox="0 0 50 50">
+        <path
+            d="M25 20c-5-10-15-10-15 0 0 10 15 20 15 20s15-10 15-20c0-10-10-10-15 0z"
+        ></path>
+    </svg>
+    <svg
+        class="butterfly animate-float top-40 right-[10%]"
+        style="animation-delay: 2s;"
+        viewBox="0 0 50 50"
+    >
+        <path
+            d="M25 20c-5-10-15-10-15 0 0 10 15 20 15 20s15-10 15-20c0-10-10-10-15 0z"
+        ></path>
+    </svg>
+
+    <div class="observe-me fade-up z-10 text-white">
+        <p
+            class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
+        >
+            Mis XV Años
+        </p>
+        <h1
+            class="text-7xl md:text-9xl font-cursive text-white mb-4 drop-shadow-xl"
+        >
+            Nombre de la quinceañera
+        </h1>
+        <div class="section-divider bg-white/50"></div>
+        <p class="text-xl md:text-2xl font-serif italic mb-2">
+            Fecha de la fiesta
+        </p>
+        <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
+            ¡Prepárate para una noche mágica!
+        </p>
+    </div>
+
+    <div class="absolute bottom-10 animate-bounce text-white opacity-70">
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-width="1.5"></path>
+        </svg>
+    </div>
+</header>
+
+<style>
+    .hero-bg {
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url("https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0");
+        background-size: cover;
+        background-position: center;
+    }
+</style>
