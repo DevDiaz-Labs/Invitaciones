@@ -1,42 +1,44 @@
 {
   "tipo": "xv",
-  "id": "ejemplo-xv",
+  "id": "xv-marypaz",
   "tema": {
     "colorPrincipal": "#D4AF37",
     "colorFondo": "#1A1A1A"
   },
   "hero": {
     "etiqueta": "Mis XV Años",
-    "nombre": "Marypaz Gutierrez",
+    "nombre": "Marypaz Gutiérrez De La Cruz",
     "fechaTexto": "04 de Julio 2026",
     "frase": "¡Prepárate para una noche mágica!",
     "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0"
   },
   "dedicatoria": {
-    "padres": "Juan Perez y Maria Gomez",
-    "padrinos": "Pedro Sanchez y Rosa Perez",
+    "padres": "Pascuala De La Cruz y Germán Gutiérrez",
+    "padrinos": "Aun no definidos",
     "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
   },
   "countdown": {
-    "fechaObjetivo": "2026-07-04T20:00:00",
+    "fechaObjetivo": "2026-07-04T08:00:00",
     "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os&dates=20261215T200000/20261216T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar!"
   },
   "eventos": {
     "ceremonia": {
-      "hora": "18:00 hrs",
-      "lugar": "Parroquia de San Miguel",
-      "direccion": "Calle Principal #123, Centro",
-      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+      "hora": "Nose hrs",
+      "lugar": "Parroquia de San José",
+      "direccion": "Jazmines 427, Altamira, 88630 Reynosa, Tamps.",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.5458864708676!2d-98.27759329999999!3d26.081093499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f318b388503%3A0x5bbd1133ec74107c!2sParroquia%20San%20Jos%C3%A9!5e0!3m2!1ses-419!2smx!4v1775576374009!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/9Nw5sWikKARkP693A"
     },
     "recepcion": {
-      "hora": "20:00 hrs",
-      "lugar": "Salón Ensueño",
+      "hora": "19:00 hrs",
+      "lugar": "Salón Dorothy",
       "direccion": "Av. Las Rosas #456",
-      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.133302341125!2d-98.2390628!3d26.029194099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f51d90cd601%3A0x766481a59afbb2dc!2sDorothy%20Eventos!5e0!3m2!1ses-419!2smx!4v1775575778805!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/xqc8yUw8fecvor7W6"
     }
   },
   "dressCode": {
-    "estilo": "Formal / Elegante",
+    "estilo": "Formal",
     "descripcion": "Se reserva el color blanco para la quinceañera. Hombres de traje oscuro, mujeres vestido largo de noche.",
     "colorSugerido": "#000000"
   },
@@ -44,17 +46,19 @@
     "mensaje": "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, puedes hacerlo de la siguiente manera:",
     "opcionEfectivo": true,
     "opcionMesa": true,
-    "datosBancarios": "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123"
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": "Banco: BBVA\nCuenta: 0000 0000 0000\nCLABE: 000 000 0000 0000"
   },
   "rsvp": {
     "telefono": "5215512345678",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
-    "fechaLimite": "01 de Diciembre"
+    "fechaLimite": "01 de Julio"
   },
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"
   },
   "musica": {
-    "url": "/assets/musica/prueba.mp3"
+    "url": "/assets/musica/marypaz.mp3"
   }
 }

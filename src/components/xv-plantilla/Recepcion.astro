@@ -6,6 +6,7 @@ interface Props {
     direccion: string;
     hora: string;
     urlMapa: string;
+    urlMapaDirecto?: string;
   };
 }
 const { data } = Astro.props;
@@ -19,9 +20,19 @@ const { data } = Astro.props;
         >
             {data.lugar}
         </p>
-        <p class="text-gray-400 italic text-base md:text-lg">
+        <p class="text-gray-400 italic text-base md:text-lg mb-8">
             {data.direccion}<br />{data.hora}
         </p>
+        {data.urlMapaDirecto && (
+            <a 
+                href={data.urlMapaDirecto} 
+                target="_blank" 
+                class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-[var(--gold)]/30 rounded-full text-[var(--gold)] hover:bg-[var(--gold)] hover:text-white transition-all text-sm uppercase tracking-widest font-bold shadow-sm"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+                Ver en Google Maps
+            </a>
+        )}
     </div>
     <div class="full-map-container observe-me fade-in-slow">
         <iframe

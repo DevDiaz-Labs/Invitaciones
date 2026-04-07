@@ -26,13 +26,15 @@
       "hora": "18:00 hrs",
       "lugar": "Parroquia de San Miguel",
       "direccion": "Calle Principal #123, Centro",
-      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113334.33152668549!2d-98.3739077864125!3d26.059438908754124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f318b388503%3A0x5bbd1133ec74107c!2sParroquia%20San%20Jos%C3%A9!5e0!3m2!1ses-419!2smx!4v1775576129708!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://www.google.com/maps/search/?api=1&query=Parroquia+San+Jose+Reynosa"
     },
     "recepcion": {
       "hora": "20:00 hrs",
       "lugar": "Salón Ensueño",
       "direccion": "Av. Las Rosas #456",
-      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18..."
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.133302341125!2d-98.2390628!3d26.029194099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f51d90cd601%3A0x766481a59afbb2dc!2sDorothy%20Eventos!5e0!3m2!1ses-419!2smx!4v1775575778805!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/xqc8yUw8fecvor7W6"
     }
   },
   "dressCode": {
@@ -44,12 +46,14 @@
     "mensaje": "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, puedes hacerlo de la siguiente manera:",
     "opcionEfectivo": true,
     "opcionMesa": true,
+    "mostrarDatosBancarios": true,
+    "amazon_liverpool": true,
     "datosBancarios": "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123"
   },
   "rsvp": {
     "telefono": "5215512345678",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
-    "fechaLimite": "01 de Diciembre"
+    "fechaLimite": "01 de Julio"
   },
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"
