@@ -12,13 +12,13 @@ const { data } = Astro.props;
 ---
 
 <section
-    class="py-24 md:py-32 px-6 bg-white text-center rounded-t-[5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] relative"
+    class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative bg-[var(--gold)]/5 border-t border-[var(--gold)]/20"
 >
     <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
         <h3 class="font-serif text-4xl md:text-5xl text-[var(--gold)]">
             Confirma tu asistencia
         </h3>
-        <p class="text-gray-400 italic text-base md:text-lg font-light">
+        <p class="text-[var(--dark-text)]/70 italic text-base md:text-lg font-light">
             Será un honor contar con tu presencia. Por favor, confírmanos antes
             del {data.fechaLimite}.
         </p>
@@ -29,26 +29,26 @@ const { data } = Astro.props;
                 id="guest-name"
                 placeholder="Tu nombre completo"
                 required
-                class="w-full bg-gray-50 p-5 md:p-6 rounded-3xl border border-gray-100 focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg"
+                class="w-full bg-white/10 p-5 md:p-6 rounded-3xl border border-white/10 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40"
             />
 
             <div class="relative">
                 <select
                     id="guest-count"
-                    class="w-full bg-gray-50 p-5 md:p-6 rounded-3xl border border-gray-100 focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg appearance-none cursor-pointer"
+                    class="w-full bg-white/10 p-5 md:p-6 rounded-3xl border border-white/10 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg text-[var(--dark-text)] appearance-none cursor-pointer"
                 >
-                    <option value="1">1 Persona</option>
-                    <option value="2">2 Personas</option>
-                    <option value="3">3 Personas</option>
-                    <option value="4">4 Personas</option>
-                    <option value="4">Más de 4 personas</option>
+                    <option value="1" class="text-black">1 Persona</option>
+                    <option value="2" class="text-black">2 Personas</option>
+                    <option value="3" class="text-black">3 Personas</option>
+                    <option value="4" class="text-black">4 Personas</option>
+                    <option value="4" class="text-black">Más de 4 personas</option>
                 </select>
             </div>
 
             <div class="flex flex-col gap-4 mt-8">
                 <button
                     type="submit"
-                    class="w-full bg-[#c5a059] text-white py-5 md:py-6 rounded-3xl font-bold uppercase tracking-[0.2em] shadow-xl hover:bg-[#a3864a] transition-all transform hover:-translate-y-1 text-sm md:text-lg"
+                    class="w-full bg-[var(--gold)] text-white py-5 md:py-6 rounded-3xl font-bold uppercase tracking-[0.2em] shadow-xl hover:bg-[var(--gold)]/90 transition-all transform hover:-translate-y-1 text-sm md:text-lg"
                 >
                     Confirmar por WhatsApp
                 </button>

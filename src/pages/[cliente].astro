@@ -6,6 +6,7 @@ import Countdown from "../components/xv-plantilla/Countdown.astro";
 import Ceremonia from "../components/xv-plantilla/Ceremonia.astro";
 import Recepcion from "../components/xv-plantilla/Recepcion.astro";
 import DressCode from "../components/xv-plantilla/DressCode.astro";
+import Galeria from "../components/xv-plantilla/Galeria.astro";
 import Regalos from "../components/xv-plantilla/Regalos.astro";
 import RSVP from "../components/xv-plantilla/RSVP.astro";
 import Footer from "../components/xv-plantilla/Footer.astro";
@@ -37,7 +38,7 @@ export async function getStaticPaths() {
 const { data } = Astro.props;
 ---
 
-<XVDulceLayout title={data.hero.etiqueta}>
+<XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
 	<!-- Usamos el script de Tailwind por CDN -->
 	<script slot="head" src="https://cdn.tailwindcss.com"></script>
 
@@ -48,6 +49,7 @@ const { data } = Astro.props;
 		<Ceremonia data={data.eventos.ceremonia} />
 		<Recepcion data={data.eventos.recepcion} />
 		<DressCode data={data.dressCode} />
+		<Galeria data={data.galeria} />
 		<Regalos data={data.regalos} />
 		<RSVP data={{ ...data.rsvp, urlCalendario: data.countdown.urlCalendario }} />
 	</main>

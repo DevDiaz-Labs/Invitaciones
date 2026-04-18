@@ -6,6 +6,8 @@ interface Props {
     opcionEfectivo?: boolean;
     opcionMesa?: boolean;
     datosBancarios?: string;
+    mostrarDatosBancarios?: boolean;
+    amazon_liverpool?: boolean;
   };
 }
 const { data } = Astro.props;
@@ -19,24 +21,52 @@ const { data } = Astro.props;
             Regalos
         </h3>
 
-        <div class="grid grid-cols-1 gap-16 md:gap-20">
-            <!-- Lluvia de Sobres -->
-            <div
-                class="space-y-6 observe-me fade-up"
-                style="transition-delay: 200ms;"
-            >
-                <h4
-                    class="text-lg md:text-xl tracking-[0.3em] uppercase text-gray-600 font-light"
-                >
-                    El mejor regalo es que estés presente en este día tan
-                    especial
-                </h4>
-                <p
-                    class="text-gray-400 italic text-base md:text-lg leading-relaxed px-4"
-                >
-                    "{data.mensaje}"
-                </p>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
+            {data.opcionEfectivo && (
+                <div class="space-y-6 observe-me fade-up" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 mx-auto mb-6 text-[var(--gold)]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg md:text-xl tracking-[0.3em] uppercase text-[var(--gold)] font-medium">
+                        Lluvia de Sobres
+                    </h4>
+                    <p class="text-[var(--dark-text)]/70 italic text-base leading-relaxed px-4">
+                        "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, habrá un baúl para sobres en la recepción."
+                    </p>
+                </div>
+            )}
+
+            {data.opcionMesa && (
+                <div class="space-y-6 observe-me fade-up" style="transition-delay: 400ms;">
+                    <div class="w-16 h-16 mx-auto mb-6 text-[var(--gold)]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                            <rect x="2" y="7" width="20" height="5"></rect>
+                            <line x1="12" y1="22" x2="12" y2="7"></line>
+                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg md:text-xl tracking-[0.3em] uppercase text-[var(--gold)] font-medium">
+                        Mesa de Regalos
+                    </h4>
+                    <p class="text-[var(--dark-text)]/70 italic text-base leading-relaxed px-4">
+                        {data.amazon_liverpool ? 
+                            "Puedes encontrar mi mesa de regalos en Amazon o Liverpool a nombre de Marypaz Gutiérrez." :
+                            "Si prefieres obsequiarme algo especial, también aceptaré tarjetas de regalo de mis tiendas favoritas."
+                        }
+                    </p>
+                </div>
+            )}
+        </div>
+
+        <div class="pt-10 observe-me fade-in-slow" style="transition-delay: 600ms;">
+            <p class="text-[var(--dark-text)]/50 italic text-sm md:text-base leading-relaxed max-w-2xl mx-auto border-t border-[var(--gold)]/20 pt-8 mt-10">
+                "{data.mensaje}"
+            </p>
         </div>
     </div>
 </section>
