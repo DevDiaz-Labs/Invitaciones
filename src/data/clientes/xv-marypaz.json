@@ -64,6 +64,7 @@
   },
   "galeria": {
     "mostrar": true,
+    "titulo": "GALERÍA",
     "imagenes": [
       "/imagenes/marypaz gutierrez/galeria1.webp",
       "/imagenes/marypaz gutierrez/galeria2.webp",

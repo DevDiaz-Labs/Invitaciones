@@ -49,8 +49,8 @@ const { data } = Astro.props;
 		<Ceremonia data={data.eventos.ceremonia} />
 		<Recepcion data={data.eventos.recepcion} />
 		<DressCode data={data.dressCode} />
-		<Galeria data={data.galeria} />
 		<Regalos data={data.regalos} />
+		<Galeria data={data.galeria} />
 		<RSVP data={{ ...data.rsvp, urlCalendario: data.countdown.urlCalendario }} />
 	</main>
 	<Footer data={{ ...data.footer, nombre: data.hero.nombre }} />
