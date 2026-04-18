@@ -3,7 +3,8 @@
   "id": "xv-marypaz",
   "tema": {
     "colorPrincipal": "#D4AF37",
-    "colorFondo": "#2a3b29"
+    "colorFondo": "#2a3b29",
+    "colorTexto": "#Fdfbf7"
   },
   "hero": {
     "etiqueta": "Mis XV Años",
@@ -59,6 +60,16 @@
     "agradecimiento": "¡Te espero para celebrar juntos!"
   },
   "musica": {
-    "url": "/assets/musica/marypaz.mp3"
+    "url": "/public/musica/marypaz.mp3"
+  },
+  "galeria": {
+    "mostrar": true,
+    "imagenes": [
+      "/imagenes/marypaz gutierrez/galeria1.webp",
+      "/imagenes/marypaz gutierrez/galeria2.webp",
+      "/imagenes/marypaz gutierrez/galeria3.webp",
+      "/imagenes/marypaz gutierrez/galeria4.webp",
+      "/imagenes/marypaz gutierrez/galeria5.webp"
+    ]
   }
 }

@@ -9,7 +9,7 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<footer class="py-24 text-center relative overflow-hidden bg-gray-50">
+<footer class="py-24 text-center relative overflow-hidden">
     <!-- Overlay sutil -->
     <div class="absolute inset-0 opacity-5">
         <svg
@@ -28,7 +28,7 @@ const { data } = Astro.props;
             {data.nombre}
         </h2>
         <p
-            class="text-[9px] md:text-[10px] tracking-[0.8em] md:tracking-[1em] text-gray-400 uppercase relative z-10"
+            class="text-[9px] md:text-[10px] tracking-[0.8em] md:tracking-[1em] text-[var(--dark-text)]/40 uppercase relative z-10"
         >
             {data.agradecimiento}
         </p>
@@ -36,7 +36,7 @@ const { data } = Astro.props;
 
     <!-- Crédito clicable -->
     <div
-        class="mt-12 text-[10px] text-gray-300 tracking-[0.2em] uppercase relative z-10 px-4 observe-me fade-in-slow"
+        class="mt-12 text-[10px] text-[var(--dark-text)]/30 tracking-[0.2em] uppercase relative z-10 px-4 observe-me fade-in-slow"
     >
         <a
             href="https://devdiazlabs.com"
