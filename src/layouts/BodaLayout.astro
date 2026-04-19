@@ -1,0 +1,74 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js para animaciones simples de scroll / interacciones -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" is:inline></script>
+
+    <!-- Tailwind Config -->
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              boho: {
+                terracota: '#CD5C5C',
+                arena: '#F4F1DE',
+                eucalipto: '#81B29A',
+                rosa: '#E8C3B9',
+                dorado: '#C5A059'
+              }
+            },
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', 'serif'],
+              handwriting: ['"Great Vibes"', 'cursive']
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        /* Textura sutil estilo papel / lino */
+        background-color: #F8F5F2; /* Color crema base */
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20zM20 0h20v20H20V0z' fill='%23e8c3b9' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+      
+      .fade-in {
+        animation: fadeIn 1.5s ease-in-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      /* Ocultar barra de scroll para estética limpia pero mantener funcionalidad */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F4F1DE;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #81B29A;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body class="font-serif text-gray-800 antialiased overflow-x-hidden">
+    <slot />
+  </body>
+</html>

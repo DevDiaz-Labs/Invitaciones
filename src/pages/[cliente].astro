@@ -11,6 +11,13 @@ import Regalos from "../components/xv-plantilla/Regalos.astro";
 import RSVP from "../components/xv-plantilla/RSVP.astro";
 import Footer from "../components/xv-plantilla/Footer.astro";
 import MusicPlayer from "../components/xv-plantilla/MusicPlayer.astro";
+
+// Plantilla Boda
+import BodaTemplate from "../components/boda-plantilla/BodaTemplate.astro";
+
+// Plantilla Graduacion
+import GraduacionTemplate from "../components/graduacion-plantilla/GraduacionTemplate.astro";
+
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -36,11 +43,18 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
+const isBoda = data.tipo === 'boda';
+const isGraduacion = data.tipo === 'graduacion';
 ---
 
-<XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
-	<!-- Usamos el script de Tailwind por CDN -->
-	<script slot="head" src="https://cdn.tailwindcss.com"></script>
+{isBoda ? (
+	<BodaTemplate data={data} />
+) : isGraduacion ? (
+	<GraduacionTemplate data={data} />
+) : (
+	<XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
+		<!-- Usamos el script de Tailwind por CDN -->
+		<script slot="head" src="https://cdn.tailwindcss.com"></script>
 
 	<main>
 		<Hero data={data.hero} />

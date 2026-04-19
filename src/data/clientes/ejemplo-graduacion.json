@@ -1,0 +1,60 @@
+{
+  "tipo": "graduacion",
+  "id": "ejemplo-graduacion",
+  "hero": {
+    "nombre": "Zaid Romero",
+    "logro": "Ingeniero en Ciencias de la Computación",
+    "institucion": "Universidad Autónoma del Conocimiento",
+    "fecha": "2026-07-15",
+    "fechaVista": "15 de Julio de 2026",
+    "frase": "\"El conocimiento es el poder que transforma los sueños en realidad.\"",
+    "autorFrase": "Marco Aurelio",
+    "imagenFondo": "https://imgs.search.brave.com/_tf80EOBnZ5XOntFVsgsjjD-MYCFymaX-MF40hzYTLs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdC5k/ZXBvc2l0cGhvdG9z/LmNvbS8xMDExNjQz/LzQyNDgvaS80NTAv/ZGVwb3NpdHBob3Rv/c180MjQ4MjA0NS1z/dG9jay1waG90by1h/ZnJpY2FuLWdyYWR1/YXRlLXN0YW5kaW5n/LW91dHNpZGUtY29s/bGVnZS5qcGc",
+    "etiqueta": "Graduación Zaid"
+  },
+  "detalles": {
+    "ceremonia": {
+      "titulo": "Ceremonia de Entrega de Papeles",
+      "hora": "10:00 hrs",
+      "lugar": "Auditorio Principal Universitario",
+      "direccion": "Av. Universidad 100, CDMX",
+      "urlMapa": "https://maps.google.com/...",
+      "urlMapaEmbed": "https://www.google.com/maps/embed?..."
+    },
+    "recepcion": {
+      "titulo": "Fiesta de Graduación",
+      "hora": "20:00 hrs",
+      "lugar": "Salón Real del Oro",
+      "direccion": "Paseo de la Reforma 500, CDMX",
+      "urlMapa": "https://maps.google.com/...",
+      "urlMapaEmbed": "https://www.google.com/maps/embed?..."
+    },
+    "calendario": {
+      "google": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Graduacion+Zaid&dates=20260715T160000Z/20260716T080000Z&details=¡Celebra+mi+graduacion+conmigo!&location=Auditorio+Principal+Universitario",
+      "apple": "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:Graduacion Zaid%0ADTSTART:20260715T160000Z%0ADTEND:20260716T080000Z%0ALOCATION:Auditorio Principal Universitario%0ADESCRIPTION:¡Celebra mi graduacion conmigo!%0AEND:VEVENT%0AEND:VCALENDAR"
+    }
+  },
+  "esencial": {
+    "dressCode": {
+      "estilo": "Etiqueta Rigurosa / Formal",
+      "descripcion": "Te invitamos a lucir tus mejores galas. Traje oscuro para los caballeros, vestido largo para las damas."
+    },
+    "restricciones": {
+      "adultos": true,
+      "mensaje": "Recepción exclusiva para adultos"
+    },
+    "obsequios": {
+      "mensaje": "Tu presencia es mi mayor regalo, pero si deseas brindarme un detalle, la tradicional 'Lluvia de Sobres' o una aportación será agradecida profundamente para comenzar esta nueva etapa.",
+      "banco": "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123"
+    }
+  },
+  "rsvp": {
+    "titulo": "Confirmación de Asistencia",
+    "mensaje": "Por favor, confirma tu asistencia antes del 1 de Julio para la gran celebración.",
+    "numeroWhatsapp": "5215555555555"
+  },
+  "footer": {
+    "hashtag": "#ZaidGrad2026",
+    "agradecimiento": "Gracias por ser parte fundamental de mi formación."
+  }
+}

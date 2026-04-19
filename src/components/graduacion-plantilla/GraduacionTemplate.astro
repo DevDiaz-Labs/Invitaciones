@@ -1,0 +1,20 @@
+---
+import GraduacionLayout from '../../layouts/GraduacionLayout.astro';
+import Hero from './Hero.astro';
+import Detalles from './Detalles.astro';
+import Esencial from './Esencial.astro';
+import RSVP from './RSVP.astro';
+import Footer from './Footer.astro';
+
+const { data } = Astro.props;
+---
+
+<GraduacionLayout title={data.hero.etiqueta}>
+  <main class="bg-grad-bg min-h-screen selection:bg-grad-secondary selection:text-grad-primary">
+    <Hero data={data.hero} />
+    {data.detalles && <Detalles data={data.detalles} />}
+    {data.esencial && <Esencial data={data.esencial} />}
+    {data.rsvp && <RSVP data={data.rsvp} params={{nombre: data.hero.nombre}} />}
+  </main>
+  <Footer data={data.footer} />
+</GraduacionLayout>

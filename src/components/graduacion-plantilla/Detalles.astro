@@ -1,0 +1,92 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="py-24 bg-grad-bg relative w-full border-t border-grad-secondary/20">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display font-light gold-gradient-text tracking-widest mb-4">Los Eventos</h2>
+      <div class="h-px w-32 bg-grad-secondary mx-auto mb-8 opacity-50"></div>
+    </div>
+
+    <!-- Contenedor Grid -->
+    <div class="grid md:grid-cols-2 gap-12 mt-12 relative">
+      <!-- Decoración de línea vertical central en PC -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-grad-secondary/30 -translate-x-1/2"></div>
+
+      <!-- Ceremonia -->
+      {data.ceremonia && (
+        <div class="flex flex-col items-center text-center p-8 border border-grad-secondary/20 rounded-sm bg-grad-bg/50 backdrop-blur-sm relative fade-in">
+          <div class="absolute -top-6 bg-grad-bg px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-serif text-white mt-4 mb-2">{data.ceremonia.titulo}</h3>
+          <p class="text-grad-secondary font-sans tracking-widest uppercase mb-4 text-sm">{data.ceremonia.hora}</p>
+          <div class="space-y-1 mb-8">
+            <p class="text-lg text-gray-200 font-medium">{data.ceremonia.lugar}</p>
+            <p class="text-gray-400 font-light text-sm">{data.ceremonia.direccion}</p>
+          </div>
+          
+          {data.ceremonia.urlMapa && (
+            <a href={data.ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+              <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer">
+                Ver Ubicación
+              </button>
+            </a>
+          )}
+        </div>
+      )}
+
+      <!-- Recepción -->
+      {data.recepcion && (
+        <div class="flex flex-col items-center text-center p-8 border border-grad-secondary/20 rounded-sm bg-grad-bg/50 backdrop-blur-sm relative fade-in" style="animation-delay: 0.3s">
+          <div class="absolute -top-6 bg-grad-bg px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-serif text-white mt-4 mb-2">{data.recepcion.titulo}</h3>
+          <p class="text-grad-secondary font-sans tracking-widest uppercase mb-4 text-sm">{data.recepcion.hora}</p>
+          <div class="space-y-1 mb-8">
+            <p class="text-lg text-gray-200 font-medium">{data.recepcion.lugar}</p>
+            <p class="text-gray-400 font-light text-sm">{data.recepcion.direccion}</p>
+          </div>
+          
+          {data.recepcion.urlMapa && (
+            <a href={data.recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+              <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer">
+                Ver Ubicación
+              </button>
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    <!-- Botones de Calendario -->
+    {data.calendario && (
+      <div class="mt-16 text-center border p-8 border-grad-secondary/20 bg-[#1A202C]">
+        <h3 class="text-xl font-serif text-white mb-6">Guárdalo en tu calendario</h3>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          {data.calendario.google && (
+            <a href={data.calendario.google} target="_blank" class="px-8 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors uppercase tracking-wider text-xs border border-white flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+              Google
+            </a>
+          )}
+          {data.calendario.apple && (
+            <a href={data.calendario.apple} class="px-8 py-3 bg-black text-white font-medium hover:bg-gray-900 transition-colors uppercase tracking-wider text-xs border border-gray-700 flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.916c-1.385 0-2.885-.316-4.223-.925C6.113 19.239 4.39 18.067 3.328 16.5c-1.066-1.554-1.63-3.411-1.63-5.29s.564-3.735 1.63-5.289c1.062-1.565 2.785-2.738 4.449-3.49C9.115 1.821 10.615 1.5 12 1.5c1.385 0 2.885.321 4.223.927 1.664.75 3.387 1.921 4.449 3.489 1.066 1.553 1.63 3.41 1.63 5.288s-.564 3.734-1.63 5.287c-1.062 1.564-2.785 2.736-4.449 3.488-1.338.608-2.838.924-4.223.924M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" /><path d="M16.14 7.545c.427-.557.701-1.312.607-2.072-.656.027-1.458.45-1.92 1.018-.363.447-.693 1.222-.58 1.96 0 0 .012.001.029.001.602 0 1.401-.36 1.864-.907m-5.498 7.915c-.97 0-1.899-.64-2.433-.64-.539 0-1.32.601-2.146.611-1.082.023-2.091.633-2.651 1.611-1.127 1.96-.289 4.873.816 6.471.536.786 1.157 1.678 2.015 1.657.822-.023 1.144-.526 2.14-.526s1.294.526 2.155.512c.875-.022 1.408-.839 1.936-1.615.617-.899.866-1.761.88-1.811-.02-.008-1.688-.649-1.708-2.585-.015-1.619 1.313-2.39 1.352-2.417-.751-1.096-1.908-1.246-2.356-1.268" /></svg>
+              Apple
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

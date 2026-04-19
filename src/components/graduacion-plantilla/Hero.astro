@@ -1,0 +1,67 @@
+---
+const { data } = Astro.props;
+---
+
+<header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Fondo con overlay -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={data.imagenFondo} 
+      alt="Fondo de graduación" 
+      class="w-full h-full object-cover object-center animate-[scale_20s_ease-in-out_infinite_alternate]"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-grad-bg/60 via-grad-bg/40 to-grad-bg"></div>
+    <!-- Viñeta oscura en los bordes para más dramatismo -->
+    <div class="absolute inset-0 bg-black/30"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-6 mt-16 fade-in">
+    
+    <!-- Fecha -->
+    <div class="tracking-[0.3em] text-sm md:text-base font-sans font-light uppercase text-gray-300 mb-4 border-b border-grad-secondary/40 pb-2">
+      {data.fechaVista}
+    </div>
+
+    <!-- Nombre e Institución -->
+    <div class="space-y-4">
+      <h3 class="text-xl md:text-2xl font-serif text-grad-secondary font-medium tracking-wide">
+        {data.institucion}
+      </h3>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold gold-gradient-text drop-shadow-[0_2px_10px_rgba(212,175,55,0.2)]">
+        {data.nombre}
+      </h1>
+      <h2 class="text-2xl md:text-4xl font-serif text-white tracking-wider mt-4">
+        {data.logro}
+      </h2>
+    </div>
+
+    <!-- Separador -->
+    <div class="h-px w-24 bg-gradient-to-r from-transparent via-grad-secondary to-transparent my-6"></div>
+
+    <!-- Frase -->
+    {data.frase && (
+      <div class="mt-8 max-w-2xl mx-auto">
+        <p class="text-lg md:text-xl font-serif italic text-gray-300 leading-relaxed font-light">
+          {data.frase}
+        </p>
+        {data.autorFrase && (
+          <p class="text-sm font-sans text-grad-secondary mt-3 uppercase tracking-widest">— {data.autorFrase}</p>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Flecha para bajar -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-grad-secondary/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</header>
+
+<style>
+  @keyframes scale {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+</style>

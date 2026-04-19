@@ -1,0 +1,24 @@
+---
+import BodaLayout from "../../layouts/BodaLayout.astro";
+import Hero from "./Hero.astro";
+import Historia from "./Historia.astro";
+import Detalles from "./Detalles.astro";
+import Esencial from "./Esencial.astro";
+import Galeria from "./Galeria.astro";
+import RSVP from "./RSVP.astro";
+import Footer from "./Footer.astro";
+
+const { data } = Astro.props;
+---
+
+<BodaLayout title={`${data.hero.nombres} - Nuestra Boda`}>
+  <main>
+    <Hero data={data.hero} />
+    <Historia data={{ ...data.historia, fecha: data.hero.fecha }} />
+    <Detalles data={data.detalles} />
+    {data.galeria && data.galeria.length > 0 && <Galeria data={data.galeria} />}
+    <Esencial data={data.esencial} />
+    <RSVP data={data.rsvp} />
+  </main>
+  <Footer data={{ nombres: data.hero.nombres, fechaVista: data.hero.fechaVista, hashtag: data.footer.hashtag }} />
+</BodaLayout>
