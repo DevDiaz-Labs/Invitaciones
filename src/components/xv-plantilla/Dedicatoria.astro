@@ -1,11 +1,12 @@
 ---
 // Dedicatoria.astro
 interface Props {
-  data: {
-    padres: string;
-    padrinos: string;
-    texto: string;
-  };
+    data: {
+        padres: string;
+        padrinos: string;
+        texto: string;
+        mostrarPadrinos?: boolean;
+    };
 }
 const { data } = Astro.props;
 ---
@@ -37,21 +38,21 @@ const { data } = Astro.props;
             </div>
         </div>
 
-        <div
-            class="space-y-4 md:space-y-6 observe-me fade-up"
-            style="transition-delay: 200ms;"
-        >
-            <h2
-                class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
-            >
-                Y la guía de mis padrinos de velación
-            </h2>
-            <div
-                class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug"
-            >
-                {data.padrinos}
-            </div>
-        </div>
+        {
+            data.mostrarPadrinos !== false && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 200ms;"
+                >
+                    <h2 class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        Y la guía de mis padrinos de velación
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug">
+                        {data.padrinos}
+                    </div>
+                </div>
+            )
+        }
 
         <p
             class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"

@@ -16,6 +16,7 @@
   "dedicatoria": {
     "padres": "Pascuala De La Cruz y Germán Gutiérrez",
     "padrinos": "Aun no definidos",
+    "mostrarPadrinos": true,
     "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
   },
   "countdown": {

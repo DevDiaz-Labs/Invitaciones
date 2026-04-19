@@ -15,6 +15,7 @@
   "dedicatoria": {
     "padres": "Juan Perez y Maria Gomez",
     "padrinos": "Pedro Sanchez y Rosa Perez",
+    "mostrarPadrinos": true,
     "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
   },
   "countdown": {

@@ -1,16 +1,17 @@
 {
   "tipo": "xv",
-  "id": "xv-rousse",
+  "id": "rousse-cruz",
   "hero": {
     "etiqueta": "Mis XV Años",
     "nombre": "Rousse Cruz",
     "fechaTexto": "16 de Mayo 2026",
     "frase": "Con la bendición de Dios",
-    "imagenFondo": "https://images.unsplash.com/photo-1549416878-b9ca95e26903?q=80&w=2000&auto=format&fit=crop"
+    "imagenFondo": "/imagenes/xv/rousse/rousse.jpeg"
   },
   "dedicatoria": {
     "padres": "Raussey Pérez y Osiris Cruz",
     "padrinos": "",
+    "mostrarPadrinos": false,
     "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
   },
   "countdown": {
@@ -39,8 +40,8 @@
     "colorSugerido": "#d17c66"
   },
   "regalos": {
-    "mensaje": "Mi mayor regalo es tu presencia. Sin embargo, si deseas tener un detalle adicional, contará con un sobre en la recepción.",
-    "opcionEfectivo": true,
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": false,
     "opcionMesa": false,
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
@@ -60,12 +61,11 @@
     "colorTexto": "#333333"
   },
   "pases": {
-    "mostrar": true,
-    "cantidad": 3
+    "mostrar": false,
+    "cantidad": 0
   },
   "sobre": {
     "tipo": "sobre1",
-
     "colorFondoBase": "#0f172a",
     "colorSobre": "#7a0000",
     "colorSolapa": "#e6d2b8",
