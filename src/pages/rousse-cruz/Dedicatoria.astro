@@ -1,0 +1,47 @@
+---
+// Dedicatoria.astro
+interface Props {
+    data: {
+        padres: string;
+        padrinos: string;
+        texto: string;
+    };
+}
+const { data } = Astro.props;
+---
+
+<section class="relative py-24 md:py-32 px-6 overflow-hidden">
+    <!-- SVG Decorativo de fondo -->
+    <div class="absolute top-10 right-[-50px] opacity-10 w-80 rotate-12">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill="var(--gold)"
+                d="M100,0 C120,50 180,20 150,100 C120,180 50,150 0,100 C50,50 80,0 100,0 Z"
+            ></path>
+        </svg>
+    </div>
+
+    <div
+        class="max-w-4xl mx-auto text-center space-y-16 md:space-y-20 relative z-10 observe-me fade-up"
+    >
+        <div class="space-y-4 md:space-y-6">
+            <h2
+                class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
+            >
+                Con el amor de mis padres
+            </h2>
+            <div
+                class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug"
+            >
+                {data.padres}
+            </div>
+        </div>
+
+        <p
+            class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"
+            style="transition-delay: 400ms;"
+        >
+            "{data.texto}"
+        </p>
+    </div>
+</section>
