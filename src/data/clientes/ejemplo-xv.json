@@ -58,6 +58,13 @@
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"
   },
+  "pases": {
+    "mostrar": true,
+    "cantidad": 2
+  },
+  "sobre": {
+    "tipo": "sobre1"
+  },
   "galeria": {
     "mostrar": true,
     "titulo": "NUESTROS MOMENTOS",

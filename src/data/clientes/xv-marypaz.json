@@ -60,7 +60,14 @@
     "agradecimiento": "¡Te espero para celebrar juntos!"
   },
   "musica": {
-    "url": "/public/musica/marypaz.mp3"
+    "url": "/musica/marypaz.mp3"
+  },
+  "pases": {
+    "mostrar": false,
+    "cantidad": 0
+  },
+  "sobre": {
+    "tipo": "sobre1"
   },
   "galeria": {
     "mostrar": true,
