@@ -26,6 +26,20 @@ const colorT = tema?.colorTexto || "#333333";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
+
+        <!-- Open Graph / Facebook / WhatsApp -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={`Te invito a celebrar mis XV Años`} />
+        <meta property="og:image" content={new URL('/imagenes/preview.png', Astro.site ?? Astro.url)} />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={Astro.url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={`Te invito a celebrar mis XV Años`} />
+        <meta name="twitter:image" content={new URL('/imagenes/preview.png', Astro.site ?? Astro.url)} />
 		
         		<!-- Fuentes Base Pre-cargadas -->
 		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sacramento&family=Dancing+Script&display=swap" rel="stylesheet" />

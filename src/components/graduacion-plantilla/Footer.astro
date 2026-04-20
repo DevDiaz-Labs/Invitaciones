@@ -7,13 +7,23 @@ const { data } = Astro.props;
     <h2 class="text-3xl font-serif text-grad-secondary mb-4 italic">
       {data.hashtag}
     </h2>
-    <p class="text-gray-400 font-sans font-light text-sm tracking-widest uppercase">
+    <p
+      class="text-gray-400 font-sans font-light text-sm tracking-widest uppercase"
+    >
       {data.agradecimiento}
     </p>
-    
-    <div class="mt-12 text-gray-600 text-xs tracking-widest flex flex-col items-center gap-2">
+
+    <div
+      class="mt-12 text-gray-600 text-xs tracking-widest flex flex-col items-center gap-2"
+    >
       <div class="w-12 h-px bg-grad-secondary/30"></div>
-      <p>Diseñado con DevDiaz Labs</p>
+      <a
+        href="https://wa.me/527824127509?text=Hola,%20vi%20una%20invitación%20digital%20y%20me%20gustaría%20más%20información."
+        target="_blank"
+        class="hover:text-grad-secondary transition-colors duration-300"
+      >
+        Diseñado con DevDiaz Labs
+      </a>
       <div class="w-12 h-px bg-grad-secondary/30"></div>
     </div>
   </div>
