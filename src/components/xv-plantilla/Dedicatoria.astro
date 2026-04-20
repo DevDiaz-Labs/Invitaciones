@@ -27,8 +27,8 @@ const { data, bgImage } = Astro.props;
             </h2>
             <div
                 class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug"
+                set:html={data.padres}
             >
-                {data.padres}
             </div>
         </div>
 
@@ -41,8 +41,7 @@ const { data, bgImage } = Astro.props;
                     <h2 class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
                         Y la guía de mis padrinos de velación
                     </h2>
-                    <div class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug">
-                        {data.padrinos}
+                    <div class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug" set:html={data.padrinos}>
                     </div>
                 </div>
             )
