@@ -1,0 +1,54 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="py-24 px-6 bg-white relative">
+  <div class="max-w-4xl mx-auto space-y-24">
+    
+    <!-- Dress Code -->
+    <div class="text-center">
+      <h2 class="font-handwriting text-5xl md:text-7xl text-boho-terracota mb-8">Lo Esencial</h2>
+      
+      <div class="bg-boho-arena/30 rounded-3xl p-8 md:p-12 border border-boho-rosa/50 shadow-sm">
+        <h3 class="text-3xl text-boho-dorado mb-4 uppercase tracking-widest font-light">Dress Code</h3>
+        <p class="text-2xl font-semibold text-gray-800 mb-4">{data.dressCode.estilo}</p>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">{data.dressCode.descripcion}</p>
+        
+        <!-- Paleta sugerida -->
+        <div class="flex flex-wrap justify-center gap-4">
+          {data.dressCode.coloresSugeridos.map((color: string) => (
+            <div class="w-12 h-12 rounded-full shadow-md border-2 border-white transform hover:scale-110 transition-transform cursor-pointer" style={`background-color: ${color};`}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Regalos -->
+    <div class="text-center">
+      <div class="inline-block p-4 rounded-full bg-boho-eucalipto/10 text-boho-eucalipto mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5m0 0l-1.5 1m1.5-1l1.5-1m-1.5 1L12 16" />
+        </svg>
+      </div>
+      
+      <p class="text-2xl text-gray-700 italic mb-8 max-w-2xl mx-auto">"{data.regalos.mensaje}"</p>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <!-- Transferencia -->
+        <div class="bg-gray-50 rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col items-center">
+          <h4 class="text-xl font-bold text-boho-terracota mb-4">Transferencia</h4>
+          <pre class="text-base text-gray-600 font-sans whitespace-pre-wrap">{data.regalos.banco}</pre>
+        </div>
+        
+        <!-- Mesa de Regalos -->
+        <div class="bg-gray-50 rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col items-center justify-center">
+          <h4 class="text-xl font-bold text-boho-eucalipto mb-4">Mesa de Regalos</h4>
+          <a href={data.regalos.tiendaURL} target="_blank" rel="noopener noreferrer" class="bg-boho-arena text-gray-800 px-6 py-3 rounded-full uppercase tracking-wider text-sm font-semibold hover:bg-boho-eucalipto hover:text-white transition-colors duration-300 shadow">
+            Ver Regalos
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="py-24 bg-[#0B1120] border-t border-grad-secondary/10">
+  <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+    
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Dress Code -->
+      {data.dressCode && (
+        <div class="p-8 border border-grad-secondary/20 bg-grad-bg/40">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+          </svg>
+          <h3 class="text-xl font-serif text-white mb-2 uppercase tracking-widest text-sm">Dress Code</h3>
+          <p class="text-grad-secondary font-medium mb-3">{data.dressCode.estilo}</p>
+          <p class="text-gray-400 font-light text-sm">{data.dressCode.descripcion}</p>
+        </div>
+      )}
+
+      <!-- Restricciones -->
+      {data.restricciones && (
+        <div class="p-8 border border-grad-secondary/20 bg-grad-bg/40">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+             {data.restricciones.adultos && (
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 15l16-6" /> /* Strikethrough icon if you want to emphasize NO kids, just an example */
+             )}
+          </svg>
+          <h3 class="text-xl font-serif text-white mb-2 uppercase tracking-widest text-sm">Observaciones</h3>
+          <p class="text-gray-400 font-light text-sm">{data.restricciones.mensaje}</p>
+        </div>
+      )}
+
+      <!-- Obsequios / Regalos -->
+      {data.obsequios && (
+        <div class="p-8 border border-grad-secondary/20 bg-grad-bg/40">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+          </svg>
+          <h3 class="text-xl font-serif text-white mb-2 uppercase tracking-widest text-sm">Obsequios</h3>
+          <p class="text-gray-400 font-light text-sm mb-4">{data.obsequios.mensaje}</p>
+          {data.obsequios.banco && (
+            <div class="bg-black/50 p-4 rounded text-xs text-left text-gray-300 font-mono whitespace-pre-line border border-grad-secondary/20">
+              {data.obsequios.banco}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

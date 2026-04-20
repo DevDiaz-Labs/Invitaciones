@@ -1,0 +1,60 @@
+---
+// Hero.astro
+interface Props {
+  data: {
+    etiqueta: string;
+    nombre: string;
+    fechaTexto: string;
+    frase: string;
+    imagenFondo: string;
+  };
+}
+const { data } = Astro.props;
+---
+
+<header
+    class="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden hero-bg"
+>
+    <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via inline style prop) -->
+
+    <div class="observe-me fade-up z-10 text-white">
+        <p
+            class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
+        >
+            {data.etiqueta}
+        </p>
+        <h1
+            class="text-7xl md:text-9xl font-cursive text-white mb-4 drop-shadow-xl"
+        >
+            {data.nombre}
+        </h1>
+        <div class="section-divider bg-white/50"></div>
+        <p class="text-xl md:text-2xl font-serif italic mb-2">
+            {data.fechaTexto}
+        </p>
+        <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
+            {data.frase}
+        </p>
+    </div>
+
+    <div class="absolute bottom-10 animate-bounce text-white opacity-70">
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-width="1.5"></path>
+        </svg>
+    </div>
+</header>
+
+<style define:vars={{ bgImage: `url('${data.imagenFondo}')` }}>
+    .hero-bg {
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            var(--bgImage);
+        background-size: cover;
+        background-position: center;
+    }
+</style>

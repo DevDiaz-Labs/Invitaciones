@@ -1,0 +1,61 @@
+{
+  "tipo": "boda",
+  "id": "ejemplo-boda",
+  "hero": {
+    "nombres": "Ana & Carlos",
+    "fecha": "2026-10-24",
+    "fechaVista": "24 de Octubre de 2026",
+    "frase": "Con la bendición del amor, unimos nuestras vidas.",
+    "imagenFondo": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+  },
+  "historia": {
+    "titulo": "El Viaje",
+    "texto": "Nuestra historia comenzó con una mirada casual y se convirtió en una aventura para toda la vida. Desde nuestro primer café hasta perdernos en las calles de Roma, cada momento ha sido el preludio perfecto para decir: Sí, acepto.",
+    "imagenContexto": "https://picsum.photos/800/1200?random=1"
+  },
+  "detalles": {
+    "ceremonia": {
+      "hora": "16:00 hrs",
+      "lugar": "Hacienda San Lucas",
+      "direccion": "Km 12 Carretera Estatal, Valle de Guadalupe",
+      "urlMapa": "https://maps.google.com/...",
+      "urlMapaEmbed": "https://www.google.com/maps/embed?..."
+    },
+    "recepcion": {
+      "hora": "18:00 hrs",
+      "lugar": "Jardín Botánico Los Encinos",
+      "direccion": "Camino de las Rosas #123, Valle de Guadalupe",
+      "urlMapa": "https://maps.google.com/...",
+      "urlMapaEmbed": "https://www.google.com/maps/embed?..."
+    },
+    "notaEmocional": "Un lugar mágico donde las constelaciones serán testigos de nuestra promesa.",
+    "calendario": {
+      "google": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nuestra+Boda+Ana+y+Carlos&dates=20261024T220000Z/20261025T080000Z&details=¡Los+esperamos+para+celebrar+juntos!&location=Hacienda+San+Lucas",
+      "apple": "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:Nuestra Boda Ana y Carlos%0ADTSTART:20261024T220000Z%0ADTEND:20261025T080000Z%0ALOCATION:Hacienda San Lucas%0ADESCRIPTION:¡Los esperamos para celebrar juntos!%0AEND:VEVENT%0AEND:VCALENDAR"
+    }
+  },
+  "esencial": {
+    "dressCode": {
+      "estilo": "Boho Formal",
+      "descripcion": "Vestidos fluidos y trajes sin corbata estricta. Nos encantarían tonos tierra y pasteles.",
+      "coloresSugeridos": ["#E07A5F", "#F4F1DE", "#81B29A", "#D4A373", "#F2CC8F"]
+    },
+    "regalos": {
+      "mensaje": "Nuestra mayor alegría es tu presencia, pero si deseas tener un detalle...",
+      "banco": "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123",
+      "tiendaURL": "https://amazon.com.mx/wedding"
+    }
+  },
+  "rsvp": {
+    "titulo": "Nuestra Alegría",
+    "mensajeDespedida": "¡Tu confirmación alegra nuestro corazón!"
+  },
+  "galeria": [
+    "https://picsum.photos/1200/800?random=2",
+    "https://picsum.photos/1200/800?random=3",
+    "https://picsum.photos/1200/800?random=4"
+  ],
+  "footer": {
+    "hashtag": "#AnayCarlos2026"
+  }
+}

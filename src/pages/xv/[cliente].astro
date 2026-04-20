@@ -1,0 +1,133 @@
+---
+import XVDulceLayout from "../../layouts/XV.astro";
+import Sobre1 from "../../components/ui/Sobre1.astro";
+
+// Importamos los componentes de la plantilla de XV
+import Hero from "../../components/xv-plantilla/Hero.astro";
+import Dedicatoria from "../../components/xv-plantilla/Dedicatoria.astro";
+import Countdown from "../../components/xv-plantilla/Countdown.astro";
+import Ceremonia from "../../components/xv-plantilla/Ceremonia.astro";
+import Recepcion from "../../components/xv-plantilla/Recepcion.astro";
+import DressCode from "../../components/xv-plantilla/DressCode.astro";
+import Galeria from "../../components/xv-plantilla/Galeria.astro";
+import Regalos from "../../components/xv-plantilla/Regalos.astro";
+import RSVP from "../../components/xv-plantilla/RSVP.astro";
+import Footer from "../../components/xv-plantilla/Footer.astro";
+import MusicPlayer from "../../components/xv-plantilla/MusicPlayer.astro";
+import Separador from "../../components/xv-plantilla/Separador.astro";
+
+import * as fs from "fs";
+import * as path from "path";
+
+// Generar rutas estáticas filtrando SOLO por "xv"
+export async function getStaticPaths() {
+    const clientesDir = path.resolve("./src/data/clientes");
+    let clientesFiles: string[] = [];
+
+    try {
+        clientesFiles = fs
+            .readdirSync(clientesDir)
+            .filter((f) => f.endsWith(".json"));
+    } catch (e) {
+        console.log(
+            "Directorio de clientes no encontrado, retornando paths vacíos.",
+        );
+    }
+
+    const paths = [];
+
+    for (const file of clientesFiles) {
+        const clienteId = file.replace(".json", "");
+        const rawData = fs.readFileSync(path.join(clientesDir, file), "utf-8");
+        try {
+            const data = JSON.parse(rawData);
+
+            // FILTRO CRUCIAL: Solo aceptamos las invitaciones tipo 'xv'
+            if (data.tipo === "xv") {
+                paths.push({
+                    params: { cliente: clienteId },
+                    props: { data },
+                });
+            }
+        } catch (e) {
+            console.error(`Error procesando JSON de ${file}:`, e);
+        }
+    }
+
+    return paths;
+}
+
+const { data } = Astro.props;
+---
+
+<XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
+    <!-- El script de Tailwind cargado de manera global y asíncrona pero sin dependencias reactivas condicionales -->
+    <script slot="head" is:inline src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Selector de Animación de Entrada -->
+    {
+        data.sobre?.tipo === "sobre1" && (
+            <Sobre1
+                nombre={data.hero.nombre}
+                fecha={data.hero.fechaTexto}
+                evento={data.hero.etiqueta}
+                mensajeTop="Te invito a celebrar"
+                pases={data.pases}
+                {...data.sobre}
+            />
+        )
+    }
+
+    {
+        (!data.sobre?.tipo || data.sobre?.tipo === "default") && (
+            <Sobre1
+                nombre={data.hero.nombre}
+                fecha={data.hero.fechaTexto}
+                evento={data.hero.etiqueta}
+                mensajeTop="Te invito a celebrar"
+                pases={data.pases}
+                {...data.sobre}
+            />
+        )
+    }
+
+    <!-- Contenido Principal inicia oculto (el sobre lo muestra al animarse) -->
+    <main
+        id="invitation-content"
+        style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
+    >
+        <Hero data={data.hero} />
+        {data.dedicatoria && <Dedicatoria data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
+        {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
+        {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} />}
+        {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} />}
+        {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.regalos} />}
+        {
+            data.regalos && (
+                <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} />
+            )
+        }
+        {data.hero.imagenFondo2 && <Separador image={data.hero.imagenFondo2} />}
+        {data.galeria?.mostrar && <Galeria data={data.galeria} />}
+        {
+            data.rsvp && (
+                <RSVP
+                    data={{
+                        ...data.rsvp,
+                        urlCalendario: data.countdown?.urlCalendario,
+                        pases: data.pases,
+                    }}
+                />
+            )
+        }
+    </main>
+
+    <div
+        id="footer-content"
+        style="opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;"
+    >
+        <Footer data={{ ...data.footer, nombre: data.hero.nombre }} />
+    </div>
+
+    {data.musica?.url && <MusicPlayer url={data.musica.url} />}
+</XVDulceLayout>

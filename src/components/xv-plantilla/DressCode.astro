@@ -1,0 +1,35 @@
+---
+// DressCode.astro
+interface Props {
+  data: {
+    estilo: string;
+    descripcion: string;
+    colorSugerido: string;
+  };
+  bgImage?: string;
+}
+const { data, bgImage } = Astro.props;
+---
+<section
+    class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh]"
+    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: 135%; background-position: center; background-repeat: no-repeat;` : ""}`}
+>
+    <div class="max-w-3xl mx-auto space-y-12 relative z-10 observe-me fade-up">
+        <h3 class="font-serif text-4xl text-[var(--gold)] italic">
+            Código de Vestimenta
+        </h3>
+
+        <div class="observe-me fade-in-slow" style="transition-delay: 600ms;">
+            <p
+                class="text-2xl md:text-3xl font-serif tracking-[0.3em] uppercase text-[var(--dark-text)]"
+            >
+                {data.estilo}
+            </p>
+            <p
+                class="text-[var(--dark-text)]/60 italic text-base md:text-lg px-4 md:px-8 mt-4"
+            >
+                "{data.descripcion}"
+            </p>
+        </div>
+    </div>
+</section>

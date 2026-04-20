@@ -1,0 +1,90 @@
+{
+  "tipo": "xv",
+  "id": "rousse-cruz",
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Rousse Cruz",
+    "fechaTexto": "16 de Mayo 2026",
+    "frase": "Con la bendición de Dios",
+    "imagenFondo": "/imagenes/xv/rousse/rousse.jpeg",
+    "imagenFondo2": "/imagenes/xv/rousse/rousse2.jpeg"
+  },
+  "dedicatoria": {
+    "padres": "Raussey Pérez y Osiris Cruz",
+    "padrinos": "",
+    "mostrarPadrinos": false,
+    "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-05-16T17:30:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+Rousse&dates=20260516T173000/20260517T020000&details=Celebremos+juntos"
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "5:30 PM",
+      "lugar": "Iglesia Adoración Viva",
+      "direccion": "Poniente 1#225 Col.Cumbres",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.1159241699334!2d-98.33295322518809!3d26.062467596112857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650529f8d6378f%3A0xc547171f8fb44636!2sAdoraci%C3%B3n%20Viva!5e0!3m2!1sen!2smx!4v1776618127592!5m2!1sen!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/w13MvtT4D7pQ2Axy8"
+    },
+    "recepcion": {
+      "hora": "Al término de la ceremonia",
+      "lugar": "Salón Cerezos",
+      "direccion": "Blvd. Álvaro Obregón #98 Col.Rodríguez",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1910.0879448114576!2d-98.29434857583898!3d26.0591688155949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f3cfd564cb3%3A0x823e32755f06f123!2sLos%20Cerezos%20Sal%C3%B3n%20de%20Eventos!5e0!3m2!1sen!2smx!4v1776614723914!5m2!1sen!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/1w4XUf2H62B7Kx5q9"
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal",
+    "descripcion": "Se reserva el uso del color ROJO y CHAMPAGNE para la quinceañera",
+    "colorSugerido": "#d17c66"
+  },
+  "regalos": {
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": false,
+    "opcionMesa": false,
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": ""
+  },
+  "rsvp": {
+    "telefono": "5218992306452",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
+    "fechaLimite": "10 de Mayo",
+    "mostrarMensajeEspecial": true
+  },
+  "footer": {
+    "agradecimiento": "¡Gracias por ser parte de este día!"
+  },
+  "tema": {
+    "colorPrincipal": "#b30000",
+    "colorFondo": "#ffecfb",
+    "colorTexto": "#333333",
+    "fuentePrincipal": "Montserrat",
+    "fuenteCursiva": "Great Vibes"
+  },
+  "imagenesFondo": {
+    "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
+    "countdown": "/imagenes/xv/rousse/countdown.png",
+    "regalos": "/imagenes/xv/rousse/regalos.png"
+  },
+  "musica": {
+    "url": "/musica/rousse-cruz.mp3"
+  },
+  "pases": {
+    "mostrar": false,
+    "cantidad": 0
+  },
+  "sobre": {
+    "tipo": "sobre1",
+    "colorFondoBase": "#0f172a",
+    "colorSobre": "#7a0000",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#b30000"
+  }
+}

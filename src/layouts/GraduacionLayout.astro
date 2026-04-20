@@ -1,0 +1,85 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js para animaciones simples de scroll / interacciones -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" is:inline></script>
+
+    <!-- Tailwind Config -->
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              grad: {
+                primary: '#1A202C', /* Azul oscuro / Negro */
+                secondary: '#D4AF37', /* Dorado elegante */
+                accent: '#2C3E50', /* Navy blue */
+                text: '#E2E8F0', /* Gris claro para texto sobre oscuro */
+                bg: '#0F172A', /* Fondo oscuro nocturno */
+                burdeos: '#800020' /* Burdeos opcional */
+              }
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Montserrat"', 'sans-serif'],
+              display: ['"Cinzel"', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        background-color: #0F172A; /* Fondo muy oscuro, elegante */
+        color: #E2E8F0;
+      }
+      
+      .fade-in {
+        animation: fadeIn 1.5s ease-in-out forwards;
+      }
+      
+      .gold-gradient-text {
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .gold-border {
+        border-image: linear-gradient(to right, #BF953F, #FCF6BA, #AA771C) 1;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0F172A;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D4AF37;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased overflow-x-hidden">
+    <slot />
+  </body>
+</html>

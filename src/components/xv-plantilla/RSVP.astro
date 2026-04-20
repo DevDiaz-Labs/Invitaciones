@@ -1,0 +1,196 @@
+---
+// RSVP.astro
+interface Props {
+  data: {
+    telefono: string;
+    mensajeDefault: string;
+    fechaLimite: string;
+    urlCalendario?: string;
+    mostrarMensajeEspecial?: boolean;
+    pases?: {
+      mostrar: boolean;
+      cantidad: number;
+    };
+  };
+}
+const { data } = Astro.props;
+---
+
+<section
+    class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative bg-[var(--gold)]/5 border-t border-[var(--gold)]/20"
+>
+    <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
+        <h3 class="font-serif text-4xl md:text-5xl text-[var(--gold)]">
+            Confirma tu asistencia
+        </h3>
+        <p class="text-[var(--dark-text)]/70 italic text-base md:text-lg font-light">
+            Será un honor contar con tu presencia. Por favor, confírmanos antes
+            del {data.fechaLimite}.
+        </p>
+
+        <form id="rsvp-form" class="space-y-6">
+            <input
+                type="text"
+                id="guest-name"
+                placeholder="Tu nombre completo"
+                required
+                class="w-full bg-white/10 p-5 md:p-6 rounded-3xl border border-white/10 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40"
+            />
+
+            {data.pases?.mostrar && (
+                <div class="text-[var(--gold)] font-medium text-sm md:text-base mb-4 animate-pulse">
+                    Hemos reservado {data.pases.cantidad} lugares para ti
+                </div>
+            )}
+
+            <style>
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                    -webkit-appearance: none; 
+                    margin: 0; 
+                }
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+            </style>
+
+            <div class="grid grid-cols-3 gap-3 md:gap-4">
+                <div class="flex flex-col items-center">
+                    <label class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1">Adultos</label>
+                    <div class="flex items-center w-full bg-white/10 rounded-[1.5rem] border border-white/10 focus-within:border-[var(--gold)] focus-within:ring-1 focus-within:ring-[var(--gold)] transition-all overflow-hidden h-12 md:h-14">
+                        <button type="button" class="decrement-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-2xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="adult-count">−</button>
+                        <input type="number" id="adult-count" min="0" value="0" required
+                            class="flex-1 bg-transparent border-none appearance-none outline-none text-center text-lg md:text-xl text-[var(--dark-text)] p-0 m-0 w-full"
+                        />
+                        <button type="button" class="increment-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="adult-count">+</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <label class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1">Jóvenes</label>
+                    <div class="flex items-center w-full bg-white/10 rounded-[1.5rem] border border-white/10 focus-within:border-[var(--gold)] focus-within:ring-1 focus-within:ring-[var(--gold)] transition-all overflow-hidden h-12 md:h-14">
+                        <button type="button" class="decrement-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-2xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="youth-count">−</button>
+                        <input type="number" id="youth-count" min="0" value="0" required
+                            class="flex-1 bg-transparent border-none appearance-none outline-none text-center text-lg md:text-xl text-[var(--dark-text)] p-0 m-0 w-full"
+                        />
+                        <button type="button" class="increment-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="youth-count">+</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <label class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1">Niños</label>
+                    <div class="flex items-center w-full bg-white/10 rounded-[1.5rem] border border-white/10 focus-within:border-[var(--gold)] focus-within:ring-1 focus-within:ring-[var(--gold)] transition-all overflow-hidden h-12 md:h-14">
+                        <button type="button" class="decrement-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-2xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="child-count">−</button>
+                        <input type="number" id="child-count" min="0" value="0" required
+                            class="flex-1 bg-transparent border-none appearance-none outline-none text-center text-lg md:text-xl text-[var(--dark-text)] p-0 m-0 w-full"
+                        />
+                        <button type="button" class="increment-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none" data-target="child-count">+</button>
+                    </div>
+                </div>
+            </div>
+
+            {data.mostrarMensajeEspecial && (
+                <div class="mt-8 observe-me fade-up">
+                    <label class="block text-[10px] md:text-xs text-[var(--dark-text)]/70 mb-3 tracking-[0.1em] md:tracking-[0.2em] uppercase text-left px-4">Mensaje Especial</label>
+                    <textarea
+                        id="special-message"
+                        rows="3"
+                        placeholder="Escribe tu mensaje especial aquí..."
+                        class="w-full bg-white/10 p-4 md:p-5 rounded-2xl border border-[var(--gold)]/40 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-sm md:text-base text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40 resize-none"
+                    ></textarea>
+                </div>
+            )}
+
+            <div class="flex flex-col gap-4 mt-8">
+                <button
+                    type="submit"
+                    class="w-full bg-[var(--gold)] text-white py-5 md:py-6 rounded-3xl font-bold uppercase tracking-[0.2em] shadow-xl hover:bg-[var(--gold)]/90 transition-all transform hover:-translate-y-1 text-sm md:text-lg"
+                >
+                    Confirmar por WhatsApp
+                </button>
+
+                {data.urlCalendario && (
+                <div class="mt-16 md:mt-20">
+                    <a
+                        href={data.urlCalendario}
+                        target="_blank"
+                        class="btn-gold px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-[11px] inline-block"
+                    >
+                        Agendar en mi Calendario
+                    </a>
+                </div>
+                )}
+            </div>
+        </form>
+
+        <div
+            id="status-msg"
+            class="hidden mt-4 text-[var(--gold)] italic animate-pulse"
+        >
+            Redirigiendo a WhatsApp...
+        </div>
+    </div>
+</section>
+
+<script define:vars={{ telefonoAPI: data.telefono, mensajeBase: data.mensajeDefault }}>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("rsvp-form");
+        if (!form) return;
+
+        // Botones de incremento y decremento
+        document.querySelectorAll('.increment-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                if (input) {
+                    input.value = parseInt(input.value || 0) + 1;
+                }
+            });
+        });
+
+        document.querySelectorAll('.decrement-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                if (input) {
+                    const currentVal = parseInt(input.value || 0);
+                    if (currentVal > 0) input.value = currentVal - 1;
+                }
+            });
+        });
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("guest-name")?.value || "";
+            const adults = parseInt(document.getElementById("adult-count")?.value || "0");
+            const youth = parseInt(document.getElementById("youth-count")?.value || "0");
+            const children = parseInt(document.getElementById("child-count")?.value || "0");
+            const specialMessage = document.getElementById("special-message")?.value || "";
+            const statusMsg = document.getElementById("status-msg");
+
+            if (adults === 0 && youth === 0 && children === 0) {
+                alert("Por favor indica la cantidad de personas que asistirán.");
+                return;
+            }
+
+            let text = `${mensajeBase}\nSoy ${name.trim()}, confirmo mi asistencia:\n`;
+            if (adults > 0) text += `- ${adults} adulto${adults > 1 ? 's' : ''}\n`;
+            if (youth > 0) text += `- ${youth} joven${youth > 1 ? 'es' : ''}\n`;
+            if (children > 0) text += `- ${children} niño${children > 1 ? 's' : ''}`;
+
+            if (specialMessage.trim() !== "") {
+                text += `\n\nMensaje:\n"${specialMessage.trim()}"`;
+            }
+
+            const url = `https://wa.me/${telefonoAPI}?text=${encodeURIComponent(text.trim())}`;
+
+            if (statusMsg) statusMsg.classList.remove("hidden");
+
+            setTimeout(() => {
+                window.open(url, "_blank");
+                if (statusMsg) statusMsg.classList.add("hidden");
+            }, 500);
+        });
+    });
+</script>

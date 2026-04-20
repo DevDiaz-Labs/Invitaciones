@@ -1,0 +1,26 @@
+---
+const { data } = Astro.props;
+---
+
+<footer class="bg-gray-900 text-boho-arena py-12 px-6 text-center">
+  <div class="max-w-2xl mx-auto flex flex-col items-center">
+    <div class="w-16 h-px bg-boho-eucalipto/50 mb-8"></div>
+    
+    <h2 class="font-handwriting text-5xl mb-4 text-boho-rosa">
+      {data.nombres}
+    </h2>
+    <p class="text-xl tracking-widest font-light mb-6 uppercase text-white/70">
+      {data.fechaVista}
+    </p>
+    
+    <a href={`https://www.instagram.com/explore/tags/${data.hashtag.replace('#', '')}`} target="_blank" rel="noopener noreferrer" class="text-boho-dorado text-2xl font-bold hover:text-white transition-colors duration-300">
+      {data.hashtag}
+    </a>
+    
+    <div class="w-16 h-px bg-boho-eucalipto/50 mt-8 mb-8"></div>
+    
+    <p class="text-sm opacity-50 font-sans">
+      Desarrollado con ♥ por DevDiaz-Labs
+    </p>
+  </div>
+</footer>

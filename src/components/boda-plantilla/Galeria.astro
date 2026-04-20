@@ -1,0 +1,61 @@
+---
+const { data } = Astro.props;
+// data debe ser un arreglo de strings (URLs)
+---
+
+<section class="w-full h-[85vh] relative bg-black" x-data={`{
+    activeSlide: 0,
+    totalSlides: ${data.length},
+    init() {
+        setInterval(() => { this.next() }, 4000);
+    },
+    next() {
+        this.activeSlide = (this.activeSlide + 1) % this.totalSlides;
+    },
+    prev() {
+        this.activeSlide = (this.activeSlide - 1 + this.totalSlides) % this.totalSlides;
+    }
+}`}>
+  <!-- Slides renderizados por el servidor -->
+  <div class="absolute inset-0 z-0">
+    {data.map((slide: string, index: number) => (
+      <div
+        x-show={`activeSlide === ${index}`}
+        x-transition:enter="transition ease-out duration-1000"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-1000"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="absolute inset-0 w-full h-full"
+        style={index !== 0 ? "display: none;" : ""}
+      >
+        <div class="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div>
+        <img src={slide} alt={`Momento de la pareja ${index + 1}`} class="w-full h-full object-cover object-center" />
+      </div>
+    ))}
+  </div>
+
+  <!-- Controles manuales -->
+  <button @click="prev()" aria-label="Anterior foto" class="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition z-20 shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button @click="next()" aria-label="Siguiente foto" class="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full text-white transition z-20 shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Indicadores inferiores -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+    {data.map((_: string, index: number) => (
+      <button 
+        @click={`activeSlide = ${index}`} 
+        :class={`activeSlide === ${index} ? 'w-10 bg-white' : 'w-3 bg-white/50 hover:bg-white/80'`} 
+        class="h-3 rounded-full transition-all duration-500 shadow-md">
+      </button>
+    ))}
+  </div>
+</section>

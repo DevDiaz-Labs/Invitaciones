@@ -1,0 +1,44 @@
+---
+import BodaTemplate from "../../components/boda-plantilla/BodaTemplate.astro";
+
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Generar rutas estáticas filtrando SOLO por "boda"
+export async function getStaticPaths() {
+	const clientesDir = path.resolve('./src/data/clientes');
+	let clientesFiles: string[] = [];
+	
+	try {
+		clientesFiles = fs.readdirSync(clientesDir).filter(f => f.endsWith('.json'));
+	} catch(e) {
+		console.log("Directorio de clientes no encontrado, retornando paths vacíos.");
+	}
+
+    const paths = [];
+
+	for (const file of clientesFiles) {
+		const clienteId = file.replace('.json', '');
+		const rawData = fs.readFileSync(path.join(clientesDir, file), 'utf-8');
+        try {
+            const data = JSON.parse(rawData);
+            
+            // FILTRO CRUCIAL: Solo aceptamos las invitaciones tipo 'boda'
+            if (data.tipo === 'boda') {
+                paths.push({
+                    params: { cliente: clienteId },
+                    props: { data },
+                });
+            }
+        } catch(e) {
+            console.error(`Error procesando JSON de ${file}:`, e);
+        }
+	}
+
+    return paths;
+}
+
+const { data } = Astro.props;
+---
+
+<BodaTemplate data={data} />

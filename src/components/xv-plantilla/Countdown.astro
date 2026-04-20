@@ -1,0 +1,130 @@
+---
+// Countdown.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario: string;
+  };
+  bgImage?: string;
+}
+const { data, bgImage } = Astro.props;
+---
+
+<section
+    class="py-20 md:py-24 backdrop-blur-md relative overflow-hidden border-y border-[var(--gold)]/10"
+    style={`${bgImage ? `background-image: url('${bgImage}'); background-size: 85%; background-position: top right; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}`}
+>
+    <div
+        class="max-w-4xl mx-auto text-center px-4 md:px-6 relative z-10 observe-me scale-in"
+    >
+        <h3
+            class="font-serif text-lg md:text-xl mb-12 tracking-[0.4em] uppercase text-[var(--gold)]"
+        >
+            Faltan
+        </h3>
+
+        <div
+            id="countdown"
+            class="grid grid-cols-4 gap-4 md:gap-16 max-w-2xl mx-auto"
+        >
+            <div class="text-center">
+                <span
+                    id="days"
+                    class="block text-4xl md:text-7xl font-light text-[var(--dark-text)] leading-none"
+                    >00</span
+                >
+                <span
+                    class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--gold)] mt-2 block"
+                    >Días</span
+                >
+            </div>
+            <div class="text-center">
+                <span
+                    id="hours"
+                    class="block text-4xl md:text-7xl font-light text-[var(--dark-text)] leading-none"
+                    >00</span
+                >
+                <span
+                    class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--gold)] mt-2 block"
+                    >Horas</span
+                >
+            </div>
+            <div class="text-center">
+                <span
+                    id="minutes"
+                    class="block text-4xl md:text-7xl font-light text-[var(--dark-text)] leading-none"
+                    >00</span
+                >
+                <span
+                    class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--gold)] mt-2 block"
+                    >Minutos</span
+                >
+            </div>
+            <div class="text-center">
+                <span
+                    id="seconds"
+                    class="block text-4xl md:text-7xl font-light text-[var(--dark-text)] leading-none"
+                    >00</span
+                >
+                <span
+                    class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--gold)] mt-2 block"
+                    >Segundos</span
+                >
+            </div>
+        </div>
+
+        <div class="mt-16 md:mt-20">
+            <a
+                href={data.urlCalendario}
+                target="_blank"
+                class="btn-gold px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-[11px] inline-block"
+            >
+                Agendar en mi Calendario
+            </a>
+        </div>
+    </div>
+</section>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo }}>
+    document.addEventListener("DOMContentLoaded", () => {
+        const eventDate = new Date(fechaObjetivoStr).getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const dist = eventDate - now;
+            const container = document.getElementById("countdown");
+            if (!container) return;
+
+            if (dist < 0) {
+                container.innerHTML =
+                    "<p class='col-span-4 text-2xl font-serif text-[var(--gold)]'>¡Es hoy!</p>";
+                return;
+            }
+
+            const days = document.getElementById("days");
+            const hours = document.getElementById("hours");
+            const minutes = document.getElementById("minutes");
+            const seconds = document.getElementById("seconds");
+
+            if (days)
+                days.innerText = Math.floor(dist / 86400000)
+                    .toString()
+                    .padStart(2, "0");
+            if (hours)
+                hours.innerText = Math.floor((dist % 86400000) / 3600000)
+                    .toString()
+                    .padStart(2, "0");
+            if (minutes)
+                minutes.innerText = Math.floor((dist % 3600000) / 60000)
+                    .toString()
+                    .padStart(2, "0");
+            if (seconds)
+                seconds.innerText = Math.floor((dist % 60000) / 1000)
+                    .toString()
+                    .padStart(2, "0");
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    });
+</script>
