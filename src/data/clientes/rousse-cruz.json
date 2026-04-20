@@ -10,7 +10,7 @@
     "imagenFondo2": "/imagenes/xv/rousse/rousse2.jpeg"
   },
   "dedicatoria": {
-    "padres": "Raussey Pérez y Osiris Cruz",
+    "padres": "Raussey Pérez y Osiris Cruz <br/><br/><span style=\"font-size: 0.8em; opacity: 0.9;\">Y mi hermano</span><br/>Raussey Jr. Cruz",
     "padrinos": "",
     "mostrarPadrinos": false,
     "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
@@ -28,7 +28,7 @@
       "urlMapaDirecto": "https://www.google.com/maps/search/?api=1&query=Adoracion+Viva+Reynosa"
     },
     "recepcion": {
-      "hora": "Al término de la ceremonia",
+      "hora": "7:30 pm",
       "lugar": "Salón Cerezos",
       "direccion": "Blvd. Álvaro Obregón #98 Col.Rodríguez",
       "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1910.0879448114576!2d-98.29434857583898!3d26.0591688155949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f3cfd564cb3%3A0x823e32755f06f123!2sLos%20Cerezos%20Sal%C3%B3n%20de%20Eventos!5e0!3m2!1sen!2smx!4v1776614723914!5m2!1sen!2smx",
@@ -51,7 +51,7 @@
   "rsvp": {
     "telefono": "5218992306452",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
-    "fechaLimite": "10 de Mayo",
+    "fechaLimite": "16 de Mayo",
     "mostrarMensajeEspecial": true
   },
   "footer": {
