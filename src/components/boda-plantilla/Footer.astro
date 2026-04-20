@@ -5,22 +5,31 @@ const { data } = Astro.props;
 <footer class="bg-gray-900 text-boho-arena py-12 px-6 text-center">
   <div class="max-w-2xl mx-auto flex flex-col items-center">
     <div class="w-16 h-px bg-boho-eucalipto/50 mb-8"></div>
-    
+
     <h2 class="font-handwriting text-5xl mb-4 text-boho-rosa">
       {data.nombres}
     </h2>
     <p class="text-xl tracking-widest font-light mb-6 uppercase text-white/70">
       {data.fechaVista}
     </p>
-    
-    <a href={`https://www.instagram.com/explore/tags/${data.hashtag.replace('#', '')}`} target="_blank" rel="noopener noreferrer" class="text-boho-dorado text-2xl font-bold hover:text-white transition-colors duration-300">
+
+    <a
+      href={`https://www.instagram.com/explore/tags/${data.hashtag.replace("#", "")}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-boho-dorado text-2xl font-bold hover:text-white transition-colors duration-300"
+    >
       {data.hashtag}
     </a>
-    
+
     <div class="w-16 h-px bg-boho-eucalipto/50 mt-8 mb-8"></div>
-    
-    <p class="text-sm opacity-50 font-sans">
+
+    <a
+      href="https://wa.me/527824127509?text=Hola,%20vi%20una%20invitación%20digital%20y%20me%20gustaría%20más%20información."
+      target="_blank"
+      class="text-sm opacity-50 font-sans hover:text-boho-dorado hover:opacity-100 transition-all duration-300"
+    >
       Desarrollado con ♥ por DevDiaz-Labs
-    </p>
+    </a>
   </div>
 </footer>
