@@ -57,8 +57,13 @@
   },
   "tema": {
     "colorPrincipal": "#b30000",
-    "colorFondo": "#faeedd",
+    "colorFondo": "#ffecfb",
     "colorTexto": "#333333"
+  },
+  "imagenesFondo": {
+    "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
+    "countdown": "/imagenes/xv/rousse/countdown.png",
+    "regalos": "/imagenes/xv/rousse/regalos.png"
   },
   "pases": {
     "mostrar": false,

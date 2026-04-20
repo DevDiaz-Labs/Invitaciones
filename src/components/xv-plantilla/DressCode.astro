@@ -6,12 +6,14 @@ interface Props {
     descripcion: string;
     colorSugerido: string;
   };
+  bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
 <section
-    class="py-24 md:py-32 px-6 text-center relative overflow-hidden"
+    class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh]"
+    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: 135%; background-position: center; background-repeat: no-repeat;` : ""}`}
 >
     <!-- Decorative Butterfly -->
     <svg

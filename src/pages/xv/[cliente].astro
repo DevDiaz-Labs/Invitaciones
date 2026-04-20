@@ -15,39 +15,43 @@ import RSVP from "../../components/xv-plantilla/RSVP.astro";
 import Footer from "../../components/xv-plantilla/Footer.astro";
 import MusicPlayer from "../../components/xv-plantilla/MusicPlayer.astro";
 
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "fs";
+import * as path from "path";
 
 // Generar rutas estáticas filtrando SOLO por "xv"
 export async function getStaticPaths() {
-	const clientesDir = path.resolve('./src/data/clientes');
-	let clientesFiles: string[] = [];
-	
-	try {
-		clientesFiles = fs.readdirSync(clientesDir).filter(f => f.endsWith('.json'));
-	} catch(e) {
-		console.log("Directorio de clientes no encontrado, retornando paths vacíos.");
-	}
+    const clientesDir = path.resolve("./src/data/clientes");
+    let clientesFiles: string[] = [];
+
+    try {
+        clientesFiles = fs
+            .readdirSync(clientesDir)
+            .filter((f) => f.endsWith(".json"));
+    } catch (e) {
+        console.log(
+            "Directorio de clientes no encontrado, retornando paths vacíos.",
+        );
+    }
 
     const paths = [];
 
-	for (const file of clientesFiles) {
-		const clienteId = file.replace('.json', '');
-		const rawData = fs.readFileSync(path.join(clientesDir, file), 'utf-8');
+    for (const file of clientesFiles) {
+        const clienteId = file.replace(".json", "");
+        const rawData = fs.readFileSync(path.join(clientesDir, file), "utf-8");
         try {
             const data = JSON.parse(rawData);
-            
+
             // FILTRO CRUCIAL: Solo aceptamos las invitaciones tipo 'xv'
-            if (data.tipo === 'xv') {
+            if (data.tipo === "xv") {
                 paths.push({
                     params: { cliente: clienteId },
                     props: { data },
                 });
             }
-        } catch(e) {
+        } catch (e) {
             console.error(`Error procesando JSON de ${file}:`, e);
         }
-	}
+    }
 
     return paths;
 }
@@ -60,27 +64,31 @@ const { data } = Astro.props;
     <script slot="head" is:inline src="https://cdn.tailwindcss.com"></script>
 
     <!-- Selector de Animación de Entrada -->
-    {data.sobre?.tipo === "sobre1" && (
-        <Sobre1 
-            nombre={data.hero.nombre} 
-            fecha={data.hero.fechaTexto} 
-            evento={data.hero.etiqueta}
-            mensajeTop="Te invito a celebrar"
-            pases={data.pases}
-            {...data.sobre}
-        />
-    )}
-    
-    {(!data.sobre?.tipo || data.sobre?.tipo === "default") && (
-        <Sobre1 
-             nombre={data.hero.nombre} 
-             fecha={data.hero.fechaTexto} 
-             evento={data.hero.etiqueta}
-             mensajeTop="Te invito a celebrar"
-             pases={data.pases}
-             {...data.sobre}
-         />
-    )}
+    {
+        data.sobre?.tipo === "sobre1" && (
+            <Sobre1
+                nombre={data.hero.nombre}
+                fecha={data.hero.fechaTexto}
+                evento={data.hero.etiqueta}
+                mensajeTop="Te invito a celebrar"
+                pases={data.pases}
+                {...data.sobre}
+            />
+        )
+    }
+
+    {
+        (!data.sobre?.tipo || data.sobre?.tipo === "default") && (
+            <Sobre1
+                nombre={data.hero.nombre}
+                fecha={data.hero.fechaTexto}
+                evento={data.hero.etiqueta}
+                mensajeTop="Te invito a celebrar"
+                pases={data.pases}
+                {...data.sobre}
+            />
+        )
+    }
 
     <!-- Contenido Principal inicia oculto (el sobre lo muestra al animarse) -->
     <main
@@ -88,16 +96,28 @@ const { data } = Astro.props;
         style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
     >
         <Hero data={data.hero} />
-        {data.dedicatoria && <Dedicatoria data={data.dedicatoria} />}
-        {data.countdown && <Countdown data={data.countdown} />}
+        {data.dedicatoria && <Dedicatoria data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
+        {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
         {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} />}
         {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} />}
-        {data.dressCode && <DressCode data={data.dressCode} />}
-        {data.regalos && <Regalos data={data.regalos} nombre={data.hero.nombre} />}
+        {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.regalos} />}
+        {
+            data.regalos && (
+                <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} />
+            )
+        }
         {data.galeria?.mostrar && <Galeria data={data.galeria} />}
-        {data.rsvp && (
-            <RSVP data={{ ...data.rsvp, urlCalendario: data.countdown?.urlCalendario, pases: data.pases }} />
-        )}
+        {
+            data.rsvp && (
+                <RSVP
+                    data={{
+                        ...data.rsvp,
+                        urlCalendario: data.countdown?.urlCalendario,
+                        pases: data.pases,
+                    }}
+                />
+            )
+        }
     </main>
 
     <div

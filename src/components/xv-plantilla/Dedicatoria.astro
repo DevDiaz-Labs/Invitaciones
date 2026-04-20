@@ -7,11 +7,15 @@ interface Props {
         texto: string;
         mostrarPadrinos?: boolean;
     };
+    bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
-<section class="relative py-24 md:py-32 px-6 overflow-hidden">
+<section 
+    class="relative py-24 md:py-32 px-6 overflow-hidden" 
+    style={bgImage ? `background-image: url('${bgImage}'); background-size: 85%; background-position: bottom left; background-repeat: no-repeat;` : ""}
+>
     <!-- SVG Decorativo de fondo -->
     <div class="absolute top-10 right-[-50px] opacity-10 w-80 rotate-12">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
