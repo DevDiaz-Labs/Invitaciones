@@ -1,0 +1,14 @@
+---
+// Separador.astro
+interface Props {
+  image: string;
+}
+const { image } = Astro.props;
+---
+<section class="w-full overflow-hidden my-8">
+  <img 
+    src={image} 
+    alt="Separador" 
+    class="w-full h-auto object-cover max-h-[600px] observe-me fade-in-slow" 
+  />
+</section>

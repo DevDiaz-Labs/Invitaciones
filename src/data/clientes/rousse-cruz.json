@@ -6,7 +6,8 @@
     "nombre": "Rousse Cruz",
     "fechaTexto": "16 de Mayo 2026",
     "frase": "Con la bendición de Dios",
-    "imagenFondo": "/imagenes/xv/rousse/rousse.jpeg"
+    "imagenFondo": "/imagenes/xv/rousse/rousse.jpeg",
+    "imagenFondo2": "/imagenes/xv/rousse/rousse2.jpeg"
   },
   "dedicatoria": {
     "padres": "Raussey Pérez y Osiris Cruz",
@@ -58,12 +59,17 @@
   "tema": {
     "colorPrincipal": "#b30000",
     "colorFondo": "#ffecfb",
-    "colorTexto": "#333333"
+    "colorTexto": "#333333",
+    "fuentePrincipal": "Montserrat",
+    "fuenteCursiva": "Sacramento"
   },
   "imagenesFondo": {
     "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
     "countdown": "/imagenes/xv/rousse/countdown.png",
     "regalos": "/imagenes/xv/rousse/regalos.png"
+  },
+  "musica": {
+    "url": "/musica/rousse-cruz.mp3"
   },
   "pases": {
     "mostrar": false,

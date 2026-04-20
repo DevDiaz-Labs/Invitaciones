@@ -5,21 +5,19 @@ interface Props {
 		colorPrincipal?: string;
 		colorFondo?: string;
 		colorTexto?: string;
+		fuentePrincipal?: string;
+		fuenteCursiva?: string;
 	};
 }
 
 const { title, tema } = Astro.props;
 
-const bodyStyles = tema ? {
-    '--gold': tema.colorPrincipal,
-    '--bg-cream': tema.colorFondo,
-    '--dark-text': tema.colorTexto,
-} : {};
-
-const inlineStyles = Object.entries(bodyStyles)
-    .filter(([_, value]) => value)
-    .map(([key, value]) => `${key}: ${value};`)
-    .join(' ');
+// Valores por defecto
+const fuenteMain = tema?.fuentePrincipal || "Montserrat";
+const fuenteCursive = tema?.fuenteCursiva || "Great Vibes";
+const colorP = tema?.colorPrincipal || "#c5a059";
+const colorF = tema?.colorFondo || "#fdfbf7";
+const colorT = tema?.colorTexto || "#333333";
 ---
 
 <!doctype html>
@@ -28,14 +26,24 @@ const inlineStyles = Object.entries(bodyStyles)
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+		
+        		<!-- Fuentes Base Pre-cargadas -->
+		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sacramento&family=Dancing+Script&display=swap" rel="stylesheet" />
+        
+        <!-- Fuentes Dinámicas Adicionales -->
+        {fuenteMain !== "Montserrat" && (
+            <link href={`https://fonts.googleapis.com/css2?family=${fuenteMain.replace(' ', '+')}:wght@300;400;600&display=swap`} rel="stylesheet" />
+        )}
+        {fuenteCursive !== "Great Vibes" && fuenteCursive !== "Sacramento" && (
+            <link href={`https://fonts.googleapis.com/css2?family=${fuenteCursive.replace(' ', '+')}&display=swap`} rel="stylesheet" />
+        )}
+
         <slot name="head" />
 	</head>
-	<body style={inlineStyles}>
+	<body>
 		<slot />
         
         <script>
-            // Global Scroll Observer para animaciones potentes
             document.addEventListener('DOMContentLoaded', () => {
                 const observerOptions = {
                     root: null,
@@ -59,23 +67,33 @@ const inlineStyles = Object.entries(bodyStyles)
 	</body>
 </html>
 
-<style is:global>
+<style is:global define:vars={{ 
+    mainFont: `'${fuenteMain}', sans-serif`, 
+    cursiveFont: `'${fuenteCursive}', cursive`,
+    primaryColor: colorP,
+    bgColor: colorF,
+    textColor: colorT
+}}>
     :root {
-        --gold: #c5a059;
-        --soft-gold: #e5d5b5;
-        --dark-text: #333333;
-        --bg-cream: #fdfbf7;
+        --gold: var(--primaryColor);
+        --dark-text: var(--textColor);
+        --bg-cream: var(--bgColor);
     }
+
     body {
-        font-family: 'Montserrat', sans-serif;
+        font-family: var(--mainFont);
         background-color: var(--bg-cream);
         color: var(--dark-text);
         scroll-behavior: smooth;
         overflow-x: hidden;
     }
     
-    .font-cursive { font-family: 'Great Vibes', cursive; }
-    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-cursive { 
+        font-family: var(--cursiveFont) !important; 
+    }
+    .font-serif { 
+        font-family: var(--cursiveFont) !important; 
+    }
     
     /* Global Animations */
     @keyframes float {
@@ -85,7 +103,6 @@ const inlineStyles = Object.entries(bodyStyles)
     }
     .animate-float { animation: float 6s ease-in-out infinite; }
 
-    /* Entradas base controladas por el observer */
     .observe-me {
         opacity: 0;
         transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);
@@ -116,24 +133,6 @@ const inlineStyles = Object.entries(bodyStyles)
         transform: translateY(0);
     }
 
-    /* Detalles y Reutilizables */
-    .floral-bg {
-        position: absolute;
-        pointer-events: none;
-        opacity: 0.12;
-        z-index: 0;
-    }
-
-    .butterfly {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        fill: var(--gold);
-        opacity: 0.3;
-        pointer-events: none;
-        z-index: 1;
-    }
-
     .section-divider {
         height: 1px;
         width: 120px;
@@ -153,3 +152,5 @@ const inlineStyles = Object.entries(bodyStyles)
         box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
     }
 </style>
+
+

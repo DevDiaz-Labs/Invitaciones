@@ -16,16 +16,6 @@ const { data, bgImage } = Astro.props;
     class="relative py-24 md:py-32 px-6 overflow-hidden" 
     style={bgImage ? `background-image: url('${bgImage}'); background-size: 85%; background-position: bottom left; background-repeat: no-repeat;` : ""}
 >
-    <!-- SVG Decorativo de fondo -->
-    <div class="absolute top-10 right-[-50px] opacity-10 w-80 rotate-12">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill="var(--gold)"
-                d="M100,0 C120,50 180,20 150,100 C120,180 50,150 0,100 C50,50 80,0 100,0 Z"
-            ></path>
-        </svg>
-    </div>
-
     <div
         class="max-w-4xl mx-auto text-center space-y-16 md:space-y-20 relative z-10 observe-me fade-up"
     >

@@ -17,34 +17,6 @@ const { data } = Astro.props;
 >
     <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via inline style prop) -->
 
-    <!-- Elementos Decorativos Globales -->
-    <div class="floral-bg top-0 left-0 w-64 h-64">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill="var(--gold)"
-                d="M40,20 C60,40 20,60 40,80 C60,100 100,60 80,40 C60,20 20,0 40,20 Z"
-            ></path>
-            <circle cx="150" cy="50" r="20" fill="var(--gold)" opacity="0.5"
-            ></circle>
-        </svg>
-    </div>
-
-    <!-- Mariposas animadas en el Hero -->
-    <svg class="butterfly animate-float top-20 left-[15%]" viewBox="0 0 50 50">
-        <path
-            d="M25 20c-5-10-15-10-15 0 0 10 15 20 15 20s15-10 15-20c0-10-10-10-15 0z"
-        ></path>
-    </svg>
-    <svg
-        class="butterfly animate-float top-40 right-[10%]"
-        style="animation-delay: 2s;"
-        viewBox="0 0 50 50"
-    >
-        <path
-            d="M25 20c-5-10-15-10-15 0 0 10 15 20 15 20s15-10 15-20c0-10-10-10-15 0z"
-        ></path>
-    </svg>
-
     <div class="observe-me fade-up z-10 text-white">
         <p
             class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"

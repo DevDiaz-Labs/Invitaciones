@@ -3,14 +3,17 @@
   "id": "ejemplo-xv",
   "tema": {
     "colorPrincipal": "#D4AF37",
-    "colorFondo": "#FFFFFF"
+    "colorFondo": "#FFFFFF",
+    "fuentePrincipal": "Montserrat",
+    "fuenteCursiva": "Sacramento"
   },
   "hero": {
     "etiqueta": "Mis XV Años",
     "nombre": "Sofia Valeria",
     "fechaTexto": "15 de Diciembre 2026",
     "frase": "¡Prepárate para una noche mágica!",
-    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0"
+    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0",
+    "imagenFondo2": "/imagenes/ejemplo/imagen1.jpg"
   },
   "dedicatoria": {
     "padres": "Juan Perez y Maria Gomez",

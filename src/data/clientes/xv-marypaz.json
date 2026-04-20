@@ -4,14 +4,17 @@
   "tema": {
     "colorPrincipal": "#D4AF37",
     "colorFondo": "#2a3b29",
-    "colorTexto": "#Fdfbf7"
+    "colorTexto": "#Fdfbf7",
+    "fuentePrincipal": "Montserrat",
+    "fuenteCursiva": "Great Vibes"
   },
   "hero": {
     "etiqueta": "Mis XV Años",
     "nombre": "Marypaz Gutiérrez De La Cruz",
     "fechaTexto": "04 de Julio 2026",
     "frase": "¡Prepárate para una noche mágica!",
-    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0"
+    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0",
+    "imagenFondo2": "/imagenes/marypaz gutierrez/galeria1.webp"
   },
   "dedicatoria": {
     "padres": "Pascuala De La Cruz y Germán Gutiérrez",
@@ -74,11 +77,11 @@
     "mostrar": true,
     "titulo": "GALERÍA",
     "imagenes": [
-      "/imagenes/marypaz gutierrez/galeria1.webp",
-      "/imagenes/marypaz gutierrez/galeria2.webp",
-      "/imagenes/marypaz gutierrez/galeria3.webp",
-      "/imagenes/marypaz gutierrez/galeria4.webp",
-      "/imagenes/marypaz gutierrez/galeria5.webp"
+      "/imagenes/xv/marypaz gutierrez/galeria1.webp",
+      "/imagenes/xv/marypaz gutierrez/galeria2.webp",
+      "/imagenes/xv/marypaz gutierrez/galeria3.webp",
+      "/imagenes/xv/marypaz gutierrez/galeria4.webp",
+      "/imagenes/xv/marypaz gutierrez/galeria5.webp"
     ]
   }
 }

@@ -10,21 +10,10 @@ interface Props {
 }
 const { data, bgImage } = Astro.props;
 ---
-
 <section
     class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh]"
     style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: 135%; background-position: center; background-repeat: no-repeat;` : ""}`}
 >
-    <!-- Decorative Butterfly -->
-    <svg
-        class="butterfly animate-float bottom-20 left-[5%] opacity-15"
-        viewBox="0 0 50 50"
-    >
-        <path
-            d="M25 20c-5-10-15-10-15 0 0 10 15 20 15 20s15-10 15-20c0-10-10-10-15 0z"
-        ></path>
-    </svg>
-
     <div class="max-w-3xl mx-auto space-y-12 relative z-10 observe-me fade-up">
         <h3 class="font-serif text-4xl text-[var(--gold)] italic">
             Código de Vestimenta
