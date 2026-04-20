@@ -51,7 +51,8 @@
   "rsvp": {
     "telefono": "5218992306452",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
-    "fechaLimite": "10 de Mayo"
+    "fechaLimite": "10 de Mayo",
+    "mostrarMensajeEspecial": true
   },
   "footer": {
     "agradecimiento": "¡Gracias por ser parte de este día!"
@@ -60,8 +61,8 @@
     "colorPrincipal": "#b30000",
     "colorFondo": "#ffecfb",
     "colorTexto": "#333333",
-    "fuentePrincipal": "Satisfy",
-    "fuenteCursiva": "Satisfy"
+    "fuentePrincipal": "Montserrat",
+    "fuenteCursiva": "Great Vibes"
   },
   "imagenesFondo": {
     "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",

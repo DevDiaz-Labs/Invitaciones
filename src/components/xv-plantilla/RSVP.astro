@@ -6,6 +6,7 @@ interface Props {
     mensajeDefault: string;
     fechaLimite: string;
     urlCalendario?: string;
+    mostrarMensajeEspecial?: boolean;
     pases?: {
       mostrar: boolean;
       cantidad: number;
@@ -88,6 +89,18 @@ const { data } = Astro.props;
                 </div>
             </div>
 
+            {data.mostrarMensajeEspecial && (
+                <div class="mt-8 observe-me fade-up">
+                    <label class="block text-[10px] md:text-xs text-[var(--dark-text)]/70 mb-3 tracking-[0.1em] md:tracking-[0.2em] uppercase text-left px-4">Mensaje Especial</label>
+                    <textarea
+                        id="special-message"
+                        rows="3"
+                        placeholder="Escribe tu mensaje especial aquí..."
+                        class="w-full bg-white/10 p-4 md:p-5 rounded-2xl border border-[var(--gold)]/40 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-sm md:text-base text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40 resize-none"
+                    ></textarea>
+                </div>
+            )}
+
             <div class="flex flex-col gap-4 mt-8">
                 <button
                     type="submit"
@@ -153,6 +166,7 @@ const { data } = Astro.props;
             const adults = parseInt(document.getElementById("adult-count")?.value || "0");
             const youth = parseInt(document.getElementById("youth-count")?.value || "0");
             const children = parseInt(document.getElementById("child-count")?.value || "0");
+            const specialMessage = document.getElementById("special-message")?.value || "";
             const statusMsg = document.getElementById("status-msg");
 
             if (adults === 0 && youth === 0 && children === 0) {
@@ -164,6 +178,10 @@ const { data } = Astro.props;
             if (adults > 0) text += `- ${adults} adulto${adults > 1 ? 's' : ''}\n`;
             if (youth > 0) text += `- ${youth} joven${youth > 1 ? 'es' : ''}\n`;
             if (children > 0) text += `- ${children} niño${children > 1 ? 's' : ''}`;
+
+            if (specialMessage.trim() !== "") {
+                text += `\n\nMensaje:\n"${specialMessage.trim()}"`;
+            }
 
             const url = `https://wa.me/${telefonoAPI}?text=${encodeURIComponent(text.trim())}`;
 

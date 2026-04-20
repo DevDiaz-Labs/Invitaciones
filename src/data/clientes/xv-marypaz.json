@@ -58,7 +58,8 @@
   "rsvp": {
     "telefono": "5215512345678",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
-    "fechaLimite": "01 de Julio"
+    "fechaLimite": "01 de Julio",
+    "mostrarMensajeEspecial": true
   },
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"
