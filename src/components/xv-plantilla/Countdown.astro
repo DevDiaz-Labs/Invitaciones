@@ -18,7 +18,7 @@ const { data, bgImage } = Astro.props;
         class="max-w-4xl mx-auto text-center px-4 md:px-6 relative z-10 observe-me scale-in"
     >
         <h3
-            class="font-serif text-lg md:text-xl mb-12 tracking-[0.4em] uppercase text-[var(--gold)]"
+            class="font-titulo text-lg md:text-xl mb-12 tracking-[0.4em] uppercase text-[var(--gold)]"
         >
             Faltan
         </h3>
@@ -97,7 +97,7 @@ const { data, bgImage } = Astro.props;
 
             if (dist < 0) {
                 container.innerHTML =
-                    "<p class='col-span-4 text-2xl font-serif text-[var(--gold)]'>¡Es hoy!</p>";
+                    "<p class='col-span-4 text-2xl font-titulo text-[var(--gold)]'>¡Es hoy!</p>";
                 return;
             }
 

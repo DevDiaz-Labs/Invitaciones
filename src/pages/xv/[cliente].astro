@@ -101,10 +101,10 @@ const { data } = Astro.props;
         {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
         {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} />}
         {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} />}
-        {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.regalos} />}
+        {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.dressCode || data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.dressCodePos} />}
         {
             data.regalos && (
-                <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} />
+                <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.regalosPos} />
             )
         }
         {data.hero.imagenFondo2 && <Separador image={data.hero.imagenFondo2} />}

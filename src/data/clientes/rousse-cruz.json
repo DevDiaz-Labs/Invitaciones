@@ -62,7 +62,8 @@
     "colorFondo": "#ffecfb",
     "colorTexto": "#333333",
     "fuentePrincipal": "Montserrat",
-    "fuenteCursiva": "Great Vibes"
+    "fuenteTitulos": "Great Vibes",
+    "fuenteNombres": "Great Vibes"
   },
   "imagenesFondo": {
     "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",

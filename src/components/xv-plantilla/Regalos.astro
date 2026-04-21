@@ -11,17 +11,18 @@ interface Props {
   };
   nombre: string;
   bgImage?: string;
+  bgPos?: string;
 }
-const { data, nombre, bgImage } = Astro.props;
+const { data, nombre, bgImage, bgPos = "center" } = Astro.props;
 ---
 
 <section 
     class="py-32 md:py-40 px-6 text-center flex flex-col justify-center items-center min-h-[70vh]" 
-    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: 135%; background-position: center; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}`}
+    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: 135%; background-position: ${bgPos}; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}`}
 >
     <div class="max-w-4xl mx-auto space-y-12 md:space-y-16 w-full relative z-10">
         <h3
-            class="font-serif text-5xl text-[var(--gold)] italic observe-me fade-up"
+            class="font-titulo text-5xl text-[var(--gold)] observe-me fade-up"
         >
             Regalos
         </h3>

@@ -6,15 +6,18 @@ interface Props {
 		colorFondo?: string;
 		colorTexto?: string;
 		fuentePrincipal?: string;
-		fuenteCursiva?: string;
+		fuenteTitulos?: string;
+        fuenteNombres?: string;
 	};
 }
 
 const { title, tema } = Astro.props;
 
 // Valores por defecto
-const fuenteMain = tema?.fuentePrincipal || "Montserrat";
-const fuenteCursive = tema?.fuenteCursiva || "Great Vibes";
+const fuentePrincipal = tema?.fuentePrincipal || "Montserrat";
+const fuenteTitulos = tema?.fuenteTitulos || "Playfair Display";
+const fuenteNombres = tema?.fuenteNombres || "Great Vibes";
+
 const colorP = tema?.colorPrincipal || "#c5a059";
 const colorF = tema?.colorFondo || "#fdfbf7";
 const colorT = tema?.colorTexto || "#333333";
@@ -45,11 +48,14 @@ const colorT = tema?.colorTexto || "#333333";
 		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sacramento&family=Dancing+Script&display=swap" rel="stylesheet" />
         
         <!-- Fuentes Dinámicas Adicionales -->
-        {fuenteMain !== "Montserrat" && (
-            <link href={`https://fonts.googleapis.com/css2?family=${fuenteMain.replace(' ', '+')}:wght@300;400;600&display=swap`} rel="stylesheet" />
+        {fuentePrincipal !== "Montserrat" && (
+            <link href={`https://fonts.googleapis.com/css2?family=${fuentePrincipal.replace(' ', '+')}:wght@300;400;600&display=swap`} rel="stylesheet" />
         )}
-        {fuenteCursive !== "Great Vibes" && fuenteCursive !== "Sacramento" && (
-            <link href={`https://fonts.googleapis.com/css2?family=${fuenteCursive.replace(' ', '+')}&display=swap`} rel="stylesheet" />
+        {fuenteNombres !== "Great Vibes" && fuenteNombres !== "Sacramento" && (
+            <link href={`https://fonts.googleapis.com/css2?family=${fuenteNombres.replace(' ', '+')}&display=swap`} rel="stylesheet" />
+        )}
+        {fuenteTitulos !== "Playfair Display" && fuenteTitulos !== "Great Vibes" && (
+            <link href={`https://fonts.googleapis.com/css2?family=${fuenteTitulos.replace(' ', '+')}&display=swap`} rel="stylesheet" />
         )}
 
         <slot name="head" />
@@ -82,8 +88,9 @@ const colorT = tema?.colorTexto || "#333333";
 </html>
 
 <style is:global define:vars={{ 
-    mainFont: `'${fuenteMain}', sans-serif`, 
-    cursiveFont: `'${fuenteCursive}', cursive`,
+    mainFont: `'${fuentePrincipal}', sans-serif`, 
+    titleFont: `'${fuenteTitulos}', serif`,
+    nameFont: `'${fuenteNombres}', cursive`,
     primaryColor: colorP,
     bgColor: colorF,
     textColor: colorT
@@ -102,11 +109,11 @@ const colorT = tema?.colorTexto || "#333333";
         overflow-x: hidden;
     }
     
-    .font-cursive { 
-        font-family: var(--cursiveFont) !important; 
+    .font-titulo { 
+        font-family: var(--titleFont) !important; 
     }
-    .font-serif { 
-        font-family: var(--cursiveFont) !important; 
+    .font-nombres { 
+        font-family: var(--nameFont) !important; 
     }
     
     /* Global Animations */
