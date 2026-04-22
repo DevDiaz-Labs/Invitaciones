@@ -17,9 +17,12 @@
     "imagenFondo2": "/imagenes/marypaz gutierrez/galeria1.webp"
   },
   "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mis padres",
     "padres": "Pascuala De La Cruz y Germán Gutiérrez",
+    "etiquetaAbuelos": "Y el cariño de mis abuelos",
+    "abuelos": "",
+    "etiquetaPadrinos": "Y la guía de mis padrinos de velación",
     "padrinos": "Aun no definidos",
-    "mostrarPadrinos": true,
     "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
   },
   "countdown": {
@@ -59,7 +62,8 @@
     "telefono": "5215512345678",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
     "fechaLimite": "01 de Julio",
-    "mostrarMensajeEspecial": true
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": true
   },
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"

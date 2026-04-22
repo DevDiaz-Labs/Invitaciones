@@ -1,0 +1,92 @@
+{
+  "tipo": "xv",
+  "id": "azul-zazueta",
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Azul Violeta Zazueta Sandoval",
+    "fechaTexto": "29 de Mayo 2026",
+    "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. ¡Los espero para celebrar mis XV años juntos!",
+    "imagenFondo": "",
+    "imagenFondo2": ""
+  },
+  "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mi madre",
+    "padres": "Violeta Sandoval León",
+    "etiquetaAbuelos": "El cariño de mis abuelos",
+    "abuelos": "Guadalupe León Agundez y Sergio Sandoval Resendiz",
+    "etiquetaPadrinos": "La guía de mis padrinos de velación",
+    "padrinos": "Claudia Beatríz Gutierrez Ross y Sergio Alain Sandoval León<br/><br/><span style=\"font-size: 0.8em; opacity: 0.9;\">Y mi chambelán</span><br/>Erick Daniel Duarte Sanchez",
+    "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-05-29T19:00:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+Azul-Zazueta&dates=20260529T190000/20260530T020000&details=Celebremos+juntos"
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "7:00 PM",
+      "lugar": "Parroquia Nuestra Señora del Pilar",
+      "direccion": "Mar Egeo #199, Constituyentes, 21060, Mexicali, B.C.",
+      "urlMapa": "https://maps.google.com/maps?q=Parroquia%20Nuestra%20Se%C3%B1ora%20del%20Pilar%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/7ASkLJzt6CLqHmCA6"
+    },
+    "recepcion": {
+      "hora": "8:00 pm",
+      "lugar": "Recepción Salon Casandra",
+      "direccion": "Av Sinaloa 640, Esperanza, 21140 Mexicali, B.C.",
+      "urlMapa": "https://maps.google.com/maps?q=Salon%20Casandra%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/scYKvJ1HRUsYoWxu9"
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal",
+    "descripcion": "Se reserva el uso del color ROSA para la quinceañera",
+    "colorSugerido": "#d17c66"
+  },
+  "regalos": {
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": ""
+  },
+  "rsvp": {
+    "telefono": "5218992306452",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
+    "fechaLimite": "16 de Mayo",
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": false
+  },
+  "footer": {
+    "agradecimiento": "¡Gracias por ser parte de este día!"
+  },
+  "tema": {
+    "colorPrincipal": "#b30000",
+    "colorFondo": "#ffecfb",
+    "colorTexto": "#333333",
+    "fuentePrincipal": "Montserrat",
+    "fuenteTitulos": "Montserrat",
+    "fuenteNombres": "Great Vibes"
+  },
+  "imagenesFondo": {
+    "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
+    "countdown": "/imagenes/xv/rousse/countdown.png",
+    "regalos": "/imagenes/xv/rousse/regalos.png"
+  },
+  "pases": {
+    "mostrar": false,
+    "cantidad": 0
+  },
+  "sobre": {
+    "tipo": "sobre1",
+    "colorFondoBase": "#0f172a",
+    "colorSobre": "#7a0000",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#b30000"
+  }
+}

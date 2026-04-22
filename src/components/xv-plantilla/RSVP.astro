@@ -11,6 +11,7 @@ interface Props {
             mostrar: boolean;
             cantidad: number;
         };
+        mostrarNinos?: boolean;
     };
 }
 const { data } = Astro.props;
@@ -61,7 +62,7 @@ const { data } = Astro.props;
                 }
             </style>
 
-            <div class="grid grid-cols-3 gap-3 md:gap-4">
+            <div class={data.mostrarNinos !== false ? "grid grid-cols-3 gap-3 md:gap-4" : "grid grid-cols-2 gap-6 md:gap-8 max-w-sm mx-auto"}>
                 <div class="flex flex-col items-center">
                     <label
                         class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
@@ -120,34 +121,36 @@ const { data } = Astro.props;
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center">
-                    <label
-                        class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
-                        >Niños</label
-                    >
-                    <div
-                        class="flex items-center w-full bg-white/10 rounded-[1.5rem] border border-white/10 focus-within:border-[var(--gold)] focus-within:ring-1 focus-within:ring-[var(--gold)] transition-all overflow-hidden h-12 md:h-14"
-                    >
-                        <button
-                            type="button"
-                            class="decrement-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-2xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none"
-                            data-target="child-count">−</button
+                {data.mostrarNinos !== false && (
+                    <div class="flex flex-col items-center">
+                        <label
+                            class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
+                            >Niños</label
                         >
-                        <input
-                            type="number"
-                            id="child-count"
-                            min="0"
-                            value="0"
-                            required
-                            class="flex-1 bg-transparent border-none appearance-none outline-none text-center text-lg md:text-xl text-[var(--dark-text)] p-0 m-0 w-full"
-                        />
-                        <button
-                            type="button"
-                            class="increment-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none"
-                            data-target="child-count">+</button
+                        <div
+                            class="flex items-center w-full bg-white/10 rounded-[1.5rem] border border-white/10 focus-within:border-[var(--gold)] focus-within:ring-1 focus-within:ring-[var(--gold)] transition-all overflow-hidden h-12 md:h-14"
                         >
+                            <button
+                                type="button"
+                                class="decrement-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-2xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none"
+                                data-target="child-count">−</button
+                            >
+                            <input
+                                type="number"
+                                id="child-count"
+                                min="0"
+                                value="0"
+                                required
+                                class="flex-1 bg-transparent border-none appearance-none outline-none text-center text-lg md:text-xl text-[var(--dark-text)] p-0 m-0 w-full"
+                            />
+                            <button
+                                type="button"
+                                class="increment-btn outline-none w-10 md:w-12 h-full text-[var(--gold)] text-xl font-light hover:bg-black/5 flex items-center justify-center cursor-pointer select-none"
+                                data-target="child-count">+</button
+                            >
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             {

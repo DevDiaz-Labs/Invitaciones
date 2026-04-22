@@ -2,10 +2,13 @@
 // Dedicatoria.astro
 interface Props {
     data: {
-        padres: string;
-        padrinos: string;
+        etiquetaPadres?: string;
+        padres?: string;
+        etiquetaAbuelos?: string;
+        abuelos?: string;
+        etiquetaPadrinos?: string;
+        padrinos?: string;
         texto: string;
-        mostrarPadrinos?: boolean;
     };
     bgImage?: string;
 }
@@ -19,27 +22,46 @@ const { data, bgImage } = Astro.props;
     <div
         class="max-w-4xl mx-auto text-center space-y-16 md:space-y-20 relative z-10 observe-me fade-up"
     >
-        <div class="space-y-4 md:space-y-6">
-            <h2
-                class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
-            >
-                Con el amor de mis padres
-            </h2>
-            <div
-                class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug"
-                set:html={data.padres}
-            >
-            </div>
-        </div>
+        {
+            data.padres && data.padres.trim() !== "" && (
+                <div class="space-y-4 md:space-y-6">
+                    <h2
+                        class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
+                    >
+                        {data.etiquetaPadres || "Con el amor de mis padres"}
+                    </h2>
+                    <div
+                        class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug"
+                        set:html={data.padres}
+                    >
+                    </div>
+                </div>
+            )
+        }
 
         {
-            data.mostrarPadrinos !== false && (
+            data.abuelos && data.abuelos.trim() !== "" && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 100ms;"
+                >
+                    <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        {data.etiquetaAbuelos || "Y el cariño de mis abuelos"}
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.abuelos}>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            data.padrinos && data.padrinos.trim() !== "" && (
                 <div
                     class="space-y-4 md:space-y-6 observe-me fade-up"
                     style="transition-delay: 200ms;"
                 >
                     <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
-                        Y la guía de mis padrinos de velación
+                        {data.etiquetaPadrinos || "Y la guía de mis padrinos de velación"}
                     </h2>
                     <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.padrinos}>
                     </div>
