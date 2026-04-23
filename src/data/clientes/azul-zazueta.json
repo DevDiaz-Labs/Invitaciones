@@ -5,16 +5,21 @@
     "etiqueta": "Mis XV Años",
     "nombre": "Azul Violeta Zazueta Sandoval",
     "fechaTexto": "29 de Mayo 2026",
-    "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. ¡Los espero para celebrar mis XV años juntos!",
-    "imagenFondo": "",
+    "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. <br><br>¡Los espero para celebrar mis XV años juntos!",
+    "imagenFondo": "/imagenes/xv/azul-zazueta/portada.webp",
     "imagenFondo2": ""
+  },
+  "carta": {
+    "mostrar": true,
+    "fuente": "Montserrat",
+    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la blessing de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial."
   },
   "dedicatoria": {
     "etiquetaPadres": "Con el amor de mi madre",
     "padres": "Violeta Sandoval León",
     "etiquetaAbuelos": "El cariño de mis abuelos",
     "abuelos": "Guadalupe León Agundez y Sergio Sandoval Resendiz",
-    "etiquetaPadrinos": "La guía de mis padrinos de velación",
+    "etiquetaPadrinos": "La guía de mis padrinos",
     "padrinos": "Claudia Beatríz Gutierrez Ross y Sergio Alain Sandoval León<br/><br/><span style=\"font-size: 0.8em; opacity: 0.9;\">Y mi chambelán</span><br/>Erick Daniel Duarte Sanchez",
     "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
   },
@@ -46,20 +51,37 @@
   "regalos": {
     "mensaje": "Mi mayor regalo es tu presencia.",
     "opcionEfectivo": true,
-    "opcionMesa": true,
+    "opcionMesa": false,
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
     "datosBancarios": ""
   },
+  "galeria": {
+    "mostrar": true,
+    "titulo": "Galería",
+    "imagenes": [
+      "/imagenes/xv/azul-zazueta/galeria1.webp",
+      "/imagenes/xv/azul-zazueta/galeria2.webp",
+      "/imagenes/xv/azul-zazueta/galeria3.webp"
+    ]
+  },
   "rsvp": {
     "telefono": "5218992306452",
-    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Azul Zazueta.",
     "fechaLimite": "16 de Mayo",
     "mostrarMensajeEspecial": true,
     "mostrarNinos": false
   },
+  "compartirFotos": {
+    "mostrar": true,
+    "titulo": "Compárteme tus fotos",
+    "frase": "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
+    "urlBoton": "",
+    "textoBoton": "SUBIR FOTOS"
+  },
   "footer": {
-    "agradecimiento": "¡Gracias por ser parte de este día!"
+    "agradecimiento": "¡Gracias por ser parte de este día!",
+    "mostrarWhatsappCTA": true
   },
   "tema": {
     "colorPrincipal": "#b30000",

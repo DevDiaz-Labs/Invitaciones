@@ -1,0 +1,53 @@
+---
+// CompartirFotos.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase: string;
+    urlBoton: string;
+    textoBoton: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+<section class="py-24 md:py-32 px-6 text-center overflow-hidden">
+    <div class="max-w-3xl mx-auto space-y-10 observe-me fade-up">
+        
+        <!-- Icono de cámara -->
+        <div class="w-20 h-20 mx-auto text-[var(--gold)] mb-6 animate-float">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+                <line x1="12" y1="9" x2="12" y2="9.01"></line>
+            </svg>
+        </div>
+
+        <h2 class="font-titulo text-4xl md:text-5xl text-[var(--gold)] mb-6 drop-shadow-sm">
+            {data.titulo || "Compárteme tus fotos"}
+        </h2>
+        
+        <p class="text-lg md:text-xl text-[var(--dark-text)]/80 italic leading-relaxed font-light px-4" set:html={data.frase}>
+        </p>
+
+        <div class="pt-8 observe-me fade-up" style="transition-delay: 200ms;">
+            <a 
+                href={data.urlBoton || "#"} 
+                target={data.urlBoton && data.urlBoton !== "#" ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full btn-gold font-sans tracking-widest text-sm uppercase font-semibold"
+            >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                {data.textoBoton || "Subir Fotos"}
+            </a>
+        </div>
+    </div>
+</section>
+)}

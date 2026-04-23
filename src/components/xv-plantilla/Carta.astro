@@ -1,0 +1,34 @@
+---
+// Carta.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    fuente?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+---
+
+{data.mostrar && (
+<section 
+    class="relative py-24 md:py-32 px-6 overflow-hidden text-center" 
+    style={bgImage ? `background-image: url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
+>
+    <!-- Cargamos la fuente de Google si es personalizada -->
+    {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && (
+        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}&display=swap`} rel="stylesheet" />
+    )}
+
+    <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
+        <div 
+            class="text-2xl md:text-3xl leading-relaxed text-[var(--dark-text)] italic"
+            style={data.fuente ? `font-family: '${data.fuente}', sans-serif;` : "font-family: var(--titleFont);"}
+            set:html={data.texto}
+        >
+        </div>
+    </div>
+</section>
+)}

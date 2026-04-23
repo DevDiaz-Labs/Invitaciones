@@ -2,8 +2,8 @@
 import XVDulceLayout from "../../layouts/XV.astro";
 import Sobre1 from "../../components/ui/Sobre1.astro";
 
-// Importamos los componentes de la plantilla de XV
 import Hero from "../../components/xv-plantilla/Hero.astro";
+import Carta from "../../components/xv-plantilla/Carta.astro";
 import Dedicatoria from "../../components/xv-plantilla/Dedicatoria.astro";
 import Countdown from "../../components/xv-plantilla/Countdown.astro";
 import Ceremonia from "../../components/xv-plantilla/Ceremonia.astro";
@@ -12,6 +12,7 @@ import DressCode from "../../components/xv-plantilla/DressCode.astro";
 import Galeria from "../../components/xv-plantilla/Galeria.astro";
 import Regalos from "../../components/xv-plantilla/Regalos.astro";
 import RSVP from "../../components/xv-plantilla/RSVP.astro";
+import CompartirFotos from "../../components/xv-plantilla/CompartirFotos.astro";
 import Footer from "../../components/xv-plantilla/Footer.astro";
 import MusicPlayer from "../../components/xv-plantilla/MusicPlayer.astro";
 import Separador from "../../components/xv-plantilla/Separador.astro";
@@ -97,6 +98,7 @@ const { data } = Astro.props;
         style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
     >
         <Hero data={data.hero} />
+        {data.carta && <Carta data={data.carta} bgImage={data.imagenesFondo?.carta} />}
         {data.dedicatoria && <Dedicatoria data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
         {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
         {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} />}
@@ -120,6 +122,7 @@ const { data } = Astro.props;
                 />
             )
         }
+        {data.compartirFotos?.mostrar && <CompartirFotos data={data.compartirFotos} />}
     </main>
 
     <div

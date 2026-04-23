@@ -85,8 +85,10 @@ const { data, nombre, bgImage, bgPos = "center" } = Astro.props;
                     </svg>
                 </div>
             )}
-            <p class={`text-[var(--dark-text)]/70 italic text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${(data.opcionEfectivo || data.opcionMesa) ? 'border-t border-[var(--gold)]/20 pt-8 mt-10 text-[var(--dark-text)]/50 text-sm md:text-base' : ''}`}>
-                "{data.mensaje}"
+            <p 
+                class={`text-[var(--dark-text)]/70 italic text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${(data.opcionEfectivo || data.opcionMesa) ? 'border-t border-[var(--gold)]/20 pt-8 mt-10 text-[var(--dark-text)]/50 text-sm md:text-base' : ''}`}
+                set:html={`"${data.mensaje}"`}
+            >
             </p>
         </div>
     </div>

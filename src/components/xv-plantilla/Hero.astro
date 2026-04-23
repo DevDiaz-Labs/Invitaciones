@@ -32,8 +32,7 @@ const { data } = Astro.props;
         <p class="text-xl md:text-2xl font-serif italic mb-2">
             {data.fechaTexto}
         </p>
-        <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
-            {data.frase}
+        <p class="text-xs tracking-[0.3em] text-white/70 uppercase" set:html={data.frase}>
         </p>
     </div>
 
