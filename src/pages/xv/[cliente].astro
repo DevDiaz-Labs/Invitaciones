@@ -11,7 +11,7 @@ import Recepcion from "../../components/xv-plantilla/Recepcion.astro";
 import DressCode from "../../components/xv-plantilla/DressCode.astro";
 import Itinerario from "../../components/xv-plantilla/Itinerario.astro";
 import LluviaDeSobres from "../../components/xv-plantilla/LluviaDeSobres.astro";
-import Galeria from "../../components/xv-plantilla/Galeria.astro";
+import Galeria from "../../components/boda-plantilla/Galeria.astro";
 import Regalos from "../../components/xv-plantilla/Regalos.astro";
 import RSVP from "../../components/xv-plantilla/RSVP.astro";
 import CompartirFotos from "../../components/xv-plantilla/CompartirFotos.astro";
@@ -108,13 +108,13 @@ const { data } = Astro.props;
         {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} bgImage={data.imagenesFondo?.recepcion} />}
         {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.dressCode || data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.dressCodePos} />}
         {
-            data.regalos && (
+            data.regalos && data.regalos.mostrar !== false && (
                 <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.regalosPos} />
             )
         }
         {data.lluviaDeSobres?.mostrar && <LluviaDeSobres data={data.lluviaDeSobres} />}
         {data.hero.imagenFondo2 && <Separador image={data.hero.imagenFondo2} />}
-        {data.galeria?.mostrar && <Galeria data={data.galeria} bgImage={data.imagenesFondo?.galeria} />}
+        {data.galeria?.mostrar && <Galeria data={data.galeria.imagenes} />}
         {
             data.rsvp && (
                 <RSVP

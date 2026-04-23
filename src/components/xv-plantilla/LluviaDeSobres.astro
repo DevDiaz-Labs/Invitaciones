@@ -22,11 +22,7 @@ const { data } = Astro.props;
       min-height: 600px;
     `}
   >
-    <!-- Overlay oscuro suave para que el texto se lea bien -->
-    <div
-      class="absolute inset-0"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);"
-    ></div>
+    <!-- Sin overlay requerido por el usuario -->
 
     <!-- Contenido sobre la imagen -->
     <div class="relative z-10 flex flex-col items-center justify-between h-full min-h-[600px] py-20 px-6 text-center">
@@ -34,12 +30,11 @@ const { data } = Astro.props;
       <!-- Título arriba -->
       <div class="w-full">
         <h3
-          class="font-titulo text-5xl md:text-6xl tracking-wide"
-          style="color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6);"
+          class="font-titulo text-5xl md:text-6xl tracking-wide text-[var(--gold)]"
         >
           {data.titulo}
         </h3>
-        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent); margin: 1.2rem auto;"></div>
+        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto;"></div>
       </div>
 
       <!-- Espacio central (aquí está el sobre en la imagen) -->
@@ -47,10 +42,9 @@ const { data } = Astro.props;
 
       <!-- Frase abajo -->
       <div class="w-full max-w-md mx-auto">
-        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent); margin: 0 auto 1.2rem;"></div>
+        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 1.2rem;"></div>
         <p
-          class="italic text-base md:text-lg leading-relaxed"
-          style="color: rgba(255,255,255,0.92); text-shadow: 0 1px 8px rgba(0,0,0,0.7);"
+          class="italic text-base md:text-lg leading-relaxed text-[var(--dark-text)]/90"
         >
           {data.frase}
         </p>

@@ -33,6 +33,16 @@ const { data, bgImage } = Astro.props;
             del {data.fechaLimite}.
         </p>
 
+        {
+            data.mostrarNinos === false && (
+                <div class="bg-[var(--gold)]/10 p-4 rounded-xl border border-[var(--gold)]/30 mt-4 md:mt-6 mb-2">
+                    <p class="text-[var(--dark-text)] text-sm md:text-base leading-relaxed">
+                        <span class="font-bold text-[var(--gold)] tracking-wider">NO NIÑOS.</span> Adoramos a tus pequeños pero este evento está destinado solo para adolescentes y adultos. Muchas gracias por tu comprensión.
+                    </p>
+                </div>
+            )
+        }
+
         <form id="rsvp-form" class="space-y-6">
             <input
                 type="text"

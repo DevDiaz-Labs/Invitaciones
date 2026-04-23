@@ -53,6 +53,7 @@
     "colorSugerido": "#d17c66"
   },
   "regalos": {
+    "mostrar": false,
     "mensaje": "Mi mayor regalo es tu presencia.",
     "opcionEfectivo": false,
     "opcionMesa": false,
@@ -78,7 +79,7 @@
   "rsvp": {
     "telefono": "5218992306452",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Azul Zazueta.",
-    "fechaLimite": "16 de Mayo",
+    "fechaLimite": "29 de Mayo",
     "mostrarMensajeEspecial": true,
     "mostrarNinos": false
   },
