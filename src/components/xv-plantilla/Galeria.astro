@@ -1,9 +1,9 @@
 ---
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
 {data && data.mostrar && data.imagenes && data.imagenes.length > 0 && (
-  <section class="py-12 bg-transparent text-center overflow-hidden">
+  <section class="py-12 md:py-24 text-center overflow-hidden" style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}>
     <div class="max-w-4xl mx-auto px-4 drop-shadow-md observe-me fade-up">
       <h2 class="text-5xl md:text-6xl font-titulo text-center mb-10 tracking-wide" style="color: var(--gold);">
         {data.titulo || 'Galería'}

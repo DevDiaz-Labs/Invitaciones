@@ -1,0 +1,21 @@
+---
+// Itinerario.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    imagen: string;
+  };
+}
+const { data } = Astro.props;
+---
+
+{data.mostrar && data.imagen && (
+  <section class="w-full overflow-hidden observe-me fade-up">
+    <img
+      src={data.imagen}
+      alt="Itinerario del evento"
+      class="w-full h-auto block"
+      loading="lazy"
+    />
+  </section>
+)}

@@ -13,12 +13,14 @@ interface Props {
         };
         mostrarNinos?: boolean;
     };
+    bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
 <section
-    class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative bg-[var(--gold)]/5 border-t border-[var(--gold)]/20"
+    class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative border-t border-[var(--gold)]/20 overflow-hidden"
+    style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}
 >
     <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl md:text-5xl text-[var(--gold)]">

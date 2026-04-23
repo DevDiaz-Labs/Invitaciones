@@ -12,7 +12,7 @@
   "carta": {
     "mostrar": true,
     "fuente": "Montserrat",
-    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la blessing de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial."
+    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la bendición de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial."
   },
   "dedicatoria": {
     "etiquetaPadres": "Con el amor de mi madre",
@@ -26,6 +26,10 @@
   "countdown": {
     "fechaObjetivo": "2026-05-29T19:00:00",
     "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+Azul-Zazueta&dates=20260529T190000/20260530T020000&details=Celebremos+juntos"
+  },
+  "itinerario": {
+    "mostrar": true,
+    "imagen": "/imagenes/xv/azul-zazueta/Itinerario.webp"
   },
   "eventos": {
     "ceremonia": {
@@ -50,18 +54,24 @@
   },
   "regalos": {
     "mensaje": "Mi mayor regalo es tu presencia.",
-    "opcionEfectivo": true,
+    "opcionEfectivo": false,
     "opcionMesa": false,
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
     "datosBancarios": ""
   },
+  "lluviaDeSobres": {
+    "mostrar": true,
+    "titulo": "Lluvia de Sobres",
+    "frase": "Si deseas tener un detalle conmigo, en la recepción habrá un buzón especial esperándote. Tu cariño es el mejor regalo que me puedes dar.",
+    "imagen": "/imagenes/xv/azul-zazueta/lluvia de sobres.webp"
+  },
   "galeria": {
     "mostrar": true,
     "titulo": "Galería",
     "imagenes": [
-      "/imagenes/xv/azul-zazueta/galeria1.webp",
       "/imagenes/xv/azul-zazueta/galeria2.webp",
+      "/imagenes/xv/azul-zazueta/galeria1.webp",
       "/imagenes/xv/azul-zazueta/galeria3.webp"
     ]
   },
@@ -76,7 +86,7 @@
     "mostrar": true,
     "titulo": "Compárteme tus fotos",
     "frase": "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
-    "urlBoton": "",
+    "urlBoton": "https://docs.google.com/forms/d/e/1FAIpQLSfuLO6LHo9Wkj4NPb5cobr2sPWtNOL2t2I5U9fKKG9ov7wIng/viewform?usp=header",
     "textoBoton": "SUBIR FOTOS"
   },
   "footer": {
@@ -92,9 +102,16 @@
     "fuenteNombres": "Great Vibes"
   },
   "imagenesFondo": {
-    "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
-    "countdown": "/imagenes/xv/rousse/countdown.png",
-    "regalos": "/imagenes/xv/rousse/regalos.png"
+    "carta": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dedicatoria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "countdown": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "ceremonia": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "recepcion": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dressCode": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "regalos": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "galeria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "rsvp": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "compartirFotos": "/imagenes/xv/azul-zazueta/fondo.webp"
   },
   "pases": {
     "mostrar": false,

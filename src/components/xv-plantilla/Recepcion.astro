@@ -8,11 +8,12 @@ interface Props {
         urlMapa: string;
         urlMapaDirecto?: string;
     };
+    bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
-<section class="pt-24">
+<section class="pt-24" style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.55), rgba(255, 236, 251, 0.55)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}>
     <div class="max-w-3xl mx-auto text-center px-6 mb-16 observe-me fade-up">
         <h3 class="font-titulo text-4xl md:text-5xl mb-6 text-[var(--gold)]">
             Recepción

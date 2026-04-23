@@ -15,7 +15,7 @@ const { data, bgImage } = Astro.props;
 {data.mostrar && (
 <section 
     class="relative py-24 md:py-32 px-6 overflow-hidden text-center" 
-    style={bgImage ? `background-image: url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
+    style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
 >
     <!-- Cargamos la fuente de Google si es personalizada -->
     {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && (
