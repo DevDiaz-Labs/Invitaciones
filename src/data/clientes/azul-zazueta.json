@@ -71,13 +71,15 @@
     "mostrar": true,
     "titulo": "Galería",
     "imagenes": [
-      "/imagenes/xv/azul-zazueta/galeria2.webp",
       "/imagenes/xv/azul-zazueta/galeria1.webp",
-      "/imagenes/xv/azul-zazueta/galeria3.webp"
+      "/imagenes/xv/azul-zazueta/galeria2.webp",
+      "/imagenes/xv/azul-zazueta/galeria3.webp",
+      "/imagenes/xv/azul-zazueta/galeria4.webp",
+      "/imagenes/xv/azul-zazueta/galeria5.webp"
     ]
   },
   "rsvp": {
-    "telefono": "5218992306452",
+    "telefono": "5216862670434",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Azul Zazueta.",
     "fechaLimite": "29 de Mayo",
     "mostrarMensajeEspecial": true,
