@@ -7,6 +7,7 @@ interface Props {
     hora: string;
     urlMapa: string;
     urlMapaDirecto?: string;
+    negritaLugar?: boolean;
   };
   bgImage?: string;
 }
@@ -19,7 +20,7 @@ const { data, bgImage } = Astro.props;
             Ceremonia Religiosa
         </h3>
         <p
-            class="text-lg md:text-xl font-light tracking-[0.2em] mb-2 uppercase text-[var(--dark-text)]"
+            class={`text-lg md:text-xl tracking-[0.2em] mb-2 uppercase text-[var(--dark-text)] ${data.negritaLugar ? 'font-bold' : 'font-light'}`}
         >
             {data.lugar}
         </p>

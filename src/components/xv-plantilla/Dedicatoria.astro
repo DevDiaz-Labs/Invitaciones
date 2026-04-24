@@ -8,7 +8,10 @@ interface Props {
         abuelos?: string;
         etiquetaPadrinos?: string;
         padrinos?: string;
+        etiquetaExtra?: string;
+        nombreExtra?: string;
         texto: string;
+        textoDestacado?: boolean;
     };
     bgImage?: string;
 }
@@ -69,11 +72,38 @@ const { data, bgImage } = Astro.props;
             )
         }
 
-        <p
-            class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"
-            style="transition-delay: 400ms;"
-            set:html={`"${data.texto}"`}
-        >
-        </p>
+        {
+            data.nombreExtra && data.nombreExtra.trim() !== "" && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 300ms;"
+                >
+                    <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        {data.etiquetaExtra || "Y mi chambelán"}
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.nombreExtra}>
+                    </div>
+                </div>
+            )
+        }
+
+        {/* Frase final */}
+        {data.textoDestacado ? (
+            <div class="pt-16 observe-me fade-up" style="transition-delay: 400ms;">
+                <div class="w-16 h-[1px] bg-[var(--gold)]/30 mx-auto mb-10"></div>
+                <p
+                    class="max-w-3xl mx-auto text-[var(--dark-text)] italic leading-relaxed text-xl md:text-2xl font-medium"
+                    set:html={`"${data.texto}"`}
+                >
+                </p>
+            </div>
+        ) : (
+            <p
+                class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"
+                style="transition-delay: 400ms;"
+                set:html={`"${data.texto}"`}
+            >
+            </p>
+        )}
     </div>
 </section>

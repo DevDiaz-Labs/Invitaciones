@@ -3,6 +3,8 @@
 interface EventoItinerario {
   nombre: string;
   hora: string;
+  lugar?: string;
+  negritaLugar?: boolean;
   icono?: "iglesia" | "fiesta" | "vals" | "cena" | "baile" | "fin" | "foto" | "brindis";
 }
 
@@ -155,6 +157,9 @@ const colorIconos = data.colorIconos || "var(--gold)";
                   /* Texto a la izquierda, línea conectando al centro */
                   <div class="relative flex flex-col justify-center items-end pr-8 w-full">
                     <p class="text-xl md:text-2xl font-serif text-[var(--dark-text)] pb-1" set:html={evento.nombre}></p>
+                    {evento.lugar && (
+                      <p class={`text-sm md:text-base text-[var(--dark-text)]/90 pb-1 ${evento.negritaLugar ? 'font-bold' : ''}`} set:html={evento.lugar}></p>
+                    )}
                     {/* Línea horizontal */}
                     <div class="absolute top-1/2 right-0 w-[120px] md:w-[150px] h-[1px]" style={`background: ${colorLinea}; opacity: 0.6; transform: translateY(-50%);`}></div>
                     <p class="text-base md:text-lg text-[var(--dark-text)] opacity-80 pt-1">{evento.hora}</p>
@@ -173,6 +178,9 @@ const colorIconos = data.colorIconos || "var(--gold)";
                   /* Texto a la derecha, línea conectando al centro */
                   <div class="relative flex flex-col justify-center items-start pl-8 w-full">
                     <p class="text-xl md:text-2xl font-serif text-[var(--dark-text)] pb-1" set:html={evento.nombre}></p>
+                    {evento.lugar && (
+                      <p class={`text-sm md:text-base text-[var(--dark-text)]/90 pb-1 ${evento.negritaLugar ? 'font-bold' : ''}`} set:html={evento.lugar}></p>
+                    )}
                     {/* Línea horizontal */}
                     <div class="absolute top-1/2 left-0 w-[120px] md:w-[150px] h-[1px]" style={`background: ${colorLinea}; opacity: 0.6; transform: translateY(-50%);`}></div>
                     <p class="text-base md:text-lg text-[var(--dark-text)] opacity-80 pt-1">{evento.hora}</p>

@@ -11,6 +11,7 @@ interface Props {
     nombrePosicion?: "center" | "top" | "bottom" | "split";
     nombreTamano?: string;
     mostrarDivider?: boolean;
+    etiquetaTamano?: string;
     fechaTamano?: string;
     fraseMarginTop?: string;
     bgPosicion?: string;
@@ -23,6 +24,7 @@ const { data } = Astro.props;
 const nombrePosicion = data.nombrePosicion || "center";
 const nombreTamano = data.nombreTamano || "text-7xl md:text-9xl";
 const mostrarDivider = data.mostrarDivider !== false; // true por default
+const etiquetaTamano = data.etiquetaTamano || "text-xs md:text-sm";
 const fechaTamano = data.fechaTamano || "text-xl md:text-2xl";
 const fraseMarginTop = data.fraseMarginTop || "0";
 const bgPosicion = data.bgPosicion || "center";
@@ -47,14 +49,14 @@ const justifyClass = isSplit ? "justify-between"
             {/* Bloque superior: etiqueta + nombre */}
             <div class="observe-me fade-up z-10 text-white pt-16 md:pt-20">
                 <p
-                    class="text-xs md:text-sm tracking-[0.6em] font-light mb-4 text-white/90 uppercase"
+                    class={`${etiquetaTamano} tracking-[0.6em] font-light mb-4 text-white/90 uppercase`}
                 >
                     {data.etiqueta}
                 </p>
                 <h1
                     class={`${nombreTamano} font-nombres text-white drop-shadow-xl`}
+                    set:html={data.nombre}
                 >
-                    {data.nombre}
                 </h1>
             </div>
 
@@ -78,14 +80,14 @@ const justifyClass = isSplit ? "justify-between"
         /* ============ MODO NORMAL: Todo junto ============ */
         <div class="observe-me fade-up z-10 text-white">
             <p
-                class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
+                class={`${etiquetaTamano} tracking-[0.6em] font-light mb-6 text-white/90 uppercase`}
             >
                 {data.etiqueta}
             </p>
             <h1
                 class={`${nombreTamano} font-nombres text-white mb-4 drop-shadow-xl`}
+                set:html={data.nombre}
             >
-                {data.nombre}
             </h1>
             {mostrarDivider && (
                 <div class="section-divider bg-white/50"></div>

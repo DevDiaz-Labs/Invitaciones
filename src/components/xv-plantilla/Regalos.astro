@@ -100,8 +100,9 @@ const textMe = data.textoMesa || (data.amazon_liverpool ?
             )}
         </div>
 
-        <div class="pt-10 observe-me fade-in-slow" style="transition-delay: 600ms;">
-            {(!data.opcionEfectivo && !data.opcionMesa) && (
+        {/* Mensaje final mejorado */}
+        <div class="pt-16 pb-8 observe-me fade-up" style="transition-delay: 600ms;">
+            {(!data.opcionEfectivo && !data.opcionMesa) ? (
                 <div class="flex justify-center items-center gap-8 mb-8 text-[var(--gold)]">
                     <svg class="w-14 h-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -115,9 +116,12 @@ const textMe = data.textoMesa || (data.amazon_liverpool ?
                         <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
                     </svg>
                 </div>
+            ) : (
+                <div class="w-12 h-[1px] bg-[var(--gold)]/40 mx-auto mb-10"></div>
             )}
+            
             <p 
-                class={`text-[var(--dark-text)]/70 italic text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${(data.opcionEfectivo || data.opcionMesa) ? 'border-t border-[var(--gold)]/20 pt-8 mt-10 text-[var(--dark-text)]/50 text-sm md:text-base' : ''}`}
+                class="text-[var(--dark-text)] italic text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-medium"
                 set:html={`"${data.mensaje}"`}
             >
             </p>

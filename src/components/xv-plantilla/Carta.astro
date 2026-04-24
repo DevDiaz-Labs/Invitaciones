@@ -5,7 +5,6 @@ interface Props {
     mostrar: boolean;
     texto: string;
     fuente?: string;
-    // Nuevas propiedades para estilo recuadro
     estilo?: "simple" | "recuadro";
     firmaTexto?: string;
     firmaColor?: string;
@@ -24,7 +23,7 @@ const estilo = data.estilo || "simple";
 const firmaColor = data.firmaColor || "var(--gold)";
 const colorBorde = data.colorBorde || "rgba(0,0,0,0.08)";
 const colorFondoRecuadro = data.colorFondoRecuadro || "#fffdf8";
-const tamanoTexto = data.tamanoTexto || "text-xl md:text-2xl";
+const tamanoTexto = data.tamanoTexto || "text-lg md:text-xl";
 ---
 
 {data.mostrar && (
@@ -34,15 +33,15 @@ const tamanoTexto = data.tamanoTexto || "text-xl md:text-2xl";
 >
     <!-- Cargamos la fuente de Google si es personalizada -->
     {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && data.fuente !== "Dancing Script" && data.fuente !== "Sacramento" && (
-        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}:wght@400;700&display=swap`} rel="stylesheet" />
+        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}:wght@300;400;700&display=swap`} rel="stylesheet" />
     )}
 
-    {/* ============ ESTILO SIMPLE (Original) ============ */}
+    {/* ============ ESTILO SIMPLE ============ */}
     {estilo === "simple" && (
         <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
             <div 
                 class={`${tamanoTexto} leading-relaxed text-[var(--dark-text)] italic`}
-                style={data.fuente ? `font-family: '${data.fuente}', sans-serif;` : "font-family: var(--titleFont);"}
+                style={data.fuente ? `font-family: '${data.fuente}', serif;` : "font-family: var(--titleFont);"}
                 set:html={data.texto}
             >
             </div>
@@ -57,40 +56,39 @@ const tamanoTexto = data.tamanoTexto || "text-xl md:text-2xl";
                 style={`
                     background: ${colorFondoRecuadro};
                     border: 1px solid ${colorBorde};
-                    border-radius: 8px;
-                    padding: 2.5rem 2rem;
+                    border-radius: 12px;
+                    padding: 3.5rem 1.5rem;
                     box-shadow: 
-                        0 4px 20px rgba(0, 0, 0, 0.06),
-                        0 1px 3px rgba(0, 0, 0, 0.04),
-                        inset 0 0 40px rgba(0, 0, 0, 0.01);
+                        0 10px 30px rgba(0, 0, 0, 0.04),
+                        inset 0 0 60px rgba(0, 0, 0, 0.01);
                     position: relative;
                 `}
             >
-                <!-- Línea decorativa superior -->
-                <div style={`width: 60px; height: 2px; background: ${firmaColor}; margin: 0 auto 1.8rem; opacity: 0.4;`}></div>
+                {/* Línea decorativa superior */}
+                <div style={`width: 50px; height: 1px; background: ${firmaColor}; margin: 0 auto 2.5rem; opacity: 0.3;`}></div>
 
-                <!-- Texto de la carta -->
+                {/* Texto de la carta */}
                 <div 
-                    class={`${tamanoTexto} leading-relaxed text-[var(--dark-text)] carta-texto`}
-                    style={data.fuente ? `font-family: '${data.fuente}', cursive;` : "font-family: var(--titleFont);"}
+                    class={`${tamanoTexto} leading-[1.5] text-[var(--dark-text)]/90 carta-texto`}
+                    style={data.fuente ? `font-family: '${data.fuente}', serif; letter-spacing: 0.02em;` : "font-family: var(--titleFont);"}
                     set:html={data.texto}
                 >
                 </div>
 
-                <!-- Firma -->
+                {/* Firma */}
                 {data.firmaTexto && (
-                    <div class="mt-8">
-                        <div style={`width: 40px; height: 1px; background: ${firmaColor}; margin: 0 auto 1rem; opacity: 0.3;`}></div>
+                    <div class="mt-12">
+                        <div style={`width: 40px; height: 1px; background: ${firmaColor}; margin: 0 auto 1.5rem; opacity: 0.2;`}></div>
                         <p 
-                            class="text-2xl md:text-3xl font-bold tracking-wider uppercase"
-                            style={`color: ${firmaColor}; font-family: 'Montserrat', sans-serif; letter-spacing: 0.15em;`}
+                            class="text-xl md:text-2xl font-bold tracking-[0.2em] uppercase"
+                            style={`color: ${firmaColor}; font-family: 'Montserrat', sans-serif;`}
                         >
                             {data.firmaTexto}
                         </p>
                     </div>
                 )}
 
-                <!-- Adorno decorativo (tiara/corona) -->
+                {/* Adorno decorativo (tiara/corona) */}
                 {data.mostrarAdorno && (
                     <div class="mt-6 flex justify-center">
                         <svg 
@@ -139,24 +137,22 @@ const tamanoTexto = data.tamanoTexto || "text-xl md:text-2xl";
 )}
 
 <style>
-    .carta-texto {
-        line-height: 1.9;
+    .carta-texto :global(br) {
+        content: "";
+        display: block;
+        margin-bottom: 1.2rem;
     }
 
     .carta-recuadro {
-        transition: transform 0.3s ease;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .carta-recuadro:hover {
+        transform: translateY(-5px);
     }
 
-    /* Efecto sutil de papel/carta */
-    .carta-recuadro::before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        right: 8px;
-        bottom: 8px;
-        border: 1px solid rgba(0, 0, 0, 0.03);
-        border-radius: 4px;
-        pointer-events: none;
+    /* Text spacing refinement */
+    .carta-texto {
+        font-weight: 300; /* Hace que la Cormorant se vea más fina */
     }
 </style>

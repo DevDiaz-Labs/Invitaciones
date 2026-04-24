@@ -17,6 +17,10 @@ interface Props {
     colorSelloBorde?: string;
     colorCartaFondo?: string;
     colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
 }
 
 const {
@@ -33,6 +37,10 @@ const {
     colorSelloBorde = "#8c0000",
     colorCartaFondo = "#fffdfc",
     colorCartaTexto = "#b30000",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#e6d2b8",
+    colorNombre = colorCartaTexto,
 } = Astro.props;
 
 // Obtener la primera letra del nombre para el sello
@@ -47,12 +55,12 @@ const inicial = nombre.charAt(0).toUpperCase();
 >
     <div class="text-center mb-8 px-4">
         <h2
-            style="font-family: 'Cinzel', serif; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;"
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
         >
             Tienes una invitación especial
         </h2>
         <p
-            style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: #e6d2b8;"
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
         >
             {evento}
         </p>
@@ -83,14 +91,14 @@ const inicial = nombre.charAt(0).toUpperCase();
                 style={`position: absolute; top: 5px; left: 10px; right: 10px; bottom: 5px; background: ${colorCartaFondo}; border-radius: 4px; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; box-shadow: 0 0 10px rgba(0,0,0,0.2) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;`}
             >
                 <div
-                    style={`font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; color: ${colorSobre}; text-transform: uppercase; font-weight: 600;`}
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${colorSobre}; text-transform: uppercase; font-weight: 600;`}
                 >
                     {mensajeTop}
                 </div>
                 <div
-                    style={`font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: ${colorCartaTexto}; margin: 8px 0;`}
+                    style={`font-family: ${fuenteNombres}; font-size: 2.5rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
                 >
-                    {nombre}
                 </div>
                 <div
                     style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
@@ -145,7 +153,7 @@ const inicial = nombre.charAt(0).toUpperCase();
                     style={`position: absolute; top: 105px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: ${colorSello}; border-radius: 50%; box-shadow: inset 0 0 8px #5c0000, 0 4px 8px rgba(0,0,0,0.4); border: 2px solid ${colorSelloBorde}; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; font-weight: 400;`}
                 >
                     <span
-                        style="font-family: 'Great Vibes', cursive; color: #faeedd; font-size: 24px;"
+                        style={`font-family: ${fuenteNombres}; color: #faeedd; font-size: 24px;`}
                     >
                         {inicial}
                     </span>
