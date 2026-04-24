@@ -12,6 +12,7 @@ interface Props {
     colorFondoRecuadro?: string;
     mostrarAdorno?: boolean;
     tamanoTexto?: string;
+    colorTexto?: string;
   };
   bgImage?: string;
 }
@@ -40,8 +41,8 @@ const tamanoTexto = data.tamanoTexto || "text-lg md:text-xl";
     {estilo === "simple" && (
         <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
             <div 
-                class={`${tamanoTexto} leading-relaxed text-[var(--dark-text)] italic`}
-                style={data.fuente ? `font-family: '${data.fuente}', serif;` : "font-family: var(--titleFont);"}
+                class={`${tamanoTexto} leading-relaxed italic`}
+                style={`color: ${data.colorTexto || 'var(--dark-text)'}; ${data.fuente ? `font-family: '${data.fuente}', serif;` : "font-family: var(--titleFont);"}`}
                 set:html={data.texto}
             >
             </div>
@@ -69,8 +70,8 @@ const tamanoTexto = data.tamanoTexto || "text-lg md:text-xl";
 
                 {/* Texto de la carta */}
                 <div 
-                    class={`${tamanoTexto} leading-[1.5] text-[var(--dark-text)]/90 carta-texto`}
-                    style={data.fuente ? `font-family: '${data.fuente}', serif; letter-spacing: 0.02em;` : "font-family: var(--titleFont);"}
+                    class={`${tamanoTexto} leading-[1.5] carta-texto`}
+                    style={`color: ${data.colorTexto || 'var(--dark-text)'}; opacity: ${data.colorTexto ? '1' : '0.9'}; ${data.fuente ? `font-family: '${data.fuente}', serif; letter-spacing: 0.02em;` : "font-family: var(--titleFont);"}`}
                     set:html={data.texto}
                 >
                 </div>

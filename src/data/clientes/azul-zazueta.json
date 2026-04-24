@@ -3,7 +3,7 @@
   "id": "azul-zazueta",
   "hero": {
     "etiqueta": "Mis XV Años",
-    "nombre": "Azul Violeta <br> Zazueta Sandoval",
+    "nombre": "Azul Violeta Zazueta Sandoval",
     "fechaTexto": "29 de Mayo 2026",
     "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. <br><br>¡Los espero para celebrar mis XV años juntos!",
     "imagenFondo": "/imagenes/xv/azul-zazueta/portada.webp",
@@ -25,12 +25,13 @@
     "firmaColor": "#FF7987",
     "colorBorde": "rgba(179, 0, 0, 0.12)",
     "colorFondoRecuadro": "#fffdf8",
-    "mostrarAdorno": true
+    "mostrarAdorno": true,
+    "colorTexto": "var(--gold)"
   },
   "tema": {
     "colorPrincipal": "#b30000",
     "colorFondo": "#ffecfb",
-    "colorTexto": "#333333",
+    "colorTexto": "#98472f",
     "fuentePrincipal": "Montserrat",
     "fuenteTitulos": "Montserrat",
     "fuenteNombres": "Dancing Script"
@@ -44,7 +45,7 @@
     "padrinos": "Claudia Beatríz Gutiérrez Ross y Sergio Alain Sandoval León",
     "etiquetaExtra": "Y la compañía de mi chambelán",
     "nombreExtra": "Erick Daniel Duarte Sánchez",
-    "bendicion": "Y con la bendición de Dios",
+    "bendicion": "Con la bendición de Dios",
     "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia.",
     "textoDestacado": true
   },
@@ -54,40 +55,9 @@
   },
   "itinerario": {
     "mostrar": true,
-    "estilo": "timeline",
+    "estilo": "imagen",
     "titulo": "Itinerario",
-    "eventos": [
-      {
-        "nombre": "Misa",
-        "hora": "7:00 PM",
-        "icono": "iglesia"
-      },
-      {
-        "nombre": "Recepción y<br>fotografías",
-        "hora": "8:00 PM",
-        "icono": "foto"
-      },
-      {
-        "nombre": "Cena",
-        "hora": "8:30 PM",
-        "icono": "cena"
-      },
-      {
-        "nombre": "Vals",
-        "hora": "9:00 PM",
-        "icono": "vals"
-      },
-      {
-        "nombre": "Baile",
-        "hora": "9:30 PM",
-        "icono": "baile"
-      },
-      {
-        "nombre": "Cierre",
-        "hora": "1:00 AM",
-        "icono": "fin"
-      }
-    ]
+    "imagen": "/imagenes/xv/azul-zazueta/itinerario.png"
   },
   "eventos": {
     "ceremonia": {
@@ -179,7 +149,7 @@
   },
   "sobre": {
     "tipo": "sobre1",
-    "colorFondoBase": "#0f172a",
+    "colorFondoBase": "#eabbc2",
     "colorSobre": "#7a0000",
     "colorSolapa": "#e6d2b8",
     "colorSolapaLado": "#d4c0a8",
