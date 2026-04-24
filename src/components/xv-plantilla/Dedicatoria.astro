@@ -10,6 +10,7 @@ interface Props {
         padrinos?: string;
         etiquetaExtra?: string;
         nombreExtra?: string;
+        bendicion?: string;
         texto: string;
         textoDestacado?: boolean;
     };
@@ -87,23 +88,45 @@ const { data, bgImage } = Astro.props;
             )
         }
 
-        {/* Frase final */}
-        {data.textoDestacado ? (
-            <div class="pt-16 observe-me fade-up" style="transition-delay: 400ms;">
-                <div class="w-16 h-[1px] bg-[var(--gold)]/30 mx-auto mb-10"></div>
+        {/* Frase final y Bendición */}
+        <div class="pt-16 space-y-12 relative">
+            {
+                data.bendicion && data.bendicion.trim() !== "" && (
+                    <div
+                        class="observe-me fade-up"
+                        style="transition-delay: 350ms;"
+                    >
+                        <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase">
+                            {data.bendicion}
+                        </h2>
+                    </div>
+                )
+            }
+
+            {data.textoDestacado ? (
+                <div class="relative py-8 observe-me fade-up" style="transition-delay: 400ms;">
+                    {/* Glow effect focused on the phrase */}
+                    <div class="absolute inset-0 flex items-center justify-center -z-10">
+                        <div class="w-full max-w-2xl h-full bg-[var(--gold)]/10 blur-3xl rounded-full"></div>
+                    </div>
+                    
+                    <div class="w-24 h-[1px] bg-[var(--gold)]/30 mx-auto mb-12"></div>
+                    
+                    <p
+                        class="max-w-4xl mx-auto text-[var(--dark-text)] italic leading-relaxed text-2xl md:text-4xl font-medium px-4"
+                        style="text-shadow: 0 0 20px rgba(255,255,255,0.5);"
+                        set:html={`"${data.texto}"`}
+                    >
+                    </p>
+                </div>
+            ) : (
                 <p
-                    class="max-w-3xl mx-auto text-[var(--dark-text)] italic leading-relaxed text-xl md:text-2xl font-medium"
+                    class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl font-light observe-me fade-in-slow"
+                    style="transition-delay: 400ms;"
                     set:html={`"${data.texto}"`}
                 >
                 </p>
-            </div>
-        ) : (
-            <p
-                class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"
-                style="transition-delay: 400ms;"
-                set:html={`"${data.texto}"`}
-            >
-            </p>
-        )}
+            )}
+        </div>
     </div>
 </section>
