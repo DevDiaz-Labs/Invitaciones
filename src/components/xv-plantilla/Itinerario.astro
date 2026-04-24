@@ -1,15 +1,34 @@
 ---
 // Itinerario.astro
+interface EventoItinerario {
+  nombre: string;
+  hora: string;
+  icono?: "iglesia" | "fiesta" | "vals" | "cena" | "baile" | "fin" | "foto" | "brindis";
+}
+
 interface Props {
   data: {
     mostrar: boolean;
-    imagen: string;
+    imagen?: string;
+    estilo?: "imagen" | "timeline";
+    titulo?: string;
+    eventos?: EventoItinerario[];
+    colorLinea?: string;
+    colorIconos?: string;
   };
+  bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
+
+// Defaults
+const estilo = data.estilo || (data.imagen ? "imagen" : "timeline");
+const titulo = data.titulo || "Itinerario";
+const colorLinea = data.colorLinea || "var(--gold)";
+const colorIconos = data.colorIconos || "var(--gold)";
 ---
 
-{data.mostrar && data.imagen && (
+{/* ============ MODO IMAGEN (compatibilidad) ============ */}
+{data.mostrar && estilo === "imagen" && data.imagen && (
   <section class="w-full overflow-hidden observe-me fade-up">
     <img
       src={data.imagen}
@@ -19,3 +38,255 @@ const { data } = Astro.props;
     />
   </section>
 )}
+
+{/* ============ MODO TIMELINE ============ */}
+{data.mostrar && estilo === "timeline" && data.eventos && (
+  <section 
+    class="py-20 md:py-28 px-4 relative overflow-hidden"
+    style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
+  >
+    <div class="max-w-md mx-auto relative z-10">
+      {/* Título */}
+      <h3 class="font-titulo text-4xl md:text-5xl text-center mb-16 observe-me fade-up" style={`color: ${colorLinea};`}>
+        {titulo}
+      </h3>
+
+      {/* Timeline */}
+      <div class="itinerario-timeline relative">
+        {/* Línea vertical central */}
+        <div class="absolute left-1/2 transform -translate-x-[1px] top-0 bottom-0 w-[2px]" style={`background: ${colorLinea}; opacity: 0.35;`}></div>
+
+        {data.eventos.map((evento, index) => {
+          const isIconLeft = index % 2 === 0;
+          return (
+            <div class="relative flex items-center observe-me fade-up" style={`transition-delay: ${index * 150}ms; min-height: 140px;`}>
+              
+              {/* === LADO IZQUIERDO === */}
+              <div class="flex-1 flex justify-end relative">
+                {isIconLeft ? (
+                  /* Ícono grande sin borde */
+                  <div class="itinerario-icon flex items-center justify-center pr-8" style={`color: ${colorIconos};`}>
+                    {evento.icono === "iglesia" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="32" y1="2" x2="32" y2="8"/>
+                        <line x1="28" y1="5" x2="36" y2="5"/>
+                        <path d="M32 8L20 22V54H44V22L32 8Z"/>
+                        <rect x="27" y="38" width="10" height="16"/>
+                        <circle cx="32" cy="30" r="4"/>
+                        <path d="M14 54H20M44 54H50"/>
+                        <line x1="14" y1="54" x2="50" y2="54"/>
+                      </svg>
+                    )}
+                    {evento.icono === "foto" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="18" width="52" height="38" rx="4"/>
+                        <path d="M22 18L26 10H38L42 18"/>
+                        <circle cx="32" cy="37" r="10"/>
+                        <circle cx="32" cy="37" r="5"/>
+                        <circle cx="48" cy="26" r="2" fill="currentColor"/>
+                      </svg>
+                    )}
+                    {evento.icono === "fiesta" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 58L8 6L32 20L56 6L52 58H12Z"/>
+                        <line x1="22" y1="28" x2="22" y2="44"/>
+                        <line x1="32" y1="24" x2="32" y2="44"/>
+                        <line x1="42" y1="28" x2="42" y2="44"/>
+                        <path d="M18 8L20 2M32 12L32 4M46 8L44 2"/>
+                      </svg>
+                    )}
+                    {evento.icono === "vals" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="24" cy="10" r="5"/>
+                        <circle cx="40" cy="12" r="4"/>
+                        <path d="M20 18C18 24 16 36 20 52"/>
+                        <path d="M28 18C26 28 28 40 24 52"/>
+                        <path d="M36 20C34 28 32 40 36 52"/>
+                        <path d="M44 20C46 28 44 40 40 52"/>
+                        <path d="M20 18H28"/>
+                        <path d="M36 20H44"/>
+                        <path d="M28 18L36 20"/>
+                      </svg>
+                    )}
+                    {evento.icono === "cena" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="34" r="16"/>
+                        <circle cx="32" cy="34" r="10"/>
+                        <path d="M32 28V26C32 22 28 18 28 18"/>
+                        <path d="M32 28V26C32 22 36 18 36 18"/>
+                        <path d="M12 34L8 34M8 22V46"/>
+                        <path d="M52 34L56 34M56 22V46"/>
+                        <path d="M28 34L36 34" stroke-width="1"/>
+                        <circle cx="32" cy="34" r="3" fill="currentColor" opacity="0.15"/>
+                      </svg>
+                    )}
+                    {evento.icono === "baile" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="10" r="5"/>
+                        <path d="M24 20L16 32L22 32"/>
+                        <path d="M40 20L48 32L42 32"/>
+                        <path d="M24 20H40"/>
+                        <path d="M26 32L20 58"/>
+                        <path d="M38 32L44 58"/>
+                        <path d="M32 32V48"/>
+                        <path d="M14 16L20 22M44 22L50 16"/>
+                        <path d="M10 24L16 26M48 26L54 24"/>
+                      </svg>
+                    )}
+                    {evento.icono === "brindis" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 4L14 28C14 34 20 38 26 38V52H18V56H34V52H26V38C32 38 38 34 38 28L34 4"/>
+                        <path d="M42 12L46 6"/>
+                        <path d="M46 18L52 14"/>
+                        <path d="M44 26L50 24"/>
+                      </svg>
+                    )}
+                    {evento.icono === "fin" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M32 56L28 52C16 42 8 35 8 26C8 19 13.4 14 20 14C23.8 14 27.4 15.8 32 20C36.6 15.8 40.2 14 44 14C50.6 14 56 19 56 26C56 35 48 42 36 52L32 56Z"/>
+                        <path d="M32 56L28 52C16 42 8 35 8 26C8 19 13.4 14 20 14C23.8 14 27.4 15.8 32 20C36.6 15.8 40.2 14 44 14C50.6 14 56 19 56 26C56 35 48 42 36 52L32 56Z" fill="currentColor" opacity="0.1"/>
+                      </svg>
+                    )}
+                    {!evento.icono && (
+                      <div class="w-8 h-8 rounded-full mr-8" style={`border: 2px solid ${colorLinea};`}></div>
+                    )}
+                  </div>
+                ) : (
+                  /* Texto a la izquierda, línea conectando al centro */
+                  <div class="relative flex flex-col justify-center items-end pr-8 w-full">
+                    <p class="text-xl md:text-2xl font-serif text-[var(--dark-text)] pb-1" set:html={evento.nombre}></p>
+                    {/* Línea horizontal */}
+                    <div class="absolute top-1/2 right-0 w-[120px] md:w-[150px] h-[1px]" style={`background: ${colorLinea}; opacity: 0.6; transform: translateY(-50%);`}></div>
+                    <p class="text-base md:text-lg text-[var(--dark-text)] opacity-80 pt-1">{evento.hora}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* === PUNTO CENTRAL === */}
+              <div class="relative z-20 flex-shrink-0">
+                <div class="w-3 h-3 rounded-full" style={`background: ${colorLinea}; box-shadow: 0 0 0 4px rgba(255,255,255,0.5);`}></div>
+              </div>
+
+              {/* === LADO DERECHO === */}
+              <div class="flex-1 flex justify-start relative">
+                {isIconLeft ? (
+                  /* Texto a la derecha, línea conectando al centro */
+                  <div class="relative flex flex-col justify-center items-start pl-8 w-full">
+                    <p class="text-xl md:text-2xl font-serif text-[var(--dark-text)] pb-1" set:html={evento.nombre}></p>
+                    {/* Línea horizontal */}
+                    <div class="absolute top-1/2 left-0 w-[120px] md:w-[150px] h-[1px]" style={`background: ${colorLinea}; opacity: 0.6; transform: translateY(-50%);`}></div>
+                    <p class="text-base md:text-lg text-[var(--dark-text)] opacity-80 pt-1">{evento.hora}</p>
+                  </div>
+                ) : (
+                  /* Ícono grande sin borde */
+                  <div class="itinerario-icon flex items-center justify-center pl-8" style={`color: ${colorIconos};`}>
+                    {evento.icono === "iglesia" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="32" y1="2" x2="32" y2="8"/>
+                        <line x1="28" y1="5" x2="36" y2="5"/>
+                        <path d="M32 8L20 22V54H44V22L32 8Z"/>
+                        <rect x="27" y="38" width="10" height="16"/>
+                        <circle cx="32" cy="30" r="4"/>
+                        <path d="M14 54H20M44 54H50"/>
+                        <line x1="14" y1="54" x2="50" y2="54"/>
+                      </svg>
+                    )}
+                    {evento.icono === "foto" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="18" width="52" height="38" rx="4"/>
+                        <path d="M22 18L26 10H38L42 18"/>
+                        <circle cx="32" cy="37" r="10"/>
+                        <circle cx="32" cy="37" r="5"/>
+                        <circle cx="48" cy="26" r="2" fill="currentColor"/>
+                      </svg>
+                    )}
+                    {evento.icono === "fiesta" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 58L8 6L32 20L56 6L52 58H12Z"/>
+                        <line x1="22" y1="28" x2="22" y2="44"/>
+                        <line x1="32" y1="24" x2="32" y2="44"/>
+                        <line x1="42" y1="28" x2="42" y2="44"/>
+                        <path d="M18 8L20 2M32 12L32 4M46 8L44 2"/>
+                      </svg>
+                    )}
+                    {evento.icono === "vals" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="24" cy="10" r="5"/>
+                        <circle cx="40" cy="12" r="4"/>
+                        <path d="M20 18C18 24 16 36 20 52"/>
+                        <path d="M28 18C26 28 28 40 24 52"/>
+                        <path d="M36 20C34 28 32 40 36 52"/>
+                        <path d="M44 20C46 28 44 40 40 52"/>
+                        <path d="M20 18H28"/>
+                        <path d="M36 20H44"/>
+                        <path d="M28 18L36 20"/>
+                      </svg>
+                    )}
+                    {evento.icono === "cena" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="34" r="16"/>
+                        <circle cx="32" cy="34" r="10"/>
+                        <path d="M32 28V26C32 22 28 18 28 18"/>
+                        <path d="M32 28V26C32 22 36 18 36 18"/>
+                        <path d="M12 34L8 34M8 22V46"/>
+                        <path d="M52 34L56 34M56 22V46"/>
+                        <path d="M28 34L36 34" stroke-width="1"/>
+                        <circle cx="32" cy="34" r="3" fill="currentColor" opacity="0.15"/>
+                      </svg>
+                    )}
+                    {evento.icono === "baile" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="10" r="5"/>
+                        <path d="M24 20L16 32L22 32"/>
+                        <path d="M40 20L48 32L42 32"/>
+                        <path d="M24 20H40"/>
+                        <path d="M26 32L20 58"/>
+                        <path d="M38 32L44 58"/>
+                        <path d="M32 32V48"/>
+                        <path d="M14 16L20 22M44 22L50 16"/>
+                        <path d="M10 24L16 26M48 26L54 24"/>
+                      </svg>
+                    )}
+                    {evento.icono === "brindis" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 4L14 28C14 34 20 38 26 38V52H18V56H34V52H26V38C32 38 38 34 38 28L34 4"/>
+                        <path d="M42 12L46 6"/>
+                        <path d="M46 18L52 14"/>
+                        <path d="M44 26L50 24"/>
+                      </svg>
+                    )}
+                    {evento.icono === "fin" && (
+                      <svg viewBox="0 0 64 64" class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M32 56L28 52C16 42 8 35 8 26C8 19 13.4 14 20 14C23.8 14 27.4 15.8 32 20C36.6 15.8 40.2 14 44 14C50.6 14 56 19 56 26C56 35 48 42 36 52L32 56Z"/>
+                        <path d="M32 56L28 52C16 42 8 35 8 26C8 19 13.4 14 20 14C23.8 14 27.4 15.8 32 20C36.6 15.8 40.2 14 44 14C50.6 14 56 19 56 26C56 35 48 42 36 52L32 56Z" fill="currentColor" opacity="0.1"/>
+                      </svg>
+                    )}
+                    {!evento.icono && (
+                      <div class="w-8 h-8 rounded-full ml-8" style={`border: 2px solid ${colorLinea};`}></div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Punto final */}
+        <div class="flex justify-center relative z-20">
+          <div class="w-3 h-3 rounded-full mt-4" style={`background: ${colorLinea}; box-shadow: 0 0 0 4px rgba(255,255,255,0.5);`}></div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .itinerario-icon {
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .itinerario-event:hover .itinerario-icon {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+</style>

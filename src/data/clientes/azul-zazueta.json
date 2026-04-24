@@ -7,12 +7,24 @@
     "fechaTexto": "29 de Mayo 2026",
     "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. <br><br>¡Los espero para celebrar mis XV años juntos!",
     "imagenFondo": "/imagenes/xv/azul-zazueta/portada.webp",
-    "imagenFondo2": ""
+    "imagenFondo2": "",
+    "nombrePosicion": "split",
+    "nombreTamano": "text-5xl md:text-7xl",
+    "mostrarDivider": false,
+    "fechaTamano": "text-3xl md:text-4xl",
+    "fraseMarginTop": "1.5rem"
   },
   "carta": {
     "mostrar": true,
-    "fuente": "Montserrat",
-    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la bendición de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial."
+    "estilo": "recuadro",
+    "fuente": "Dancing Script",
+    "tamanoTexto": "text-lg md:text-xl",
+    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la bendición de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial.",
+    "firmaTexto": "AZUL",
+    "firmaColor": "#FF7987",
+    "colorBorde": "rgba(179, 0, 0, 0.12)",
+    "colorFondoRecuadro": "#fffdf8",
+    "mostrarAdorno": true
   },
   "dedicatoria": {
     "etiquetaPadres": "Con el amor de mi madre",
@@ -29,7 +41,40 @@
   },
   "itinerario": {
     "mostrar": true,
-    "imagen": "/imagenes/xv/azul-zazueta/Itinerario.webp"
+    "estilo": "timeline",
+    "titulo": "Itinerario",
+    "eventos": [
+      {
+        "nombre": "Misa",
+        "hora": "7:00 PM",
+        "icono": "iglesia"
+      },
+      {
+        "nombre": "Recepción y<br>fotografías",
+        "hora": "8:00 PM",
+        "icono": "foto"
+      },
+      {
+        "nombre": "Cena",
+        "hora": "8:30 PM",
+        "icono": "cena"
+      },
+      {
+        "nombre": "Vals",
+        "hora": "9:00 PM",
+        "icono": "vals"
+      },
+      {
+        "nombre": "Baile",
+        "hora": "9:30 PM",
+        "icono": "baile"
+      },
+      {
+        "nombre": "Cierre",
+        "hora": "1:00 AM",
+        "icono": "fin"
+      }
+    ]
   },
   "eventos": {
     "ceremonia": {
@@ -41,7 +86,7 @@
     },
     "recepcion": {
       "hora": "8:00 pm",
-      "lugar": "Recepción Salon Casandra",
+      "lugar": "Salón Social D' Cassandra",
       "direccion": "Av Sinaloa 640, Esperanza, 21140 Mexicali, B.C.",
       "urlMapa": "https://maps.google.com/maps?q=Salon%20Casandra%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
       "urlMapaDirecto": "https://maps.app.goo.gl/scYKvJ1HRUsYoWxu9"
@@ -53,16 +98,20 @@
     "colorSugerido": "#d17c66"
   },
   "regalos": {
-    "mostrar": false,
+    "mostrar": true,
     "mensaje": "Mi mayor regalo es tu presencia.",
-    "opcionEfectivo": false,
-    "opcionMesa": false,
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "layout": "vertical",
+    "textoMesa": "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
+    "textoEfectivo": "Es la tradición de regalar sobres con efectivo durante el evento.",
+    "tarjetaEfectivo": true,
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
     "datosBancarios": ""
   },
   "lluviaDeSobres": {
-    "mostrar": true,
+    "mostrar": false,
     "titulo": "Lluvia de Sobres",
     "frase": "Si deseas tener un detalle conmigo, en la recepción habrá un buzón especial esperándote. Tu cariño es el mejor regalo que me puedes dar.",
     "imagen": "/imagenes/xv/azul-zazueta/lluvia de sobres.webp"
@@ -108,6 +157,7 @@
     "carta": "/imagenes/xv/azul-zazueta/fondo.webp",
     "dedicatoria": "/imagenes/xv/azul-zazueta/fondo.webp",
     "countdown": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "itinerario": "/imagenes/xv/azul-zazueta/fondo.webp",
     "ceremonia": "/imagenes/xv/azul-zazueta/fondo.webp",
     "recepcion": "/imagenes/xv/azul-zazueta/fondo.webp",
     "dressCode": "/imagenes/xv/azul-zazueta/fondo.webp",
@@ -130,5 +180,8 @@
     "colorSelloBorde": "#8c0000",
     "colorCartaFondo": "#fffdfc",
     "colorCartaTexto": "#b30000"
+  },
+  "musica": {
+    "url": "/musica/azul-zazueta.mp3"
   }
 }

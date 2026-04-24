@@ -5,11 +5,26 @@ interface Props {
     mostrar: boolean;
     texto: string;
     fuente?: string;
+    // Nuevas propiedades para estilo recuadro
+    estilo?: "simple" | "recuadro";
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorBorde?: string;
+    colorFondoRecuadro?: string;
+    mostrarAdorno?: boolean;
+    tamanoTexto?: string;
   };
   bgImage?: string;
 }
 
 const { data, bgImage } = Astro.props;
+
+// Defaults
+const estilo = data.estilo || "simple";
+const firmaColor = data.firmaColor || "var(--gold)";
+const colorBorde = data.colorBorde || "rgba(0,0,0,0.08)";
+const colorFondoRecuadro = data.colorFondoRecuadro || "#fffdf8";
+const tamanoTexto = data.tamanoTexto || "text-xl md:text-2xl";
 ---
 
 {data.mostrar && (
@@ -18,17 +33,130 @@ const { data, bgImage } = Astro.props;
     style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
 >
     <!-- Cargamos la fuente de Google si es personalizada -->
-    {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && (
-        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}&display=swap`} rel="stylesheet" />
+    {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && data.fuente !== "Dancing Script" && data.fuente !== "Sacramento" && (
+        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}:wght@400;700&display=swap`} rel="stylesheet" />
     )}
 
-    <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
-        <div 
-            class="text-2xl md:text-3xl leading-relaxed text-[var(--dark-text)] italic"
-            style={data.fuente ? `font-family: '${data.fuente}', sans-serif;` : "font-family: var(--titleFont);"}
-            set:html={data.texto}
-        >
+    {/* ============ ESTILO SIMPLE (Original) ============ */}
+    {estilo === "simple" && (
+        <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
+            <div 
+                class={`${tamanoTexto} leading-relaxed text-[var(--dark-text)] italic`}
+                style={data.fuente ? `font-family: '${data.fuente}', sans-serif;` : "font-family: var(--titleFont);"}
+                set:html={data.texto}
+            >
+            </div>
         </div>
-    </div>
+    )}
+
+    {/* ============ ESTILO RECUADRO (Tipo carta) ============ */}
+    {estilo === "recuadro" && (
+        <div class="max-w-lg mx-auto relative z-10 observe-me fade-up">
+            <div 
+                class="carta-recuadro"
+                style={`
+                    background: ${colorFondoRecuadro};
+                    border: 1px solid ${colorBorde};
+                    border-radius: 8px;
+                    padding: 2.5rem 2rem;
+                    box-shadow: 
+                        0 4px 20px rgba(0, 0, 0, 0.06),
+                        0 1px 3px rgba(0, 0, 0, 0.04),
+                        inset 0 0 40px rgba(0, 0, 0, 0.01);
+                    position: relative;
+                `}
+            >
+                <!-- Línea decorativa superior -->
+                <div style={`width: 60px; height: 2px; background: ${firmaColor}; margin: 0 auto 1.8rem; opacity: 0.4;`}></div>
+
+                <!-- Texto de la carta -->
+                <div 
+                    class={`${tamanoTexto} leading-relaxed text-[var(--dark-text)] carta-texto`}
+                    style={data.fuente ? `font-family: '${data.fuente}', cursive;` : "font-family: var(--titleFont);"}
+                    set:html={data.texto}
+                >
+                </div>
+
+                <!-- Firma -->
+                {data.firmaTexto && (
+                    <div class="mt-8">
+                        <div style={`width: 40px; height: 1px; background: ${firmaColor}; margin: 0 auto 1rem; opacity: 0.3;`}></div>
+                        <p 
+                            class="text-2xl md:text-3xl font-bold tracking-wider uppercase"
+                            style={`color: ${firmaColor}; font-family: 'Montserrat', sans-serif; letter-spacing: 0.15em;`}
+                        >
+                            {data.firmaTexto}
+                        </p>
+                    </div>
+                )}
+
+                <!-- Adorno decorativo (tiara/corona) -->
+                {data.mostrarAdorno && (
+                    <div class="mt-6 flex justify-center">
+                        <svg 
+                            viewBox="0 0 200 80" 
+                            class="w-40 h-16 opacity-80"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <!-- Corazón central -->
+                            <path d="M100 35 C100 20, 85 15, 85 25 C85 32, 100 42, 100 42 C100 42, 115 32, 115 25 C115 15, 100 20, 100 35Z" 
+                                  fill={firmaColor} opacity="0.85"/>
+                            
+                            <!-- Scrolls izquierda -->
+                            <path d="M80 38 Q60 28, 40 35 Q25 40, 30 48 Q35 55, 50 48 Q60 43, 75 40" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.7"/>
+                            <path d="M75 42 Q55 35, 35 42 Q22 47, 28 53 Q34 58, 48 52" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Scrolls derecha -->
+                            <path d="M120 38 Q140 28, 160 35 Q175 40, 170 48 Q165 55, 150 48 Q140 43, 125 40" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.7"/>
+                            <path d="M125 42 Q145 35, 165 42 Q178 47, 172 53 Q166 58, 152 52" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Rosa izquierda -->
+                            <circle cx="55" cy="45" r="6" fill={firmaColor} opacity="0.6"/>
+                            <circle cx="55" cy="45" r="3.5" fill={firmaColor} opacity="0.8"/>
+                            <path d="M49 47 Q47 52, 50 55" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.6"/>
+                            <path d="M52 49 Q48 54, 46 56" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Rosa derecha -->
+                            <circle cx="145" cy="45" r="6" fill={firmaColor} opacity="0.6"/>
+                            <circle cx="145" cy="45" r="3.5" fill={firmaColor} opacity="0.8"/>
+                            <path d="M151 47 Q153 52, 150 55" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.6"/>
+                            <path d="M148 49 Q152 54, 154 56" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.5"/>
+
+                            <!-- Pequeños detalles de hojas -->
+                            <ellipse cx="45" cy="50" rx="3" ry="1.5" fill="#5a7a3a" opacity="0.3" transform="rotate(-30 45 50)"/>
+                            <ellipse cx="155" cy="50" rx="3" ry="1.5" fill="#5a7a3a" opacity="0.3" transform="rotate(30 155 50)"/>
+                        </svg>
+                    </div>
+                )}
+            </div>
+        </div>
+    )}
 </section>
 )}
+
+<style>
+    .carta-texto {
+        line-height: 1.9;
+    }
+
+    .carta-recuadro {
+        transition: transform 0.3s ease;
+    }
+
+    /* Efecto sutil de papel/carta */
+    .carta-recuadro::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        pointer-events: none;
+    }
+</style>

@@ -35,9 +35,12 @@ const { data, bgImage } = Astro.props;
 
         {
             data.mostrarNinos === false && (
-                <div class="bg-[var(--gold)]/10 p-4 rounded-xl border border-[var(--gold)]/30 mt-4 md:mt-6 mb-2">
-                    <p class="text-[var(--dark-text)] text-sm md:text-base leading-relaxed">
-                        <span class="font-bold text-[var(--gold)] tracking-wider">NO NIÑOS.</span> Adoramos a tus pequeños pero este evento está destinado solo para adolescentes y adultos. Muchas gracias por tu comprensión.
+                <div class="bg-[var(--gold)]/10 p-6 rounded-2xl border border-[var(--gold)]/30 mt-4 md:mt-8 mb-4">
+                    <h4 class="font-bold text-[var(--gold)] text-xl md:text-2xl tracking-[0.2em] mb-2 uppercase">
+                        NO NIÑOS
+                    </h4>
+                    <p class="text-[var(--dark-text)]/80 text-sm md:text-base leading-relaxed">
+                        Adoramos a tus pequeños pero este evento está destinado solo para adolescentes y adultos. Muchas gracias por tu comprensión.
                     </p>
                 </div>
             )

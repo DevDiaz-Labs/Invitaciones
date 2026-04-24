@@ -103,7 +103,7 @@ const { data } = Astro.props;
         {data.carta && <Carta data={data.carta} bgImage={data.imagenesFondo?.carta} />}
         {data.dedicatoria && <Dedicatoria data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
         {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
-        {data.itinerario?.mostrar && <Itinerario data={data.itinerario} />}
+        {data.itinerario?.mostrar && <Itinerario data={data.itinerario} bgImage={data.imagenesFondo?.itinerario} />}
         {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} bgImage={data.imagenesFondo?.ceremonia} />}
         {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} bgImage={data.imagenesFondo?.recepcion} />}
         {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.dressCode || data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.dressCodePos} />}

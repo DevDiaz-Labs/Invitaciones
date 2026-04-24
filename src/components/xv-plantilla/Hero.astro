@@ -7,34 +7,100 @@ interface Props {
     fechaTexto: string;
     frase: string;
     imagenFondo: string;
+    // Nuevas propiedades configurables (opcionales, con defaults)
+    nombrePosicion?: "center" | "top" | "bottom" | "split";
+    nombreTamano?: string;
+    mostrarDivider?: boolean;
+    fechaTamano?: string;
+    fraseMarginTop?: string;
+    bgPosicion?: string;
+    overlayOpacity?: number;
   };
 }
 const { data } = Astro.props;
+
+// Defaults seguros para no romper otras invitaciones
+const nombrePosicion = data.nombrePosicion || "center";
+const nombreTamano = data.nombreTamano || "text-7xl md:text-9xl";
+const mostrarDivider = data.mostrarDivider !== false; // true por default
+const fechaTamano = data.fechaTamano || "text-xl md:text-2xl";
+const fraseMarginTop = data.fraseMarginTop || "0";
+const bgPosicion = data.bgPosicion || "center";
+const overlayOpacity = data.overlayOpacity ?? 0.4;
+
+// Clases dinámicas para justify
+const isSplit = nombrePosicion === "split";
+const justifyClass = isSplit ? "justify-between"
+  : nombrePosicion === "bottom" ? "justify-end pb-28" 
+  : nombrePosicion === "top" ? "justify-start pt-28" 
+  : "justify-center";
 ---
 
 <header
-    class="relative h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden hero-bg"
+    class={`relative h-screen flex flex-col items-center ${justifyClass} text-center p-6 overflow-hidden hero-bg`}
 >
     <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via inline style prop) -->
 
-    <div class="observe-me fade-up z-10 text-white">
-        <p
-            class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
-        >
-            {data.etiqueta}
-        </p>
-        <h1
-            class="text-7xl md:text-9xl font-nombres text-white mb-4 drop-shadow-xl"
-        >
-            {data.nombre}
-        </h1>
-        <div class="section-divider bg-white/50"></div>
-        <p class="text-xl md:text-2xl font-serif italic mb-2">
-            {data.fechaTexto}
-        </p>
-        <p class="text-xs tracking-[0.3em] text-white/70 uppercase" set:html={data.frase}>
-        </p>
-    </div>
+    {/* ============ MODO SPLIT: Nombre arriba, fecha+frase abajo ============ */}
+    {isSplit ? (
+        <>
+            {/* Bloque superior: etiqueta + nombre */}
+            <div class="observe-me fade-up z-10 text-white pt-16 md:pt-20">
+                <p
+                    class="text-xs md:text-sm tracking-[0.6em] font-light mb-4 text-white/90 uppercase"
+                >
+                    {data.etiqueta}
+                </p>
+                <h1
+                    class={`${nombreTamano} font-nombres text-white drop-shadow-xl`}
+                >
+                    {data.nombre}
+                </h1>
+            </div>
+
+            {/* Bloque inferior: fecha + frase */}
+            <div class="observe-me fade-up z-10 text-white pb-20 md:pb-24">
+                {mostrarDivider && (
+                    <div class="section-divider bg-white/50"></div>
+                )}
+                <p class={`${fechaTamano} font-serif italic mb-3`}>
+                    {data.fechaTexto}
+                </p>
+                <p 
+                    class="text-xs tracking-[0.3em] text-white/70 uppercase max-w-sm mx-auto" 
+                    style={fraseMarginTop !== "0" ? `margin-top: ${fraseMarginTop};` : ""}
+                    set:html={data.frase}
+                >
+                </p>
+            </div>
+        </>
+    ) : (
+        /* ============ MODO NORMAL: Todo junto ============ */
+        <div class="observe-me fade-up z-10 text-white">
+            <p
+                class="text-xs md:text-sm tracking-[0.6em] font-light mb-6 text-white/90 uppercase"
+            >
+                {data.etiqueta}
+            </p>
+            <h1
+                class={`${nombreTamano} font-nombres text-white mb-4 drop-shadow-xl`}
+            >
+                {data.nombre}
+            </h1>
+            {mostrarDivider && (
+                <div class="section-divider bg-white/50"></div>
+            )}
+            <p class={`${fechaTamano} font-serif italic mb-2`}>
+                {data.fechaTexto}
+            </p>
+            <p 
+                class="text-xs tracking-[0.3em] text-white/70 uppercase" 
+                style={fraseMarginTop !== "0" ? `margin-top: ${fraseMarginTop};` : ""}
+                set:html={data.frase}
+            >
+            </p>
+        </div>
+    )}
 
     <div class="absolute bottom-10 animate-bounce text-white opacity-70">
         <svg
@@ -48,12 +114,16 @@ const { data } = Astro.props;
     </div>
 </header>
 
-<style define:vars={{ bgImage: `url('${data.imagenFondo}')` }}>
+<style define:vars={{ 
+    bgImage: `url('${data.imagenFondo}')`, 
+    bgPos: bgPosicion,
+    overlayA: `rgba(0, 0, 0, ${overlayOpacity})` 
+}}>
     .hero-bg {
         background:
-            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            linear-gradient(var(--overlayA), var(--overlayA)),
             var(--bgImage);
         background-size: cover;
-        background-position: center;
+        background-position: var(--bgPos);
     }
 </style>
