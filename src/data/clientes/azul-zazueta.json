@@ -108,8 +108,7 @@
       "/imagenes/xv/azul-zazueta/galeria1.webp",
       "/imagenes/xv/azul-zazueta/galeria2.webp",
       "/imagenes/xv/azul-zazueta/galeria3.webp",
-      "/imagenes/xv/azul-zazueta/galeria4.webp",
-      "/imagenes/xv/azul-zazueta/galeria5.webp"
+      "/imagenes/xv/azul-zazueta/galeria4.webp"
     ]
   },
   "rsvp": {
@@ -117,7 +116,8 @@
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Azul Zazueta.",
     "fechaLimite": "16 de Mayo",
     "mostrarMensajeEspecial": true,
-    "mostrarNinos": false
+    "mostrarNinos": false,
+    "destacarAvisos": true
   },
   "compartirFotos": {
     "mostrar": true,
@@ -159,7 +159,7 @@
     "colorCartaTexto": "#b30000",
     "fuenteNombres": "'Great Vibes', cursive",
     "fuenteTitulos": "'Cinzel', serif",
-    "colorTitulo": "#e6d2b8",
+    "colorTitulo": "#b8935c",
     "colorNombre": "#b30000"
   },
   "musica": {
