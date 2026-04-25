@@ -1,0 +1,168 @@
+{
+  "tipo": "xv",
+  "id": "azul-zazueta",
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Azul Violeta Zazueta Sandoval",
+    "fechaTexto": "29 de Mayo 2026",
+    "frase": "Comienza una nueva etapa llena de sueños, risas y momentos inolvidables. <br><br>¡Los espero para celebrar mis XV años juntos!",
+    "imagenFondo": "/imagenes/xv/azul-zazueta/portada.webp",
+    "imagenFondo2": "",
+    "nombrePosicion": "split",
+    "nombreTamano": "text-6xl md:text-8xl",
+    "mostrarDivider": false,
+    "etiquetaTamano": "text-base md:text-lg",
+    "fechaTamano": "text-3xl md:text-4xl",
+    "fraseMarginTop": "1.5rem"
+  },
+  "carta": {
+    "mostrar": true,
+    "estilo": "recuadro",
+    "fuente": "Coming Soon",
+    "tamanoTexto": "text-lg md:text-xl",
+    "texto": "Hace 15 años mi familia daba gracias por el regalo de mi nacimiento.<br><br>Hoy, soy yo quien agradece a Dios por la bendición de tenerlos en mi vida.<br><br>Celebro el amor que me ha acompañado en cada paso, la paciencia que me ha formado, los consejos que me han guiado y los abrazos que siempre han sido mi refugio.<br><br>Mi corazón está lleno de gratitud.<br><br>Los invito a celebrar conmigo este día tan especial.",
+    "firmaTexto": "AZUL",
+    "firmaColor": "#FF7987",
+    "colorBorde": "rgba(179, 0, 0, 0.12)",
+    "colorFondoRecuadro": "#fffdf8",
+    "mostrarAdorno": true,
+    "colorTexto": "var(--gold)"
+  },
+  "tema": {
+    "colorPrincipal": "#b30000",
+    "colorFondo": "#ffecfb",
+    "colorTexto": "#98472f",
+    "fuentePrincipal": "Montserrat",
+    "fuenteTitulos": "Montserrat",
+    "fuenteNombres": "Dancing Script"
+  },
+  "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mi madre",
+    "padres": "Violeta Sandoval León",
+    "etiquetaAbuelos": "El cariño de mis abuelos",
+    "abuelos": "Guadalupe León Agúndez y Sergio Sandoval Reséndiz",
+    "etiquetaPadrinos": "La guía de mis padrinos de velación",
+    "padrinos": "Claudia Beatríz Gutiérrez Ross y Sergio Alain Sandoval León",
+    "etiquetaExtra": "Y la compañía de mi chambelán",
+    "nombreExtra": "Erick Daniel Duarte Sánchez",
+    "bendicion": "Con la bendición de Dios",
+    "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia.",
+    "textoDestacado": true
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-05-29T19:00:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+Azul-Zazueta&dates=20260529T190000/20260530T020000&details=Celebremos+juntos"
+  },
+  "itinerario": {
+    "mostrar": true,
+    "estilo": "imagen",
+    "titulo": "Itinerario",
+    "imagen": "/imagenes/xv/azul-zazueta/itinerario.png"
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "7:00 PM",
+      "lugar": "Parroquia Nuestra Señora del Pilar",
+      "negritaLugar": true,
+      "direccion": "Mar Egeo #199, Constituyentes, 21060, Mexicali, B.C.",
+      "urlMapa": "https://maps.google.com/maps?q=Parroquia%20Nuestra%20Se%C3%B1ora%20del%20Pilar%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/7ASkLJzt6CLqHmCA6"
+    },
+    "recepcion": {
+      "hora": "8:00 pm",
+      "lugar": "Salón Social D' Cassandra",
+      "negritaLugar": true,
+      "direccion": "Av Sinaloa 640, Esperanza, 21140 Mexicali, B.C.",
+      "urlMapa": "https://maps.google.com/maps?q=Salon%20Casandra%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/scYKvJ1HRUsYoWxu9"
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal",
+    "descripcion": "Se reserva el uso del color ROSA para la quinceañera",
+    "colorSugerido": "#d17c66"
+  },
+  "regalos": {
+    "mostrar": true,
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "layout": "vertical",
+    "textoMesa": "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
+    "textoEfectivo": "Es la tradición de regalar sobres con efectivo durante el evento.",
+    "tarjetaEfectivo": true,
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": ""
+  },
+  "lluviaDeSobres": {
+    "mostrar": false,
+    "titulo": "Lluvia de Sobres",
+    "frase": "Si deseas tener un detalle conmigo, en la recepción habrá un buzón especial esperándote. Tu cariño es el mejor regalo que me puedes dar.",
+    "imagen": "/imagenes/xv/azul-zazueta/lluvia de sobres.webp"
+  },
+  "galeria": {
+    "mostrar": true,
+    "titulo": "Galería",
+    "imagenes": [
+      "/imagenes/xv/azul-zazueta/galeria1.webp",
+      "/imagenes/xv/azul-zazueta/galeria2.webp",
+      "/imagenes/xv/azul-zazueta/galeria3.webp",
+      "/imagenes/xv/azul-zazueta/galeria4.webp"
+    ]
+  },
+  "rsvp": {
+    "telefono": "5216862670434",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Azul Zazueta.",
+    "fechaLimite": "16 de Mayo",
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": false,
+    "destacarAvisos": true
+  },
+  "compartirFotos": {
+    "mostrar": true,
+    "titulo": "Compárteme tus fotos",
+    "frase": "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
+    "urlBoton": "https://docs.google.com/forms/d/e/1FAIpQLSfuLO6LHo9Wkj4NPb5cobr2sPWtNOL2t2I5U9fKKG9ov7wIng/viewform?usp=header",
+    "textoBoton": "SUBIR FOTOS"
+  },
+  "footer": {
+    "agradecimiento": "¡Gracias por ser parte de este día!",
+    "mostrarWhatsappCTA": true
+  },
+  "imagenesFondo": {
+    "carta": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dedicatoria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "countdown": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "itinerario": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "ceremonia": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "recepcion": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dressCode": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "regalos": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "galeria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "rsvp": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "compartirFotos": "/imagenes/xv/azul-zazueta/fondo.webp"
+  },
+  "pases": {
+    "mostrar": false,
+    "cantidad": 0
+  },
+  "sobre": {
+    "tipo": "sobre1",
+    "colorFondoBase": "#eabbc2",
+    "colorSobre": "#7a0000",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#b30000",
+    "fuenteNombres": "'Great Vibes', cursive",
+    "fuenteTitulos": "'Cinzel', serif",
+    "colorTitulo": "#b8935c",
+    "colorNombre": "#b30000"
+  },
+  "musica": {
+    "url": "/musica/azul-zazueta.mp3"
+  }
+}

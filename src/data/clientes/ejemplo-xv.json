@@ -1,24 +1,36 @@
 {
   "tipo": "xv",
-  "id": "ejemplo-xv",
+  "id": "ejemplo",
   "tema": {
-    "colorPrincipal": "#D4AF37",
-    "colorFondo": "#FFFFFF",
+    "colorPrincipal": "#b30000",
+    "colorFondo": "#ffecfb",
+    "colorTexto": "#333333",
     "fuentePrincipal": "Montserrat",
-    "fuenteCursiva": "Sacramento"
+    "fuenteTitulos": "Playfair Display",
+    "fuenteNombres": "Great Vibes"
+  },
+  "imagenesFondo": {
+    "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",
+    "countdown": "/imagenes/xv/rousse/countdown.png",
+    "dressCode": "/imagenes/xv/rousse/regalos.png",
+    "dressCodePos": "bottom center",
+    "regalos": "/imagenes/xv/rousse/regalos.png",
+    "regalosPos": "top center"
   },
   "hero": {
     "etiqueta": "Mis XV Años",
     "nombre": "Sofia Valeria",
     "fechaTexto": "15 de Diciembre 2026",
     "frase": "¡Prepárate para una noche mágica!",
-    "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0",
-    "imagenFondo2": "/imagenes/ejemplo/imagen1.jpg"
+    "imagenFondo": "/imagenes/xv/ejemplo/ejemplo2.jpg"
   },
   "dedicatoria": {
-    "padres": "Juan Perez y Maria Gomez",
+    "etiquetaPadres": "Con el amor de mis padres",
+    "padres": "Juan Diaz y Maria Lopez",
+    "etiquetaAbuelos": "Y el cariño de mis abuelos",
+    "abuelos": "",
+    "etiquetaPadrinos": "Y la guía de mis padrinos de velación",
     "padrinos": "Pedro Sanchez y Rosa Perez",
-    "mostrarPadrinos": true,
     "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles."
   },
   "countdown": {
@@ -58,25 +70,34 @@
     "telefono": "5215512345678",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
     "fechaLimite": "01 de Julio",
-    "mostrarMensajeEspecial": true
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": true
   },
   "footer": {
     "agradecimiento": "¡Te espero para celebrar juntos!"
   },
   "pases": {
-    "mostrar": true,
+    "mostrar": false,
     "cantidad": 2
   },
   "sobre": {
-    "tipo": "sobre1"
+    "tipo": "sobre1",
+    "colorFondoBase": "#0f172a",
+    "colorSobre": "#7a0000",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#b30000"
   },
   "galeria": {
     "mostrar": true,
     "titulo": "NUESTROS MOMENTOS",
     "imagenes": [
-      "/imagenes/ejemplo/imagen1.jpg",
-      "/imagenes/ejemplo/imagen2.webp",
-      "/imagenes/ejemplo/imagen3.webp"
+      "/imagenes/xv/ejemplo/imagen1.jpg",
+      "/imagenes/xv/ejemplo/imagen2.webp",
+      "/imagenes/xv/ejemplo/imagen3.webp"
     ]
   }
 }

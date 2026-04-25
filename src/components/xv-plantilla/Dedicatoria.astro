@@ -2,10 +2,17 @@
 // Dedicatoria.astro
 interface Props {
     data: {
-        padres: string;
-        padrinos: string;
+        etiquetaPadres?: string;
+        padres?: string;
+        etiquetaAbuelos?: string;
+        abuelos?: string;
+        etiquetaPadrinos?: string;
+        padrinos?: string;
+        etiquetaExtra?: string;
+        nombreExtra?: string;
+        bendicion?: string;
         texto: string;
-        mostrarPadrinos?: boolean;
+        textoDestacado?: boolean;
     };
     bgImage?: string;
 }
@@ -14,44 +21,112 @@ const { data, bgImage } = Astro.props;
 
 <section 
     class="relative py-24 md:py-32 px-6 overflow-hidden" 
-    style={bgImage ? `background-image: url('${bgImage}'); background-size: 85%; background-position: bottom left; background-repeat: no-repeat;` : ""}
+    style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.4), rgba(255, 236, 251, 0.4)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
 >
     <div
         class="max-w-4xl mx-auto text-center space-y-16 md:space-y-20 relative z-10 observe-me fade-up"
     >
-        <div class="space-y-4 md:space-y-6">
-            <h2
-                class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
-            >
-                Con el amor de mis padres
-            </h2>
-            <div
-                class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug"
-                set:html={data.padres}
-            >
-            </div>
-        </div>
-
         {
-            data.mostrarPadrinos !== false && (
-                <div
-                    class="space-y-4 md:space-y-6 observe-me fade-up"
-                    style="transition-delay: 200ms;"
-                >
-                    <h2 class="font-serif text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
-                        Y la guía de mis padrinos de velación
+            data.padres && data.padres.trim() !== "" && (
+                <div class="space-y-4 md:space-y-6">
+                    <h2
+                        class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4"
+                    >
+                        {data.etiquetaPadres || "Con el amor de mis padres"}
                     </h2>
-                    <div class="text-3xl md:text-5xl font-serif text-[var(--dark-text)] italic leading-snug" set:html={data.padrinos}>
+                    <div
+                        class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug"
+                        set:html={data.padres}
+                    >
                     </div>
                 </div>
             )
         }
 
-        <p
-            class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl mt-16 font-light observe-me fade-in-slow"
-            style="transition-delay: 400ms;"
-        >
-            "{data.texto}"
-        </p>
+        {
+            data.abuelos && data.abuelos.trim() !== "" && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 100ms;"
+                >
+                    <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        {data.etiquetaAbuelos || "Y el cariño de mis abuelos"}
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.abuelos}>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            data.padrinos && data.padrinos.trim() !== "" && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 200ms;"
+                >
+                    <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        {data.etiquetaPadrinos || "Y la guía de mis padrinos de velación"}
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.padrinos}>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            data.nombreExtra && data.nombreExtra.trim() !== "" && (
+                <div
+                    class="space-y-4 md:space-y-6 observe-me fade-up"
+                    style="transition-delay: 300ms;"
+                >
+                    <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase mb-4">
+                        {data.etiquetaExtra || "Y mi chambelán"}
+                    </h2>
+                    <div class="text-3xl md:text-5xl font-nombres text-[var(--dark-text)] italic leading-snug" set:html={data.nombreExtra}>
+                    </div>
+                </div>
+            )
+        }
+
+        {/* Frase final y Bendición */}
+        <div class="pt-16 space-y-12 relative">
+            {
+                data.bendicion && data.bendicion.trim() !== "" && (
+                    <div
+                        class="observe-me fade-up"
+                        style="transition-delay: 350ms;"
+                    >
+                        <h2 class="font-titulo text-lg md:text-xl text-[var(--gold)]/80 tracking-[0.4em] uppercase">
+                            {data.bendicion}
+                        </h2>
+                    </div>
+                )
+            }
+
+            {data.textoDestacado ? (
+                <div class="relative py-8 observe-me fade-up" style="transition-delay: 400ms;">
+                    {/* Glow effect focused on the phrase */}
+                    <div class="absolute inset-0 flex items-center justify-center -z-10">
+                        <div class="w-full max-w-2xl h-full bg-[var(--gold)]/10 blur-3xl rounded-full"></div>
+                    </div>
+                    
+                    <div class="w-24 h-[1px] bg-[var(--gold)]/30 mx-auto mb-12"></div>
+                    
+                    <p
+                        class="max-w-4xl mx-auto text-[var(--dark-text)] italic leading-relaxed text-2xl md:text-4xl font-medium px-4"
+                        style="text-shadow: 0 0 20px rgba(255,255,255,0.5);"
+                        set:html={`"${data.texto}"`}
+                    >
+                    </p>
+                </div>
+            ) : (
+                <p
+                    class="max-w-2xl mx-auto text-[var(--dark-text)]/70 italic leading-relaxed text-lg md:text-xl font-light observe-me fade-in-slow"
+                    style="transition-delay: 400ms;"
+                    set:html={`"${data.texto}"`}
+                >
+                </p>
+            )}
+        </div>
     </div>
 </section>

@@ -7,18 +7,20 @@ interface Props {
         hora: string;
         urlMapa: string;
         urlMapaDirecto?: string;
+        negritaLugar?: boolean;
     };
+    bgImage?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage } = Astro.props;
 ---
 
-<section class="pt-24">
+<section class="pt-24" style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.55), rgba(255, 236, 251, 0.55)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}>
     <div class="max-w-3xl mx-auto text-center px-6 mb-16 observe-me fade-up">
-        <h3 class="font-serif text-4xl md:text-5xl mb-6 text-[var(--gold)]">
+        <h3 class="font-titulo text-4xl md:text-5xl mb-6 text-[var(--gold)]">
             Recepción
         </h3>
         <p
-            class="text-lg md:text-xl font-light tracking-[0.2em] mb-2 uppercase text-[var(--dark-text)]"
+            class={`text-lg md:text-xl tracking-[0.2em] mb-2 uppercase text-[var(--dark-text)] ${data.negritaLugar ? 'font-bold' : 'font-light'}`}
         >
             {data.lugar}
         </p>

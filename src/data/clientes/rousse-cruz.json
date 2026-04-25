@@ -10,9 +10,12 @@
     "imagenFondo2": "/imagenes/xv/rousse/rousse2.jpeg"
   },
   "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mis padres",
     "padres": "Raussey Pérez y Osiris Cruz <br/><br/><span style=\"font-size: 0.8em; opacity: 0.9;\">Y mi hermano</span><br/>Raussey Jr. Cruz",
+    "etiquetaAbuelos": "Y el cariño de mis abuelos",
+    "abuelos": "",
+    "etiquetaPadrinos": "Y la guía de mis padrinos de velación",
     "padrinos": "",
-    "mostrarPadrinos": false,
     "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia."
   },
   "countdown": {
@@ -52,7 +55,8 @@
     "telefono": "5218992306452",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Rousse Cruz.",
     "fechaLimite": "16 de Mayo",
-    "mostrarMensajeEspecial": true
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": true
   },
   "footer": {
     "agradecimiento": "¡Gracias por ser parte de este día!"
@@ -62,7 +66,8 @@
     "colorFondo": "#ffecfb",
     "colorTexto": "#333333",
     "fuentePrincipal": "Montserrat",
-    "fuenteCursiva": "Great Vibes"
+    "fuenteTitulos": "Great Vibes",
+    "fuenteNombres": "Great Vibes"
   },
   "imagenesFondo": {
     "dedicatoria": "/imagenes/xv/rousse/dedicatoria.png",

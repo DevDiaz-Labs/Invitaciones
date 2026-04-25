@@ -12,13 +12,13 @@ const { data, bgImage } = Astro.props;
 
 <section
     class="py-20 md:py-24 backdrop-blur-md relative overflow-hidden border-y border-[var(--gold)]/10"
-    style={`${bgImage ? `background-image: url('${bgImage}'); background-size: 85%; background-position: top right; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}`}
+    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.4), rgba(255, 236, 251, 0.4)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}`}
 >
     <div
         class="max-w-4xl mx-auto text-center px-4 md:px-6 relative z-10 observe-me scale-in"
     >
         <h3
-            class="font-serif text-lg md:text-xl mb-12 tracking-[0.4em] uppercase text-[var(--gold)]"
+            class="font-titulo text-lg md:text-xl mb-12 tracking-[0.4em] uppercase text-[var(--gold)]"
         >
             Faltan
         </h3>
@@ -97,7 +97,7 @@ const { data, bgImage } = Astro.props;
 
             if (dist < 0) {
                 container.innerHTML =
-                    "<p class='col-span-4 text-2xl font-serif text-[var(--gold)]'>¡Es hoy!</p>";
+                    "<p class='col-span-4 text-2xl font-titulo text-[var(--gold)]'>¡Es hoy!</p>";
                 return;
             }
 
