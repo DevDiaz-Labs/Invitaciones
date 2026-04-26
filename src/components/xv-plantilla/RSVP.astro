@@ -27,20 +27,19 @@ const { data, bgImage } = Astro.props;
             Confirma tu asistencia
         </h3>
         <p
-            class="text-[var(--dark-text)]/70 italic text-base md:text-lg font-light"
+            class={`${data.destacarAvisos ? "text-2xl md:text-3xl font-medium" : "text-base md:text-lg font-light"} text-[var(--dark-text)]/70 italic`}
         >
-            Será un honor contar con tu presencia. Por favor, confírmanos antes
-            del {data.fechaLimite}.
+            Será un honor contar con tu presencia. Por favor, <strong>confírmanos antes del {data.fechaLimite}</strong>.
         </p>
 
         {
             data.mostrarNinos === false && (
-                <div class="bg-[var(--gold)]/10 p-6 rounded-2xl border border-[var(--gold)]/30 mt-4 md:mt-8 mb-4">
-                    <h4 class="font-bold text-[var(--gold)] text-xl md:text-2xl tracking-[0.2em] mb-2 uppercase">
+                <div class="bg-[var(--gold)]/15 p-8 rounded-2xl border border-[var(--gold)]/50 mt-4 md:mt-8 mb-4 shadow-sm">
+                    <h4 class="font-bold text-[var(--gold)] text-2xl md:text-3xl tracking-[0.2em] mb-3 uppercase">
                         NO NIÑOS
                     </h4>
-                    <p class="text-[var(--dark-text)]/80 text-sm md:text-base leading-relaxed">
-                        Adoramos a tus pequeños pero este evento está destinado solo para adolescentes y adultos. Muchas gracias por tu comprensión.
+                    <p class="text-[var(--dark-text)]/80 text-2xl md:text-3xl leading-relaxed">
+                        Adoramos a tus pequeños pero este evento está destinado <strong>solo para adolescentes y adultos</strong>. Muchas gracias por tu comprensión.
                     </p>
                 </div>
             )
