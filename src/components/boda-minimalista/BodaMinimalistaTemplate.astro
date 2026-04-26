@@ -1,0 +1,47 @@
+---
+// BodaMinimalistaTemplate.astro
+import BodaMinimalistaLayout from '../../layouts/BodaMinimalistaLayout.astro';
+import Sobre1 from '../ui/Sobre1.astro';
+import ReproductorMini from './ReproductorMini.astro';
+import HeroMini from './HeroMini.astro';
+import HistoriaMini from './HistoriaMini.astro';
+import GaleriaMini from './GaleriaMini.astro';
+import DetallesMini from './DetallesMini.astro';
+import ItinerarioDressCodeMini from './ItinerarioDressCodeMini.astro';
+import CapturaMini from './CapturaMini.astro';
+import RSVPMini from './RSVPMini.astro';
+import FooterMini from './FooterMini.astro';
+
+const { data } = Astro.props;
+---
+
+<BodaMinimalistaLayout title={`${data?.hero?.nombres || 'Boda'} - Nuestra Boda`}>
+  {(!data?.sobre?.mostrar || data?.sobre?.mostrar !== false) && (
+    <Sobre1
+      nombre={data?.hero?.nombres}
+      fecha={data?.hero?.fechaVista}
+      evento="Nuestra Boda"
+      mensajeTop="Tenemos el honor de invitarte"
+      {...data?.sobre}
+    />
+  )}
+
+  <main 
+    id="invitation-content" 
+    class="min-h-screen"
+    style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
+  >
+    <ReproductorMini audioSrc={data?.musica} />
+    <HeroMini data={{...data?.hero, calendarUrl: data?.detalles?.calendario?.google}} />
+    <HistoriaMini data={data?.historia} />
+    <GaleriaMini data={data?.galeria} />
+    <DetallesMini data={data?.detalles} />
+    <ItinerarioDressCodeMini data={data?.logistica} />
+    <CapturaMini data={data?.captura} />
+    <RSVPMini data={data?.rsvp} />
+    
+    <div id="footer-content" style="opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;">
+      <FooterMini data={data?.footer} />
+    </div>
+  </main>
+</BodaMinimalistaLayout>

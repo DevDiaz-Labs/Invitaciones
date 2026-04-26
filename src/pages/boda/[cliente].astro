@@ -1,5 +1,6 @@
 ---
 import BodaTemplate from "../../components/boda-plantilla/BodaTemplate.astro";
+import BodaMinimalistaTemplate from "../../components/boda-minimalista/BodaMinimalistaTemplate.astro";
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -39,6 +40,11 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
+const isMinimalista = data?.plantilla === 'minimalista';
 ---
 
-<BodaTemplate data={data} />
+{isMinimalista ? (
+  <BodaMinimalistaTemplate data={data} />
+) : (
+  <BodaTemplate data={data} />
+)}

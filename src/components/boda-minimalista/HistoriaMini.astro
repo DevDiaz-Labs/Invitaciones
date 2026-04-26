@@ -1,0 +1,23 @@
+---
+// HistoriaMini.astro
+const { data } = Astro.props;
+
+const titulo = data?.titulo || "Nuestra Historia";
+const parrafo1 = data?.parrafo1 || "Todo comenzó con un café fortuito y una conversación que nunca queríamos que terminara. Han pasado 5 años de aventuras, risas, aprendizajes y crecimiento juntos.";
+const parrafo2 = data?.parrafo2 || "Hoy, estamos emocionados de dar este siguiente paso y no podríamos imaginar hacerlo sin las personas que más queremos. Nuestra mayor aventura apenas comienza.";
+---
+
+<section class="py-24 md:py-32 px-4 fade-up">
+  <div class="max-w-3xl mx-auto text-center">
+    <svg class="mx-auto text-stone-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </svg>
+    <h2 class="text-3xl md:text-4xl font-serif mb-8 text-stone-800">{titulo}</h2>
+    <p class="text-stone-500 leading-relaxed text-lg font-light mb-6">
+      {parrafo1}
+    </p>
+    <p class="text-stone-500 leading-relaxed text-lg font-light">
+      {parrafo2}
+    </p>
+  </div>
+</section>
