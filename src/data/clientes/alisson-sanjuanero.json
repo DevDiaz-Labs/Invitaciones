@@ -1,0 +1,163 @@
+{
+  "tipo": "xv",
+  "id": "alisson-sanjuanero",
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Alisson Ximena Sanjuánero Camargo",
+    "fechaTexto": "13 de junio de 2026",
+    "frase": "¡Prepárate para una noche mágica!",
+    "imagenFondo": "",
+    "imagenFondo2": "",
+    "nombrePosicion": "split",
+    "nombreTamano": "text-6xl md:text-8xl",
+    "mostrarDivider": false,
+    "etiquetaTamano": "text-base md:text-lg",
+    "fechaTamano": "text-3xl md:text-4xl",
+    "fraseMarginTop": "1.5rem"
+  },
+  "carta": {
+    "mostrar": false,
+    "estilo": "recuadro",
+    "fuente": "Coming Soon",
+    "tamanoTexto": "text-lg md:text-xl",
+    "texto": "",
+    "firmaTexto": "",
+    "firmaColor": "#FF7987",
+    "colorBorde": "rgba(179, 0, 0, 0.12)",
+    "colorFondoRecuadro": "#fffdf8",
+    "mostrarAdorno": false,
+    "colorTexto": "var(--gold)"
+  },
+  "tema": {
+    "colorPrincipal": "#b30000",
+    "colorFondo": "#ffecfb",
+    "colorTexto": "#98472f",
+    "fuentePrincipal": "Montserrat",
+    "fuenteTitulos": "Montserrat",
+    "fuenteNombres": "Dancing Script"
+  },
+  "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mis padres",
+    "padres": "Neiva Aide Camargo Muñoz y Alberto Daniel Sanjuánero Solano",
+    "etiquetaAbuelos": "El cariño de mis abuelos",
+    "abuelos": "Alicia Solano Rosales, Juan Sanjuánero Flores, Francisco Javier Camargo Castillo y Blanca Estela Muñoz Montero",
+    "etiquetaPadrinos": "",
+    "padrinos": "",
+    "etiquetaExtra": "",
+    "nombreExtra": "",
+    "bendicion": "Con la bendición de Dios",
+    "texto": "Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia.",
+    "textoDestacado": true
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-06-13T17:00:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+Azul-Zazueta&dates=20260529T190000/20260530T020000&details=Celebremos+juntos"
+  },
+  "itinerario": {
+    "mostrar": false,
+    "estilo": "imagen",
+    "titulo": "Itinerario",
+    "imagen": ""
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "5:00 PM",
+      "lugar": "Parroquia San Nicolás de Tolentino",
+      "negritaLugar": true,
+      "direccion": "Porfirio Díaz 301, Centro, 66400 San Nicolás de los Garza, N.L.",
+      "urlMapa": "https://maps.google.com/maps?q=Parroquia%20Nuestra%20Se%C3%B1ora%20del%20Pilar%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/7ASkLJzt6CLqHmCA6"
+    },
+    "recepcion": {
+      "hora": "7:00 pm",
+      "lugar": "Salón La Cúpula",
+      "negritaLugar": true,
+      "direccion": "Calle Mariano Matamoros 1270 A, C. Mariano Matamoros 1270-A, Sin Nombre de Col 6, 66428 San Nicolás de los Garza, N.L.",
+      "urlMapa": "https://maps.google.com/maps?q=Salon%20Casandra%2C%20Mexicali&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "urlMapaDirecto": "https://maps.app.goo.gl/scYKvJ1HRUsYoWxu9"
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal",
+    "descripcion": "Se reserva el uso del color VERDE OLIVO para la quinceañera",
+    "colorSugerido": "#d17c66"
+  },
+  "regalos": {
+    "mostrar": true,
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "layout": "vertical",
+    "textoMesa": "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
+    "textoEfectivo": "Es la tradición de regalar sobres con efectivo durante el evento.",
+    "tarjetaEfectivo": true,
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": ""
+  },
+  "galeria": {
+    "mostrar": false,
+    "titulo": "Galería",
+    "imagenes": [
+      "/imagenes/xv/alisson-sanjuanero/galeria1.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria2.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria3.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria4.webp"
+    ]
+  },
+  "rsvp": {
+    "telefono": "5218125960990",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Alisson Sanjuánero.",
+    "fechaLimite": "13 de Junio",
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": true,
+    "destacarAvisos": true
+  },
+  "compartirFotos": {
+    "mostrar": true,
+    "estilo": "minimalista",
+    "titulo": "Compárteme tus fotos",
+    "frase": "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
+    "urlBoton": "",
+    "textoBoton": "SUBIR FOTOS"
+  },
+  "footer": {
+    "agradecimiento": "¡Gracias por ser parte de este día!",
+    "mostrarWhatsappCTA": true
+  },
+  "imagenesFondo": {
+    "carta": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dedicatoria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "countdown": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "itinerario": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "ceremonia": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "recepcion": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "dressCode": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "regalos": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "galeria": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "rsvp": "/imagenes/xv/azul-zazueta/fondo.webp",
+    "compartirFotos": "/imagenes/xv/azul-zazueta/fondo.webp"
+  },
+  "pases": {
+    "mostrar": false,
+    "cantidad": 0
+  },
+  "sobre": {
+    "tipo": "sobre1",
+    "colorFondoBase": "#eabbc2",
+    "colorSobre": "#7a0000",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#b30000",
+    "fuenteNombres": "'Great Vibes', cursive",
+    "fuenteTitulos": "'Cinzel', serif",
+    "colorTitulo": "#b8935c",
+    "colorNombre": "#b30000"
+  },
+  "musica": {
+    "url": ""
+  }
+}
