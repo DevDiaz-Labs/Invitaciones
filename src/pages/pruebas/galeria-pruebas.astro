@@ -1,0 +1,73 @@
+---
+// Ubicación: src/pages/test-slider.astro
+
+// 1. Importa tu componente.
+// Reemplaza 'Slider' con el nombre real con el que guardaste tu archivo (ej. Carousel.astro, HeroSlider.astro)
+import GaleriaFull from "../../components/galeria/GaleriaFull.astro";
+import GaleriaMini from "../../components/galeria/GaleriaMini.astro";
+
+// 2. Preparamos el mock de datos (URLs de imágenes).
+// Usaremos imágenes verticales de Unsplash simulando fotos de una pareja para encajar con la temática.
+const fotosPareja = [
+    "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 1
+    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 2
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 3
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 4
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 5
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 6
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 7
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 8
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 9
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 10
+];
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Test: Componente Slider Alpine</title>
+
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <!-- Añadimos Tailwind via CDN para pruebas rápidas -->
+        <script src="https://cdn.tailwindcss.com" is:inline></script>
+        <script is:inline>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['"Inter"', "sans-serif"],
+                            serif: ['"Playfair Display"', "serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            /* Reseteo básico para que ocupe toda la pantalla correctamente */
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #f3f4f6; /* Fondo gris claro para contrastar si el slider no ocupa el 100vh */
+            }
+        </style>
+    </head>
+    <body>
+        <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen">
+            <GaleriaFull data={fotosPareja} />
+
+            <GaleriaMini data={fotosPareja} />
+
+            <div class="p-6 text-center text-gray-500 font-sans">
+                <p>Contenido debajo del slider...</p>
+            </div>
+        </main>
+    </body>
+</html>
