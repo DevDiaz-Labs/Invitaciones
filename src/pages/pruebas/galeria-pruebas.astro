@@ -3,6 +3,7 @@
 
 // 1. Importa tu componente.
 // Reemplaza 'Slider' con el nombre real con el que guardaste tu archivo (ej. Carousel.astro, HeroSlider.astro)
+import GaleriaBento from "../../components/galeria/GaleriaBento.astro";
 import GaleriaFull from "../../components/galeria/GaleriaFull.astro";
 import GaleriaMini from "../../components/galeria/GaleriaMini.astro";
 
@@ -14,11 +15,6 @@ const fotosPareja = [
     "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 3
     "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 4
     "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 5
-    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 6
-    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 7
-    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 8
-    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 9
-    "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 10
 ];
 ---
 
@@ -64,6 +60,8 @@ const fotosPareja = [
             <GaleriaFull data={fotosPareja} />
 
             <GaleriaMini data={fotosPareja} />
+
+            <GaleriaBento data={fotosPareja} />
 
             <div class="p-6 text-center text-gray-500 font-sans">
                 <p>Contenido debajo del slider...</p>
