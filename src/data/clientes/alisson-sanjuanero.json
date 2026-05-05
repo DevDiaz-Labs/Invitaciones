@@ -8,7 +8,7 @@
     "frase": "¡Prepárate para una noche mágica!",
     "imagenFondo": "/imagenes/xv/alisson-sanjuanero/portada.webp",
     "imagenFondo2": "",
-    "nombrePosicion": "bottom",
+    "nombrePosicion": "label-top",
     "nombreTamano": "text-6xl md:text-8xl",
     "mostrarDivider": false,
     "etiquetaTamano": "text-base md:text-lg",
@@ -29,7 +29,7 @@
     "colorTexto": "var(--gold)"
   },
   "tema": {
-    "colorPrincipal": "#b30000",
+    "colorPrincipal": "#556b2f",
     "colorFondo": "#f1f4e8",
     "colorTexto": "#000000",
     "fuentePrincipal": "Montserrat",
