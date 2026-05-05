@@ -30,8 +30,8 @@
   },
   "tema": {
     "colorPrincipal": "#b30000",
-    "colorFondo": "#ffecfb",
-    "colorTexto": "#98472f",
+    "colorFondo": "#f1f4e8",
+    "colorTexto": "#000000",
     "fuentePrincipal": "Montserrat",
     "fuenteTitulos": "Montserrat",
     "fuenteNombres": "Dancing Script"
@@ -47,7 +47,7 @@
     "nombreExtra": "",
     "bendicion": "",
     "texto": "Con mucha alegría y agradecimiento a Dios y a mis padres hoy celebro un momento muy especial en mi vida: mis XV años. <br/><br/> Gracias a mi familia, padrinos y seres queridos por acompañarme en esta etapa llena de sueños, ilusiones y nuevos comienzos. <br/><br/> Deseo compartir con ustedes esta noche tan especial, donde cada sonrisa, abrazo y detalle quedará guardado para siempre en mi corazón.",
-    "textoDestacado": true
+    "textoDestacado": false
   },
   "countdown": {
     "fechaObjetivo": "2026-06-13T17:00:00",
