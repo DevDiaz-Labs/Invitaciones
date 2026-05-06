@@ -123,6 +123,19 @@
     "agradecimiento": "¡Gracias por ser parte de este día!",
     "mostrarWhatsappCTA": true
   },
+  "imagenesFondo": {
+    "carta": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "dedicatoria": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "countdown": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "itinerario": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "ceremonia": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "recepcion": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "dressCode": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "regalos": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "galeria": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "rsvp": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "compartirFotos": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp"
+  },
   "sobre": {
     "tipo": "sobre1",
     "colorFondoBase": "#1a2e1a",
