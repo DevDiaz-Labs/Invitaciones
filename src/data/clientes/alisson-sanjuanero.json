@@ -100,13 +100,16 @@
     "titulo": "Galería",
     "imagenes": [
       "/imagenes/xv/alisson-sanjuanero/galeria1.webp",
-      "/imagenes/xv/alisson-sanjuanero/galeria2.webp"
+      "/imagenes/xv/alisson-sanjuanero/galeria2.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria3.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria4.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria5.webp"
     ]
   },
   "rsvp": {
     "telefono": "5218125960990",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Alisson Sanjuánero.",
-    "fechaLimite": "13 de Junio",
+    "fechaLimite": "30 de Mayo",
     "mostrarMensajeEspecial": true,
     "mostrarNinos": true,
     "destacarAvisos": false
