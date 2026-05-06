@@ -21,6 +21,7 @@ interface Props {
     fuenteTitulos?: string;
     colorTitulo?: string;
     colorNombre?: string;
+    colorMensajeTop?: string;
 }
 
 const {
@@ -41,7 +42,10 @@ const {
     fuenteTitulos = "'Cinzel', serif",
     colorTitulo = "#e6d2b8",
     colorNombre = colorCartaTexto,
+    colorMensajeTop,
 } = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
 
 // Obtener la primera letra del nombre para el sello
 const inicial = nombre.charAt(0).toUpperCase();
@@ -91,7 +95,7 @@ const inicial = nombre.charAt(0).toUpperCase();
                 style={`position: absolute; top: 5px; left: 10px; right: 10px; bottom: 5px; background: ${colorCartaFondo}; border-radius: 4px; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; box-shadow: 0 0 10px rgba(0,0,0,0.2) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;`}
             >
                 <div
-                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${colorSobre}; text-transform: uppercase; font-weight: 600;`}
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
                 >
                     {mensajeTop}
                 </div>

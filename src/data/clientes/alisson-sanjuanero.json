@@ -16,17 +16,17 @@
     "fraseMarginTop": "1.5rem"
   },
   "carta": {
-    "mostrar": false,
+    "mostrar": true,
     "estilo": "recuadro",
     "fuente": "Coming Soon",
     "tamanoTexto": "text-lg md:text-xl",
-    "texto": "",
-    "firmaTexto": "",
-    "firmaColor": "#FF7987",
+    "texto": "Con mucha alegría y agradecimiento a Dios y a mis padres hoy celebro un momento muy especial en mi vida: mis XV años. <br/><br/> Gracias a mi familia, padrinos y seres queridos por acompañarme en esta etapa llena de sueños, ilusiones y nuevos comienzos. <br/><br/> Deseo compartir con ustedes esta noche tan especial, donde cada sonrisa, abrazo y detalle quedará guardado para siempre en mi corazón.",
+    "firmaTexto": "Alisson",
+    "firmaColor": "#556b2f",
     "colorBorde": "rgba(179, 0, 0, 0.12)",
-    "colorFondoRecuadro": "#fffdf8",
+    "colorFondoRecuadro": "#ffffff",
     "mostrarAdorno": false,
-    "colorTexto": "var(--gold)"
+    "colorTexto": "#000000"
   },
   "tema": {
     "colorPrincipal": "#556b2f",
@@ -46,7 +46,7 @@
     "etiquetaExtra": "",
     "nombreExtra": "",
     "bendicion": "",
-    "texto": "Con mucha alegría y agradecimiento a Dios y a mis padres hoy celebro un momento muy especial en mi vida: mis XV años. <br/><br/> Gracias a mi familia, padrinos y seres queridos por acompañarme en esta etapa llena de sueños, ilusiones y nuevos comienzos. <br/><br/> Deseo compartir con ustedes esta noche tan especial, donde cada sonrisa, abrazo y detalle quedará guardado para siempre en mi corazón.",
+    "texto": "",
     "textoDestacado": false
   },
   "countdown": {
@@ -89,7 +89,7 @@
     "opcionMesa": true,
     "layout": "vertical",
     "textoMesa": "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
-    "textoEfectivo": "Es la tradición de regalar sobres con efectivo durante el evento.",
+    "textoEfectivo": "Un detallito en efectivo. Para tu comodidad, contaremos con un espacio para lluvia de sobres.",
     "tarjetaEfectivo": true,
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
@@ -107,7 +107,7 @@
     "telefono": "5218125960990",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Alisson Sanjuánero.",
     "fechaLimite": "13 de Junio",
-    "mostrarMensajeEspecial": false,
+    "mostrarMensajeEspecial": true,
     "mostrarNinos": true,
     "destacarAvisos": false
   },
@@ -127,16 +127,17 @@
     "tipo": "sobre1",
     "colorFondoBase": "#1a2e1a",
     "colorSobre": "#4a5e28",
-    "colorSolapa": "#d6e0c4",
-    "colorSolapaLado": "#c2ceab",
-    "colorSello": "#556b2f",
-    "colorSelloBorde": "#3e5022",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
     "colorCartaFondo": "#fffdfc",
     "colorCartaTexto": "#3e5022",
     "fuenteNombres": "'Dancing Script', cursive",
     "fuenteTitulos": "'Cinzel', serif",
     "colorTitulo": "#8fad52",
-    "colorNombre": "#3e5022"
+    "colorNombre": "#b30000",
+    "colorMensajeTop": "#7a0000"
   },
   "musica": {
     "url": "/musica/alisson-sanjuanero.ogg"
