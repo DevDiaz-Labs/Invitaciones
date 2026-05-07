@@ -8,7 +8,7 @@ interface Props {
     frase: string;
     imagenFondo: string;
     // Nuevas propiedades configurables (opcionales, con defaults)
-    nombrePosicion?: "center" | "top" | "bottom" | "split";
+    nombrePosicion?: "center" | "top" | "bottom" | "split" | "label-top";
     nombreTamano?: string;
     mostrarDivider?: boolean;
     etiquetaTamano?: string;
@@ -32,7 +32,8 @@ const overlayOpacity = data.overlayOpacity ?? 0.4;
 
 // Clases dinámicas para justify
 const isSplit = nombrePosicion === "split";
-const justifyClass = isSplit ? "justify-between"
+const isLabelTop = nombrePosicion === "label-top";
+const justifyClass = (isSplit || isLabelTop) ? "justify-between"
   : nombrePosicion === "bottom" ? "justify-end pb-28" 
   : nombrePosicion === "top" ? "justify-start pt-28" 
   : "justify-center";
@@ -43,25 +44,34 @@ const justifyClass = isSplit ? "justify-between"
 >
     <!-- Contenedor del fondo oscuro semi-transparente y la imagen (configurado via inline style prop) -->
 
-    {/* ============ MODO SPLIT: Nombre arriba, fecha+frase abajo ============ */}
-    {isSplit ? (
+    {/* ============ MODO SPLIT o LABEL-TOP: Contenido distribuido arriba y abajo ============ */}
+    {(isSplit || isLabelTop) ? (
         <>
-            {/* Bloque superior: etiqueta + nombre */}
+            {/* Bloque superior: Solo etiqueta en 'label-top', etiqueta + nombre en 'split' */}
             <div class="observe-me fade-up z-10 text-white pt-16 md:pt-20">
                 <p
                     class={`${etiquetaTamano} tracking-[0.6em] font-light mb-4 text-white/90 uppercase`}
                 >
                     {data.etiqueta}
                 </p>
-                <h1
-                    class={`${nombreTamano} font-nombres text-white drop-shadow-xl`}
-                    set:html={data.nombre}
-                >
-                </h1>
+                {isSplit && (
+                    <h1
+                        class={`${nombreTamano} font-nombres text-white drop-shadow-xl`}
+                        set:html={data.nombre}
+                    >
+                    </h1>
+                )}
             </div>
 
-            {/* Bloque inferior: fecha + frase */}
+            {/* Bloque inferior: nombre + fecha + frase en 'label-top', solo fecha + frase en 'split' */}
             <div class="observe-me fade-up z-10 text-white pb-20 md:pb-24">
+                {isLabelTop && (
+                    <h1
+                        class={`${nombreTamano} font-nombres text-white mb-4 drop-shadow-xl`}
+                        set:html={data.nombre}
+                    >
+                    </h1>
+                )}
                 {mostrarDivider && (
                     <div class="section-divider bg-white/50"></div>
                 )}
@@ -77,7 +87,7 @@ const justifyClass = isSplit ? "justify-between"
             </div>
         </>
     ) : (
-        /* ============ MODO NORMAL: Todo junto ============ */
+        /* ============ MODO NORMAL: Todo junto (center, top, bottom) ============ */
         <div class="observe-me fade-up z-10 text-white">
             <p
                 class={`${etiquetaTamano} tracking-[0.6em] font-light mb-6 text-white/90 uppercase`}

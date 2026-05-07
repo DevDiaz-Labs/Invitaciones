@@ -1,0 +1,79 @@
+---
+export interface Props {
+  audioSrc?: string;
+}
+
+const { audioSrc = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Pachelbel_-_Canon_in_D_Major.ogg" } = Astro.props;
+---
+
+<!-- Reproductor de Música Oculto e Icono Flotante -->
+<audio 
+  id="audioPlayer" 
+  loop 
+  src={audioSrc}
+></audio>
+
+<button 
+  id="toggleMusicBtn"
+  class="fixed bottom-6 right-6 z-50 p-4 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-stone-100 text-stone-600 hover:text-stone-900 transition-all hover:scale-105"
+  aria-label="Reproducir música"
+>
+  <!-- Icono de Música (Play por defecto) -->
+  <svg id="iconMusic" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block">
+    <path d="M9 18V5l12-2v13"></path>
+    <circle cx="6" cy="18" r="3"></circle>
+    <circle cx="18" cy="16" r="3"></circle>
+  </svg>
+  
+  <!-- Icono de Pausa (Oculto por defecto) -->
+  <svg id="iconPause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+    <rect x="6" y="4" width="4" height="16"></rect>
+    <rect x="14" y="4" width="4" height="16"></rect>
+  </svg>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
+    const btn = document.getElementById('toggleMusicBtn');
+    const iconMusic = document.getElementById('iconMusic');
+    const iconPause = document.getElementById('iconPause');
+    
+    let isPlaying = false;
+
+    if (btn && audio && iconMusic && iconPause) {
+      // Toggle on click (button)
+      btn.addEventListener('click', () => {
+        if (isPlaying) {
+          audio.pause();
+          iconPause.classList.add('hidden');
+          iconPause.classList.remove('block');
+          iconMusic.classList.add('block');
+          iconMusic.classList.remove('hidden');
+        } else {
+          audio.play().catch(e => console.log('Autoplay prevent:', e));
+          iconMusic.classList.add('hidden');
+          iconMusic.classList.remove('block');
+          iconPause.classList.add('block');
+          iconPause.classList.remove('hidden');
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Auto-play when envelope is opened
+      const envelope = document.getElementById('envelope');
+      if (envelope) {
+        envelope.addEventListener('click', () => {
+          if (!isPlaying) {
+            audio.play().catch(e => console.log('Autoplay prevent:', e));
+            isPlaying = true;
+            iconMusic.classList.add('hidden');
+            iconMusic.classList.remove('block');
+            iconPause.classList.add('block');
+            iconPause.classList.remove('hidden');
+          }
+        });
+      }
+    }
+  });
+</script>

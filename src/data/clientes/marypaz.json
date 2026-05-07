@@ -14,7 +14,13 @@
     "fechaTexto": "04 de Julio 2026",
     "frase": "¡Prepárate para una noche mágica!",
     "imagenFondo": "https://th.bing.com/th/id/R.6dde3c67c74bb7fd40dd6d05a843f402?rik=R0RHvHhKNWxFgw&pid=ImgRaw&r=0",
-    "imagenFondo2": "/imagenes/marypaz gutierrez/galeria1.webp"
+    "imagenFondo2": "/imagenes/marypaz gutierrez/galeria1.webp",
+    "nombrePosicion": "center",
+    "nombreTamano": "text-6xl md:text-8xl",
+    "mostrarDivider": true,
+    "etiquetaTamano": "text-base md:text-lg",
+    "fechaTamano": "text-3xl md:text-4xl",
+    "fraseMarginTop": "1.5rem"
   },
   "dedicatoria": {
     "etiquetaPadres": "Con el amor de mis padres",
@@ -66,7 +72,8 @@
     "mostrarNinos": true
   },
   "footer": {
-    "agradecimiento": "¡Te espero para celebrar juntos!"
+    "agradecimiento": "¡Te espero para celebrar juntos!",
+    "mostrarWhatsappCTA": true
   },
   "musica": {
     "url": "/musica/marypaz.mp3"
@@ -76,7 +83,19 @@
     "cantidad": 0
   },
   "sobre": {
-    "tipo": "sobre1"
+    "tipo": "sobre1",
+    "colorFondoBase": "#2a3b29",
+    "colorSobre": "#1a261a",
+    "colorSolapa": "#D4AF37",
+    "colorSolapaLado": "#b89a30",
+    "colorSello": "#D4AF37",
+    "colorSelloBorde": "#b89a30",
+    "colorCartaFondo": "#fdfbf7",
+    "colorCartaTexto": "#2a3b29",
+    "fuenteNombres": "'Great Vibes', cursive",
+    "fuenteTitulos": "'Montserrat', sans-serif",
+    "colorTitulo": "#D4AF37",
+    "colorNombre": "#2a3b29"
   },
   "galeria": {
     "mostrar": true,

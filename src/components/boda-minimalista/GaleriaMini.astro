@@ -1,0 +1,116 @@
+---
+// GaleriaMini.astro
+const { data } = Astro.props;
+
+const images = data && data.length > 0 ? data : [
+  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+];
+
+// Para evitar problemas de comillas escapamos a un string JSON seguro.
+const imagesJson = JSON.stringify(images);
+---
+
+<section class="py-12 bg-white fade-up">
+  <div class="max-w-5xl mx-auto px-4">
+    <!-- Galería súper alta: 9/16 en móviles (casi pantalla completa) y 4/5 en pantallas grandes -->
+    <div class="relative aspect-[9/16] md:aspect-[4/5] overflow-hidden rounded-xl bg-stone-100" id="carousel-container" data-images={imagesJson}>
+      <img 
+        id="carousel-img"
+        src={images[0]} 
+        alt="Recuerdo 1" 
+        class="w-full h-full object-cover transition-opacity duration-500"
+      />
+      
+      <!-- Controles del carrusel -->
+      <button 
+        id="btn-prev"
+        class="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/50 hover:bg-white/90 rounded-full transition-colors z-10"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-800">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button 
+        id="btn-next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/50 hover:bg-white/90 rounded-full transition-colors z-10"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-800">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Puntos -->
+      <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <!-- Renderizado inicial para evitar layout shift grande, aunque luego JS lo reemplaza -->
+        {images.map((_item: any, idx: number) => (
+          <div class={`w-2 h-2 rounded-full transition-all dot-indicator ${idx === 0 ? 'bg-white w-4' : 'bg-white/50'}`} data-index={idx}></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('carousel-container');
+    if (!container) return;
+
+    try {
+      const imagesRaw = container.dataset.images || '[]';
+      const images: string[] = JSON.parse(imagesRaw);
+      if (images.length === 0) return;
+
+      const imgEl = document.getElementById('carousel-img') as HTMLImageElement;
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      const dotIndicators = document.querySelectorAll('.dot-indicator');
+
+      let currentSlide = 0;
+
+      const updateSlide = (newIndex: number) => {
+        currentSlide = newIndex;
+        imgEl.style.opacity = '0.5';
+        setTimeout(() => {
+          imgEl.src = images[currentSlide];
+          imgEl.alt = `Recuerdo ${currentSlide + 1}`;
+          imgEl.style.opacity = '1';
+        }, 200);
+
+        dotIndicators.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.remove('bg-white/50');
+            dot.classList.add('bg-white', 'w-4');
+          } else {
+            dot.classList.remove('bg-white', 'w-4');
+            dot.classList.add('bg-white/50');
+          }
+        });
+      };
+
+      btnPrev?.addEventListener('click', () => {
+        const nextIdx = currentSlide === 0 ? images.length - 1 : currentSlide - 1;
+        updateSlide(nextIdx);
+      });
+
+      btnNext?.addEventListener('click', () => {
+        const nextIdx = currentSlide === images.length - 1 ? 0 : currentSlide + 1;
+        updateSlide(nextIdx);
+      });
+
+      dotIndicators.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement;
+          const idx = parseInt(target.dataset.index || '0', 10);
+          updateSlide(idx);
+        });
+      });
+
+    } catch(e) {
+      console.error("Error inicializando carrusel:", e);
+    }
+  });
+</script>

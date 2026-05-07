@@ -1,0 +1,54 @@
+---
+const { data = [] } = Astro.props;
+// data debe ser un arreglo de strings (URLs)
+---
+
+<section class="w-full py-12 px-4 bg-white">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[220px] max-w-6xl mx-auto">
+    {data.map((slide: string, index: number) => {
+      const pattern = index % 6;
+      let spanClass = "";
+      
+      switch (pattern) {
+        case 0:
+          spanClass = "col-span-2 row-span-2 md:col-span-2 md:row-span-2";
+          break;
+        case 1:
+          spanClass = "col-span-1 row-span-1 md:col-span-1 md:row-span-1";
+          break;
+        case 2:
+          spanClass = "col-span-1 row-span-1 md:col-span-1 md:row-span-1";
+          break;
+        case 3:
+          spanClass = "col-span-2 row-span-1 md:col-span-1 md:row-span-2";
+          break;
+        case 4:
+          spanClass = "col-span-1 row-span-1 md:col-span-1 md:row-span-1";
+          break;
+        case 5:
+          spanClass = "col-span-1 row-span-1 md:col-span-2 md:row-span-1";
+          break;
+        default:
+          spanClass = "col-span-1 row-span-1";
+      }
+
+      // Si es el último elemento y queda un hueco en mobile, lo hacemos expandirse a 2 columnas
+      if (index === data.length - 1 && index % 2 === 0 && spanClass.includes("col-span-1 row-span-1")) {
+          spanClass = spanClass.replace("col-span-1", "col-span-2");
+      }
+
+      return (
+        <div class={`relative group overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer ${spanClass}`}>
+          <img 
+            src={slide} 
+            alt={`Momento ${index + 1}`} 
+            class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110" 
+            loading="lazy"
+          />
+          <!-- Overlay sutil -->
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+        </div>
+      );
+    })}
+  </div>
+</section>

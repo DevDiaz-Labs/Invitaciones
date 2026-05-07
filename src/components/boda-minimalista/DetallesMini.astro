@@ -1,0 +1,131 @@
+---
+// DetallesMini.astro
+const { data } = Astro.props;
+
+const ceremonia = data?.ceremonia || {
+  fecha: "Sábado, 24 de Octubre",
+  hora: "17:00 Hrs",
+  lugar: "Parroquia de San Miguel Arcángel",
+  direccion: "Av. Principal 123, Centro Histórico",
+  urlMapa: "#",
+  iframeMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14349.524785461159!2d-103.35515255476104!3d20.672535035773177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1eb72856f61%3A0xc32cff046c8b9356!2sCatedral%20Metropolitana%20de%20Guadalajara!5e0!3m2!1ses!2smx!4v1700687747805!5m2!1ses!2smx"
+};
+
+const recepcion = data?.recepcion || {
+  fecha: "Sábado, 24 de Octubre",
+  hora: "19:30 Hrs",
+  lugar: "Hacienda San Carlos",
+  direccion: "Carr. Estatal Km 5, Valle Sur",
+  urlMapa: "#",
+  iframeMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15444.664420790897!2d-103.38531553531063!3d20.66983416413627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428afaa1744bfa5%3A0x6bba8fb2cb95eb48!2sHacienda%20San%20Carlos!5e0!3m2!1ses!2smx!4v1700687834241!5m2!1ses!2smx"
+};
+
+const calendario = data?.calendario || {
+  google: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Sof%C3%ADa+y+Mateo&dates=20261024T230000Z/20261025T080000Z",
+  apple: "#"
+};
+---
+
+<section class="py-24 px-4 bg-[#FAFAFA] fade-up">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-serif mb-16 text-center text-stone-800">Cuándo & Dónde</h2>
+    
+    <div class="grid md:grid-cols-2 gap-12 md:gap-24 mb-16">
+      <!-- Ceremonia -->
+      <div class="text-center flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center mb-6">
+          <svg class="text-stone-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-serif mb-4">Ceremonia</h3>
+        <p class="text-stone-500 font-light mb-2">{ceremonia.fecha}</p>
+        <p class="text-stone-800 mb-6 font-medium">{ceremonia.hora}</p>
+        <p class="text-stone-500 font-light mb-1">{ceremonia.lugar}</p>
+        <p class="text-stone-500 font-light text-sm mb-6">{ceremonia.direccion}</p>
+        
+        {ceremonia.iframeMapa && (
+          <div class="w-full h-48 md:h-64 mb-6 rounded overflow-hidden shadow-sm border border-stone-200">
+            <iframe 
+              src={ceremonia.iframeMapa} 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        )}
+        
+        <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest border-b border-stone-800 pb-1 hover:text-stone-500 transition-colors inline-flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Abrir en Maps
+        </a>
+      </div>
+
+      <!-- Recepción -->
+      <div class="text-center flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center mb-6">
+          <svg class="text-stone-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-serif mb-4">Recepción</h3>
+        <p class="text-stone-500 font-light mb-2">{recepcion.fecha}</p>
+        <p class="text-stone-800 mb-6 font-medium">{recepcion.hora}</p>
+        <p class="text-stone-500 font-light mb-1">{recepcion.lugar}</p>
+        <p class="text-stone-500 font-light text-sm mb-6">{recepcion.direccion}</p>
+        
+        {recepcion.iframeMapa && (
+          <div class="w-full h-48 md:h-64 mb-6 rounded overflow-hidden shadow-sm border border-stone-200">
+            <iframe 
+              src={recepcion.iframeMapa} 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        )}
+
+        <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest border-b border-stone-800 pb-1 hover:text-stone-500 transition-colors inline-flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Abrir en Maps
+        </a>
+      </div>
+    </div>
+    
+    <!-- Botones de Calendario -->
+    {calendario && (
+      <div class="pt-12 border-t border-stone-200 flex flex-col items-center">
+        <h4 class="font-sans tracking-[0.2em] uppercase text-stone-600 text-xs mb-8">Agendar evento</h4>
+        <div class="flex flex-col sm:flex-row gap-6">
+          <a href={calendario.google} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 bg-white border border-stone-200 shadow-sm text-stone-800 px-8 py-3 rounded hover:shadow-md hover:border-stone-400 transition-all text-sm uppercase tracking-wider font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Google Calendar
+          </a>
+          <a href={calendario.apple} download="nuestra-boda.ics" class="flex items-center justify-center gap-3 bg-white border border-stone-200 shadow-sm text-stone-800 px-8 py-3 rounded hover:shadow-md hover:border-stone-400 transition-all text-sm uppercase tracking-wider font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.11 14.86c-1.3.116-2.583-.554-3.414-1.503-.907.954-2.298 1.62-3.454 1.5l-.2-.02c-2.316-.275-3.66-2.614-3-4.912.56-1.954 2.128-3.42 4.148-3.792.81-.15 1.58-.04 2.23.238.16-.893.7-1.63 1.48-1.986.74-.32 1.63-.26 2.33.19.86.536 1.25 1.55 1.05 2.52-.39 2.05-1.54 3.99-3.23 4.96.65.62 1.5.9 2.37.76.6-.095 1.06-.525 1.25-1.095.055-.17.205-.29.38-.29h.67c.28 0 .48.275.4.545-.375 1.15-1.39 2.35-2.69 2.895z" />
+            </svg>
+            Apple Calendar
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

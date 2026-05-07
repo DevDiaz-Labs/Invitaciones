@@ -1,0 +1,161 @@
+{
+  "tipo": "xv",
+  "id": "alisson-sanjuanero",
+  "hero": {
+    "etiqueta": "Mis XV Años",
+    "nombre": "Alisson Ximena Sanjuánero Camargo",
+    "fechaTexto": "13 de Junio del 2026",
+    "frase": "¡Prepárate para una noche mágica!",
+    "imagenFondo": "/imagenes/xv/alisson-sanjuanero/portada.webp",
+    "imagenFondo2": "",
+    "nombrePosicion": "label-top",
+    "nombreTamano": "text-6xl md:text-8xl",
+    "mostrarDivider": false,
+    "etiquetaTamano": "text-base md:text-lg",
+    "fechaTamano": "text-2xl md:text-3xl",
+    "fraseMarginTop": "1.5rem"
+  },
+  "carta": {
+    "mostrar": true,
+    "estilo": "recuadro",
+    "fuente": "Coming Soon",
+    "tamanoTexto": "text-lg md:text-xl",
+    "texto": "Con mucha alegría y agradecimiento a Dios y a mis padres hoy celebro un momento muy especial en mi vida: mis XV años. <br/><br/> Gracias a mi familia, padrinos y seres queridos por acompañarme en esta etapa llena de sueños, ilusiones y nuevos comienzos. <br/><br/> Deseo compartir con ustedes esta noche tan especial, donde cada sonrisa, abrazo y detalle quedará guardado para siempre en mi corazón.",
+    "firmaTexto": "Alisson",
+    "firmaColor": "#556b2f",
+    "colorBorde": "rgba(179, 0, 0, 0.12)",
+    "colorFondoRecuadro": "#ffffff",
+    "mostrarAdorno": false,
+    "colorTexto": "#000000"
+  },
+  "tema": {
+    "colorPrincipal": "#556b2f",
+    "colorFondo": "#f1f4e8",
+    "colorTexto": "#000000",
+    "fuentePrincipal": "Montserrat",
+    "fuenteTitulos": "Montserrat",
+    "fuenteNombres": "Dancing Script"
+  },
+  "dedicatoria": {
+    "etiquetaPadres": "Con el amor de mis padres",
+    "padres": "Neiva Aide Camargo Muñoz y Alberto Daniel Sanjuánero Solano",
+    "etiquetaAbuelos": "El cariño de mis abuelos",
+    "abuelos": "Alicia Solano Rosales ✝️, Juan Sanjuánero Flores ✝️, <br/> Francisco Javier Camargo Castillo y Blanca Estela Muñoz Montero",
+    "etiquetaPadrinos": "",
+    "padrinos": "",
+    "etiquetaExtra": "",
+    "nombreExtra": "",
+    "bendicion": "",
+    "texto": "",
+    "textoDestacado": false
+  },
+  "countdown": {
+    "fechaObjetivo": "2026-06-13T17:00:00",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+Alisson+Sanju%C3%A1nero&dates=20260613T170000/20260614T020000&details=Celebremos+juntos"
+  },
+  "itinerario": {
+    "mostrar": false,
+    "estilo": "imagen",
+    "titulo": "Itinerario",
+    "imagen": ""
+  },
+  "eventos": {
+    "ceremonia": {
+      "hora": "5:00 PM",
+      "lugar": "Parroquia San Nicolás de Tolentino",
+      "negritaLugar": true,
+      "direccion": "Porfirio Díaz 301, Centro, 66400 San Nicolás de los Garza, N.L.",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57494.86451052193!2d-100.32446332089843!3d25.7563889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662958aa47c624b%3A0x664162c39ee5666c!2sParroquia%20San%20Nicol%C3%A1s%20de%20Tolentino!5e0!3m2!1ses-419!2smx!4v1777948217738!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/nChdbuvJd5tXGrDMA"
+    },
+    "recepcion": {
+      "hora": "7:00 PM",
+      "lugar": "Salón La Cúpula",
+      "negritaLugar": true,
+      "direccion": "Calle Mariano Matamoros 1270 A, C. Mariano Matamoros 1270-A, Sin Nombre de Col 6, 66428 San Nicolás de los Garza, N.L.",
+      "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.1547545697626!2d-100.29724060000002!3d25.76545149999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86629483c92138dd%3A0x1a303f693d501479!2sLa%20C%C3%BApula!5e0!3m2!1ses-419!2smx!4v1777948266752!5m2!1ses-419!2smx",
+      "urlMapaDirecto": "https://maps.app.goo.gl/qAZBTAwonZYxcu2eA"
+    }
+  },
+  "dressCode": {
+    "estilo": "Formal",
+    "descripcion": "Se reserva el uso del color VERDE OLIVO para la quinceañera",
+    "colorSugerido": "#556b2f"
+  },
+  "regalos": {
+    "mostrar": true,
+    "mensaje": "Mi mayor regalo es tu presencia.",
+    "opcionEfectivo": true,
+    "opcionMesa": true,
+    "layout": "vertical",
+    "textoMesa": "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
+    "textoEfectivo": "Un detallito en efectivo. Para tu comodidad, contaremos con un espacio para lluvia de sobres.",
+    "tarjetaEfectivo": true,
+    "mostrarDatosBancarios": false,
+    "amazon_liverpool": false,
+    "datosBancarios": ""
+  },
+  "galeria": {
+    "mostrar": true,
+    "titulo": "Galería",
+    "imagenes": [
+      "/imagenes/xv/alisson-sanjuanero/galeria1.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria2.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria3.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria4.webp",
+      "/imagenes/xv/alisson-sanjuanero/galeria5.webp"
+    ]
+  },
+  "rsvp": {
+    "telefono": "5218125960990",
+    "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Alisson Sanjuánero.",
+    "fechaLimite": "30 de Mayo",
+    "mostrarMensajeEspecial": true,
+    "mostrarNinos": true,
+    "destacarAvisos": false
+  },
+  "compartirFotos": {
+    "mostrar": true,
+    "estilo": "minimalista",
+    "titulo": "Compárteme tus fotos",
+    "frase": "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
+    "urlBoton": "https://docs.google.com/forms/d/e/1FAIpQLSfvOqAKqt_4SgrhNUe_uqxgcl6QzsAagBxejSRgu1szrT-irQ/viewform?usp=dialog",
+    "textoBoton": "SUBIR FOTOS"
+  },
+  "footer": {
+    "agradecimiento": "¡Gracias por ser parte de este día!",
+    "mostrarWhatsappCTA": true
+  },
+  "imagenesFondo": {
+    "carta": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "dedicatoria": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "countdown": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "itinerario": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "ceremonia": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "recepcion": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "dressCode": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "regalos": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "galeria": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "rsvp": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp",
+    "compartirFotos": "/imagenes/xv/alisson-sanjuanero/fondoximena.webp"
+  },
+  "sobre": {
+    "tipo": "sobre1",
+    "colorFondoBase": "#1a2e1a",
+    "colorSobre": "#4a5e28",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#3e5022",
+    "fuenteNombres": "'Dancing Script', cursive",
+    "fuenteTitulos": "'Cinzel', serif",
+    "colorTitulo": "#8fad52",
+    "colorNombre": "#b30000",
+    "colorMensajeTop": "#7a0000"
+  },
+  "musica": {
+    "url": "/musica/alisson-sanjuanero.ogg"
+  }
+}

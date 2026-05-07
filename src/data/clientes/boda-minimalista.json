@@ -1,0 +1,80 @@
+{
+  "tipo": "boda",
+  "plantilla": "minimalista",
+  "musica": "/musica/azul-zazueta.mp3",
+  "hero": {
+    "bgImage": "https://images.unsplash.com/photo-1736310978137-dc7103e14c87?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "nombres": "Sofía & Mateo",
+    "fecha": "2026-10-24",
+    "fechaVista": "24 / 10 / 2026",
+    "frase": "Te invitamos a ser parte del capítulo más importante de nuestra historia.",
+    "lugar": "Valle de Guadalupe"
+  },
+  "sobre": {
+    "mostrar": true,
+    "tipo": "sobre1",
+    "colorFondoBase": "#E7E5E4",
+    "colorSobre": "#A8A29E",
+    "colorSolapa": "#D6D3D1",
+    "colorSolapaLado": "#e5e5e5",
+    "colorSello": "#fafafa",
+    "colorSelloBorde": "#D6D3D1",
+    "colorCartaFondo": "#FFFFFF",
+    "colorCartaTexto": "#44403C"
+  },
+  "historia": {
+    "titulo": "Nuestra Historia",
+    "parrafo1": "Todo comenzó con un café fortuito y una conversación que nunca queríamos que terminara. Han pasado 5 años de aventuras, risas, aprendizajes y crecimiento juntos.",
+    "parrafo2": "Hoy, estamos emocionados de dar este siguiente paso y no podríamos imaginar hacerlo sin las personas que más queremos. Nuestra mayor aventura apenas comienza."
+  },
+  "galeria": [
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  ],
+  "detalles": {
+    "ceremonia": {
+      "fecha": "Sábado, 24 de Octubre",
+      "hora": "17:00 Hrs",
+      "lugar": "Parroquia de San Miguel Arcángel",
+      "direccion": "Av. Principal 123, Centro Histórico",
+      "urlMapa": "https://maps.google.com",
+      "iframeMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14349.524785461159!2d-103.35515255476104!3d20.672535035773177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1eb72856f61%3A0xc32cff046c8b9356!2sCatedral%20Metropolitana%20de%20Guadalajara!5e0!3m2!1ses!2smx!4v1700687747805!5m2!1ses!2smx"
+    },
+    "recepcion": {
+      "fecha": "Sábado, 24 de Octubre",
+      "hora": "19:30 Hrs",
+      "lugar": "Hacienda San Carlos",
+      "direccion": "Carr. Estatal Km 5, Valle Sur",
+      "urlMapa": "https://maps.google.com",
+      "iframeMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15444.664420790897!2d-103.38531553531063!3d20.66983416413627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428afaa1744bfa5%3A0x6bba8fb2cb95eb48!2sHacienda%20San%20Carlos!5e0!3m2!1ses!2smx!4v1700687834241!5m2!1ses!2smx"
+    },
+    "calendario": {
+      "google": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Sof%C3%ADa+y+Mateo&dates=20261024T230000Z/20261025T080000Z&details=Nuestra+mayor+aventura+comienza+aqu%C3%AD.&location=Hacienda+San+Carlos",
+      "apple": "/calendarios/boda-sofia-mateo.ics"
+    }
+  },
+  "logistica": {
+    "itinerario": [
+      { "time": "17:00", "event": "Ceremonia Religiosa", "desc": "Parroquia de San Miguel" },
+      { "time": "18:30", "event": "Cóctel de Bienvenida", "desc": "Jardines de la Hacienda" },
+      { "time": "20:00", "event": "Cena y Brindis", "desc": "Salón Principal" },
+      { "time": "22:00", "event": "Apertura de Pista", "desc": "¡A bailar toda la noche!" }
+    ],
+    "dressCode": {
+      "titulo": "Formal",
+      "subtitulo": "Traje oscuro y vestido largo.",
+      "nota": "La recepción será en un jardín, sugerimos considerar el calzado para tu comodidad."
+    }
+  },
+  "rsvp": {
+    "noNinos": true,
+    "mensajeNoNinos": "Amamos a sus pequeños, pero hemos decidido que nuestro evento sea exclusivo para adultos. ¡Agradecemos su comprensión!"
+  },
+  "footer": {
+    "iniciales": "S & M",
+    "fechaFooter": "24 . 10 . 2026"
+  }
+}
