@@ -1,0 +1,155 @@
+---
+// src/pages/xv/std-6.astro
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Valeria's XV - Save the Date (Boho Terracotta)</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+            is:inline></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <script id="tailwind-config" is:inline>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#C87A53", // Terracotta
+                            secondary: "#8D9A83", // Sage Green
+                            background: "#FAF5EF", // Warm Creamy Sand
+                            "on-background": "#3C3530", // Earth Charcoal
+                            accent: "#E2C3B1", // Pale Clay
+                        },
+                        fontFamily: {
+                            serif: ["Lora", "serif"],
+                            sans: ["Outfit", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style is:global>
+            .boho-card {
+                background-color: rgba(245, 235, 224, 0.7);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(200, 122, 83, 0.2);
+            }
+            /* Curved arch for boho aesthetic */
+            .arch-frame {
+                border-radius: 9999px 9999px 0 0;
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white"
+    >
+        <main class="flex-grow flex flex-col items-center justify-center p-6 md:p-12 relative min-h-screen">
+            <!-- Floating Back to Catalog Button -->
+            <a
+                href="/xv/catalogo"
+                class="fixed top-4 left-4 z-50 bg-[#C87A53]/85 hover:bg-[#C87A53] text-background px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-primary/20 transition-all shadow-lg"
+            >
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                Catálogo
+            </a>
+            
+            <!-- Outer structure: Side decorations in sage green and terracotta -->
+            <div class="absolute top-12 left-12 w-32 h-32 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-12 right-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Asymmetric Grid Content Wrapper -->
+            <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16 py-8">
+                
+                <!-- Left: Arch Photo (Beautiful Boho Style) -->
+                <div class="w-full max-w-sm lg:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-96 md:w-80 md:h-[480px] arch-frame overflow-hidden border-4 border-accent shadow-xl">
+                        <img
+                            alt="Boho Portrait"
+                            class="w-full h-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1714611302520-5afa2c3e26df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        />
+                    </div>
+                </div>
+
+                <!-- Right: Information & Boho styled layout -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <span class="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3">
+                        ✧ Reserva la Fecha ✧
+                    </span>
+                    <h1 class="font-serif text-5xl md:text-7xl font-semibold text-primary leading-tight mb-2">
+                        Valeria
+                    </h1>
+                    <span class="text-xs uppercase tracking-[0.2em] text-on-background/60 font-medium mb-6">
+                        Celebración de Quince Años
+                    </span>
+
+                    <p class="text-sm md:text-base text-on-background/80 font-light leading-relaxed mb-8 max-w-md">
+                        Acompáñanos en una tarde inspirada en la calidez de la naturaleza, rodeados de flores, risas y la frescura de una nueva etapa.
+                    </p>
+
+                    <!-- Earthy rounded cards countdown -->
+                    <div class="grid grid-cols-4 gap-3 w-full max-w-md mb-8">
+                        <div class="boho-card rounded-2xl p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-bold">142</span>
+                            <span class="text-[9px] text-on-background/60 uppercase tracking-widest mt-1">Días</span>
+                        </div>
+                        <div class="boho-card rounded-2xl p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-bold">08</span>
+                            <span class="text-[9px] text-on-background/60 uppercase tracking-widest mt-1">Hrs</span>
+                        </div>
+                        <div class="boho-card rounded-2xl p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-bold">45</span>
+                            <span class="text-[9px] text-on-background/60 uppercase tracking-widest mt-1">Min</span>
+                        </div>
+                        <div class="boho-card rounded-2xl p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-bold">12</span>
+                            <span class="text-[9px] text-on-background/60 uppercase tracking-widest mt-1">Seg</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center lg:justify-start">
+                        <button
+                            class="w-full sm:w-auto bg-primary text-background px-8 py-3.5 rounded-full font-semibold text-xs uppercase tracking-widest shadow-md hover:bg-[#B76B45] transition-all flex items-center justify-center gap-2"
+                        >
+                            <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Google Calendar
+                        </button>
+                        <button
+                            class="w-full sm:w-auto bg-transparent border-2 border-secondary text-secondary px-8 py-3 rounded-full font-semibold text-xs uppercase tracking-widest hover:bg-secondary/10 transition-all flex items-center justify-center gap-2"
+                        >
+                            <span class="material-symbols-outlined text-[16px]">event</span>
+                            iCal / Outlook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="w-full py-8 border-t border-accent/35 bg-[#FAF5EF] flex flex-col items-center gap-2 text-center"
+        >
+            <div class="text-primary font-serif text-2xl italic">
+                Valeria
+            </div>
+            <div
+                class="text-[9px] tracking-[0.25em] uppercase text-on-background/50 font-light"
+            >
+                © 2024 Celebrando Quince Años
+            </div>
+        </footer>
+    </body>
+</html>
