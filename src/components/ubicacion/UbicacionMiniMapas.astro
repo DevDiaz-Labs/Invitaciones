@@ -1,0 +1,112 @@
+---
+// src/components/ubicacion/UbicacionMiniMapas.astro
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  fecha?: string;
+  urlMapa: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+    calendario?: {
+      google?: string;
+      apple?: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion, calendario } = data || {};
+---
+
+<section class="py-24 px-4 bg-[#FAFAFA] w-full">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-serif mb-16 text-center text-stone-800">Cuándo & Dónde</h2>
+    
+    <div class="grid md:grid-cols-2 gap-12 md:gap-24 mb-16">
+      <!-- Ceremonia -->
+      {ceremonia && (
+        <div class="text-center flex flex-col items-center">
+          <div class="w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center mb-6">
+            <svg class="text-stone-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif mb-4 text-stone-800">{ceremonia.titulo || "Ceremonia"}</h3>
+          {ceremonia.fecha && <p class="text-stone-500 font-light mb-2">{ceremonia.fecha}</p>}
+          <p class="text-stone-800 mb-6 font-medium">{ceremonia.hora}</p>
+          <p class="text-stone-500 font-light mb-1">{ceremonia.lugar}</p>
+          <p class="text-stone-500 font-light text-sm mb-6">{ceremonia.direccion}</p>
+          
+          {ceremonia.iframeMapa && (
+            <div class="w-full h-48 md:h-64 mb-6 rounded overflow-hidden shadow-sm border border-stone-200">
+              <iframe 
+                src={ceremonia.iframeMapa} 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          )}
+          
+          <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest border-b border-stone-800 pb-1 text-stone-800 hover:text-stone-500 transition-colors inline-flex items-center gap-2 font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Abrir en Maps
+          </a>
+        </div>
+      )}
+
+      <!-- Recepción -->
+      {recepcion && (
+        <div class="text-center flex flex-col items-center">
+          <div class="w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center mb-6">
+            <svg class="text-stone-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-serif mb-4 text-stone-800">{recepcion.titulo || "Recepción"}</h3>
+          {recepcion.fecha && <p class="text-stone-500 font-light mb-2">{recepcion.fecha}</p>}
+          <p class="text-stone-800 mb-6 font-medium">{recepcion.hora}</p>
+          <p class="text-stone-500 font-light mb-1">{recepcion.lugar}</p>
+          <p class="text-stone-500 font-light text-sm mb-6">{recepcion.direccion}</p>
+          
+          {recepcion.iframeMapa && (
+            <div class="w-full h-48 md:h-64 mb-6 rounded overflow-hidden shadow-sm border border-stone-200">
+              <iframe 
+                src={recepcion.iframeMapa} 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          )}
+
+          <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest border-b border-stone-800 pb-1 text-stone-800 hover:text-stone-500 transition-colors inline-flex items-center gap-2 font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Abrir en Maps
+          </a>
+        </div>
+      )}
+    </div>
+    
+
+  </div>
+</section>

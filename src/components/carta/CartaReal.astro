@@ -1,0 +1,201 @@
+---
+// src/components/carta/CartaReal.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#d4af37';
+const colorTexto = data.colorTexto || '#f0e8d0';
+---
+
+{data.mostrar && (
+<section class="cre-section" style={bgImage ? `background-image: linear-gradient(rgba(10,20,60,0.9),rgba(10,20,60,0.9)),url('${bgImage}'); background-size:cover; background-position:center;` : ''}>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Background pattern -->
+  <div class="cre-pattern" aria-hidden="true"></div>
+
+  <div class="cre-wrapper">
+    <!-- Royal crown SVG -->
+    <div class="cre-crown-wrap">
+      <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" class="cre-crown-svg">
+        <polygon points="10,60 10,25 30,40 60,10 90,40 110,25 110,60" fill="none" stroke="#d4af37" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="10" y1="60" x2="110" y2="60" stroke="#d4af37" stroke-width="2.5"/>
+        <circle cx="60" cy="10" r="5" fill="#d4af37"/>
+        <circle cx="10" cy="25" r="4" fill="#d4af37"/>
+        <circle cx="110" cy="25" r="4" fill="#d4af37"/>
+        <circle cx="30" cy="40" r="3" fill="#d4af37" opacity="0.7"/>
+        <circle cx="90" cy="40" r="3" fill="#d4af37" opacity="0.7"/>
+        <!-- gem in center crown point -->
+        <circle cx="60" cy="10" r="2.5" fill="#fff" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- Gold divider -->
+    <div class="cre-gold-divider">
+      <span class="cre-divider-line"></span>
+      <span class="cre-fleur">✦ ❧ ✦</span>
+      <span class="cre-divider-line"></span>
+    </div>
+
+    <!-- Text -->
+    <div class="cre-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+    <!-- Gold divider bottom -->
+    <div class="cre-gold-divider cre-divider-bottom">
+      <span class="cre-divider-line"></span>
+      <span class="cre-fleur">✦</span>
+      <span class="cre-divider-line"></span>
+    </div>
+
+    <!-- Firma -->
+    {data.firmaTexto && (
+      <div class="cre-firma-wrap">
+        <p class="cre-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+        <p class="cre-subtitle">Quinceañera</p>
+      </div>
+    )}
+
+    <!-- Bottom flourish -->
+    <div class="cre-bottom-flourish">
+      <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg" width="180" height="24">
+        <path d="M10 12 Q50 4, 100 12 Q150 20, 190 12" stroke="#d4af37" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M30 12 Q50 8, 70 12" stroke="#d4af37" stroke-width="0.8" fill="none" opacity="0.3"/>
+        <path d="M130 12 Q150 16, 170 12" stroke="#d4af37" stroke-width="0.8" fill="none" opacity="0.3"/>
+        <circle cx="100" cy="12" r="3" fill="#d4af37" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cre-section {
+    position: relative;
+    padding: 3rem 2rem;
+    background: linear-gradient(160deg, #0a1440 0%, #0d1a5c 40%, #0a1035 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cre-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, rgba(212,175,55,0.03) 0px, rgba(212,175,55,0.03) 1px, transparent 1px, transparent 14px),
+      repeating-linear-gradient(-45deg, rgba(212,175,55,0.03) 0px, rgba(212,175,55,0.03) 1px, transparent 1px, transparent 14px);
+    pointer-events: none;
+  }
+
+  .cre-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto;
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 2.5rem 1.8rem;
+    background: rgba(10,20,70,0.4);
+    box-shadow: 0 0 0 6px rgba(212,175,55,0.06), inset 0 0 50px rgba(10,20,60,0.3);
+  }
+
+  .cre-crown-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .cre-crown-svg {
+    width: 80px;
+    height: 47px;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.4));
+  }
+
+  .cre-gold-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .cre-divider-bottom {
+    margin-top: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .cre-divider-line {
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37);
+    opacity: 0.5;
+  }
+
+  .cre-divider-bottom .cre-divider-line:last-child {
+    background: linear-gradient(to left, transparent, #d4af37);
+  }
+
+  .cre-fleur {
+    color: #d4af37;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    opacity: 0.7;
+  }
+
+  .cre-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 10px rgba(0,0,80,0.3);
+  }
+
+  .cre-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .cre-firma-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .cre-firma {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 0 16px rgba(212,175,55,0.5);
+  }
+
+  .cre-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    font-style: italic;
+    color: rgba(212,175,55,0.6);
+    letter-spacing: 0.12em;
+    margin: 0;
+  }
+
+  .cre-bottom-flourish {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+  }
+</style>

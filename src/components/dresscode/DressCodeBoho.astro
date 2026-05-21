@@ -1,0 +1,68 @@
+---
+// DressCodeBoho.astro
+interface Props {
+  data?: {
+    titulo?: string;
+    subtitulo?: string;
+    descripcion?: string;
+    colores?: string[];
+  };
+}
+
+const { data } = Astro.props;
+
+const titulo = data?.titulo || "Lo Esencial";
+const subtitulo = data?.subtitulo || "Boho Formal";
+const descripcion = data?.descripcion || "Vestidos fluidos y trajes sin corbata estricta. Nos encantarían tonos tierra y pasteles.";
+const colores = data?.colores || ["#D48C70", "#F4EAD4", "#81B29A", "#CC9B6D", "#F3C68F"];
+---
+
+<section class="py-12 px-6 bg-white fade-up flex flex-col items-center text-center">
+  <!-- Título manuscrito principal -->
+  <h2 class="font-handwriting text-5xl md:text-6xl text-[#b76e79] mb-8 font-light">
+    {titulo}
+  </h2>
+
+  <!-- Tarjeta del Dress Code -->
+  <div class="w-full max-w-sm bg-[#FAF8F5] border border-[#F4EAD4] rounded-[2.5rem] p-8 md:p-10 shadow-sm flex flex-col items-center">
+    <span class="block text-xs font-serif tracking-[0.2em] text-[#CC9B6D] uppercase font-semibold mb-2">DRESS CODE</span>
+    <h3 class="text-xl font-serif text-stone-800 mb-4">{subtitulo}</h3>
+    
+    <p class="text-stone-500 font-light text-sm md:text-base leading-relaxed mb-6 max-w-[260px] mx-auto">
+      {descripcion}
+    </p>
+
+    <!-- Paleta de Colores en 2 filas -->
+    <div class="flex flex-col items-center gap-3">
+      <div class="flex justify-center gap-3">
+        {colores.slice(0, 4).map((color) => (
+          <span 
+            class="w-9 h-9 rounded-full shadow-md transition-transform hover:scale-110 cursor-pointer block border border-white"
+            style={`background-color: ${color};`}
+            title={color}
+          ></span>
+        ))}
+      </div>
+      {colores.length > 4 && (
+        <div class="flex justify-center">
+          {colores.slice(4, 5).map((color) => (
+            <span 
+              class="w-9 h-9 rounded-full shadow-md transition-transform hover:scale-110 cursor-pointer block border border-white"
+              style={`background-color: ${color};`}
+              title={color}
+            ></span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  .font-handwriting {
+    font-family: 'Great Vibes', cursive;
+  }
+</style>

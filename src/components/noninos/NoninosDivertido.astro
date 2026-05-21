@@ -1,0 +1,28 @@
+---
+// src/components/noninos/NoninosDivertido.astro
+interface Props {
+  titulo?: string;
+  mensaje?: string;
+}
+
+const { 
+  titulo = "¡Una noche para los papás!", 
+  mensaje = "Queremos que disfrutes de la fiesta sin preocupaciones. Hemos decidido celebrar nuestra boda en un ambiente exclusivo para adultos, ¡así que prepárate para bailar toda la noche!" 
+} = Astro.props;
+---
+
+<div class="noninos-divertido max-w-md mx-auto p-6 md:p-8 bg-slate-50 border border-slate-200 rounded-3xl text-center shadow-sm relative">
+  {/* Playful SVG drink icon */}
+  <div class="mx-auto w-12 h-12 text-slate-450 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l3 3m0 0l3-3m-3 3V15m0 0h.008M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  </div>
+
+  <h4 class="font-serif text-lg md:text-xl text-slate-800 mb-2 font-semibold">
+    {titulo}
+  </h4>
+  <p class="text-slate-600 text-xs md:text-sm leading-relaxed max-w-xs mx-auto">
+    {mensaje}
+  </p>
+</div>

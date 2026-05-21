@@ -1,0 +1,89 @@
+---
+// src/pages/pruebas/regalos-pruebas.astro
+import RegalosXV from "../../components/regalos/RegalosXV.astro";
+import RegalosBoda from "../../components/regalos/RegalosBoda.astro";
+
+const mockRegalos = {
+  mostrar: true,
+  mensaje: "Mi mayor regalo es tu presencia.",
+  opcionEfectivo: true,
+  opcionMesa: true,
+  layout: "vertical",
+  textoMesa: "Tu presencia es mi mejor regalo, pero si deseas obsequiarme algo, recibire con mucho cariño:",
+  textoEfectivo: "Es la tradición de regalar sobres con efectivo durante el evento.",
+  tarjetaEfectivo: true,
+  mostrarDatosBancarios: false,
+  amazon_liverpool: false,
+  datosBancarios: ""
+};
+
+const mockData = {
+  hero: {
+    nombre: "Azul Violeta Zazueta Sandoval"
+  },
+  regalos: mockRegalos,
+  imagenesFondo: {
+    regalos: "/imagenes/xv/azul-zazueta/fondo.webp"
+  }
+};
+
+const mockRegalosBoda = {
+  mensaje: "Nuestra mayor alegría es tu presencia, pero si deseas tener un detalle...",
+  banco: "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123",
+  tiendaURL: "https://amazon.com.mx/wedding"
+};
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componentes de REGALOS</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --gold: #b30000;
+        --dark-text: #98472f;
+        --boho-arena: #f4e8d3;
+        --boho-terracota: #b76e79;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f4f6;
+      }
+      .font-titulo {
+        font-family: 'Montserrat', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
+      
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        REGALOS XV STYLE
+      </div>
+      <div class="relative w-full">
+        <RegalosXV 
+          data={mockData.regalos} 
+          nombre={mockData.hero.nombre} 
+          bgImage={mockData.imagenesFondo.regalos} 
+        />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        REGALOS BODA STYLE
+      </div>
+      <div class="relative w-full">
+        <RegalosBoda data={mockRegalosBoda} />
+      </div>
+
+    </main>
+  </body>
+</html>

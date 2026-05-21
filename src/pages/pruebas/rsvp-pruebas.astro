@@ -1,0 +1,142 @@
+---
+// src/pages/pruebas/rsvp-pruebas.astro
+import RSVPBoho from "../../components/rsvp/RSVPBoho.astro";
+import RSVPMinimalista from "../../components/rsvp/RSVPMinimalista.astro";
+import RSVPVIP from "../../components/rsvp/RSVPVIP.astro";
+import RSVPXV from "../../components/rsvp/RSVPXV.astro";
+
+
+
+const mockBoho = {
+  titulo: 'Confirmación de Asistencia',
+  mensajeDespedida: '¡Tu confirmación alegra nuestro corazón!'
+};
+
+const mockMinimalista = {
+  noNinos: true,
+  mensajeNoNinos: 'Respetuosamente te informamos que nuestra recepción será únicamente para adultos. Disfruta la noche con nosotros.'
+};
+
+const mockVIP = {
+  titulo: 'Confirmar Asistencia',
+  mensaje: 'Por favor, confírmanos tu asistencia para esperarte con mucha alegría.',
+  numeroWhatsapp: '521234567890'
+};
+
+const mockXV = {
+  telefono: '521234567890',
+  mensajeDefault: 'Confirmación de Asistencia',
+  fechaLimite: '24 de Octubre de 2026',
+  urlCalendario: 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mi+Fiesta+de+XV&dates=20261024T220000Z/20261025T080000Z',
+  mostrarMensajeEspecial: true,
+  pases: {
+    mostrar: true,
+    cantidad: 4
+  },
+  mostrarNinos: false
+};
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componentes de RSVP</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              boho: {
+                terracota: '#b76e79',
+                arena: '#f4e8d3',
+                eucalipto: '#81B29A',
+                rosa: '#E8C3B9',
+                dorado: '#C5A059'
+              },
+              // Flat keys are required for some versions/environments of Tailwind CDN to parse classes correctly
+              'boho-terracota': '#b76e79',
+              'boho-arena': '#f4e8d3',
+              'boho-eucalipto': '#81B29A',
+              'boho-rosa': '#E8C3B9',
+              'boho-dorado': '#C5A059',
+              
+              // Graduation VIP Theme colors
+              'grad-primary': '#1A202C',
+              'grad-secondary': '#D4AF37',
+              'grad-accent': '#2C3E50',
+              'grad-text': '#E2E8F0',
+              'grad-bg': '#0F172A'
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', '"Noto Serif"', 'serif'],
+              handwriting: ['"Dancing Script"', 'cursive']
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --gold: #b76e79;
+        --dark-text: #2c2523;
+        --boho-arena: #f4e8d3;
+        --boho-terracota: #b76e79;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f4f6;
+      }
+      .gold-gradient-text {
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .gold-border {
+        border-image: linear-gradient(to right, #BF953F, #FCF6BA, #AA771C) 1;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
+      
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        RSVPBOHO STYLE
+      </div>
+      <div class="relative w-full">
+        <RSVPBoho data={mockBoho} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        RSVPMINIMALISTA STYLE
+      </div>
+      <div class="relative w-full">
+        <RSVPMinimalista data={mockMinimalista} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        RSVPVIP STYLE
+      </div>
+      <div class="relative w-full">
+        <RSVPVIP data={mockVIP} params={{ nombre: 'Prueba' }} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        RSVPXV STYLE
+      </div>
+      <div class="relative w-full">
+        <RSVPXV data={mockXV} />
+      </div>
+
+    </main>
+  </body>
+</html>

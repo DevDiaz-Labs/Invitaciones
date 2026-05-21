@@ -1,0 +1,176 @@
+---
+// src/pages/pruebas/carta-pruebas.astro
+import Carta from "../../components/carta/Carta.astro";
+import CartaRomantica from "../../components/carta/CartaRomantica.astro";
+import CartaModerna from "../../components/carta/CartaModerna.astro";
+import CartaNoche from "../../components/carta/CartaNoche.astro";
+import CartaFloral from "../../components/carta/CartaFloral.astro";
+import CartaElegante from "../../components/carta/CartaElegante.astro";
+import CartaJoven from "../../components/carta/CartaJoven.astro";
+import CartaRustica from "../../components/carta/CartaRustica.astro";
+import CartaReal from "../../components/carta/CartaReal.astro";
+import CartaBohemia from "../../components/carta/CartaBohemia.astro";
+
+const mockTexto = 'Hace quince años Dios me regaló la vida,<br/>y hoy agradezco poder compartir este día con ustedes.<br/>Gracias por ser parte de mi historia.';
+
+const mockCartaSimple = {
+  mostrar: true,
+  estilo: "simple" as const,
+  texto: "Hace quince años Dios me regaló la vida,<br/>y hoy agradezco la dicha de compartir este día con ustedes.<br/>Gracias por formar parte de mi historia y guiar mi camino con su cariño.",
+  colorTexto: "#333333"
+};
+
+const mockCartaRecuadro = {
+  mostrar: true,
+  estilo: "recuadro" as const,
+  texto: "Hace quince años Dios me regaló la vida,<br/>y hoy agradezco la dicha de compartir este día con ustedes.<br/>Gracias por formar parte de mi historia y guiar mi camino con su cariño.",
+  firmaTexto: "SOFIA VALERIA",
+  firmaColor: "#c5a059",
+  colorBorde: "rgba(197, 160, 89, 0.2)",
+  colorFondoRecuadro: "#fffdf8",
+  mostrarAdorno: true,
+  colorTexto: "#4a3e3d"
+};
+
+const mockCarta = {
+  mostrar: true,
+  texto: mockTexto,
+  firmaTexto: 'SOFIA VALERIA',
+  firmaColor: '#c5a059',
+  colorTexto: '#4a3e3d'
+};
+
+const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componentes Carta (11 variantes)</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'grad-bg': '#0f0e0f',
+              'grad-secondary': '#d4a373',
+            },
+            fontFamily: {
+              sans: ['"Montserrat"', '"Plus Jakarta Sans"', "sans-serif"],
+              serif: ['"Playfair Display"', '"Noto Serif"', "serif"],
+            }
+          }
+        }
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --gold: #c5a059;
+        --dark-text: #2c2523;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f4f6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen">
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- ORIGINALES -->
+      <!-- ══════════════════════════════════════════ -->
+
+      <!-- 1. SIMPLE STYLE -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA: ESTILO SIMPLE (ORIGINAL)
+      </div>
+      <div class="bg-[#fdfbf7]">
+        <Carta data={mockCartaSimple} />
+      </div>
+
+
+
+      <!-- 3. RECUADRO CON ADORNO -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA: ESTILO RECUADRO CON ADORNO (ORIGINAL)
+      </div>
+      <div class="bg-[#faf6f0]">
+        <Carta data={mockCartaRecuadro} />
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- NUEVOS 10 COMPONENTES -->
+      <!-- ══════════════════════════════════════════ -->
+
+      <!-- 4. ROMÁNTICA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA ROMÁNTICA — Papel envejecido, marco doble clásico
+      </div>
+      <CartaRomantica data={mockCarta} />
+
+      <!-- 5. MODERNA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA MODERNA — Editorial limpia, tipografía sans-serif bold
+      </div>
+      <CartaModerna data={mockCarta} />
+
+
+
+      <!-- 7. NOCHE -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA NOCHE — Fondo estrellado, texto dorado, estilo místico
+      </div>
+      <CartaNoche data={mockCarta} />
+
+      <!-- 8. FLORAL -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA FLORAL — Flores SVG, tipografía cursiva, rosa y verde
+      </div>
+      <CartaFloral data={mockCarta} />
+
+
+
+      <!-- 10. ELEGANTE -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA ELEGANTE — Fondo marfil, serif grande, separadores de diamante
+      </div>
+      <CartaElegante data={mockCarta} />
+
+      <!-- 11. JOVEN -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA JOVEN — Estilo juvenil, colores vibrantes, amigable
+      </div>
+      <CartaJoven data={mockCarta} />
+
+      <!-- 12. RÚSTICA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA RÚSTICA — Textura kraft, bordes desiguales, tipografía handmade
+      </div>
+      <CartaRustica data={mockCarta} />
+
+      <!-- 13. REAL -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA REAL — Fondo azul real y dorado, muy pomposo y elegante
+      </div>
+      <CartaReal data={mockCarta} />
+
+      <!-- 14. BOHEMIA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA BOHEMIA — Boho, círculos geométricos, pluma SVG, terracota
+      </div>
+      <CartaBohemia data={mockCarta} />
+
+
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+---
+// src/pages/pruebas/calendario-pruebas.astro
+import CalendarioBoho from "../../components/calendario/CalendarioBoho.astro";
+import CalendarioMinimalista from "../../components/calendario/CalendarioMinimalista.astro";
+import CalendarioVIP from "../../components/calendario/CalendarioVIP.astro";
+import CalendarioXV from "../../components/calendario/CalendarioXV.astro";
+import CalendarioSTD from "../../components/calendario/CalendarioSTD.astro";
+// Nuevos componentes
+import CalendarioRosa from "../../components/calendario/CalendarioRosa.astro";
+import CalendarioNeon from "../../components/calendario/CalendarioNeon.astro";
+import CalendarioNatural from "../../components/calendario/CalendarioNatural.astro";
+import CalendarioFiesta from "../../components/calendario/CalendarioFiesta.astro";
+import CalendarioOscuro from "../../components/calendario/CalendarioOscuro.astro";
+import CalendarioModerno from "../../components/calendario/CalendarioModerno.astro";
+import CalendarioPastel from "../../components/calendario/CalendarioPastel.astro";
+import CalendarioAzteca from "../../components/calendario/CalendarioAzteca.astro";
+import CalendarioLujo from "../../components/calendario/CalendarioLujo.astro";
+import CalendarioFloral from "../../components/calendario/CalendarioFloral.astro";
+
+const mockCalendario = {
+  google: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Evento+de+Prueba&dates=20260613T220000Z/20260614T070000Z",
+  apple: "#",
+  outlook: "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Evento+de+Prueba"
+};
+
+const mockCalendarioSTD = {
+  google: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Evento+de+Prueba&dates=20260613T220000Z/20260614T070000Z&details=¡No+te+lo+pierdas!",
+  outlook: "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Evento+de+Prueba",
+  apple: "#"
+};
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componentes de Calendario</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'grad-bg': '#0f0e0f',
+              'grad-secondary': '#d4a373',
+            },
+            fontFamily: {
+              sans: ['"Montserrat"', '"Plus Jakarta Sans"', "sans-serif"],
+              serif: ['"Playfair Display"', '"Noto Serif"', "serif"],
+            }
+          }
+        }
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --gold: #b76e79;
+        --dark-text: #2c2523;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f4f6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen">
+      
+      <!-- ── COMPONENTES EXISTENTES ── -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        BOHO STYLE
+      </div>
+      <CalendarioBoho calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        MINIMALIST STYLE
+      </div>
+      <CalendarioMinimalista calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        VIP STYLE
+      </div>
+      <CalendarioVIP calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        XV STYLE (GOLD BUTTON)
+      </div>
+      <CalendarioXV calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        STD STYLE (SAVE THE DATE)
+      </div>
+      <CalendarioSTD calendario={mockCalendarioSTD} />
+
+      <!-- ── NUEVOS COMPONENTES ── -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        ROSA STYLE (HANDWRITTEN + HEARTS)
+      </div>
+      <CalendarioRosa calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        NEON STYLE (DARK + GLOW EFFECTS)
+      </div>
+      <CalendarioNeon calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        NATURAL STYLE (VERDE OLIVA + HOJAS)
+      </div>
+      <CalendarioNatural calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        FIESTA STYLE (GRADIENTE FESTIVO)
+      </div>
+      <CalendarioFiesta calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        OSCURO STYLE (DARK ELEGANTE + DORADO)
+      </div>
+      <CalendarioOscuro calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        MODERNO STYLE (TECH / STARTUP)
+      </div>
+      <CalendarioModerno calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        PASTEL STYLE (COLORES SUAVES + PILLS)
+      </div>
+      <CalendarioPastel calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        AZTECA STYLE (TIERRA MEXICANA + GEOMÉTRICO)
+      </div>
+      <CalendarioAzteca calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        LUJO STYLE (CREMA / CHAMPAGNE + SERIF)
+      </div>
+      <CalendarioLujo calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        FLORAL STYLE (BLANCO + FLORES SVG + SCRIPT)
+      </div>
+      <CalendarioFloral calendario={mockCalendario} />
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+---
+// src/components/calendario/CalendarioPastel.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="cp-wrap">
+    <!-- Cloud-like decorative bubbles -->
+    <div class="cp-bubble cp-b1"></div>
+    <div class="cp-bubble cp-b2"></div>
+    <div class="cp-bubble cp-b3"></div>
+
+    <div class="cp-inner">
+      <div class="cp-icon-cloud">
+        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="cp-cloud-svg">
+          <path d="M38 32H12C7.5 32 4 28.5 4 24 4 19.8 7.1 16.4 11.2 16.1 12.1 12 15.7 9 20 9c2.6 0 4.9 1.1 6.6 2.8C28 11.1 30.4 10 33 10c4.4 0 8 3.6 8 8 0 .6-.1 1.3-.2 1.9C43.7 21 46 23.8 46 27c0 2.8-2.2 5-5 5h-3z" fill="none" stroke="#d4b8e0" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <h4 class="cp-title">Recuerda esta fecha</h4>
+      <p class="cp-sub">Guárdala en tu corazón... y en tu agenda 🌸</p>
+
+      <div class="cp-pills-row">
+        {google && (
+          <a href={google} target="_blank" rel="noopener noreferrer" class="cp-pill cp-pill-lavender">
+            <svg viewBox="0 0 24 24" class="cp-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Google
+          </a>
+        )}
+        {apple && (
+          <a href={apple} class="cp-pill cp-pill-mint">
+            <svg viewBox="0 0 24 24" class="cp-icon" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Apple
+          </a>
+        )}
+        {outlook && (
+          <a href={outlook} target="_blank" rel="noopener noreferrer" class="cp-pill cp-pill-peach">
+            <svg viewBox="0 0 24 24" class="cp-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+              <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+            </svg>
+            Outlook
+          </a>
+        )}
+      </div>
+
+      <p class="cp-note">✨ Haz clic para añadir a tu calendario</p>
+    </div>
+  </div>
+)}
+
+<style>
+  .cp-wrap {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(170deg, #fce4f3 0%, #e8d5f5 40%, #d5edf8 100%);
+    padding: 3rem 1.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cp-bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .cp-b1 { width: 120px; height: 120px; background: #f8c8e8; top: -40px; left: -40px; }
+  .cp-b2 { width: 80px; height: 80px; background: #c8e0f8; bottom: -25px; right: -25px; }
+  .cp-b3 { width: 60px; height: 60px; background: #d4f8e0; top: 60%; left: 80%; }
+
+  .cp-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+  }
+  .cp-icon-cloud {
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 15px rgba(212, 184, 224, 0.3);
+  }
+  .cp-cloud-svg { width: 36px; height: 36px; }
+
+  .cp-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.6rem;
+    color: #9b72cf;
+    margin: 0 0 0.4rem;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(155, 114, 207, 0.2);
+  }
+  .cp-sub {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.82rem;
+    color: #b08bbf;
+    margin: 0 0 2rem;
+    text-align: center;
+    font-weight: 500;
+  }
+  .cp-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+    width: 100%;
+  }
+  .cp-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 999px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+  }
+  .cp-pill-lavender {
+    background: #e8d8f8;
+    color: #7c4daf;
+    border-color: #d4b8f0;
+  }
+  .cp-pill-lavender:hover {
+    background: #dbc8f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(124,77,175,0.2);
+  }
+  .cp-pill-mint {
+    background: #d8f5e8;
+    color: #2e7d5a;
+    border-color: #b8e8d0;
+  }
+  .cp-pill-mint:hover {
+    background: #c5f0db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(46,125,90,0.2);
+  }
+  .cp-pill-peach {
+    background: #fde8d8;
+    color: #b05a2a;
+    border-color: #f8d0b8;
+  }
+  .cp-pill-peach:hover {
+    background: #fad8c5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(176,90,42,0.2);
+  }
+  .cp-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+  .cp-note {
+    margin-top: 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.72rem;
+    color: #c4a4d4;
+    text-align: center;
+    font-weight: 500;
+  }
+</style>

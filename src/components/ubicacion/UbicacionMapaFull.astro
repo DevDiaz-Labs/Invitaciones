@@ -1,0 +1,238 @@
+---
+// src/components/ubicacion/UbicacionMapaFull.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<section class="ubmf-wrap">
+  <div class="ubmf-header">
+    <h2 class="ubmf-title">Ubicaciones</h2>
+    <p class="ubmf-sub">Toca el mapa para explorar</p>
+  </div>
+
+  {ceremonia && (
+    <div class="ubmf-block">
+      <div class="ubmf-map-container">
+        <iframe
+          src={ceremonia.iframeMapa || ceremonia.urlMapa}
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <!-- Overlay info card on map -->
+        <div class="ubmf-overlay">
+          <div class="ubmf-overlay-pill">{ceremonia.titulo || "Ceremonia"}</div>
+        </div>
+        <div class="ubmf-overlay-bottom">
+          <div class="ubmf-overlay-info">
+            <div class="ubmf-ov-left">
+              <p class="ubmf-ov-lugar">{ceremonia.lugar}</p>
+              <p class="ubmf-ov-hora">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {ceremonia.hora}
+              </p>
+            </div>
+            {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+              <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubmf-ov-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
+            )}
+          </div>
+          <p class="ubmf-ov-dir">{ceremonia.direccion}</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {recepcion && (
+    <div class="ubmf-block ubmf-block--dos">
+      <div class="ubmf-map-container">
+        <iframe
+          src={recepcion.iframeMapa || recepcion.urlMapa}
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div class="ubmf-overlay">
+          <div class="ubmf-overlay-pill ubmf-overlay-pill--dos">{recepcion.titulo || "Recepción"}</div>
+        </div>
+        <div class="ubmf-overlay-bottom">
+          <div class="ubmf-overlay-info">
+            <div class="ubmf-ov-left">
+              <p class="ubmf-ov-lugar">{recepcion.lugar}</p>
+              <p class="ubmf-ov-hora">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {recepcion.hora}
+              </p>
+            </div>
+            {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+              <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubmf-ov-btn ubmf-ov-btn--dos">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </a>
+            )}
+          </div>
+          <p class="ubmf-ov-dir">{recepcion.direccion}</p>
+        </div>
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  .ubmf-wrap {
+    background: #f8f8f8;
+    font-family: 'Outfit', sans-serif;
+    padding-bottom: 0.5rem;
+  }
+  .ubmf-header {
+    text-align: center;
+    padding: 2rem 1.25rem 1.5rem;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .ubmf-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem;
+  }
+  .ubmf-sub {
+    font-size: 0.82rem;
+    color: #999;
+    margin: 0;
+    font-weight: 400;
+  }
+  .ubmf-block {
+    position: relative;
+    margin: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .ubmf-block--dos {
+    /* distinct style */
+  }
+  .ubmf-map-container {
+    position: relative;
+    width: 100%;
+    height: 340px;
+  }
+  .ubmf-map-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .ubmf-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    pointer-events: none;
+  }
+  .ubmf-overlay-pill {
+    display: inline-block;
+    background: rgba(37,99,235,0.9);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .ubmf-overlay-pill--dos {
+    background: rgba(220,38,127,0.9);
+  }
+  .ubmf-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+    padding: 1.5rem 1rem 1rem;
+  }
+  .ubmf-overlay-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+  .ubmf-ov-left {
+    flex: 1;
+    min-width: 0;
+  }
+  .ubmf-ov-lugar {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ubmf-ov-hora {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    font-weight: 500;
+  }
+  .ubmf-ov-dir {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ubmf-ov-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(37,99,235,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    flex-shrink: 0;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+  }
+  .ubmf-ov-btn--dos {
+    background: rgba(220,38,127,0.9);
+  }
+  .ubmf-ov-btn:hover {
+    background: rgba(37,99,235,1);
+  }
+</style>

@@ -1,0 +1,280 @@
+---
+// src/components/ubicacion/UbicacionModerna.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<section class="ubm-wrap">
+  <div class="ubm-header">
+    <div class="ubm-badge">UBICACIÓN</div>
+    <h2 class="ubm-title">¿Dónde será?</h2>
+    <p class="ubm-subtitle">Guarda estas coordenadas en tu corazón 📍</p>
+  </div>
+
+  <div class="ubm-grid">
+    {ceremonia && (
+      <div class="ubm-card">
+        <div class="ubm-card-header">
+          <div class="ubm-card-num">01</div>
+          <div class="ubm-card-tag">Ceremonia</div>
+        </div>
+        <div class="ubm-card-body">
+          <h3 class="ubm-card-lugar">{ceremonia.lugar}</h3>
+          <div class="ubm-card-hora">
+            <div class="ubm-dot"></div>
+            {ceremonia.hora}
+          </div>
+          <p class="ubm-card-dir">{ceremonia.direccion}</p>
+        </div>
+        {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+          <div class="ubm-map">
+            <iframe
+              src={ceremonia.iframeMapa || ceremonia.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="ubm-map-overlay"></div>
+          </div>
+        )}
+        <div class="ubm-card-footer">
+          {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubm-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Abrir Maps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    {recepcion && (
+      <div class="ubm-card ubm-card--two">
+        <div class="ubm-card-header">
+          <div class="ubm-card-num ubm-card-num--two">02</div>
+          <div class="ubm-card-tag ubm-card-tag--two">Recepción</div>
+        </div>
+        <div class="ubm-card-body">
+          <h3 class="ubm-card-lugar">{recepcion.lugar}</h3>
+          <div class="ubm-card-hora ubm-card-hora--two">
+            <div class="ubm-dot ubm-dot--two"></div>
+            {recepcion.hora}
+          </div>
+          <p class="ubm-card-dir">{recepcion.direccion}</p>
+        </div>
+        {(recepcion.iframeMapa || recepcion.urlMapa) && (
+          <div class="ubm-map">
+            <iframe
+              src={recepcion.iframeMapa || recepcion.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="ubm-map-overlay ubm-map-overlay--two"></div>
+          </div>
+        )}
+        <div class="ubm-card-footer">
+          {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubm-btn ubm-btn--two">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Abrir Maps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ubm-wrap {
+    background: #0f0f1a;
+    padding: 2.5rem 1.25rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .ubm-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .ubm-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .ubm-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.4rem;
+    background: linear-gradient(135deg, #e0e7ff, #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .ubm-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+  }
+  .ubm-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .ubm-card {
+    background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.05) 100%);
+    border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ubm-card--two {
+    background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(236,72,153,0.05) 100%);
+    border-color: rgba(139,92,246,0.25);
+  }
+  .ubm-card-header {
+    padding: 1.25rem 1.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .ubm-card-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(99,102,241,0.2);
+    line-height: 1;
+  }
+  .ubm-card-num--two {
+    color: rgba(139,92,246,0.2);
+  }
+  .ubm-card-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #818cf8;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.3);
+    padding: 0.2rem 0.65rem;
+    border-radius: 12px;
+  }
+  .ubm-card-tag--two {
+    color: #a78bfa;
+    background: rgba(139,92,246,0.12);
+    border-color: rgba(139,92,246,0.3);
+  }
+  .ubm-card-body {
+    padding: 0.75rem 1.25rem 1rem;
+  }
+  .ubm-card-lugar {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #e0e7ff;
+    margin: 0 0 0.4rem;
+  }
+  .ubm-card-hora {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #818cf8;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .ubm-card-hora--two {
+    color: #a78bfa;
+  }
+  .ubm-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6366f1;
+    box-shadow: 0 0 6px rgba(99,102,241,0.8);
+  }
+  .ubm-dot--two {
+    background: #8b5cf6;
+    box-shadow: 0 0 6px rgba(139,92,246,0.8);
+  }
+  .ubm-card-dir {
+    font-size: 0.78rem;
+    color: rgba(224,231,255,0.45);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .ubm-map {
+    width: 100%;
+    height: 180px;
+    position: relative;
+  }
+  .ubm-map-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-top: 1px solid rgba(99,102,241,0.2);
+    border-bottom: 1px solid rgba(99,102,241,0.2);
+  }
+  .ubm-map-overlay--two {
+    border-color: rgba(139,92,246,0.2);
+  }
+  .ubm-card-footer {
+    padding: 0.75rem 1.25rem 1.25rem;
+  }
+  .ubm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+  .ubm-btn--two {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  }
+  .ubm-btn:hover {
+    opacity: 0.9;
+  }
+</style>

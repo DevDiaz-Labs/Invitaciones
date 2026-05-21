@@ -1,0 +1,88 @@
+---
+// src/pages/pruebas/itinerario-pruebas.astro
+import ItinerarioMinimalista from "../../components/itinerario/ItinerarioMinimalista.astro";
+
+
+
+const mockData = {
+  mostrar: true,
+  nombres: 'Ana & Carlos',
+  titulo: 'Mesa de Regalos / Lluvia de Sobres',
+  fechaVista: '13 · Junio · 2026',
+  fecha: '2026-06-13',
+  frase: 'El mejor regalo es tu presencia',
+  imagenFondo: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
+  imagen: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
+  hashtag: '#AnaYCarlos',
+  mensaje: 'Esperamos contar con tu presence',
+  texto: 'Haremos de este día algo inolvidable',
+  urlSpotify: 'https://open.spotify.com/playlist/37i9dQZF1DWV7EzJMK2FUI',
+  banco: 'BBVA',
+  cuenta: '0123456789',
+  clabe: '012345678901234567',
+  titular: 'Ana Sofia Valdes',
+  amazon: '#',
+  liverpool: '#',
+  eventos: [
+    { hora: '17:00', nombre: 'Ceremonia Religiosa', lugar: 'Parroquia de San Miguel', icono: 'iglesia' },
+    { hora: '18:30', nombre: 'Cóctel de Bienvenida', lugar: 'Jardines de la Hacienda', icono: 'fiesta' },
+    { hora: '20:00', nombre: 'Cena y Brindis', lugar: 'Salón Principal', icono: 'cena' },
+    { hora: '22:00', nombre: 'Apertura de Pista', lugar: '¡A bailar toda la noche!', icono: 'baile' }
+  ],
+  itinerario: [
+    { time: '17:00', event: 'Ceremonia Religiosa', desc: 'Parroquia de San Miguel' },
+    { time: '18:30', event: 'Cóctel de Bienvenida', desc: 'Jardines de la Hacienda' },
+    { time: '20:00', event: 'Cena y Brindis', desc: 'Salón Principal' },
+    { time: '22:00', event: 'Apertura de Pista', desc: '¡A bailar toda la noche!' }
+  ],
+  dressCode: {
+    titulo: 'Formal',
+    subtitulo: 'Traje oscuro y vestido largo',
+    nota: 'La recepción será en un jardín, sugerimos considerar el calzado para tu comodidad.'
+  },
+  galeria: [
+    'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800',
+    'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800'
+  ]
+};
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componentes de ITINERARIO</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --gold: #b76e79;
+        --dark-text: #2c2523;
+        --boho-arena: #f4e8d3;
+        --boho-terracota: #b76e79;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f4f6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
+      
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        ITINERARIODRESSCODEMINIMALISTA STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioMinimalista data={mockData} />
+      </div>
+
+    </main>
+  </body>
+</html>

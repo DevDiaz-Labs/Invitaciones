@@ -1,0 +1,39 @@
+---
+// src/components/calendario/CalendarioMinimalista.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple } = calendario || {};
+---
+
+{calendario && (google || apple) && (
+  <div class="py-16 px-4 bg-[#FAFAFA] flex flex-col items-center w-full">
+    <h4 class="font-sans tracking-[0.2em] uppercase text-stone-600 text-xs mb-8">Agendar evento</h4>
+    <div class="flex flex-col sm:flex-row gap-6">
+      {google && (
+        <a href={google} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 bg-white border border-stone-200 shadow-sm text-stone-800 px-8 py-3 rounded hover:shadow-md hover:border-stone-400 transition-all text-sm uppercase tracking-wider font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Google Calendar
+        </a>
+      )}
+      {apple && (
+        <a href={apple} class="flex items-center justify-center gap-3 bg-white border border-stone-200 shadow-sm text-stone-800 px-8 py-3 rounded hover:shadow-md hover:border-stone-400 transition-all text-sm uppercase tracking-wider font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.11 14.86c-1.3.116-2.583-.554-3.414-1.503-.907.954-2.298 1.62-3.454 1.5l-.2-.02c-2.316-.275-3.66-2.614-3-4.912.56-1.954 2.128-3.42 4.148-3.792.81-.15 1.58-.04 2.23.238.16-.893.7-1.63 1.48-1.986.74-.32 1.63-.26 2.33.19.86.536 1.25 1.55 1.05 2.52-.39 2.05-1.54 3.99-3.23 4.96.65.62 1.5.9 2.37.76.6-.095 1.06-.525 1.25-1.095.055-.17.205-.29.38-.29h.67c.28 0 .48.275.4.545-.375 1.15-1.39 2.35-2.69 2.895z" />
+          </svg>
+          Apple Calendar
+        </a>
+      )}
+    </div>
+  </div>
+)}

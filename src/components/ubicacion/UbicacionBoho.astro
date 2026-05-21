@@ -1,0 +1,92 @@
+---
+// src/components/ubicacion/UbicacionBoho.astro
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  fecha?: string;
+  urlMapa: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+    calendario?: {
+      google?: string;
+      apple?: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion, calendario } = data || {};
+---
+
+<section class="py-32 px-6 bg-white relative">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="font-handwriting text-6xl md:text-8xl text-boho-eucalipto mb-24">
+      El Momento
+    </h2>
+    <div class="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-8">
+      <!-- Ceremonia -->
+      {ceremonia && (
+        <div class="w-full md:w-1/2 flex flex-col items-center border-b-2 md:border-b-0 md:border-r-2 border-boho-eucalipto/20 pb-12 md:pb-0 md:pr-8">
+          <h3 class="text-sm md:text-base tracking-[0.4em] text-boho-dorado uppercase mb-6 font-sans font-bold">
+            {ceremonia.titulo || "Ceremonia"}
+          </h3>
+          <p class="text-5xl font-light text-gray-800 mb-6 font-serif">{ceremonia.hora}</p>
+          <p class="text-3xl font-normal text-boho-terracota mb-4">{ceremonia.lugar}</p>
+          <p class="text-xl text-gray-500 italic mb-10 max-w-xs">{ceremonia.direccion}</p>
+          <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-eucalipto border-b border-boho-eucalipto pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-terracota hover:border-boho-terracota transition-all duration-300">
+            Ubicación en Mapa
+          </a>
+        </div>
+      )}
+
+      <!-- Recepción -->
+      {recepcion && (
+        <div class="w-full md:w-1/2 flex flex-col items-center md:pl-8">
+          <h3 class="text-sm md:text-base tracking-[0.4em] text-boho-dorado uppercase mb-6 font-sans font-bold">
+            {recepcion.titulo || "Recepción"}
+          </h3>
+          <p class="text-5xl font-light text-gray-800 mb-6 font-serif">{recepcion.hora}</p>
+          <p class="text-3xl font-normal text-boho-eucalipto mb-4">{recepcion.lugar}</p>
+          <p class="text-xl text-gray-500 italic mb-10 max-w-xs">{recepcion.direccion}</p>
+          <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-terracota border-b border-boho-terracota pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-eucalipto hover:border-boho-eucalipto transition-all duration-300">
+            Ubicación en Mapa
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Local fallback styling for font-handwriting and colors if not set in layout */
+  .font-handwriting {
+    font-family: 'Dancing Script', 'Playfair Display', cursive;
+  }
+  .text-boho-eucalipto {
+    color: #556b2f;
+  }
+  .text-boho-dorado {
+    color: #d4a373;
+  }
+  .text-boho-terracota {
+    color: #b76e79;
+  }
+  .border-boho-eucalipto {
+    border-color: #556b2f;
+  }
+  .border-boho-eucalipto\/20 {
+    border-color: rgba(85, 107, 47, 0.2);
+  }
+  .hover\:text-boho-terracota:hover {
+    color: #b76e79;
+  }
+  .hover\:border-boho-terracota:hover {
+    border-color: #b76e79;
+  }
+</style>

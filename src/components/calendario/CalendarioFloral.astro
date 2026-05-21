@@ -1,0 +1,235 @@
+---
+// src/components/calendario/CalendarioFloral.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="cfl-wrap">
+    <!-- Top floral SVG decoration -->
+    <div class="cfl-floral-top">
+      <svg viewBox="0 0 320 90" class="cfl-svg" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left branch -->
+        <path d="M0 70 Q40 50 60 30 Q80 10 90 20" stroke="#b5c4a0" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <path d="M30 65 Q35 50 45 45" stroke="#b5c4a0" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M55 45 Q55 35 65 30" stroke="#b5c4a0" stroke-width="1" fill="none" opacity="0.5"/>
+        <!-- Left leaves -->
+        <ellipse cx="42" cy="44" rx="9" ry="5" fill="#c8d9b0" opacity="0.5" transform="rotate(-30 42 44)"/>
+        <ellipse cx="63" cy="29" rx="9" ry="5" fill="#c8d9b0" opacity="0.5" transform="rotate(-50 63 29)"/>
+        <ellipse cx="85" cy="22" rx="8" ry="4" fill="#d4c4b0" opacity="0.4" transform="rotate(-20 85 22)"/>
+        <!-- Left flowers -->
+        <circle cx="90" cy="20" r="5" fill="#f4b8c8" opacity="0.7"/>
+        <circle cx="90" cy="20" r="2.5" fill="#f8d8e0" opacity="0.9"/>
+        <circle cx="72" cy="18" r="4" fill="#fcd8a8" opacity="0.6"/>
+        <circle cx="72" cy="18" r="2" fill="#fff" opacity="0.8"/>
+
+        <!-- Right branch (mirrored) -->
+        <path d="M320 70 Q280 50 260 30 Q240 10 230 20" stroke="#b5c4a0" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <path d="M290 65 Q285 50 275 45" stroke="#b5c4a0" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M265 45 Q265 35 255 30" stroke="#b5c4a0" stroke-width="1" fill="none" opacity="0.5"/>
+        <!-- Right leaves -->
+        <ellipse cx="278" cy="44" rx="9" ry="5" fill="#c8d9b0" opacity="0.5" transform="rotate(30 278 44)"/>
+        <ellipse cx="257" cy="29" rx="9" ry="5" fill="#c8d9b0" opacity="0.5" transform="rotate(50 257 29)"/>
+        <ellipse cx="235" cy="22" rx="8" ry="4" fill="#d4c4b0" opacity="0.4" transform="rotate(20 235 22)"/>
+        <!-- Right flowers -->
+        <circle cx="230" cy="20" r="5" fill="#f4b8c8" opacity="0.7"/>
+        <circle cx="230" cy="20" r="2.5" fill="#f8d8e0" opacity="0.9"/>
+        <circle cx="248" cy="18" r="4" fill="#fcd8a8" opacity="0.6"/>
+        <circle cx="248" cy="18" r="2" fill="#fff" opacity="0.8"/>
+
+        <!-- Center flower cluster -->
+        <circle cx="155" cy="15" r="7" fill="#f4b8c8" opacity="0.6"/>
+        <circle cx="155" cy="15" r="3.5" fill="#fff" opacity="0.9"/>
+        <circle cx="168" cy="22" r="5" fill="#fcd8a8" opacity="0.55"/>
+        <circle cx="168" cy="22" r="2.5" fill="#fff" opacity="0.8"/>
+        <circle cx="142" cy="22" r="5" fill="#d4b8e0" opacity="0.55"/>
+        <circle cx="142" cy="22" r="2.5" fill="#fff" opacity="0.8"/>
+        <path d="M120 75 Q140 55 155 40 Q170 55 190 75" stroke="#b5c4a0" stroke-width="1.2" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="cfl-inner">
+      <h4 class="cfl-title">Guarda la Fecha</h4>
+      <p class="cfl-sub">Marca este día tan especial</p>
+
+      <div class="cfl-separator">
+        <span class="cfl-sep-line"></span>
+        <svg viewBox="0 0 20 20" class="cfl-sep-flower" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="3" fill="#f4b8c8"/>
+          <ellipse cx="10" cy="4" rx="3" ry="2" fill="#f4b8c8" opacity="0.6"/>
+          <ellipse cx="10" cy="16" rx="3" ry="2" fill="#f4b8c8" opacity="0.6"/>
+          <ellipse cx="4" cy="10" rx="2" ry="3" fill="#f4b8c8" opacity="0.6"/>
+          <ellipse cx="16" cy="10" rx="2" ry="3" fill="#f4b8c8" opacity="0.6"/>
+          <circle cx="10" cy="10" r="1.5" fill="#fff"/>
+        </svg>
+        <span class="cfl-sep-line"></span>
+      </div>
+
+      <div class="cfl-buttons">
+        {google && (
+          <a href={google} target="_blank" rel="noopener noreferrer" class="cfl-btn cfl-btn-rose">
+            <svg viewBox="0 0 24 24" class="cfl-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Google Calendar
+          </a>
+        )}
+        {apple && (
+          <a href={apple} class="cfl-btn cfl-btn-sage">
+            <svg viewBox="0 0 24 24" class="cfl-icon" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Apple Calendar
+          </a>
+        )}
+        {outlook && (
+          <a href={outlook} target="_blank" rel="noopener noreferrer" class="cfl-btn cfl-btn-sage">
+            <svg viewBox="0 0 24 24" class="cfl-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+              <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+            </svg>
+            Outlook
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Bottom floral decoration -->
+    <div class="cfl-floral-bottom">
+      <svg viewBox="0 0 320 50" class="cfl-svg" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 Q60 20 100 30 Q140 40 160 35 Q180 40 220 30 Q260 20 320 0" stroke="#b5c4a0" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <circle cx="80" cy="26" r="4" fill="#f4b8c8" opacity="0.5"/>
+        <circle cx="160" cy="35" r="5" fill="#d4b8e0" opacity="0.5"/>
+        <circle cx="240" cy="26" r="4" fill="#fcd8a8" opacity="0.5"/>
+        <circle cx="80" cy="26" r="2" fill="#fff" opacity="0.7"/>
+        <circle cx="160" cy="35" r="2.5" fill="#fff" opacity="0.7"/>
+        <circle cx="240" cy="26" r="2" fill="#fff" opacity="0.7"/>
+      </svg>
+    </div>
+  </div>
+)}
+
+<style>
+  .cfl-wrap {
+    position: relative;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(181,196,160,0.3);
+    border-bottom: 1px solid rgba(181,196,160,0.3);
+  }
+  .cfl-floral-top {
+    width: 100%;
+    line-height: 0;
+  }
+  .cfl-floral-bottom {
+    width: 100%;
+    line-height: 0;
+  }
+  .cfl-svg { width: 100%; display: block; }
+
+  .cfl-inner {
+    padding: 0.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+  }
+  .cfl-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #8a6070;
+    margin: 0 0 0.2rem;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .cfl-sub {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.78rem;
+    color: #a89090;
+    margin: 0 0 1.3rem;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cfl-separator {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.6rem;
+    width: 100%;
+    max-width: 240px;
+  }
+  .cfl-sep-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(181,196,160,0.5), transparent);
+  }
+  .cfl-sep-flower { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .cfl-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+  }
+  .cfl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .cfl-btn-rose {
+    background: #f4d0d8;
+    color: #8a4055;
+    border: 1.5px solid #e8b0bc;
+  }
+  .cfl-btn-rose:hover {
+    background: #eebcc8;
+    border-color: #d8a0ac;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138,64,85,0.15);
+  }
+  .cfl-btn-sage {
+    background: transparent;
+    color: #6a8060;
+    border: 1.5px solid rgba(181,196,160,0.5);
+  }
+  .cfl-btn-sage:hover {
+    background: rgba(181,196,160,0.12);
+    border-color: #b5c4a0;
+    transform: translateY(-1px);
+  }
+  .cfl-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+</style>

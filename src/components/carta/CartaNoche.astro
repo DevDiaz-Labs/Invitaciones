@@ -1,0 +1,179 @@
+---
+// src/components/carta/CartaNoche.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#d4af37';
+const colorTexto = data.colorTexto || '#f0e6c8';
+---
+
+{data.mostrar && (
+<section class="cn-section">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Stars canvas -->
+  <div class="cn-stars" aria-hidden="true">
+    {Array.from({length: 40}).map((_, i) => (
+      <span class="cn-star" style={`left:${Math.round((i * 37 + i * i * 3) % 100)}%; top:${Math.round((i * 53 + i * 7) % 100)}%; animation-delay:${(i * 0.3) % 3}s; width:${i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1}px; height:${i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1}px;`}></span>
+    ))}
+  </div>
+
+  <!-- Moon arc decoration -->
+  <div class="cn-moon-wrap">
+    <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" class="cn-moon-svg">
+      <path d="M10 50 Q60 5, 110 50" stroke="#d4af37" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="60" cy="8" r="5" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
+      <path d="M57 8 Q60 4, 63 8" fill="#d4af37" opacity="0.4"/>
+      <circle cx="25" cy="42" r="2" fill="#d4af37" opacity="0.4"/>
+      <circle cx="95" cy="42" r="2" fill="#d4af37" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="cn-wrapper">
+    <div class="cn-card">
+      <!-- Glow top line -->
+      <div class="cn-glow-line"></div>
+
+      <!-- Title -->
+      <p class="cn-title">~ Dedicatoria ~</p>
+
+      <!-- Text -->
+      <div class="cn-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+      <!-- Firma -->
+      {data.firmaTexto && (
+        <div class="cn-firma-wrap">
+          <div class="cn-firma-stars">✦ ✦ ✦</div>
+          <p class="cn-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+        </div>
+      )}
+
+      <!-- Glow bottom line -->
+      <div class="cn-glow-line" style="margin-top:1.5rem;"></div>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cn-section {
+    position: relative;
+    padding: 3.5rem 1.5rem;
+    background: radial-gradient(ellipse at top, #1a1035 0%, #0a0818 60%, #000510 100%);
+    text-align: center;
+    overflow: hidden;
+    min-height: 300px;
+  }
+
+  .cn-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cn-star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: cn-twinkle 2s infinite alternate;
+    opacity: 0.7;
+  }
+
+  @keyframes cn-twinkle {
+    from { opacity: 0.2; transform: scale(0.8); }
+    to   { opacity: 0.9; transform: scale(1.2); }
+  }
+
+  .cn-moon-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cn-moon-svg {
+    width: 120px;
+    height: 60px;
+  }
+
+  .cn-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .cn-card {
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 4px;
+    padding: 2.2rem 1.6rem;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 40px rgba(212,175,55,0.06), inset 0 0 60px rgba(212,175,55,0.04);
+  }
+
+  .cn-glow-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    margin: 0 auto 1.6rem;
+    opacity: 0.6;
+  }
+
+  .cn-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #d4af37;
+    margin: 0 0 1.8rem 0;
+    opacity: 0.8;
+  }
+
+  .cn-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 2;
+    font-weight: 300;
+    text-shadow: 0 0 20px rgba(212,175,55,0.2);
+  }
+
+  .cn-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .cn-firma-wrap {
+    margin-top: 1.8rem;
+  }
+
+  .cn-firma-stars {
+    font-size: 0.5rem;
+    color: #d4af37;
+    letter-spacing: 0.3em;
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+
+  .cn-firma {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 0 12px rgba(212,175,55,0.5);
+  }
+</style>

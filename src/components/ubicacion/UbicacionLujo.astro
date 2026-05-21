@@ -1,0 +1,287 @@
+---
+// src/components/ubicacion/UbicacionLujo.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<section class="ubl-wrap">
+  <!-- Gold corner decorations -->
+  <div class="ubl-corner ubl-corner-tl" aria-hidden="true">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+      <path d="M5 55 L5 5 L55 5" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <path d="M5 25 L25 5" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="3" fill="#c9a84c" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="ubl-corner ubl-corner-tr" aria-hidden="true">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+      <path d="M55 55 L55 5 L5 5" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <path d="M55 25 L35 5" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.5"/>
+      <circle cx="55" cy="5" r="3" fill="#c9a84c" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="ubl-corner ubl-corner-bl" aria-hidden="true">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+      <path d="M5 5 L5 55 L55 55" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <circle cx="5" cy="55" r="3" fill="#c9a84c" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="ubl-corner ubl-corner-br" aria-hidden="true">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+      <path d="M55 5 L55 55 L5 55" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <circle cx="55" cy="55" r="3" fill="#c9a84c" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <div class="ubl-header">
+    <div class="ubl-top-line">
+      <div class="ubl-line-seg"></div>
+      <svg viewBox="0 0 20 20" fill="#c9a84c" width="14" height="14"><polygon points="10 1 12.39 7.26 19 7.64 14 12.14 15.56 19 10 15.27 4.44 19 6 12.14 1 7.64 7.61 7.26"/></svg>
+      <div class="ubl-line-seg"></div>
+    </div>
+    <p class="ubl-eyebrow">— Lugares del Festejo —</p>
+    <h2 class="ubl-title">Celebración</h2>
+    <div class="ubl-top-line">
+      <div class="ubl-line-seg"></div>
+      <svg viewBox="0 0 20 20" fill="#c9a84c" width="14" height="14"><polygon points="10 1 12.39 7.26 19 7.64 14 12.14 15.56 19 10 15.27 4.44 19 6 12.14 1 7.64 7.61 7.26"/></svg>
+      <div class="ubl-line-seg"></div>
+    </div>
+  </div>
+
+  {ceremonia && (
+    <div class="ubl-event">
+      <div class="ubl-event-label">I</div>
+      <h3 class="ubl-event-title">{ceremonia.titulo || "Ceremonia"}</h3>
+      <div class="ubl-event-divider"></div>
+      <p class="ubl-event-hora">{ceremonia.hora}</p>
+      <p class="ubl-event-lugar">{ceremonia.lugar}</p>
+      <p class="ubl-event-dir">{ceremonia.direccion}</p>
+      {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+        <div class="ubl-map">
+          <div class="ubl-map-border">
+            <iframe
+              src={ceremonia.iframeMapa || ceremonia.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      )}
+      {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+        <div class="ubl-btn-wrap">
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubl-btn">
+            Ver en Google Maps
+          </a>
+        </div>
+      )}
+    </div>
+  )}
+
+  <div class="ubl-sep">
+    <div class="ubl-sep-line"></div>
+    <div class="ubl-sep-diamond"></div>
+    <div class="ubl-sep-line"></div>
+  </div>
+
+  {recepcion && (
+    <div class="ubl-event">
+      <div class="ubl-event-label">II</div>
+      <h3 class="ubl-event-title">{recepcion.titulo || "Recepción"}</h3>
+      <div class="ubl-event-divider"></div>
+      <p class="ubl-event-hora">{recepcion.hora}</p>
+      <p class="ubl-event-lugar">{recepcion.lugar}</p>
+      <p class="ubl-event-dir">{recepcion.direccion}</p>
+      {(recepcion.iframeMapa || recepcion.urlMapa) && (
+        <div class="ubl-map">
+          <div class="ubl-map-border">
+            <iframe
+              src={recepcion.iframeMapa || recepcion.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      )}
+      {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+        <div class="ubl-btn-wrap">
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubl-btn">
+            Ver en Google Maps
+          </a>
+        </div>
+      )}
+    </div>
+  )}
+</section>
+
+<style>
+  .ubl-wrap {
+    background: linear-gradient(160deg, #fdfaf3 0%, #f8f2e4 60%, #fdfaf3 100%);
+    padding: 3rem 2rem;
+    font-family: 'Jost', sans-serif;
+    position: relative;
+  }
+  .ubl-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+  }
+  .ubl-corner-tl { top: 12px; left: 12px; }
+  .ubl-corner-tr { top: 12px; right: 12px; }
+  .ubl-corner-bl { bottom: 12px; left: 12px; }
+  .ubl-corner-br { bottom: 12px; right: 12px; }
+  .ubl-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .ubl-top-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .ubl-line-seg {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c9a84c 50%, transparent);
+    opacity: 0.6;
+  }
+  .ubl-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #c9a84c;
+    font-weight: 400;
+    margin: 0.25rem 0;
+    text-transform: uppercase;
+  }
+  .ubl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.75rem;
+    font-weight: 300;
+    color: #2c2010;
+    margin: 0.25rem 0;
+    letter-spacing: 0.06em;
+    font-style: italic;
+  }
+  .ubl-event {
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+  .ubl-event-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: #c9a84c;
+    letter-spacing: 0.3em;
+    margin-bottom: 0.5rem;
+  }
+  .ubl-event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #2c2010;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.06em;
+  }
+  .ubl-event-divider {
+    width: 40px;
+    height: 1px;
+    background: #c9a84c;
+    margin: 0.5rem auto 0.75rem;
+    opacity: 0.7;
+  }
+  .ubl-event-hora {
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #c9a84c;
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  .ubl-event-lugar {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: #3a2c14;
+    margin: 0 0 0.3rem;
+  }
+  .ubl-event-dir {
+    font-size: 0.8rem;
+    color: #9a8060;
+    margin: 0 0 1.25rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .ubl-map {
+    margin-bottom: 1.25rem;
+  }
+  .ubl-map-border {
+    width: 100%;
+    height: 185px;
+    border: 1px solid #c9a84c;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.08), 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .ubl-btn-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .ubl-btn {
+    display: inline-block;
+    border: 1px solid #c9a84c;
+    color: #8b6914;
+    padding: 0.6rem 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.25s, color 0.25s;
+  }
+  .ubl-btn:hover {
+    background: #c9a84c;
+    color: #fff;
+  }
+  .ubl-sep {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+  .ubl-sep-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+  }
+  .ubl-sep-diamond {
+    width: 10px;
+    height: 10px;
+    background: #c9a84c;
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+</style>

@@ -1,0 +1,308 @@
+---
+// src/components/ubicacion/UbicacionRustica.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<section class="ubr-wrap">
+  <!-- Torn paper texture top -->
+  <div class="ubr-torn-top" aria-hidden="true">
+    <svg viewBox="0 0 400 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 30 L0 15 Q20 5 40 18 Q60 28 80 12 Q100 2 120 16 Q140 28 160 10 Q180 0 200 14 Q220 26 240 8 Q260 0 280 15 Q300 28 320 10 Q340 0 360 18 Q380 28 400 12 L400 30 Z" fill="#f5f0e8"/>
+    </svg>
+  </div>
+
+  <div class="ubr-header">
+    <!-- Compass SVG -->
+    <div class="ubr-compass">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+        <circle cx="30" cy="30" r="28" stroke="#8b6914" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+        <circle cx="30" cy="30" r="20" stroke="#8b6914" stroke-width="1" opacity="0.3"/>
+        <polygon points="30,10 33,30 30,34 27,30" fill="#8b3a3a" opacity="0.85"/>
+        <polygon points="30,50 33,30 30,26 27,30" fill="#8b6914" opacity="0.7"/>
+        <circle cx="30" cy="30" r="3" fill="#8b6914"/>
+        <text x="30" y="7" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">N</text>
+        <text x="30" y="57" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">S</text>
+        <text x="4" y="32" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">O</text>
+        <text x="56" y="32" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">E</text>
+      </svg>
+    </div>
+    <h2 class="ubr-title">El Destino</h2>
+    <p class="ubr-sub">Sigue el camino hasta encontrarnos</p>
+  </div>
+
+  <div class="ubr-content">
+    {ceremonia && (
+      <div class="ubr-card">
+        <div class="ubr-card-stamp">CEREMONIA</div>
+        <div class="ubr-card-inner">
+          <div class="ubr-icon-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8b3a3a" stroke-width="1.5" width="20" height="20">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <h3 class="ubr-lugar">{ceremonia.lugar}</h3>
+          </div>
+          <div class="ubr-hora-wrap">
+            <span class="ubr-hora-label">Hora:</span>
+            <span class="ubr-hora">{ceremonia.hora}</span>
+          </div>
+          <p class="ubr-dir">{ceremonia.direccion}</p>
+          {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+            <div class="ubr-map">
+              <iframe
+                src={ceremonia.iframeMapa || ceremonia.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;filter:sepia(40%) saturate(0.8);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubr-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Ver en Mapa
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    <div class="ubr-middle-divider">
+      <div class="ubr-rope"></div>
+      <div class="ubr-knot">✕</div>
+      <div class="ubr-rope"></div>
+    </div>
+
+    {recepcion && (
+      <div class="ubr-card ubr-card--dos">
+        <div class="ubr-card-stamp ubr-card-stamp--dos">RECEPCIÓN</div>
+        <div class="ubr-card-inner">
+          <div class="ubr-icon-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8b6914" stroke-width="1.5" width="20" height="20">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <h3 class="ubr-lugar">{recepcion.lugar}</h3>
+          </div>
+          <div class="ubr-hora-wrap">
+            <span class="ubr-hora-label">Hora:</span>
+            <span class="ubr-hora">{recepcion.hora}</span>
+          </div>
+          <p class="ubr-dir">{recepcion.direccion}</p>
+          {(recepcion.iframeMapa || recepcion.urlMapa) && (
+            <div class="ubr-map">
+              <iframe
+                src={recepcion.iframeMapa || recepcion.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;filter:sepia(40%) saturate(0.8);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubr-btn ubr-btn--dos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Ver en Mapa
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+
+  <div class="ubr-torn-bottom" aria-hidden="true">
+    <svg viewBox="0 0 400 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 0 L0 15 Q20 25 40 12 Q60 2 80 18 Q100 28 120 14 Q140 2 160 18 Q180 28 200 10 Q220 2 240 18 Q260 28 280 12 Q300 2 320 18 Q340 28 360 10 Q380 2 400 16 L400 0 Z" fill="#f5f0e8"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .ubr-wrap {
+    background: #c8b89a;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px),
+      repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px);
+    padding: 0;
+    font-family: 'Cabin', sans-serif;
+    position: relative;
+  }
+  .ubr-torn-top, .ubr-torn-bottom {
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+  .ubr-torn-top svg, .ubr-torn-bottom svg {
+    width: 100%;
+    height: 30px;
+  }
+  .ubr-header {
+    text-align: center;
+    padding: 1.5rem 1.25rem 1rem;
+  }
+  .ubr-compass {
+    margin: 0 auto 0.75rem;
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+  }
+  .ubr-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+    color: #4a2c0a;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.04em;
+  }
+  .ubr-sub {
+    font-size: 0.82rem;
+    color: #7a5c2a;
+    font-style: italic;
+    margin: 0;
+  }
+  .ubr-content {
+    padding: 0 1.25rem 1.5rem;
+  }
+  .ubr-card {
+    background: #f5f0e8;
+    border-radius: 4px;
+    border: 1.5px solid #c4a87a;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.12), inset 0 0 0 4px rgba(196,168,122,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .ubr-card--dos {
+    border-color: #b8955a;
+  }
+  .ubr-card-stamp {
+    background: #8b3a3a;
+    color: #f5f0e8;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    padding: 0.3rem 1rem;
+    text-align: center;
+    border-bottom: 1.5px solid #7a2a2a;
+  }
+  .ubr-card-stamp--dos {
+    background: #8b6914;
+    border-bottom-color: #7a5a10;
+  }
+  .ubr-card-inner {
+    padding: 1.25rem;
+  }
+  .ubr-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .ubr-lugar {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.05rem;
+    color: #3a2510;
+    margin: 0;
+  }
+  .ubr-hora-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .ubr-hora-label {
+    font-size: 0.75rem;
+    color: #8b6914;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .ubr-hora {
+    font-size: 0.9rem;
+    color: #4a2c0a;
+    font-weight: 600;
+    font-family: 'Libre Baskerville', serif;
+  }
+  .ubr-dir {
+    font-size: 0.78rem;
+    color: #7a5c2a;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .ubr-map {
+    width: 100%;
+    height: 170px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1.5px solid #c4a87a;
+    margin-bottom: 0.85rem;
+  }
+  .ubr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1.5px solid #8b3a3a;
+    color: #8b3a3a;
+    border-radius: 2px;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ubr-btn--dos {
+    border-color: #8b6914;
+    color: #8b6914;
+  }
+  .ubr-btn:hover {
+    background: #8b3a3a;
+    color: #f5f0e8;
+  }
+  .ubr-btn--dos:hover {
+    background: #8b6914;
+    color: #f5f0e8;
+  }
+  .ubr-middle-divider {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  .ubr-rope {
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(to right, #8b6914 0, #8b6914 6px, transparent 6px, transparent 10px);
+    opacity: 0.5;
+  }
+  .ubr-knot {
+    color: #8b6914;
+    padding: 0 0.75rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+</style>

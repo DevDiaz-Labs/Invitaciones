@@ -1,0 +1,174 @@
+---
+// src/components/carta/CartaFloral.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+}
+
+const { data } = Astro.props;
+const firmaColor = data.firmaColor || '#b5546a';
+const colorTexto = data.colorTexto || '#5c3344';
+---
+
+{data.mostrar && (
+<section class="cf-section">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400;1,600&family=Sacramento&display=swap" rel="stylesheet" />
+
+  <div class="cf-wrapper">
+    <!-- Corner flower TL -->
+    <div class="cf-corner cf-tl" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+        <circle cx="30" cy="30" r="12" fill="#e8a0b0" opacity="0.7"/>
+        <circle cx="30" cy="30" r="6" fill="#c06080" opacity="0.8"/>
+        <ellipse cx="14" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(-30 14 30)"/>
+        <ellipse cx="46" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(30 46 30)"/>
+        <ellipse cx="30" cy="14" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
+        <ellipse cx="30" cy="46" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
+        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke="#6a8f4a" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="68" cy="72" rx="8" ry="4" fill="#7aaa55" opacity="0.5" transform="rotate(40 68 72)"/>
+        <ellipse cx="62" cy="80" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(60 62 80)"/>
+        <circle cx="18" cy="55" r="6" fill="#f0bbd0" opacity="0.5"/>
+        <circle cx="18" cy="55" r="3" fill="#d07090" opacity="0.6"/>
+        <path d="M24 61 Q30 70, 22 80" fill="none" stroke="#6a8f4a" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Corner flower BR -->
+    <div class="cf-corner cf-br" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="transform:rotate(180deg)">
+        <circle cx="30" cy="30" r="12" fill="#e8a0b0" opacity="0.7"/>
+        <circle cx="30" cy="30" r="6" fill="#c06080" opacity="0.8"/>
+        <ellipse cx="14" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(-30 14 30)"/>
+        <ellipse cx="46" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(30 46 30)"/>
+        <ellipse cx="30" cy="14" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
+        <ellipse cx="30" cy="46" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
+        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke="#6a8f4a" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="68" cy="72" rx="8" ry="4" fill="#7aaa55" opacity="0.5" transform="rotate(40 68 72)"/>
+        <ellipse cx="62" cy="80" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(60 62 80)"/>
+        <circle cx="18" cy="55" r="6" fill="#f0bbd0" opacity="0.5"/>
+        <circle cx="18" cy="55" r="3" fill="#d07090" opacity="0.6"/>
+        <path d="M24 61 Q30 70, 22 80" fill="none" stroke="#6a8f4a" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Top decorative branch -->
+    <div class="cf-header">
+      <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg" class="cf-branch-svg">
+        <path d="M10 18 Q70 8, 140 18 Q210 28, 270 18" stroke="#6a8f4a" stroke-width="1.2" fill="none" opacity="0.5"/>
+        <circle cx="140" cy="18" r="5" fill="#e8a0b0" opacity="0.8"/>
+        <circle cx="140" cy="18" r="2.5" fill="#c06080" opacity="0.9"/>
+        <circle cx="80" cy="14" r="3.5" fill="#f0c0d0" opacity="0.7"/>
+        <circle cx="200" cy="22" r="3.5" fill="#f0c0d0" opacity="0.7"/>
+        <ellipse cx="50" cy="20" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(-20 50 20)"/>
+        <ellipse cx="230" cy="16" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(20 230 16)"/>
+      </svg>
+    </div>
+
+    <!-- Italic intro -->
+    <p class="cf-intro">Con todo mi amor...</p>
+
+    <!-- Text -->
+    <div class="cf-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+    <!-- Firma -->
+    {data.firmaTexto && (
+      <div class="cf-firma-wrap">
+        <svg viewBox="0 0 100 16" xmlns="http://www.w3.org/2000/svg" class="cf-divider-svg">
+          <path d="M5 8 Q25 3, 50 8 Q75 13, 95 8" stroke="#b5546a" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <circle cx="50" cy="8" r="2.5" fill="#b5546a" opacity="0.7"/>
+        </svg>
+        <p class="cf-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+      </div>
+    )}
+  </div>
+</section>
+)}
+
+<style>
+  .cf-section {
+    position: relative;
+    padding: 3rem 2rem;
+    background-color: #fff5f8;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cf-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .cf-corner {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cf-tl { top: -1.5rem; left: -1.5rem; }
+  .cf-br { bottom: -1.5rem; right: -1.5rem; }
+
+  .cf-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cf-branch-svg {
+    width: 200px;
+    height: 28px;
+  }
+
+  .cf-intro {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.8rem;
+    color: #b5546a;
+    margin: 0 0 1.2rem 0;
+    opacity: 0.85;
+  }
+
+  .cf-text {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 2;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cf-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .cf-firma-wrap {
+    margin-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cf-divider-svg {
+    width: 80px;
+    height: 14px;
+  }
+
+  .cf-firma {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.6rem;
+    margin: 0;
+  }
+</style>

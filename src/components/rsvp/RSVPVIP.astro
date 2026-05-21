@@ -1,0 +1,72 @@
+---
+const { data, params } = Astro.props;
+---
+
+<section class="pt-8 pb-16 bg-[#0F172A] relative text-center text-white">
+  <!-- Adorno superior -->
+  <div class="flex justify-center mb-6">
+    <div class="w-24 h-px bg-[#D4AF37] mx-2"></div>
+    <div class="w-2 h-2 rounded-full bg-[#D4AF37] mx-2 -mt-1"></div>
+    <div class="w-24 h-px bg-[#D4AF37] mx-2"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4">
+    <h2 class="text-4xl font-display font-light gold-gradient-text tracking-widest mb-4">{data.titulo}</h2>
+    
+    <p class="text-gray-300 font-light text-lg mb-8 leading-relaxed">
+      {data.mensaje}
+    </p>
+
+    <!-- Formulario RSVP AlpineJS -->
+    <div 
+      x-data={`{ 
+        nombreInvitado: '', 
+        numeroPersonas: 1, 
+        numeroWhatsapp: '${data.numeroWhatsapp || ''}',
+        nombreGraduado: '${params.nombre || 'Zaid'}',
+        
+        enviarConfirmacion() {
+          if (!this.nombreInvitado) return alert('Por favor, ingresa tu nombre.');
+          const mensaje = '¡Hola! Confirmo mi asistencia a la graduación de ' + this.nombreGraduado + '. Soy ' + this.nombreInvitado + ' y nos acompañarán ' + this.numeroPersonas + ' persona(s) en total.';
+          const url = 'https://wa.me/' + this.numeroWhatsapp + '?text=' + encodeURIComponent(mensaje);
+          window.open(url, '_blank');
+        }
+      }`}
+      class="max-w-md mx-auto text-left space-y-6 bg-[#0B1120] p-8 border border-[#D4AF37]/20"
+    >
+      <div>
+        <label class="block text-sm font-sans tracking-widest text-[#D4AF37] uppercase mb-2">Tu Nombre Completo</label>
+        <input 
+          x-model="nombreInvitado" 
+          type="text" 
+          placeholder="Ej. Juan Pérez" 
+          class="w-full bg-transparent border-b border-gray-600 px-0 py-2 text-white focus:outline-none focus:border-[#D4AF37] transition-colors"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-sans tracking-widest text-[#D4AF37] uppercase mb-2">Número de Personas</label>
+        <div class="flex items-center gap-4">
+          <button @click="if(numeroPersonas > 1) numeroPersonas--" class="w-10 h-10 border border-gray-600 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] flex justify-center items-center rounded-full transition-colors">-</button>
+          <span class="text-xl text-white font-serif w-8 text-center" x-text="numeroPersonas"></span>
+          <button @click="numeroPersonas++" class="w-10 h-10 border border-gray-600 text-white hover:border-[#D4AF37] hover:text-[#D4AF37] flex justify-center items-center rounded-full transition-colors">+</button>
+        </div>
+      </div>
+
+      <button 
+        @click="enviarConfirmacion()"
+        class="w-full mt-4 px-10 py-4 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 tracking-widest text-sm uppercase cursor-pointer"
+      >
+        Confirmar por WhatsApp
+      </button>
+    </div>
+
+  </div>
+  
+  <!-- Adorno inferior -->
+  <div class="flex justify-center mt-12">
+    <div class="w-2 h-2 rounded-full border border-[#D4AF37] mx-1"></div>
+    <div class="w-2 h-2 rounded-full bg-[#D4AF37] mx-1"></div>
+    <div class="w-2 h-2 rounded-full border border-[#D4AF37] mx-1"></div>
+  </div>
+</section>

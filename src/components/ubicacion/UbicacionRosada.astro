@@ -1,0 +1,267 @@
+---
+// src/components/ubicacion/UbicacionRosada.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+<section class="ub-rosada-wrap">
+  <div class="ub-rosada-header">
+    <svg class="ub-rosada-deco-top" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 20 Q100 0 200 20 Q300 40 400 20" stroke="#f4a7b9" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="ub-rosada-heart-big">
+      <svg viewBox="0 0 24 24" fill="#e8829a"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <h2 class="ub-rosada-title">¿Dónde nos vemos?</h2>
+    <p class="ub-rosada-subtitle">Te esperamos con el corazón abierto</p>
+  </div>
+
+  <div class="ub-rosada-cards">
+    {ceremonia && (
+      <div class="ub-rosada-card">
+        <div class="ub-rosada-card-badge">
+          <svg viewBox="0 0 24 24" fill="#fff" width="16" height="16"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="ub-rosada-card-title">{ceremonia.titulo || "Ceremonia"}</h3>
+        <div class="ub-rosada-card-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8829a" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          {ceremonia.hora}
+        </div>
+        <p class="ub-rosada-card-lugar">{ceremonia.lugar}</p>
+        <p class="ub-rosada-card-dir">{ceremonia.direccion}</p>
+        {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+          <div class="ub-rosada-map">
+            <iframe
+              src={ceremonia.iframeMapa || ceremonia.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        )}
+        {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ub-rosada-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Ver en Maps
+          </a>
+        )}
+      </div>
+    )}
+
+    <div class="ub-rosada-divider">
+      <svg viewBox="0 0 24 24" fill="#f4a7b9" width="20" height="20"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+
+    {recepcion && (
+      <div class="ub-rosada-card ub-rosada-card--recepcion">
+        <div class="ub-rosada-card-badge ub-rosada-card-badge--recepcion">
+          <svg viewBox="0 0 24 24" fill="#fff" width="16" height="16"><path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h6"/><polyline points="14 2 14 8 20 8"/><path d="M21 15.34l-4.24 4.24-2.12-2.12"/></svg>
+        </div>
+        <h3 class="ub-rosada-card-title">{recepcion.titulo || "Recepción"}</h3>
+        <div class="ub-rosada-card-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c5698f" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          {recepcion.hora}
+        </div>
+        <p class="ub-rosada-card-lugar">{recepcion.lugar}</p>
+        <p class="ub-rosada-card-dir">{recepcion.direccion}</p>
+        {(recepcion.iframeMapa || recepcion.urlMapa) && (
+          <div class="ub-rosada-map">
+            <iframe
+              src={recepcion.iframeMapa || recepcion.urlMapa}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        )}
+        {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ub-rosada-btn ub-rosada-btn--recepcion">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Ver en Maps
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+
+  <svg class="ub-rosada-deco-bottom" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 20 Q100 40 200 20 Q300 0 400 20" stroke="#f4a7b9" stroke-width="1.5" fill="none"/>
+  </svg>
+</section>
+
+<style>
+  .ub-rosada-wrap {
+    background: linear-gradient(160deg, #fff0f5 0%, #fce4ec 50%, #fff0f5 100%);
+    padding: 2.5rem 1.25rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+  }
+  .ub-rosada-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .ub-rosada-deco-top {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+  .ub-rosada-deco-bottom {
+    width: 100%;
+    max-width: 360px;
+    margin: 1.5rem auto 0;
+    display: block;
+  }
+  .ub-rosada-heart-big {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.75rem;
+    filter: drop-shadow(0 4px 12px rgba(232,130,154,0.4));
+  }
+  .ub-rosada-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.25rem;
+    font-weight: 300;
+    color: #b05275;
+    margin: 0 0 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  .ub-rosada-subtitle {
+    font-size: 0.85rem;
+    color: #c8809a;
+    font-style: italic;
+    margin: 0;
+  }
+  .ub-rosada-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ub-rosada-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    box-shadow: 0 4px 24px rgba(232,130,154,0.15);
+    border: 1.5px solid #fad4e0;
+    position: relative;
+    margin-bottom: 0;
+  }
+  .ub-rosada-card--recepcion {
+    border-color: #f4b8cc;
+    background: linear-gradient(135deg, #fff 80%, #fff5f8 100%);
+  }
+  .ub-rosada-card-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #e8829a, #c5698f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(197,105,143,0.4);
+  }
+  .ub-rosada-card-badge--recepcion {
+    background: linear-gradient(135deg, #c5698f, #9b4f72);
+  }
+  .ub-rosada-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: #b05275;
+    text-align: center;
+    margin: 0.5rem 0 0.75rem;
+    font-weight: 600;
+  }
+  .ub-rosada-card-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: #e8829a;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .ub-rosada-card-lugar {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #5a2d45;
+    margin: 0 0 0.25rem;
+  }
+  .ub-rosada-card-dir {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #c8809a;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .ub-rosada-map {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #fad4e0;
+    margin-bottom: 1rem;
+  }
+  .ub-rosada-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, #e8829a, #c5698f);
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(197,105,143,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ub-rosada-btn--recepcion {
+    background: linear-gradient(135deg, #c5698f, #9b4f72);
+  }
+  .ub-rosada-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(197,105,143,0.45);
+  }
+  .ub-rosada-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 0;
+  }
+</style>

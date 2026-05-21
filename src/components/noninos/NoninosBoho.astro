@@ -1,0 +1,28 @@
+---
+// src/components/noninos/NoninosBoho.astro
+interface Props {
+  titulo?: string;
+  mensaje?: string;
+}
+
+const { 
+  titulo = "Solo Adultos", 
+  mensaje = "Queremos que disfrutes al máximo de nuestro gran día. Respetuosamente te pedimos considerar que este evento está planeado únicamente para adultos." 
+} = Astro.props;
+---
+
+<div class="noninos-boho max-w-md mx-auto p-8 rounded-3xl border border-boho-terracota/20 bg-[#fbf8f3] text-center relative overflow-hidden shadow-sm">
+  {/* Left leaf decoration */}
+  <div class="absolute -left-4 -top-4 w-12 h-12 text-boho-terracota/10 pointer-events-none">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.5 2c-2.5 0-4.63 1.25-5.5 3-.87-1.75-3-3-5.5-3-3.6 0-6.5 2.9-6.5 6.5 0 4.6 6.8 11.23 11.4 12.87.3.1.6.13.6.13s.3-.03.6-.13c4.6-1.64 11.4-8.27 11.4-12.87 0-3.6-2.9-6.5-6.5-6.5zm-5.5 14.8c-2.34-1.24-5.32-4.1-6.17-6.2.22-.38.52-.72.9-1 .85-.63 1.95-.8 2.85-.3 1.13.63 2.05 2.1 2.42 2.7.37-.6 1.29-2.07 2.42-2.7.9-.5 2-.33 2.85.3.38.28.68.62.9 1-.85 2.1-3.83 4.96-6.17 6.2z"/>
+    </svg>
+  </div>
+
+  <h4 class="font-handwriting text-4xl text-boho-terracota mb-3">
+    {titulo}
+  </h4>
+  <p class="text-stone-600 text-sm leading-relaxed font-light font-sans max-w-sm mx-auto">
+    {mensaje}
+  </p>
+</div>

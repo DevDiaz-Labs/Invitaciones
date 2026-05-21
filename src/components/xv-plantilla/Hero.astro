@@ -48,7 +48,7 @@ const justifyClass = (isSplit || isLabelTop) ? "justify-between"
     {(isSplit || isLabelTop) ? (
         <>
             {/* Bloque superior: Solo etiqueta en 'label-top', etiqueta + nombre en 'split' */}
-            <div class="observe-me fade-up z-10 text-white pt-16 md:pt-20">
+            <div class="z-10 text-white pt-16 md:pt-20">
                 <p
                     class={`${etiquetaTamano} tracking-[0.6em] font-light mb-4 text-white/90 uppercase`}
                 >
@@ -64,7 +64,7 @@ const justifyClass = (isSplit || isLabelTop) ? "justify-between"
             </div>
 
             {/* Bloque inferior: nombre + fecha + frase en 'label-top', solo fecha + frase en 'split' */}
-            <div class="observe-me fade-up z-10 text-white pb-20 md:pb-24">
+            <div class="z-10 text-white pb-20 md:pb-24">
                 {isLabelTop && (
                     <h1
                         class={`${nombreTamano} font-nombres text-white mb-4 drop-shadow-xl`}
@@ -88,7 +88,7 @@ const justifyClass = (isSplit || isLabelTop) ? "justify-between"
         </>
     ) : (
         /* ============ MODO NORMAL: Todo junto (center, top, bottom) ============ */
-        <div class="observe-me fade-up z-10 text-white">
+        <div class="z-10 text-white">
             <p
                 class={`${etiquetaTamano} tracking-[0.6em] font-light mb-6 text-white/90 uppercase`}
             >
