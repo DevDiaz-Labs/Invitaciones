@@ -1,0 +1,152 @@
+---
+// src/pages/xv/std-9.astro
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Valeria's XV - Save the Date (Modern Editorial)</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+            is:inline></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Prata&family=Jost:wght@200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <script id="tailwind-config" is:inline>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#4E1A2D", // Deep Berry
+                            secondary: "#F5D6CE", // Blush Pink
+                            background: "#FAFAF9", // Pure White/Soft Gray
+                            "on-background": "#29181F", // Dark Berry
+                            accent: "#C5998D",
+                        },
+                        fontFamily: {
+                            serif: ["Prata", "serif"],
+                            sans: ["Jost", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style is:global>
+            .editorial-shadow {
+                box-shadow: 15px 15px 0px rgba(245, 214, 206, 0.6);
+            }
+            .pill-countdown {
+                background-color: rgba(78, 26, 45, 0.04);
+                border: 1px solid rgba(78, 26, 45, 0.1);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white"
+    >
+        <main class="flex-grow flex flex-col justify-center items-center py-12 px-6 md:px-12 relative min-h-screen">
+            <!-- Floating Back to Catalog Button -->
+            <a
+                href="/xv/catalogo"
+                class="fixed top-4 left-4 z-50 bg-[#4E1A2D]/85 hover:bg-[#4E1A2D] text-white px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-secondary/20 transition-all shadow-lg"
+            >
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                Catálogo
+            </a>
+            <!-- Modern geometric block in background -->
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-secondary/20 z-0 pointer-events-none"></div>
+
+            <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <!-- Left: Overlapping Editorial Portrait Grid -->
+                <div class="w-full lg:w-1/2 flex justify-center order-2 lg:order-1">
+                    <div class="relative w-72 h-96 md:w-80 md:h-[420px] bg-secondary editorial-shadow rounded-none border border-primary/20 overflow-hidden">
+                        <img
+                            alt="Modern Editorial Portrait"
+                            class="w-full h-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1714611302520-5afa2c3e26df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        />
+                    </div>
+                </div>
+
+                <!-- Right: High-contrast typography & asymmetry -->
+                <div class="w-full lg:w-1/2 flex flex-col text-left items-start order-1 lg:order-2">
+                    <span class="text-xs font-semibold uppercase tracking-[0.4em] text-accent mb-4">
+                        // SAVE THE DATE
+                    </span>
+
+                    <div class="mb-6">
+                        <h1 class="font-serif text-6xl md:text-8xl text-primary font-light leading-none tracking-tighter">
+                            Valeria
+                        </h1>
+                        <span class="font-serif text-3xl md:text-4xl text-accent italic block mt-1">
+                            Mis Quince Años
+                        </span>
+                    </div>
+
+                    <p class="text-sm md:text-base text-on-background/70 font-light leading-relaxed mb-8 max-w-md">
+                        Te invito a compartir una noche inolvidable. Celebremos la juventud, la amistad y las nuevas metas en una noche llena de sorpresas.
+                    </p>
+
+                    <!-- Horizontal Pill Countdown -->
+                    <div class="flex flex-wrap gap-2 w-full max-w-md mb-8">
+                        <div class="pill-countdown rounded-full px-5 py-2.5 flex items-center gap-2">
+                            <span class="font-serif text-lg md:text-xl text-primary font-bold">142</span>
+                            <span class="text-[10px] text-on-background/60 uppercase tracking-widest font-medium">Días</span>
+                        </div>
+                        <div class="pill-countdown rounded-full px-5 py-2.5 flex items-center gap-2">
+                            <span class="font-serif text-lg md:text-xl text-primary font-bold">08</span>
+                            <span class="text-[10px] text-on-background/60 uppercase tracking-widest font-medium">Hrs</span>
+                        </div>
+                        <div class="pill-countdown rounded-full px-5 py-2.5 flex items-center gap-2">
+                            <span class="font-serif text-lg md:text-xl text-primary font-bold">45</span>
+                            <span class="text-[10px] text-on-background/60 uppercase tracking-widest font-medium">Min</span>
+                        </div>
+                        <div class="pill-countdown rounded-full px-5 py-2.5 flex items-center gap-2">
+                            <span class="font-serif text-lg md:text-xl text-primary font-bold">12</span>
+                            <span class="text-[10px] text-on-background/60 uppercase tracking-widest font-medium">Seg</span>
+                        </div>
+                    </div>
+
+                    <!-- Modern Square Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+                        <button
+                            class="w-full sm:w-auto bg-primary text-white hover:bg-on-background px-8 py-3.5 rounded-none font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 border-2 border-primary"
+                        >
+                            <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Google Calendar
+                        </button>
+                        <button
+                            class="w-full sm:w-auto bg-transparent border-2 border-primary text-primary hover:bg-primary/5 px-8 py-3.5 rounded-none font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
+                        >
+                            <span class="material-symbols-outlined text-[16px]">event</span>
+                            iCal / Outlook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="w-full py-8 border-t border-secondary bg-[#FAFAF9] flex flex-col sm:flex-row justify-between items-center px-12 gap-4 text-center z-10"
+        >
+            <div class="text-primary font-serif text-2xl font-bold tracking-widest">
+                VALERIA
+            </div>
+            <div
+                class="text-[9px] tracking-[0.25em] uppercase text-on-background/55 font-light"
+            >
+                © 2024 Celebrando Quince Años
+            </div>
+        </footer>
+    </body>
+</html>

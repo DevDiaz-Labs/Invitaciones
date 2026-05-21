@@ -1,0 +1,136 @@
+---
+// src/pages/xv/std-2.astro
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Valeria's XV - Save the Date (Editorial Minimalist)</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+            is:inline></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <script id="tailwind-config" is:inline>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#1C1A17", // Charcoal/Ink
+                            secondary: "#A89276", // Warm Taupe/Gold
+                            background: "#FAF7F2", // Sand Cream
+                            "on-background": "#24221F",
+                            accent: "#8C7A6B",
+                        },
+                        fontFamily: {
+                            serif: ["Cormorant Garamond", "serif"],
+                            sans: ["Inter", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body
+        class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-background"
+    >
+        <main class="flex-grow flex flex-col lg:flex-row relative min-h-screen">
+            <!-- Floating Back to Catalog Button -->
+            <a
+                href="/xv/catalogo"
+                class="fixed top-4 left-4 z-50 bg-black/60 hover:bg-black/85 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-white/20 transition-all shadow-lg"
+            >
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                Catálogo
+            </a>
+            <!-- Left Side / Background Photo Area -->
+            <div class="relative w-full lg:w-1/2 min-h-[40vh] lg:min-h-screen flex-shrink-0">
+                <img
+                    alt="Valeria's Portrait"
+                    class="absolute inset-0 w-full h-full object-cover object-center"
+                    src="https://images.unsplash.com/photo-1714611302520-5afa2c3e26df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-primary/10 via-primary/20 to-background lg:to-transparent"></div>
+            </div>
+
+            <!-- Right Side / Content Area -->
+            <div class="w-full lg:w-1/2 flex flex-col justify-between px-6 py-12 md:p-16 lg:p-24 bg-background relative z-10">
+                <!-- Top -->
+                <div class="flex flex-col items-start text-left">
+                    <span class="text-[10px] uppercase tracking-[0.4em] text-secondary font-semibold mb-2">
+                        Save the Date
+                    </span>
+                    <h1 class="font-serif text-7xl md:text-8xl font-light text-primary leading-tight tracking-tight">
+                        Valeria <br />
+                        <span class="italic text-secondary">XV Años</span>
+                    </h1>
+                </div>
+
+                <!-- Middle / Info & Countdown -->
+                <div class="my-12 flex flex-col items-start text-left max-w-lg">
+                    <p class="text-sm md:text-base text-on-background/80 mb-10 leading-relaxed font-light">
+                        Te invitamos a marcar tu calendario para una celebración íntima e inspiradora, donde cada detalle reflejará el inicio de un nuevo capítulo.
+                    </p>
+
+                    <!-- Circular Minimal Countdown -->
+                    <div class="grid grid-cols-4 gap-4 w-full mb-8">
+                        <div class="flex flex-col items-center justify-center border border-primary/15 rounded-full aspect-square p-2 bg-white/40">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-light">142</span>
+                            <span class="text-[9px] text-on-background/50 uppercase tracking-widest mt-1">Días</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center border border-primary/15 rounded-full aspect-square p-2 bg-white/40">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-light">08</span>
+                            <span class="text-[9px] text-on-background/50 uppercase tracking-widest mt-1">Hrs</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center border border-primary/15 rounded-full aspect-square p-2 bg-white/40">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-light">45</span>
+                            <span class="text-[9px] text-on-background/50 uppercase tracking-widest mt-1">Min</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center border border-primary/15 rounded-full aspect-square p-2 bg-white/40">
+                            <span class="font-serif text-2xl md:text-3xl text-primary font-light">12</span>
+                            <span class="text-[9px] text-on-background/50 uppercase tracking-widest mt-1">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom / Actions -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+                    <button
+                        class="flex-1 bg-primary text-background px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] hover:bg-secondary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                        Google Calendar
+                    </button>
+                    <button
+                        class="flex-1 bg-transparent border border-primary text-primary px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] hover:bg-primary hover:text-background transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">event</span>
+                        iCal / Outlook
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="w-full py-6 border-t border-primary/5 bg-[#FAF7F2] flex flex-col sm:flex-row justify-between items-center px-8 text-center sm:text-left gap-4"
+        >
+            <div class="text-primary font-serif text-xl italic tracking-wider">
+                V.
+            </div>
+            <div class="text-[9px] tracking-[0.3em] uppercase text-primary/50 font-light">
+                © 2024 Celebrando Quince Años
+            </div>
+        </footer>
+    </body>
+</html>

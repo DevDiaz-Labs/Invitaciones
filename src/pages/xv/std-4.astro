@@ -1,0 +1,179 @@
+---
+// src/pages/xv/std-4.astro
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Valeria's XV - Save the Date (Cyber Glow)</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+            is:inline></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Archivo:wght@300;400;600;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <script id="tailwind-config" is:inline>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#FF2E93", // Neon Pink
+                            secondary: "#8A2BE2", // Violet
+                            background: "#08060D", // Deep Obsidian
+                            "on-background": "#FFFFFF",
+                            accent: "#00F0FF", // Cyan
+                        },
+                        fontFamily: {
+                            display: ["Space Grotesk", "sans-serif"],
+                            sans: ["Archivo", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style is:global>
+            .neon-text-pink {
+                text-shadow: 0 0 5px rgba(255, 46, 147, 0.5), 0 0 15px rgba(255, 46, 147, 0.7);
+            }
+            .neon-text-cyan {
+                text-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 15px rgba(0, 240, 255, 0.7);
+            }
+            .neon-border-pink {
+                border: 1px solid #FF2E93;
+                box-shadow: 0 0 10px rgba(255, 46, 147, 0.3), inset 0 0 10px rgba(255, 46, 147, 0.2);
+            }
+            .neon-border-cyan {
+                border: 1px solid #00F0FF;
+                box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            }
+            .gradient-btn {
+                background: linear-gradient(135deg, #FF2E93 0%, #8A2BE2 100%);
+                box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            }
+            .gradient-btn:hover {
+                box-shadow: 0 6px 20px rgba(255, 46, 147, 0.6);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white"
+    >
+        <main class="flex-grow flex flex-col relative min-h-screen p-4">
+            <!-- Floating Back to Catalog Button -->
+            <a
+                href="/xv/catalogo"
+                class="fixed top-4 left-4 z-50 bg-black/60 hover:bg-black/85 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-white/20 transition-all shadow-lg"
+            >
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                Catálogo
+            </a>
+            <!-- Diagonal structural lines -->
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(138,43,226,0.15),transparent_70%)] pointer-events-none z-10"></div>
+
+            <!-- Background Image with Dark Blue / Violet tint -->
+            <div class="absolute inset-0 z-0">
+                <img
+                    alt="Cyber Background"
+                    class="w-full h-full object-cover object-center opacity-25 filter grayscale"
+                    src="https://images.unsplash.com/photo-1714611302520-5afa2c3e26df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background"
+                >
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div
+                class="relative z-20 w-full flex-grow max-w-4xl mx-auto flex flex-col justify-between items-center text-center px-4 py-12"
+            >
+                <!-- Top Content -->
+                <div class="mt-8">
+                    <span
+                        class="font-display text-xs uppercase tracking-[0.4em] text-accent neon-text-cyan font-bold"
+                    >
+                        // XV Años Party
+                    </span>
+                    <h1
+                        class="font-display font-extrabold text-6xl md:text-8xl text-primary mt-4 mb-2 tracking-tighter uppercase neon-text-pink"
+                    >
+                        Valeria
+                    </h1>
+                    <div class="inline-block px-3 py-1 bg-secondary/20 border border-secondary/40 rounded text-xs text-on-background/80 tracking-widest font-mono">
+                        INITIALIZING CELEBRATION
+                    </div>
+                </div>
+
+                <!-- Middle Content -->
+                <div class="flex flex-col items-center w-full max-w-lg my-6">
+                    <span class="font-display text-sm tracking-[0.2em] text-primary/80 uppercase font-semibold mb-4">
+                        [ Save the Date ]
+                    </span>
+
+                    <p class="text-xs md:text-sm text-on-background/70 max-w-md mx-auto mb-8 font-light tracking-wide leading-relaxed">
+                        Prepárate para una noche de ritmos vibrantes, luces de neón y una celebración increíble. La cuenta regresiva ha comenzado.
+                    </p>
+
+                    <!-- Neon Cyber Countdown Grid -->
+                    <div class="grid grid-cols-4 gap-3 w-full">
+                        <div class="neon-border-pink bg-[#120F1C]/80 rounded p-4 flex flex-col items-center">
+                            <span class="font-display text-2xl md:text-4xl text-primary font-bold">142</span>
+                            <span class="text-[9px] text-accent uppercase tracking-widest mt-1">Días</span>
+                        </div>
+                        <div class="neon-border-cyan bg-[#120F1C]/80 rounded p-4 flex flex-col items-center">
+                            <span class="font-display text-2xl md:text-4xl text-accent font-bold">08</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-1">Hrs</span>
+                        </div>
+                        <div class="neon-border-pink bg-[#120F1C]/80 rounded p-4 flex flex-col items-center">
+                            <span class="font-display text-2xl md:text-4xl text-primary font-bold">45</span>
+                            <span class="text-[9px] text-accent uppercase tracking-widest mt-1">Min</span>
+                        </div>
+                        <div class="neon-border-cyan bg-[#120F1C]/80 rounded p-4 flex flex-col items-center">
+                            <span class="font-display text-2xl md:text-4xl text-accent font-bold">12</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-1">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Content -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
+                    <button
+                        class="w-full sm:w-auto gradient-btn text-white px-8 py-3 rounded font-display font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-primary/30"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                        Add to Calendar
+                    </button>
+                    <button
+                        class="w-full sm:w-auto bg-[#181426]/75 border border-accent/40 text-accent hover:border-accent hover:bg-[#181426] px-8 py-3 rounded font-display font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">event</span>
+                        iCal Link
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="w-full py-8 border-t border-primary/20 bg-[#040306] flex flex-col items-center gap-2 text-center"
+        >
+            <div class="text-primary font-display font-bold text-xl tracking-widest uppercase neon-text-pink">
+                Valeria // 15
+            </div>
+            <div
+                class="text-[9px] tracking-[0.2em] uppercase text-on-background/40 font-mono"
+            >
+                SYS.TIME.2024 // ALL RIGHTS RESERVED
+            </div>
+        </footer>
+    </body>
+</html>

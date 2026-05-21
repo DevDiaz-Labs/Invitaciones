@@ -1,0 +1,180 @@
+---
+// src/pages/xv/std-10.astro
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Valeria's XV - Save the Date (Golden Glamour)</title>
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+            is:inline></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <script id="tailwind-config" is:inline>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#E5C158", // Bright Brass Gold
+                            secondary: "#A6863C", // Dark Gold
+                            background: "#0A0908", // Obsidian Black
+                            "on-background": "#F5F3ED", // Champagne Cream
+                            accent: "#FFFFFF",
+                        },
+                        fontFamily: {
+                            serif: ["Bodoni Moda", "serif"],
+                            sans: ["Montserrat", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style is:global>
+            .gold-text-gradient {
+                background: linear-gradient(135deg, #FFECA7 0%, #E5C158 50%, #9F7E31 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .gold-btn-gradient {
+                background: linear-gradient(135deg, #FFECA7 0%, #E5C158 50%, #9F7E31 100%);
+                box-shadow: 0 4px 20px rgba(229, 193, 88, 0.25);
+            }
+            .gold-btn-gradient:hover {
+                box-shadow: 0 6px 25px rgba(229, 193, 88, 0.45);
+            }
+            .gold-frame {
+                border: 2px solid;
+                border-image: linear-gradient(to right, #FFECA7, #E5C158, #9F7E31, #E5C158, #FFECA7) 1;
+            }
+            .gold-card-border {
+                border: 1px solid;
+                border-image: linear-gradient(135deg, #FFECA7, #9F7E31) 1;
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-primary selection:text-background"
+    >
+        <main class="flex-grow flex flex-col relative min-h-screen p-4 md:p-8">
+            <!-- Floating Back to Catalog Button -->
+            <a
+                href="/xv/catalogo"
+                class="fixed top-4 left-4 z-50 bg-[#A6863C]/85 hover:bg-[#A6863C] text-background px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-primary/20 transition-all shadow-lg"
+            >
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                Catálogo
+            </a>
+            <!-- Luxury Gold Frame Borders -->
+            <div class="absolute inset-4 md:inset-8 gold-frame z-10 pointer-events-none"></div>
+
+            <!-- Background Image with deep gold/dark overlay -->
+            <div class="absolute inset-0 z-0">
+                <img
+                    alt="Floral Luxury Background"
+                    class="w-full h-full object-cover object-center opacity-25 filter contrast-125"
+                    src="https://images.unsplash.com/photo-1714611302520-5afa2c3e26df?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/95"
+                >
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div
+                class="relative z-20 w-full flex-grow max-w-4xl mx-auto flex flex-col justify-between items-center text-center px-4 py-12 md:py-16"
+            >
+                <!-- Top -->
+                <div class="mt-8">
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-[0.4em] text-primary font-bold"
+                    >
+                        EXCLUSIVE INVITATION
+                    </span>
+                    <h1
+                        class="font-serif text-6xl md:text-8xl font-bold tracking-widest text-white mt-4 mb-2 gold-text-gradient uppercase drop-shadow-md"
+                    >
+                        Valeria
+                    </h1>
+                    <span
+                        class="text-xs uppercase tracking-[0.25em] text-on-background/70 font-semibold block mt-1"
+                    >
+                        Mis Quince Años
+                    </span>
+                </div>
+
+                <!-- Middle: Details & Premium Countdown -->
+                <div class="flex flex-col items-center w-full max-w-xl my-6">
+                    <h2 class="font-serif text-2xl tracking-[0.3em] uppercase gold-text-gradient font-semibold mb-4">
+                        Save the Date
+                    </h2>
+
+                    <p class="text-xs md:text-sm text-on-background/80 max-w-md mx-auto mb-8 font-light tracking-wide leading-relaxed">
+                        Acompáñanos en una velada inolvidable de gala y alta costura para conmemorar este acontecimiento irrepetible. Su presencia es un honor.
+                    </p>
+
+                    <!-- Premium Gold Framed Countdown -->
+                    <div class="grid grid-cols-4 gap-3 w-full max-w-md">
+                        <div class="gold-card-border bg-[#14120E]/90 p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-4xl text-white font-bold gold-text-gradient">142</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-2 font-medium">Días</span>
+                        </div>
+                        <div class="gold-card-border bg-[#14120E]/90 p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-4xl text-white font-bold gold-text-gradient">08</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-2 font-medium">Hrs</span>
+                        </div>
+                        <div class="gold-card-border bg-[#14120E]/90 p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-4xl text-white font-bold gold-text-gradient">45</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-2 font-medium">Min</span>
+                        </div>
+                        <div class="gold-card-border bg-[#14120E]/90 p-4 flex flex-col items-center">
+                            <span class="font-serif text-2xl md:text-4xl text-white font-bold gold-text-gradient">12</span>
+                            <span class="text-[9px] text-primary uppercase tracking-widest mt-2 font-medium">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Actions -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
+                    <button
+                        class="w-full sm:w-auto gold-btn-gradient text-background px-8 py-3 rounded-none font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-primary/20"
+                    >
+                        <span class="material-symbols-outlined text-[16px] font-bold">calendar_today</span>
+                        Add to Calendar
+                    </button>
+                    <button
+                        class="w-full sm:w-auto bg-transparent border border-primary/50 text-primary hover:bg-primary/10 px-8 py-3 rounded-none font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">event</span>
+                        iCal / Outlook
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="w-full py-8 border-t border-primary/15 bg-[#050403] flex flex-col items-center gap-2 text-center"
+        >
+            <div class="gold-text-gradient font-serif text-2xl tracking-widest font-bold">
+                VALERIA
+            </div>
+            <div
+                class="text-[9px] tracking-[0.25em] uppercase text-primary/65 font-light"
+            >
+                © 2024 Celebrando Quince Años
+            </div>
+        </footer>
+    </body>
+</html>
