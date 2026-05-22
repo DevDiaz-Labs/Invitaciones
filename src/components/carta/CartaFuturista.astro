@@ -1,0 +1,107 @@
+---
+// src/components/carta/CartaFuturista.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+---
+
+{data.mostrar && (
+<section class="cfut-section">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <div class="cfut-panel">
+    <div class="cfut-scanline"></div>
+    <div class="cfut-content">
+      <div class="cfut-text" set:html={data.texto}></div>
+      {data.firmaTexto && (
+        <div class="cfut-firma-wrap">
+          <div class="cfut-firma">{data.firmaTexto}</div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cfut-section {
+    padding: 4rem 1.5rem;
+    background-color: #050510;
+    display: flex;
+    justify-content: center;
+  }
+  .cfut-panel {
+    background: rgba(10, 20, 40, 0.8);
+    border: 1px solid #0ff;
+    max-width: 400px;
+    padding: 3rem 2rem;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    overflow: hidden;
+  }
+  .cfut-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 30px; height: 30px;
+    border-top: 3px solid #0ff;
+    border-left: 3px solid #0ff;
+  }
+  .cfut-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0; width: 30px; height: 30px;
+    border-bottom: 3px solid #0ff;
+    border-right: 3px solid #0ff;
+  }
+  .cfut-scanline {
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 5px;
+    background: rgba(0, 255, 255, 0.5);
+    opacity: 0.5;
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes scan {
+    0% { top: -10%; }
+    100% { top: 110%; }
+  }
+  .cfut-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .cfut-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: #a0e0e0;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .cfut-text :global(br) {
+    margin-bottom: 1rem;
+    display: block;
+    content: "";
+  }
+  .cfut-firma-wrap {
+    margin-top: 2rem;
+    border-top: 1px dashed rgba(0, 255, 255, 0.3);
+    padding-top: 1rem;
+  }
+  .cfut-firma {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+  }
+</style>

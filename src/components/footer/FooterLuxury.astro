@@ -1,0 +1,25 @@
+---
+const { data } = Astro.props;
+---
+<footer class="bg-[#0f172a] py-20 px-8 text-center relative border-t border-[#d4af37]/30">
+  <div class="max-w-lg mx-auto flex flex-col items-center">
+    <div class="w-12 h-12 mb-6 border border-[#d4af37] rounded-full flex items-center justify-center text-[#d4af37]">
+      <span class="font-serif italic text-xl">{data.nombres.charAt(0)}</span>
+    </div>
+    <h2 class="text-3xl text-slate-200 font-['Cormorant_Garamond'] uppercase tracking-widest mb-4">
+      {data.nombres}
+    </h2>
+    <p class="text-[#d4af37] text-sm tracking-[0.2em] mb-8">
+      {data.fechaVista}
+    </p>
+    {data.hashtag && (
+      <a href="#" class="text-slate-400 font-serif italic mb-12 hover:text-[#d4af37] transition">
+        {data.hashtag}
+      </a>
+    )}
+    <div class="w-24 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6"></div>
+    <p class="text-slate-600 text-[10px] uppercase tracking-[0.3em]">
+      DEV DIAZ LABS
+    </p>
+  </div>
+</footer>

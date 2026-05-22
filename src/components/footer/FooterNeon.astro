@@ -1,0 +1,21 @@
+---
+const { data } = Astro.props;
+---
+<footer class="bg-zinc-950 py-16 px-6 text-center relative">
+  <div class="max-w-md mx-auto">
+    <h2 class="text-4xl font-['Plus_Jakarta_Sans'] font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-2 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]">
+      {data.nombres}
+    </h2>
+    <p class="text-cyan-100/70 tracking-widest text-sm mb-6">
+      {data.fechaVista}
+    </p>
+    {data.hashtag && (
+      <div class="inline-block px-6 py-2 border-2 border-cyan-500 text-cyan-400 rounded-lg shadow-[0_0_10px_rgba(6,182,212,0.5)] mb-8">
+        {data.hashtag}
+      </div>
+    )}
+    <div class="text-zinc-600 text-xs font-mono">
+      > DEV_DIAZ_LABS
+    </div>
+  </div>
+</footer>

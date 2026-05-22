@@ -2,6 +2,16 @@
 // src/pages/pruebas/regalos-pruebas.astro
 import RegalosXV from "../../components/regalos/RegalosXV.astro";
 import RegalosBoda from "../../components/regalos/RegalosBoda.astro";
+import RegalosBoho from "../../components/regalos/RegalosBoho.astro";
+import RegalosDark from "../../components/regalos/RegalosDark.astro";
+import RegalosElegante from "../../components/regalos/RegalosElegante.astro";
+import RegalosGeometrico from "../../components/regalos/RegalosGeometrico.astro";
+import RegalosRomantico from "../../components/regalos/RegalosRomantico.astro";
+import RegalosMinimalista from "../../components/regalos/RegalosMinimalista.astro";
+import RegalosGlassmorphism from "../../components/regalos/RegalosGlassmorphism.astro";
+import RegalosNeon from "../../components/regalos/RegalosNeon.astro";
+import RegalosPlayero from "../../components/regalos/RegalosPlayero.astro";
+import RegalosGlamour from "../../components/regalos/RegalosGlamour.astro";
 
 const mockRegalos = {
   mostrar: true,
@@ -67,7 +77,7 @@ const mockRegalosBoda = {
     <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
       
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        REGALOS XV STYLE
+        REGALOS XV STYLE (Original)
       </div>
       <div class="relative w-full">
         <RegalosXV 
@@ -78,10 +88,80 @@ const mockRegalosBoda = {
       </div>
 
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        REGALOS BODA STYLE
+        REGALOS BODA STYLE (Original)
       </div>
       <div class="relative w-full">
         <RegalosBoda data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        1. BOHO
+      </div>
+      <div class="relative w-full">
+        <RegalosBoho data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        2. DARK
+      </div>
+      <div class="relative w-full">
+        <RegalosDark data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        3. ELEGANTE
+      </div>
+      <div class="relative w-full">
+        <RegalosElegante data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        4. GEOMETRICO
+      </div>
+      <div class="relative w-full">
+        <RegalosGeometrico data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        5. ROMANTICO
+      </div>
+      <div class="relative w-full">
+        <RegalosRomantico data={mockRegalosBoda} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        6. MINIMALISTA
+      </div>
+      <div class="relative w-full">
+        <RegalosMinimalista data={mockData.regalos} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        7. GLASSMORPHISM
+      </div>
+      <div class="relative w-full">
+        <RegalosGlassmorphism data={mockData.regalos} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        8. NEON
+      </div>
+      <div class="relative w-full">
+        <RegalosNeon data={mockData.regalos} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        9. PLAYERO
+      </div>
+      <div class="relative w-full">
+        <RegalosPlayero data={mockData.regalos} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        10. GLAMOUR
+      </div>
+      <div class="relative w-full">
+        <RegalosGlamour data={mockData.regalos} />
       </div>
 
     </main>

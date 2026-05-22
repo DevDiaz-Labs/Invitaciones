@@ -1,0 +1,44 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-24 px-6 bg-white relative">
+    <div class="max-w-2xl mx-auto border-t border-b border-gray-300 py-16 text-center relative">
+      <!-- Decorator lines -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L9 9H2L7 14L5 21L12 17L19 21L17 14L22 9H15L12 2Z"/></svg>
+      </div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white px-4">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22L15 15H22L17 10L19 3L12 7L5 3L7 10L2 15H9L12 22Z"/></svg>
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] text-gray-900 mb-6 tracking-wide uppercase">
+        {data.titulo || "Memories"}
+      </h2>
+      
+      <p class="text-gray-500 font-['Montserrat'] font-light text-sm md:text-base max-w-md mx-auto mb-10 leading-relaxed uppercase tracking-[0.2em]" set:html={data.frase || "Share your captured moments"}>
+      </p>
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-gray-900 text-white px-10 py-4 font-['Montserrat'] text-xs uppercase tracking-[0.3em] hover:bg-gray-800 transition-colors"
+      >
+        {data.textoBoton || "Upload Photos"}
+      </a>
+    </div>
+  </section>
+)}

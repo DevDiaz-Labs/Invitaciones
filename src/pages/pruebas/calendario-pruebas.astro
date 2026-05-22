@@ -16,6 +16,10 @@ import CalendarioPastel from "../../components/calendario/CalendarioPastel.astro
 import CalendarioAzteca from "../../components/calendario/CalendarioAzteca.astro";
 import CalendarioLujo from "../../components/calendario/CalendarioLujo.astro";
 import CalendarioFloral from "../../components/calendario/CalendarioFloral.astro";
+import CalendarioRetro from "../../components/calendario/CalendarioRetro.astro";
+import CalendarioCyberpunk from "../../components/calendario/CalendarioCyberpunk.astro";
+import CalendarioVintage from "../../components/calendario/CalendarioVintage.astro";
+import CalendarioGlitch from "../../components/calendario/CalendarioGlitch.astro";
 
 const mockCalendario = {
   google: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Evento+de+Prueba&dates=20260613T220000Z/20260614T070000Z",
@@ -150,6 +154,28 @@ const mockCalendarioSTD = {
         FLORAL STYLE (BLANCO + FLORES SVG + SCRIPT)
       </div>
       <CalendarioFloral calendario={mockCalendario} />
+
+      <!-- ── 10 NEWEST COMPONENTS ── -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        RETRO STYLE (YELLOW + BOLD)
+      </div>
+      <CalendarioRetro calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CYBERPUNK STYLE (NEON + DARK)
+      </div>
+      <CalendarioCyberpunk calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        VINTAGE STYLE (CLASSIC)
+      </div>
+      <CalendarioVintage calendario={mockCalendario} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        GLITCH STYLE
+      </div>
+      <CalendarioGlitch calendario={mockCalendario} />
 
     </main>
   </body>

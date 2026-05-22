@@ -2,16 +2,24 @@
 // src/pages/pruebas/compartirmomentos-pruebas.astro
 import CapturaMinimalista from "../../components/compartirmomentos/CapturaMinimalista.astro";
 import CompartirMomentosXV from "../../components/compartirmomentos/CompartirMomentosXV.astro";
-
-
+import CompartirBoho from "../../components/compartirmomentos/CompartirBoho.astro";
+import CompartirDarkGlass from "../../components/compartirmomentos/CompartirDarkGlass.astro";
+import CompartirRetro from "../../components/compartirmomentos/CompartirRetro.astro";
+import CompartirNeon from "../../components/compartirmomentos/CompartirNeon.astro";
+import CompartirPolaroid from "../../components/compartirmomentos/CompartirPolaroid.astro";
+import CompartirElegantSerif from "../../components/compartirmomentos/CompartirElegantSerif.astro";
+import CompartirPlayful from "../../components/compartirmomentos/CompartirPlayful.astro";
+import CompartirGradient from "../../components/compartirmomentos/CompartirGradient.astro";
+import CompartirCinematic from "../../components/compartirmomentos/CompartirCinematic.astro";
+import CompartirNature from "../../components/compartirmomentos/CompartirNature.astro";
 
 const mockData = {
   mostrar: true,
   nombres: 'Ana & Carlos',
-  titulo: 'Mesa de Regalos / Lluvia de Sobres',
+  titulo: 'Compárteme tus fotos',
   fechaVista: '13 · Junio · 2026',
   fecha: '2026-06-13',
-  frase: 'El mejor regalo es tu presencia',
+  frase: 'El mejor regalo es tu presencia y los recuerdos que capturemos.',
   imagenFondo: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
   imagen: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
   hashtag: '#AnaYCarlos',
@@ -73,17 +81,17 @@ const mockData = {
     </style>
   </head>
   <body>
-    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20 overflow-hidden">
       
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        CAPTURAMINIMALISTA STYLE
+        1. CAPTURAMINIMALISTA STYLE (EXISTING)
       </div>
       <div class="relative w-full">
         <CapturaMinimalista data={mockData} />
       </div>
 
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        COMPARTIRMOMENTOSXV STYLE
+        2. COMPARTIRMOMENTOSXV STYLE (EXISTING)
       </div>
       <div class="relative w-full">
         <CompartirMomentosXV data={{
@@ -92,6 +100,76 @@ const mockData = {
           frase: "Los recuerdos que tendré contigo serán muy importantes.<br><br>Agradezco que me compartas tus fotos y videos que tomes durante el evento en esta carpeta:",
           textoBoton: "SUBIR FOTOS"
         }} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        3. COMPARTIR BOHO STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirBoho data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        4. COMPARTIR DARK GLASS STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirDarkGlass data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        5. COMPARTIR RETRO STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirRetro data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        6. COMPARTIR NEON STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirNeon data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        7. COMPARTIR POLAROID STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirPolaroid data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        8. COMPARTIR ELEGANT SERIF STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirElegantSerif data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        9. COMPARTIR PLAYFUL STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirPlayful data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        10. COMPARTIR GRADIENT STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirGradient data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        11. COMPARTIR CINEMATIC STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirCinematic data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        12. COMPARTIR NATURE STYLE
+      </div>
+      <div class="relative w-full">
+        <CompartirNature data={mockData} />
       </div>
 
     </main>

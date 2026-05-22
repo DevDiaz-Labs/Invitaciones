@@ -1,0 +1,22 @@
+---
+const { data } = Astro.props;
+---
+<footer class="bg-stone-50 py-12 px-8 text-center text-stone-800 font-serif border-t border-stone-200">
+  <div class="max-w-xl mx-auto space-y-6">
+    <div class="text-3xl italic text-stone-600 font-['Playfair_Display']">
+      {data.nombres}
+    </div>
+    <div class="text-sm tracking-widest uppercase text-stone-500">
+      {data.fechaVista}
+    </div>
+    {data.hashtag && (
+      <a href={`https://www.instagram.com/explore/tags/${data.hashtag.replace("#", "")}`} target="_blank" class="inline-block text-stone-400 hover:text-stone-600 transition">
+        {data.hashtag}
+      </a>
+    )}
+    <div class="w-16 h-px bg-stone-300 mx-auto mt-6"></div>
+    <div class="text-xs text-stone-400 font-sans pt-4">
+      Hecho con ♥ por DevDiaz-Labs
+    </div>
+  </div>
+</footer>

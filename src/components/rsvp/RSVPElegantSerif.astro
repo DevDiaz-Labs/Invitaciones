@@ -1,0 +1,41 @@
+---
+const { data } = Astro.props;
+const titulo = data?.titulo || 'Répondez S\'il Vous Plaît';
+const mensaje = data?.mensajeDespedida || 'Su presencia es nuestro mayor regalo.';
+---
+
+<section class="py-16 px-4 bg-white border-y-8 border-double border-stone-800">
+  <div class="max-w-2xl mx-auto p-10 border border-stone-300 relative">
+    <div class="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-stone-800"></div>
+    <div class="absolute -top-4 -right-4 w-8 h-8 border-t border-r border-stone-800"></div>
+    <div class="absolute -bottom-4 -left-4 w-8 h-8 border-b border-l border-stone-800"></div>
+    <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-stone-800"></div>
+
+    <h2 class="text-4xl md:text-5xl font-serif mb-4 text-center text-stone-900 tracking-wide uppercase">{titulo}</h2>
+    <div class="w-16 h-px bg-stone-400 mx-auto mb-6"></div>
+    <p class="text-center text-stone-600 mb-10 font-serif italic">{mensaje}</p>
+
+    <form class="space-y-8 max-w-md mx-auto">
+      <div>
+        <input type="text" class="w-full border-b border-stone-400 bg-transparent py-2 text-center focus:outline-none focus:border-stone-900 font-serif text-lg placeholder:text-stone-300 placeholder:italic" placeholder="Nombres de los invitados" required />
+      </div>
+
+      <div class="flex flex-col items-center gap-4 font-serif">
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="radio" name="attending" class="w-4 h-4 accent-stone-900" checked />
+          <span class="text-stone-800 text-lg group-hover:text-stone-500 transition-colors">Acepto con gusto</span>
+        </label>
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="radio" name="attending" class="w-4 h-4 accent-stone-900" />
+          <span class="text-stone-800 text-lg group-hover:text-stone-500 transition-colors">Declino con pesar</span>
+        </label>
+      </div>
+
+      <div class="pt-6">
+        <button type="submit" class="w-full bg-stone-900 text-white font-serif py-3 px-6 uppercase tracking-widest text-sm hover:bg-stone-800 transition-colors border border-stone-900">
+          Enviar Respuesta
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

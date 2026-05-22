@@ -1,0 +1,155 @@
+---
+// src/components/dresscode/DressCodeVintageChic.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+      coloresNoPermitidos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: 'Vintage Romantic',
+  subtitulo: 'Código de vestir: Vintage Chic. Hombres: Traje clásico con chaleco o tirantes. Mujeres: Vestido romántico con encaje o caída suave.',
+  nota: 'Paleta inspirada en flores secas y tonos antiguos.',
+  coloresSugeridos: ['#8C6D62', '#A38A7E', '#D5C3BA', '#B0A89F', '#7D8C83'],
+  coloresNoPermitidos: ['#FFFFFF', '#D9383A']
+};
+---
+
+<section class="py-16 px-6 bg-[#faf6f0] text-[#4a3e3d] flex flex-col justify-center items-center relative overflow-hidden">
+  
+  <!-- Flourished paper corner backgrounds in SVG -->
+  <div class="absolute inset-4 pointer-events-none border border-[#c5a059]/20 rounded-xl"></div>
+  <div class="absolute inset-5 pointer-events-none border border-[#c5a059]/10 rounded-xl"></div>
+
+  <div class="max-w-md w-full p-8 rounded-2xl text-center relative">
+    
+    <!-- Ornate scroll icon -->
+    <div class="flex justify-center mb-4 text-[#c5a059]">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-16.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-16.25v14.25" />
+      </svg>
+    </div>
+
+    <h2 class="text-3xl font-serif italic text-[#6e5d5b] mb-1">
+      {dressCode.titulo}
+    </h2>
+    <span class="text-3xs uppercase tracking-[0.25em] text-[#a68e8b] font-semibold mb-6 block">Código de Vestimenta</span>
+
+    <!-- Sketch Style Hand-drawn SVGs -->
+    <div class="flex justify-center items-center gap-10 my-8">
+      
+      <!-- Vintage Suit Sketch -->
+      <div class="flex flex-col items-center flex-1">
+        <div class="p-4 rounded-xl border border-[#c5a059]/30 bg-[#fffdfb] shadow-inner text-[#6e5d5b]">
+          <svg class="w-16 h-20" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Double breasted jacket sketch -->
+            <path d="M18 20 C 22 18, 58 18, 62 20 L 58 85 H 22 L 18 20 Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 20 L35 48 M58 20 L45 48" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <!-- Lapels sketch style double lines -->
+            <path d="M18 20 L32 45 L25 50" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M62 20 L48 45 L55 50" stroke="currentColor" stroke-width="1.2"/>
+            <!-- Waistcoat (chaleco) lines -->
+            <path d="M35 42 L40 38 L45 42 L40 60 Z" stroke="currentColor" stroke-width="1"/>
+            <!-- Shirt & Tie sketch -->
+            <path d="M32 20 L40 32 L48 20" stroke="currentColor" stroke-width="1"/>
+            <path d="M38 32 L42 32 L40 40 Z" fill="currentColor"/>
+            <!-- Buttons (vintage hand-drawn style) -->
+            <circle cx="36" cy="54" r="1.5" fill="currentColor"/>
+            <circle cx="36" cy="62" r="1.5" fill="currentColor"/>
+            <circle cx="44" cy="54" r="1.5" fill="currentColor"/>
+            <circle cx="44" cy="62" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="text-xs font-serif mt-3 block text-[#6e5d5b]">Caballeros</span>
+        <span class="text-[9px] text-[#a68e8b]">Clásico / Chaleco</span>
+      </div>
+
+      <!-- Vintage Dress Sketch -->
+      <div class="flex flex-col items-center flex-1">
+        <div class="p-4 rounded-xl border border-[#c5a059]/30 bg-[#fffdfb] shadow-inner text-[#6e5d5b]">
+          <svg class="w-16 h-20" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Romance gown A-line -->
+            <path d="M26 18 C28 20, 52 20, 54 18 L 50 42 C44 48, 52 75, 62 88 H 18 C28 75, 36 48, 30 42 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <!-- Lace neck overlay sketch -->
+            <path d="M26 18 C 30 14, 50 14, 54 18" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M30 18 C 32 16, 48 16, 50 18" stroke="currentColor" stroke-width="0.8"/>
+            <path d="M28 26 C33 28, 47 28, 52 26" stroke="currentColor" stroke-width="1"/>
+            <!-- Lace chest pattern gestural lines -->
+            <path d="M32 20 L35 25 M38 20 L40 25 M44 20 L45 25" stroke="currentColor" stroke-width="0.8"/>
+            <!-- Skirt pleat sketch details -->
+            <path d="M30 42 C 34 58, 30 75, 24 87" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M40 42 C 40 58, 40 75, 40 87" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M50 42 C 46 58, 50 75, 56 87" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="text-xs font-serif mt-3 block text-[#6e5d5b]">Damas</span>
+        <span class="text-[9px] text-[#a68e8b]">Encajes / Caída Suave</span>
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <p class="text-xs md:text-sm font-light text-[#5c4a49] leading-relaxed mb-6 px-2">
+      {dressCode.subtitulo}
+    </p>
+
+    <!-- Color Palettes Section -->
+    {(dressCode.coloresSugeridos || dressCode.coloresNoPermitidos) && (
+      <div class="mt-6 pt-5 border-t border-[#c5a059]/20 flex flex-col gap-4">
+        
+        {dressCode.coloresSugeridos && dressCode.coloresSugeridos.length > 0 && (
+          <div class="flex flex-col items-center">
+            <span class="text-[9px] uppercase tracking-wider text-[#a68e8b] font-bold mb-2">Paleta Sugerida</span>
+            <div class="flex gap-2">
+              {dressCode.coloresSugeridos.map((color: string) => (
+                <div 
+                  class="w-7 h-7 rounded-full border border-[#c5a059]/40 shadow-sm transform hover:scale-110 transition-transform relative group cursor-pointer"
+                  style={`background-color: ${color};`}
+                >
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#4a3e3d] text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{color}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {dressCode.coloresNoPermitidos && dressCode.coloresNoPermitidos.length > 0 && (
+          <div class="flex flex-col items-center">
+            <span class="text-[9px] uppercase tracking-wider text-red-800/60 font-bold mb-2">Evitar estos colores</span>
+            <div class="flex gap-2">
+              {dressCode.coloresNoPermitidos.map((color: string) => (
+                <div class="relative group cursor-pointer">
+                  <div 
+                    class="w-7 h-7 rounded-full border border-[#c5a059]/40 shadow-sm opacity-40"
+                    style={`background-color: ${color};`}
+                  />
+                  <!-- Cross overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-8 h-[1px] bg-red-600 rotate-45"></div>
+                  </div>
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#4a3e3d] text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Restringido</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
+    )}
+
+    {dressCode.nota && (
+      <p class="text-[10px] italic text-[#a68e8b] mt-6">
+        * {dressCode.nota}
+      </p>
+    )}
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+const { data } = Astro.props;
+---
+<footer class="bg-[#eae0c8] py-16 px-8 text-center text-[#5c4a3d] border-t-8 border-double border-[#c2b280]">
+  <div class="max-w-xl mx-auto">
+    <h2 class="text-5xl font-['Playfair_Display'] mb-4 italic">
+      {data.nombres}
+    </h2>
+    <p class="text-lg uppercase tracking-widest font-serif mb-6 border-b border-[#5c4a3d] inline-block pb-2">
+      {data.fechaVista}
+    </p>
+    {data.hashtag && (
+      <div class="text-[#8c7a6b] font-['Dancing_Script'] text-2xl mb-8">
+        {data.hashtag}
+      </div>
+    )}
+    <div class="text-[#a09080] text-sm font-sans tracking-wide">
+      DevDiaz-Labs ©
+    </div>
+  </div>
+</footer>

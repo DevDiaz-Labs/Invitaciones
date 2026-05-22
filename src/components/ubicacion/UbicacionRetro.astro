@@ -1,0 +1,67 @@
+---
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  urlMapa: string;
+  iframeMapa?: string;
+}
+interface Props {
+  data: { ceremonia?: Evento; recepcion?: Evento; };
+}
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<section class="py-20 px-4 bg-[#f4ebd0] text-[#4a3b32] font-serif">
+  <div class="max-w-4xl mx-auto border-4 border-dashed border-[#8b7355] p-8 md:p-12 relative">
+    <!-- Corner ornaments -->
+    <div class="absolute -top-3 -left-3 w-6 h-6 bg-[#f4ebd0] border-4 border-solid border-[#8b7355] rounded-full"></div>
+    <div class="absolute -top-3 -right-3 w-6 h-6 bg-[#f4ebd0] border-4 border-solid border-[#8b7355] rounded-full"></div>
+    <div class="absolute -bottom-3 -left-3 w-6 h-6 bg-[#f4ebd0] border-4 border-solid border-[#8b7355] rounded-full"></div>
+    <div class="absolute -bottom-3 -right-3 w-6 h-6 bg-[#f4ebd0] border-4 border-solid border-[#8b7355] rounded-full"></div>
+
+    <h2 class="text-4xl text-center font-bold mb-12 uppercase tracking-widest border-b-2 border-[#8b7355] pb-4 inline-block w-full text-[#5c4a3d]">El Encuentro</h2>
+    
+    <div class="flex flex-col md:flex-row gap-12">
+      {ceremonia && (
+        <div class="flex-1 flex flex-col items-center text-center">
+          <h3 class="text-2xl font-bold mb-3 uppercase tracking-wider">{ceremonia.titulo || "Ceremonia"}</h3>
+          <div class="text-xl italic mb-3 font-semibold">{ceremonia.hora}</div>
+          <p class="font-bold mb-2">{ceremonia.lugar}</p>
+          <p class="text-sm mb-6">{ceremonia.direccion}</p>
+          
+          {ceremonia.iframeMapa && (
+            <div class="w-full h-48 mb-6 border-2 border-[#8b7355] p-1 bg-[#fff8e7] sepia">
+              <iframe src={ceremonia.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
+            Trazar Ruta
+          </a>
+        </div>
+      )}
+
+      {recepcion && (
+        <div class="flex-1 flex flex-col items-center text-center">
+          <h3 class="text-2xl font-bold mb-3 uppercase tracking-wider">{recepcion.titulo || "Recepción"}</h3>
+          <div class="text-xl italic mb-3 font-semibold">{recepcion.hora}</div>
+          <p class="font-bold mb-2">{recepcion.lugar}</p>
+          <p class="text-sm mb-6">{recepcion.direccion}</p>
+          
+          {recepcion.iframeMapa && (
+            <div class="w-full h-48 mb-6 border-2 border-[#8b7355] p-1 bg-[#fff8e7] sepia">
+              <iframe src={recepcion.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
+            Trazar Ruta
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

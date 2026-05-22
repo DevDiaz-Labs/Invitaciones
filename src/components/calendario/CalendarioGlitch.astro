@@ -1,0 +1,80 @@
+---
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+{calendario && (google || apple || outlook) && (
+  <div class="glitch-wrap">
+    <h4 class="glitch-title" data-text="SYNC DATE">SYNC DATE</h4>
+    <div class="glitch-buttons">
+      {google && <a href={google} class="glitch-btn">Google</a>}
+      {apple && <a href={apple} class="glitch-btn">Apple</a>}
+      {outlook && <a href={outlook} class="glitch-btn">Outlook</a>}
+    </div>
+  </div>
+)}
+<style>
+  .glitch-wrap {
+    background: #000;
+    padding: 2rem;
+    text-align: center;
+    font-family: sans-serif;
+    color: #fff;
+  }
+  .glitch-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+  .glitch-title::before, .glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+  }
+  .glitch-title::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+  .glitch-title::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+  @keyframes glitch-anim-1 {
+    0% { clip: rect(20px, 9999px, 30px, 0); }
+    100% { clip: rect(10px, 9999px, 50px, 0); }
+  }
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(40px, 9999px, 60px, 0); }
+    100% { clip: rect(10px, 9999px, 30px, 0); }
+  }
+  .glitch-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .glitch-btn {
+    width: 100%;
+    max-width: 200px;
+    background: #fff;
+    color: #000;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .glitch-btn:hover {
+    background: #ccc;
+  }
+</style>

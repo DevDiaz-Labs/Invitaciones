@@ -1,0 +1,29 @@
+---
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+---
+<section class="py-20 px-6 bg-gray-50">
+  <div class="max-w-md mx-auto">
+    <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+      <div class="bg-teal-600 p-8 text-center text-white">
+        <h2 class="text-3xl font-bold tracking-wide">Itinerary</h2>
+        <p class="text-teal-100 mt-2 text-sm">Join us for the celebration</p>
+      </div>
+      <div class="p-8">
+        <ul class="space-y-6">
+          {itinerary.map((item, idx) => (
+            <li class="flex gap-4 items-start">
+              <div class="bg-teal-50 text-teal-700 font-bold px-3 py-1.5 rounded-lg text-sm shrink-0 border border-teal-100">
+                {item.time}
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">{item.event}</h3>
+                <p class="text-gray-500 text-sm mt-1">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

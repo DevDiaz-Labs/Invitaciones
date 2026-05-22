@@ -1,0 +1,36 @@
+---
+const { data } = Astro.props;
+const titulo = data?.titulo || '¡Confirma tu asistencia!';
+const mensaje = data?.mensajeDespedida || 'Queremos compartir este momento contigo.';
+---
+
+<section class="py-16 px-6 bg-[#FFB5A7]">
+  <div class="max-w-lg mx-auto bg-white p-8 rounded-[3rem] shadow-xl border-[6px] border-[#FCD5CE]">
+    <div class="bg-[#F8EDEB] rounded-[2rem] p-6 mb-8 text-center border-4 border-[#FEC5BB] transform -rotate-2">
+      <h2 class="text-3xl font-extrabold text-[#F08080] mb-2">{titulo}</h2>
+      <p class="text-[#F4978E] font-semibold">{mensaje}</p>
+    </div>
+
+    <form class="space-y-6">
+      <div class="relative">
+        <label class="absolute -top-3 left-4 bg-white px-2 text-sm font-bold text-[#F08080]">Nombre y Apellido</label>
+        <input type="text" class="w-full bg-transparent border-[3px] border-[#FCD5CE] rounded-2xl px-5 py-4 text-gray-700 focus:outline-none focus:border-[#F08080] font-medium" placeholder="Escribe aquí..." required />
+      </div>
+
+      <div class="flex gap-4">
+        <label class="flex-1 cursor-pointer transform hover:scale-105 transition-transform">
+          <input type="radio" name="attending" class="peer sr-only" checked />
+          <div class="text-center px-4 py-4 bg-white border-[3px] border-[#FCD5CE] rounded-2xl peer-checked:border-[#F08080] peer-checked:bg-[#F8EDEB] peer-checked:text-[#F08080] font-bold text-gray-400">¡Sí voy! 🥳</div>
+        </label>
+        <label class="flex-1 cursor-pointer transform hover:scale-105 transition-transform">
+          <input type="radio" name="attending" class="peer sr-only" />
+          <div class="text-center px-4 py-4 bg-white border-[3px] border-[#FCD5CE] rounded-2xl peer-checked:border-gray-400 peer-checked:bg-gray-100 peer-checked:text-gray-600 font-bold text-gray-400">No podré 😢</div>
+        </label>
+      </div>
+
+      <button type="submit" class="w-full bg-[#F08080] hover:bg-[#F4978E] text-white font-black py-4 rounded-full text-xl shadow-[0_8px_0_0_#e56b6b] active:translate-y-2 active:shadow-none transition-all mt-4">
+        ENVIAR
+      </button>
+    </form>
+  </div>
+</section>

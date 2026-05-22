@@ -7,13 +7,16 @@ import UbicacionMiniMapas from "../../components/ubicacion/UbicacionMiniMapas.as
 import UbicacionRosada from "../../components/ubicacion/UbicacionRosada.astro";
 import UbicacionNocturna from "../../components/ubicacion/UbicacionNocturna.astro";
 import UbicacionNatural from "../../components/ubicacion/UbicacionNatural.astro";
-import UbicacionModerna from "../../components/ubicacion/UbicacionModerna.astro";
 import UbicacionRustica from "../../components/ubicacion/UbicacionRustica.astro";
 import UbicacionLujo from "../../components/ubicacion/UbicacionLujo.astro";
 import UbicacionFiesta from "../../components/ubicacion/UbicacionFiesta.astro";
 import UbicacionMapaFull from "../../components/ubicacion/UbicacionMapaFull.astro";
-import UbicacionCompacta from "../../components/ubicacion/UbicacionCompacta.astro";
 import UbicacionTimeline from "../../components/ubicacion/UbicacionTimeline.astro";
+import UbicacionCyberpunk from "../../components/ubicacion/UbicacionCyberpunk.astro";
+import UbicacionMinimalistaBlanco from "../../components/ubicacion/UbicacionMinimalistaBlanco.astro";
+import UbicacionAcuarela from "../../components/ubicacion/UbicacionAcuarela.astro";
+import UbicacionRetro from "../../components/ubicacion/UbicacionRetro.astro";
+import UbicacionVintage from "../../components/ubicacion/UbicacionVintage.astro";
 
 // Datos de prueba (Mocks) que emulan a un cliente real
 const datosEjemplo = {
@@ -130,10 +133,7 @@ const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=8
       </div>
       <UbicacionNatural data={datosEjemplo} />
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
-        MODERNA STYLE (TECH / AZUL-MORADO)
-      </div>
-      <UbicacionModerna data={datosEjemplo} />
+
 
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
         RUSTICA STYLE (CAMPO / KRAFT + BRÚJULA)
@@ -155,15 +155,43 @@ const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=8
       </div>
       <UbicacionMapaFull data={datosEjemplo} />
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
-        COMPACTA STYLE (SIN IFRAME, SOLO BOTÓN)
-      </div>
-      <UbicacionCompacta data={datosEjemplo} />
+
 
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
         TIMELINE STYLE (CEREMONIA → RECEPCIÓN)
       </div>
       <UbicacionTimeline data={datosEjemplo} />
+
+      <!-- ======================== NUEVOS 10 CREADOS ======================== -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CYBERPUNK STYLE (NEON + GRID)
+      </div>
+      <UbicacionCyberpunk data={datosEjemplo} />
+
+
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        MINIMALISTA BLANCO STYLE (LIMPIO + ELEGANTE)
+      </div>
+      <UbicacionMinimalistaBlanco data={datosEjemplo} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        ACUARELA STYLE (SUAVE + PASTEL)
+      </div>
+      <UbicacionAcuarela data={datosEjemplo} />
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        RETRO STYLE (SEPIA + DASHED BORDERS)
+      </div>
+      <UbicacionRetro data={datosEjemplo} />
+
+
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        VINTAGE STYLE (PAPER + TYPEWRITER)
+      </div>
+      <UbicacionVintage data={datosEjemplo} />
 
     </main>
   </body>

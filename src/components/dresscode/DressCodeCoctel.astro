@@ -1,0 +1,84 @@
+---
+// src/components/dresscode/DressCodeCoctel.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: data?.estilo || 'Código Cóctel',
+  subtitulo: data?.descripcion || 'Hombres: Saco y pantalón de vestir (corbata opcional). Damas: Vestido de cóctel, falda elegante o palazzo.',
+  nota: 'No se permite ropa deportiva, mezclilla rota o tenis.',
+  coloresSugeridos: ['#1e293b', '#475569', '#64748b', '#cbd5e1', '#f1f5f9']
+};
+---
+
+<section class="py-16 px-6 bg-[#f8fafc] text-slate-800 flex flex-col justify-center items-center">
+  <div class="max-w-md w-full border border-slate-200 bg-white p-8 rounded-2xl shadow-sm text-center relative">
+    
+    <!-- Top hanger/clothing icon -->
+    <div class="flex justify-center mb-4 text-slate-600">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      </svg>
+    </div>
+
+    <h2 class="text-2xl font-bold tracking-widest text-slate-900 uppercase mb-1">
+      {dressCode.titulo}
+    </h2>
+    <span class="text-3xs uppercase tracking-[0.25em] text-slate-500 font-semibold mb-6 block">Semi-Formal</span>
+
+    <!-- Modern minimal clothing sketches grid side-by-side -->
+    <div class="grid grid-cols-2 gap-4 my-8">
+      
+      <!-- Hombres (Saco y Pantalón) -->
+      <div class="border border-slate-100 bg-slate-50 p-4 rounded-xl flex flex-col items-center">
+        <!-- Blazer sketch -->
+        <svg class="w-10 h-12 text-slate-600 mb-2" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6 L12 10 L20 6 L18 26 L6 26 Z" stroke="currentColor" stroke-width="1.2" />
+          <path d="M12 10 V26" stroke="currentColor" stroke-width="1.2" />
+          <path d="M12 10 L8 2 L12 0 L16 2 Z" fill="none" stroke="currentColor" stroke-width="1.2" />
+          <circle cx="12" cy="14" r="1" fill="currentColor" />
+          <circle cx="12" cy="18" r="1" fill="currentColor" />
+        </svg>
+        <span class="text-3xs uppercase font-semibold text-slate-700 tracking-wider">Saco & Pantalón</span>
+      </div>
+
+      <!-- Damas (Vestido Cóctel / Falda) -->
+      <div class="border border-slate-100 bg-slate-50 p-4 rounded-xl flex flex-col items-center">
+        <!-- Cocktail dress sketch -->
+        <svg class="w-10 h-12 text-slate-600 mb-2" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 6 C8 8, 16 8, 17 6 L19 14 H5 Z" stroke="currentColor" stroke-width="1.2" />
+          <path d="M5 14 L3 26 C8 27, 16 27, 21 26 L19 14" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+          <path d="M12 6 V26" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+          <path d="M9 2 L7 6" stroke="currentColor" stroke-width="1.2" />
+          <path d="M15 2 L17 6" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <span class="text-3xs uppercase font-semibold text-slate-700 tracking-wider">Vestido o Palazzo</span>
+      </div>
+
+    </div>
+
+    <p class="text-sm text-slate-600 px-2 leading-relaxed mb-6">
+      {dressCode.subtitulo}
+    </p>
+
+    {dressCode.nota && (
+      <div class="mt-4 pt-4 border-t border-slate-100">
+        <p class="text-3xs text-red-500/70 italic font-medium">
+          ⚠️ {dressCode.nota}
+        </p>
+      </div>
+    )}
+
+  </div>
+</section>

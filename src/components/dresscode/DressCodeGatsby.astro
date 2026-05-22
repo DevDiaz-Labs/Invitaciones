@@ -1,0 +1,22 @@
+---
+const { data } = Astro.props;
+const dressCode = data?.dressCode || {
+  titulo: 'Black Tie',
+  subtitulo: 'Glamour y Elegancia',
+  nota: 'Inspirado en los años 20s.'
+};
+---
+<section class="py-24 px-6 bg-[#0a0a0a] flex justify-center">
+  <div class="w-full max-w-sm border-[3px] border-double border-[#d4af37] p-8 text-center relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]">
+    <div class="absolute top-2 left-2 right-2 bottom-2 border border-[#d4af37] opacity-50"></div>
+    <h2 class="relative z-10 font-serif text-5xl text-[#d4af37] mb-4 tracking-wider uppercase font-bold" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">{dressCode.titulo}</h2>
+    <div class="flex items-center justify-center gap-2 mb-4">
+      <div class="h-px w-8 bg-[#d4af37]"></div>
+      <span class="text-[#f3e5ab] font-sans text-sm tracking-widest uppercase">{dressCode.subtitulo}</span>
+      <div class="h-px w-8 bg-[#d4af37]"></div>
+    </div>
+    <p class="relative z-10 text-[#a9a9a9] text-sm font-light leading-relaxed mt-6">
+      {dressCode.nota}
+    </p>
+  </div>
+</section>

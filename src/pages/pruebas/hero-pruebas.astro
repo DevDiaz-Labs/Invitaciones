@@ -3,6 +3,14 @@
 import HeroBoho from "../../components/hero/HeroBoho.astro";
 import HeroMinimalista from "../../components/hero/HeroMinimalista.astro";
 import HeroSofia from "../../components/xv-plantilla/Hero.astro";
+
+import HeroClassic from "../../components/hero/HeroClassic.astro";
+import HeroModern from "../../components/hero/HeroModern.astro";
+import HeroLuxury from "../../components/hero/HeroLuxury.astro";
+import HeroVintage from "../../components/hero/HeroVintage.astro";
+import HeroNature from "../../components/hero/HeroNature.astro";
+import HeroRomantic from "../../components/hero/HeroRomantic.astro";
+
 import dataXV from "../../data/clientes/ejemplo-xv.json";
 
 
@@ -126,10 +134,53 @@ const mockData = {
       </div>
 
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROXV (SOFIA VALERIA) PRUEBA NUEVA
+        HERO XV
       </div>
       <div class="relative w-full">
         <HeroSofia data={dataXV.hero} />
+      </div>
+
+      <!-- NEW COMPONENTS -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HEROCLASSIC STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroClassic data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HEROMODERN STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroModern data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HEROLUXURY STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroLuxury data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HEROVINTAGE STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroVintage data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HERONATURE STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroNature data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        HEROROMANTIC STYLE
+      </div>
+      <div class="relative w-full">
+        <HeroRomantic data={mockData} />
       </div>
 
     </main>

@@ -1,0 +1,34 @@
+---
+const { data } = Astro.props;
+const titulo = data?.titulo || 'Let\'s Celebrate!';
+const mensaje = data?.mensajeDespedida || 'Confirma tu lugar en la fiesta del año.';
+---
+
+<section class="py-16 px-6 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 text-white">
+  <div class="max-w-md mx-auto bg-white/10 p-8 rounded-3xl backdrop-blur-sm border border-white/20 shadow-2xl">
+    <h2 class="text-4xl font-extrabold mb-2 text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400 drop-shadow-sm">{titulo}</h2>
+    <p class="text-center text-pink-100 mb-8 font-medium">{mensaje}</p>
+
+    <form class="space-y-5">
+      <div>
+        <label class="block text-sm font-bold text-pink-100 mb-1 ml-2">¿Quiénes asisten?</label>
+        <input type="text" class="w-full bg-white/20 border-2 border-white/30 rounded-full px-6 py-3 text-white focus:outline-none focus:border-white focus:bg-white/30 transition-all placeholder-pink-200" placeholder="Escribe tu nombre" required />
+      </div>
+
+      <div class="bg-white/10 rounded-2xl p-2 flex gap-2">
+        <label class="flex-1">
+          <input type="radio" name="attending" class="peer sr-only" checked />
+          <div class="text-center px-4 py-3 rounded-xl cursor-pointer peer-checked:bg-white peer-checked:text-purple-600 font-bold transition-all text-white hover:bg-white/20">¡Voy a ir!</div>
+        </label>
+        <label class="flex-1">
+          <input type="radio" name="attending" class="peer sr-only" />
+          <div class="text-center px-4 py-3 rounded-xl cursor-pointer peer-checked:bg-white peer-checked:text-purple-600 font-bold transition-all text-white hover:bg-white/20">No puedo :(</div>
+        </label>
+      </div>
+
+      <button type="submit" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-purple-900 font-black py-4 rounded-full shadow-lg transform hover:scale-105 transition-all mt-4 text-lg">
+        CONFIRMAR AHORA
+      </button>
+    </form>
+  </div>
+</section>

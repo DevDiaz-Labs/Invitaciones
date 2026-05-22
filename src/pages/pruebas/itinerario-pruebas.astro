@@ -1,10 +1,16 @@
 ---
 // src/pages/pruebas/itinerario-pruebas.astro
 import ItinerarioMinimalista from "../../components/itinerario/ItinerarioMinimalista.astro";
-
-
-
-const mockData = {
+import ItinerarioDark from "../../components/itinerario/ItinerarioDark.astro";
+import ItinerarioBoho from "../../components/itinerario/ItinerarioBoho.astro";
+import ItinerarioElegant from "../../components/itinerario/ItinerarioElegant.astro";
+import ItinerarioTimeline from "../../components/itinerario/ItinerarioTimeline.astro";
+import ItinerarioGlass from "../../components/itinerario/ItinerarioGlass.astro";
+import ItinerarioCard from "../../components/itinerario/ItinerarioCard.astro";
+import ItinerarioVibrant from "../../components/itinerario/ItinerarioVibrant.astro";
+import ItinerarioPolaroid from "../../components/itinerario/ItinerarioPolaroid.astro";
+import ItinerarioRetro from "../../components/itinerario/ItinerarioRetro.astro";
+import ItinerarioClassic from "../../components/itinerario/ItinerarioClassic.astro";const mockData = {
   mostrar: true,
   nombres: 'Ana & Carlos',
   titulo: 'Mesa de Regalos / Lluvia de Sobres',
@@ -81,6 +87,76 @@ const mockData = {
       </div>
       <div class="relative w-full">
         <ItinerarioMinimalista data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DARK STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioDark data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        BOHO STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioBoho data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        ELEGANT STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioElegant data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        TIMELINE STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioTimeline data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        GLASS STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioGlass data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        CARD STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioCard data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        VIBRANT STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioVibrant data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        POLAROID STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioPolaroid data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        RETRO STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioRetro data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        CLASSIC STYLE
+      </div>
+      <div class="relative w-full">
+        <ItinerarioClassic data={mockData} />
       </div>
 
     </main>

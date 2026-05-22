@@ -10,6 +10,11 @@ import CartaJoven from "../../components/carta/CartaJoven.astro";
 import CartaRustica from "../../components/carta/CartaRustica.astro";
 import CartaReal from "../../components/carta/CartaReal.astro";
 import CartaBohemia from "../../components/carta/CartaBohemia.astro";
+import CartaVintage from "../../components/carta/CartaVintage.astro";
+import CartaAcuarela from "../../components/carta/CartaAcuarela.astro";
+import CartaGeometrica from "../../components/carta/CartaGeometrica.astro";
+import CartaBotanica from "../../components/carta/CartaBotanica.astro";
+import CartaFuturista from "../../components/carta/CartaFuturista.astro";
 
 const mockTexto = 'Hace quince años Dios me regaló la vida,<br/>y hoy agradezco poder compartir este día con ustedes.<br/>Gracias por ser parte de mi historia.';
 
@@ -91,7 +96,7 @@ const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=8
 
       <!-- 1. SIMPLE STYLE -->
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
-        CARTA: ESTILO SIMPLE (ORIGINAL)
+        CARTA: ESTILO SIMPLE
       </div>
       <div class="bg-[#fdfbf7]">
         <Carta data={mockCartaSimple} />
@@ -101,7 +106,7 @@ const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=8
 
       <!-- 3. RECUADRO CON ADORNO -->
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
-        CARTA: ESTILO RECUADRO CON ADORNO (ORIGINAL)
+        CARTA: ESTILO RECUADRO CON ADORNO
       </div>
       <div class="bg-[#faf6f0]">
         <Carta data={mockCartaRecuadro} />
@@ -168,6 +173,36 @@ const bgFoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=8
         CARTA BOHEMIA — Boho, círculos geométricos, pluma SVG, terracota
       </div>
       <CartaBohemia data={mockCarta} />
+
+      <!-- 16. VINTAGE -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA VINTAGE — Tonalidades sepia, fuente de máquina de escribir antigua
+      </div>
+      <CartaVintage data={mockCarta} />
+
+      <!-- 19. ACUARELA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA ACUARELA — Manchas de acuarela pastel, fuente cursiva casual
+      </div>
+      <CartaAcuarela data={mockCarta} />
+
+      <!-- 20. GEOMÉTRICA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA GEOMÉTRICA — Formas afiladas, diseño abstracto y alto contraste
+      </div>
+      <CartaGeometrica data={mockCarta} />
+
+      <!-- 22. BOTÁNICA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA BOTÁNICA — Tonos verdes, adornos de hojas SVG, vibras naturales
+      </div>
+      <CartaBotanica data={mockCarta} />
+
+      <!-- 24. FUTURISTA -->
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200">
+        CARTA FUTURISTA — Cyberpunk, fondo oscuro, bordes con efecto neón
+      </div>
+      <CartaFuturista data={mockCarta} />
 
 
 

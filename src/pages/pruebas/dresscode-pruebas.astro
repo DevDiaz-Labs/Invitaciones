@@ -1,10 +1,23 @@
 ---
 import DressCodeMinimalista from "../../components/dresscode/DressCodeMinimalista.astro";
-// src/pages/pruebas/dresscode-pruebas.astro
 import DressCodeXV from "../../components/dresscode/DressCodeXV.astro";
 import DressCodeBoho from "../../components/dresscode/DressCodeBoho.astro";
+import DressCodeRetro from "../../components/dresscode/DressCodeRetro.astro";
+import DressCodeGatsby from "../../components/dresscode/DressCodeGatsby.astro";
+import DressCodeIndustrial from "../../components/dresscode/DressCodeIndustrial.astro";
 
+// Nuevos componentes premium con ilustraciones de saco y vestido
+import DressCodeEtiqueta from "../../components/dresscode/DressCodeEtiqueta.astro";
+import DressCodeGlitz from "../../components/dresscode/DressCodeGlitz.astro";
+import DressCodeChampagne from "../../components/dresscode/DressCodeChampagne.astro";
+import DressCodePlaya from "../../components/dresscode/DressCodePlaya.astro";
+import DressCodeCoctel from "../../components/dresscode/DressCodeCoctel.astro";
 
+// Variaciones extra premium super-elegantes
+import DressCodeGalaImperial from "../../components/dresscode/DressCodeGalaImperial.astro";
+import DressCodeRosadoGlam from "../../components/dresscode/DressCodeRosadoGlam.astro";
+import DressCodeJardinElegante from "../../components/dresscode/DressCodeJardinElegante.astro";
+import DressCodeVintageChic from "../../components/dresscode/DressCodeVintageChic.astro";
 
 const mockData = {
   mostrar: true,
@@ -92,7 +105,6 @@ const mockData = {
         <DressCodeXV data={mockData} />
       </div>
 
-    
       <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
         DRESSCODEMINIMALISTA STYLE
       </div>
@@ -106,6 +118,95 @@ const mockData = {
       <div class="relative w-full">
         <DressCodeBoho />
       </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODERETRO STYLE
+      </div>
+      <div class="relative w-full">
+        <DressCodeRetro data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODEGATSBY STYLE
+      </div>
+      <div class="relative w-full">
+        <DressCodeGatsby data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODEINDUSTRIAL STYLE
+      </div>
+      <div class="relative w-full">
+        <DressCodeIndustrial data={mockData} />
+      </div>
+
+      <!-- NUEVAS VARIACIONES PREMIUM (CON ILUSTRACIONES) -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE ETIQUETA (Smoking & Gala)
+      </div>
+      <div class="relative w-full">
+        <DressCodeEtiqueta data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE GLITZ (Brillos & Elegante)
+      </div>
+      <div class="relative w-full">
+        <DressCodeGlitz data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE CHAMPAGNE (Paleta de Colores)
+      </div>
+      <div class="relative w-full">
+        <DressCodeChampagne data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE PLAYA (Guayabera & Lino)
+      </div>
+      <div class="relative w-full">
+        <DressCodePlaya data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE COCTEL (Saco & Vestido Moderno)
+      </div>
+      <div class="relative w-full">
+        <DressCodeCoctel data={mockData} />
+      </div>
+
+      <!-- VARIACIONES EXTRA PREMIUM SUPER-ELEGANTES -->
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE GALA IMPERIAL (Royal Azul & Oro)
+      </div>
+      <div class="relative w-full">
+        <DressCodeGalaImperial data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE ROSADO GLAM (Rose Gold & Esmeralda)
+      </div>
+      <div class="relative w-full">
+        <DressCodeRosadoGlam data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE JARDIN ELEGANTE (Salvia & Lino)
+      </div>
+      <div class="relative w-full">
+        <DressCodeJardinElegante data={mockData} />
+      </div>
+
+      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
+        DRESSCODE VINTAGE CHIC (Papel & Bosquejo)
+      </div>
+      <div class="relative w-full">
+        <DressCodeVintageChic data={mockData} />
+      </div>
+
     </main>
   </body>
 </html>

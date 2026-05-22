@@ -1,0 +1,110 @@
+---
+// src/components/dresscode/DressCodePlaya.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: data?.estilo || 'Guayabera / Playa Elegante',
+  subtitulo: data?.descripcion || 'Hombres: Guayabera de lino y pantalón claro. Mujeres: Vestido largo o midi fresco y vaporoso.',
+  nota: 'No se permite mezclilla ni sandalias de baño. Zapatos cómodos sugeridos para arena.',
+  coloresSugeridos: ['#e4ded2', '#fbf9f4', '#d0e5e3', '#a7cccb', '#dfc4b2']
+};
+---
+
+<section class="py-16 px-6 bg-gradient-to-b from-[#f2ebe1] to-[#e4ded2] text-[#4d443b] flex flex-col justify-center items-center relative overflow-hidden">
+  
+  <!-- Subtle organic background wave/sand effect -->
+  <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-[#d0e5e3]/20 rounded-full blur-2xl pointer-events-none"></div>
+
+  <div class="max-w-md w-full border border-[#4d443b]/10 bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-md text-center relative">
+    
+    <!-- Beach Palm Leaf Icon -->
+    <div class="flex justify-center mb-4 text-[#758e8c]">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M12 3a9 9 0 019 9v1M12 3a9 9 0 00-9 9v1M12 8a6 6 0 016 6v1M12 8a6 6 0 00-6 6v1" />
+      </svg>
+    </div>
+
+    <h2 class="text-3xl font-serif tracking-widest text-[#5c7371] uppercase mb-1">
+      {dressCode.titulo}
+    </h2>
+    <span class="text-3xs uppercase tracking-[0.3em] text-[#8e8275] font-semibold mb-6 block">Playa Elegante</span>
+
+    <!-- Hombres (Guayabera) and Damas (Vaporoso) Graphics -->
+    <div class="flex justify-center items-center gap-10 my-8">
+      
+      <!-- Hombres (Guayabera) -->
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-[#758e8c]/10 border border-[#758e8c]/20 flex items-center justify-center mb-2">
+          <!-- Guayabera SVG -->
+          <svg class="w-8 h-8 text-[#5c7371]" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 12L24 18V56H40V18L48 12L42 8H22L16 12Z" stroke="currentColor" stroke-width="1.5" />
+            <path d="M32 8V56" stroke="currentColor" stroke-width="1.5" />
+            <path d="M22 8C22 12, 28 14, 32 14 C 36 14, 42 12, 42 8" stroke="currentColor" stroke-width="1.5" />
+            <!-- Pockets -->
+            <rect x="20" y="24" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+            <rect x="38" y="24" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+            <rect x="20" y="38" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+            <rect x="38" y="38" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+          </svg>
+        </div>
+        <span class="text-3xs uppercase tracking-widest text-[#8e8275]">Caballeros</span>
+      </div>
+
+      <!-- Damas (Summer Dress) -->
+      <div class="flex flex-col items-center">
+        <div class="w-16 h-16 rounded-full bg-[#758e8c]/10 border border-[#758e8c]/20 flex items-center justify-center mb-2">
+          <!-- Summer Dress SVG -->
+          <svg class="w-8 h-8 text-[#5c7371]" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 16L12 56C20 59, 44 59, 52 56L44 16H20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- V Neck -->
+            <path d="M24 16L32 26L40 16" stroke="currentColor" stroke-width="1.5" />
+            <path d="M22 8L24 16" stroke="currentColor" stroke-width="1.5" />
+            <path d="M42 8L40 16" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="32" cy="30" r="1.5" fill="currentColor" />
+            <circle cx="32" cy="36" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <span class="text-3xs uppercase tracking-widest text-[#8e8275]">Damas</span>
+      </div>
+
+    </div>
+
+    <p class="text-sm font-light text-[#594d40] px-4 leading-relaxed mb-6">
+      {dressCode.subtitulo}
+    </p>
+
+    <!-- Colors Pallete -->
+    {dressCode.coloresSugeridos && (
+      <div class="flex flex-col items-center border-t border-[#4d443b]/5 pt-4">
+        <span class="text-3xs uppercase tracking-wider text-[#8e8275] mb-2">Paleta recomendada</span>
+        <div class="flex gap-2">
+          {dressCode.coloresSugeridos.map((color: string) => (
+            <div 
+              class="w-6 h-6 rounded-full border border-white shadow-sm"
+              style={`background-color: ${color};`}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {dressCode.nota && (
+      <p class="text-3xs italic text-[#758e8c] mt-4">
+        * {dressCode.nota}
+      </p>
+    )}
+
+  </div>
+</section>

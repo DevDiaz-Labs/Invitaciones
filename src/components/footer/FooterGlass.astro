@@ -1,0 +1,23 @@
+---
+const { data } = Astro.props;
+---
+<footer class="relative py-16 px-6 text-center bg-gray-100 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${data.imagenFondo || "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800"}');`}></div>
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+  <div class="relative z-10 max-w-lg mx-auto bg-white/10 p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] border border-white/20">
+    <h2 class="text-4xl text-white font-['Montserrat'] font-bold mb-2">
+      {data.nombres}
+    </h2>
+    <p class="text-white/80 font-medium tracking-wider mb-6">
+      {data.fechaVista}
+    </p>
+    {data.hashtag && (
+      <p class="text-white font-mono text-sm bg-black/30 px-3 py-1 rounded-md inline-block mb-6">
+        {data.hashtag}
+      </p>
+    )}
+    <p class="text-white/50 text-xs mt-4">
+      Powered by DevDiaz-Labs
+    </p>
+  </div>
+</footer>

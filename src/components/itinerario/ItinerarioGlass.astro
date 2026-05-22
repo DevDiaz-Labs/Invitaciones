@@ -1,0 +1,27 @@
+---
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+const bgImage = data?.imagenFondo || 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800';
+---
+<section class="py-24 px-4 relative overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${bgImage}')`}></div>
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+  
+  <div class="max-w-md mx-auto relative z-10">
+    <h2 class="text-3xl font-light text-white text-center mb-10 tracking-[0.2em] uppercase">Cronograma</h2>
+    
+    <div class="grid gap-6">
+      {itinerary.map((item, idx) => (
+        <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-3xl flex items-center gap-6 shadow-xl">
+          <div class="shrink-0 w-16 h-16 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-medium shadow-inner">
+            {item.time}
+          </div>
+          <div>
+            <h3 class="text-xl text-white font-semibold mb-1">{item.event}</h3>
+            <p class="text-white/70 text-sm">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
