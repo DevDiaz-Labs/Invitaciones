@@ -21,8 +21,8 @@ const descripcion = data?.descripcion || data?.dressCode?.subtitulo || "Se reser
 ---
 
 <section
-    class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh]"
-    style={`${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.5), rgba(255, 236, 251, 0.5)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}`}
+    class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh] bg-[var(--bg-cream)] dresscode-xv-card"
+    style={`${bgImage ? `background-image: linear-gradient(rgba(252, 231, 243, 0.65), rgba(252, 231, 243, 0.65)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}`}
 >
     <div class="max-w-3xl mx-auto space-y-12 relative z-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl text-[var(--gold)]">
@@ -79,6 +79,21 @@ const descripcion = data?.descripcion || data?.dressCode?.subtitulo || "Se reser
             >
                 "{descripcion}"
             </p>
+            {data?.dressCode?.nota && (
+                <p class="text-[var(--dark-text)] opacity-70 italic text-sm mt-4">
+                    * {data.dressCode.nota}
+                </p>
+            )}
         </div>
     </div>
 </section>
+
+<style>
+    .dresscode-xv-card {
+        --gold: #b30000;
+        --bg-cream: #fce7f3;
+        --dark-text: #333333;
+    }
+</style>
+
+

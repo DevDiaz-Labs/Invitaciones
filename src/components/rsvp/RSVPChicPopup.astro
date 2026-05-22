@@ -1,0 +1,147 @@
+---
+// src/components/rsvp/RSVPChicPopup.astro
+const { data } = Astro.props;
+---
+
+<section class="py-16 px-6 bg-[#0d0d0d] text-white font-sans text-center relative border-b border-white/10" x-data="{
+  modalOpen: false,
+  tab: 'asistencia',
+  submitted: false,
+  formData: {
+    nombre: '',
+    asistencia: 'si',
+    adultos: 2,
+    ninos: 0,
+    hotel: 'no',
+    cancion: ''
+  },
+  submitForm() {
+    console.log('Chic Popup RSVP Submitted:', this.formData);
+    this.submitted = true;
+  }
+}">
+  <div class="max-w-md mx-auto py-6">
+    <span class="text-xs uppercase tracking-widest text-[#d9a066] font-semibold font-mono">Popup Interactivo</span>
+    <h3 class="text-3xl font-serif mt-2 mb-4">¿Nos acompañarás en esta noche mágica?</h3>
+    <p class="text-xs text-gray-400 max-w-xs mx-auto leading-relaxed mb-8">
+      Haz clic en el botón de abajo para desplegar el formulario interactivo de confirmación.
+    </p>
+
+    <!-- Trigger Button -->
+    <button type="button" @click="modalOpen = true; tab = 'asistencia'" class="bg-transparent border border-[#d9a066] hover:bg-[#d9a066]/10 text-[#d9a066] py-3.5 px-8 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-amber-950/20 active:scale-95">
+      Confirmar Asistencia
+    </button>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div x-show="modalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" x-transition.opacity.duration.300ms style="display: none;">
+    
+    <!-- Modal Card -->
+    <div x-show="modalOpen" @click.outside="modalOpen = false" class="bg-[#151515] border border-white/10 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative text-left" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-4" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-4">
+      
+      <!-- Close Button -->
+      <button type="button" @click="modalOpen = false" class="absolute top-4 right-4 text-gray-500 hover:text-white text-lg">&times;</button>
+
+      <!-- Submitted View -->
+      <div x-show="submitted" class="text-center py-12 space-y-4">
+        <div class="w-12 h-12 bg-[#d9a066]/10 border border-[#d9a066]/30 text-[#d9a066] rounded-full flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+        <h4 class="text-lg font-serif">¡Guardado con éxito!</h4>
+        <p class="text-xs text-gray-400 leading-relaxed" x-text="formData.asistencia === 'si' ? 'Tus preferencias de hotel y playlist han sido guardadas. ¡Te esperamos!' : 'Gracias por confirmarnos. Estarás con nosotros en mente.'"></p>
+        <button type="button" @click="modalOpen = false; submitted = false;" class="w-full bg-[#d9a066] text-black font-semibold text-xs py-2 rounded-lg mt-4 uppercase tracking-widest font-mono">Cerrar</button>
+      </div>
+
+      <!-- Form Content -->
+      <div x-show="!submitted">
+        <!-- Modal Tabs Header -->
+        <div class="flex border-b border-white/10 pb-2 mb-4 gap-4 text-xs font-semibold font-mono">
+          <button type="button" @click="tab = 'asistencia'" :class="tab === 'asistencia' ? 'text-[#d9a066] border-b border-[#d9a066] pb-1' : 'text-gray-500'">1. Registro</button>
+          <button type="button" @click="if(formData.asistencia === 'si') tab = 'hospedaje'" :class="tab === 'hospedaje' ? 'text-[#d9a066] border-b border-[#d9a066] pb-1' : 'text-gray-500'" :disabled="formData.asistencia === 'no'" class="disabled:opacity-20">2. Estancia</button>
+          <button type="button" @click="if(formData.asistencia === 'si') tab = 'musica'" :class="tab === 'musica' ? 'text-[#d9a066] border-b border-[#d9a066] pb-1' : 'text-gray-500'" :disabled="formData.asistencia === 'no'" class="disabled:opacity-20">3. Música</button>
+        </div>
+
+        <form @submit.prevent="submitForm" class="space-y-4">
+          
+          <!-- TAB 1: ASISTENCIA -->
+          <div x-show="tab === 'asistencia'" class="space-y-4">
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-mono mb-1">Nombre Completo</label>
+              <input type="text" required x-model="formData.nombre" class="w-full bg-[#202020] border border-white/10 rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-[#d9a066]" placeholder="Nombre y apellido" />
+            </div>
+
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-mono mb-2">¿Asistirás?</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" @click="formData.asistencia = 'si'" :class="formData.asistencia === 'si' ? 'bg-[#d9a066]/20 border-[#d9a066] text-[#d9a066]' : 'bg-[#202020] border-white/5 text-gray-400'" class="border rounded-lg py-2 text-center text-xs font-mono font-bold">SÍ, CLARO</button>
+                <button type="button" @click="formData.asistencia = 'no'" :class="formData.asistencia === 'no' ? 'bg-pink-900/20 border-pink-700/40 text-pink-400' : 'bg-[#202020] border-white/5 text-gray-400'" class="border rounded-lg py-2 text-center text-xs font-mono font-bold">NO PODRÉ</button>
+              </div>
+            </div>
+
+            <!-- Guest split -->
+            <div x-show="formData.asistencia === 'si'" x-transition class="grid grid-cols-2 gap-3 pt-2">
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-500 font-mono mb-1">Pases Adulto</label>
+                <div class="flex items-center justify-between bg-[#202020] rounded-lg px-2 py-1">
+                  <button type="button" @click="if(formData.adultos > 1) formData.adultos--" class="text-[#d9a066] font-bold px-1 text-xs">-</button>
+                  <span class="text-xs font-mono" x-text="formData.adultos"></span>
+                  <button type="button" @click="if(formData.adultos < 8) formData.adultos++" class="text-[#d9a066] font-bold px-1 text-xs">+</button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-500 font-mono mb-1">Pases Niño</label>
+                <div class="flex items-center justify-between bg-[#202020] rounded-lg px-2 py-1">
+                  <button type="button" @click="if(formData.ninos > 0) formData.ninos--" class="text-[#d9a066] font-bold px-1 text-xs">-</button>
+                  <span class="text-xs font-mono" x-text="formData.ninos"></span>
+                  <button type="button" @click="if(formData.ninos < 8) formData.ninos++" class="text-[#d9a066] font-bold px-1 text-xs">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: HOSPAJE -->
+          <div x-show="tab === 'hospedaje'" class="space-y-4">
+            <h5 class="text-xs text-[#d9a066] font-semibold uppercase tracking-wider font-mono">Hospedaje & Logística</h5>
+            <p class="text-[10px] text-gray-400 leading-relaxed">
+              ¿Te hospedarás en el Hotel Sede (Hacienda Real) o requieres servicio de transporte colectivo para el evento?
+            </p>
+            
+            <div class="space-y-2">
+              <label class="flex items-center justify-between bg-[#202020] p-2.5 rounded-lg cursor-pointer">
+                <span class="text-xs text-gray-200">Me hospedaré en Hotel Sede</span>
+                <input type="radio" value="hotel" x-model="formData.hotel" class="text-[#d9a066] focus:ring-0 bg-transparent w-4 h-4 border-white/20" />
+              </label>
+              <label class="flex items-center justify-between bg-[#202020] p-2.5 rounded-lg cursor-pointer">
+                <span class="text-xs text-gray-200">Me hospedaré en otra locación</span>
+                <input type="radio" value="otro" x-model="formData.hotel" class="text-[#d9a066] focus:ring-0 bg-transparent w-4 h-4 border-white/20" />
+              </label>
+              <label class="flex items-center justify-between bg-[#202020] p-2.5 rounded-lg cursor-pointer">
+                <span class="text-xs text-gray-200">No necesito hospedaje</span>
+                <input type="radio" value="no" x-model="formData.hotel" class="text-[#d9a066] focus:ring-0 bg-transparent w-4 h-4 border-white/20" />
+              </label>
+            </div>
+          </div>
+
+          <!-- TAB 3: MUSICA -->
+          <div x-show="tab === 'musica'" class="space-y-4">
+            <h5 class="text-xs text-[#d9a066] font-semibold uppercase tracking-wider font-mono">Sugerencia de Canción</h5>
+            <p class="text-[10px] text-gray-400 leading-relaxed">
+              El DJ quiere saber qué canción no puede faltar en la pista para que bailes toda la noche.
+            </p>
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-gray-500 font-mono mb-1">Canción / Artista</label>
+              <input type="text" x-model="formData.cancion" class="w-full bg-[#202020] border border-white/10 rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-[#d9a066]" placeholder="Ej. Levitating - Dua Lipa" />
+            </div>
+          </div>
+
+          <!-- Actions Footer inside modal -->
+          <div class="flex gap-2 pt-4 border-t border-white/10">
+            <button type="button" x-show="tab === 'hospedaje' || tab === 'musica'" @click="tab = tab === 'musica' ? 'hospedaje' : 'asistencia'" class="flex-1 bg-[#202020] border border-white/5 text-gray-400 py-2 rounded text-xs font-mono uppercase tracking-wider">Atrás</button>
+            <button type="button" x-show="tab === 'asistencia' && formData.asistencia === 'si'" @click="tab = 'hospedaje'" class="flex-1 bg-[#d9a066] text-black py-2 rounded text-xs font-mono font-bold uppercase tracking-wider">Siguiente</button>
+            <button type="submit" x-show="tab === 'musica' || formData.asistencia === 'no' || (tab === 'hospedaje' && formData.asistencia === 'si')" class="flex-1 bg-[#d9a066] text-black py-2 rounded text-xs font-mono font-bold uppercase tracking-wider">Confirmar</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+---
+// src/components/hero/HeroXVMinimalElegance.astro
+interface Props {
+  data?: {
+    etiqueta?: string;
+    nombres?: string;
+    nombre?: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    frase?: string;
+    imagenFondo?: string;
+    imagen?: string;
+  };
+}
+
+const { data = {} } = Astro.props;
+
+const etiqueta = data.etiqueta || "Mis XV Años";
+const nombre = data.nombres || data.nombre || "Sofía Valeria";
+const fecha = data.fechaVista || data.fechaTexto || "24 de Octubre de 2026";
+const frase = data.frase || "Simplicidad y elegancia en el mejor día de mi vida.";
+const imagenFondo = data.imagenFondo || data.imagen || "https://images.unsplash.com/photo-1507504038482-76214340653a?q=80&w=1200&auto=format&fit=crop";
+---
+
+<header class="relative w-full h-screen flex bg-white overflow-hidden p-6 md:p-12">
+  <!-- Minimalist split layout: Left text, Right Image -->
+  <div class="w-full h-full flex flex-col md:flex-row relative z-10 rounded-2xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] bg-white overflow-hidden">
+    
+    <!-- Image Area -->
+    <div class="w-full md:w-1/2 h-[50vh] md:h-full relative order-1 md:order-2">
+      <img src={imagenFondo} alt="Minimal Elegance" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/10"></div>
+    </div>
+
+    <!-- Text Area -->
+    <div class="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center items-center md:items-start p-8 md:p-16 order-2 md:order-1 text-center md:text-left">
+      <span class="text-[9px] font-sans uppercase tracking-[0.3em] text-gray-400 mb-6 border border-gray-200 px-3 py-1 rounded-sm">{etiqueta}</span>
+      
+      <h1 class="font-serif text-5xl md:text-7xl font-light text-gray-800 uppercase tracking-widest leading-tight mb-8">
+        {nombre}
+      </h1>
+      
+      <p class="font-sans text-xs font-bold tracking-[0.2em] text-[#d4af37] uppercase mb-8">
+        {fecha}
+      </p>
+      
+      <div class="w-12 h-[1px] bg-gray-300 mb-8 mx-auto md:mx-0"></div>
+      
+      <p class="font-serif italic text-gray-500 text-sm md:text-base leading-relaxed max-w-sm">
+        "{frase}"
+      </p>
+    </div>
+  </div>
+</header>

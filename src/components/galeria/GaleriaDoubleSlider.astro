@@ -1,0 +1,108 @@
+---
+// GaleriaDoubleSlider.astro
+// Carruseles en sentido contrario controlados por un índice compartido
+const { data = [] } = Astro.props;
+
+const defaultImages = [
+  "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+];
+
+const images = data && data.length > 0 ? data : defaultImages;
+const total = images.length;
+---
+
+<section 
+  class="py-16 bg-stone-900 w-full overflow-hidden relative flex flex-col items-center"
+  x-data={`{
+    index: 0,
+    total: ${total},
+    next() {
+      this.index = (this.index + 1) % this.total;
+    },
+    prev() {
+      this.index = (this.index - 1 + this.total) % this.total;
+    }
+  }`}
+>
+  <div class="max-w-2xl w-full text-center mb-8 px-4">
+    <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold font-sans">Doble Perspectiva</span>
+    <h2 class="text-3xl md:text-4xl font-light text-white mt-2 font-serif">Simetría de Momentos</h2>
+    <div class="w-12 h-[1px] bg-amber-400 mx-auto mt-4"></div>
+  </div>
+
+  <!-- Contenedor de Sliders -->
+  <div class="w-full max-w-4xl px-4 flex flex-col gap-4 relative">
+    
+    <!-- Fila Superior: Desliza hacia la izquierda -->
+    <div class="w-full aspect-[21/9] rounded-2xl md:rounded-3xl overflow-hidden relative shadow-lg bg-stone-950">
+      <div 
+        class="flex h-full w-full transition-transform duration-700 ease-in-out"
+        :style="'transform: translate3d(-' + (index * 100) + '%, 0, 0)'"
+      >
+        {images.map((src, idx) => (
+          <div class="w-full h-full shrink-0 relative">
+            <img src={src} alt={`Slider superior ${idx + 1}`} class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+            <div class="absolute bottom-4 left-6 text-white/90 text-sm font-sans tracking-widest font-light">
+              RECUERDOS A / #{idx + 1}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Controles de Navegación Intermedios -->
+    <div class="flex items-center justify-between py-2 px-4 bg-stone-800 rounded-full border border-stone-700/60 shadow-md">
+      <button 
+        @click="prev()" 
+        class="p-2 text-stone-300 hover:text-white transition-colors active:scale-90"
+        aria-label="Diapositiva anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <span class="text-xs tracking-widest text-amber-400 font-sans font-medium" x-text="`${index + 1} / ${total}`">
+        1 / {total}
+      </span>
+
+      <button 
+        @click="next()" 
+        class="p-2 text-stone-300 hover:text-white transition-colors active:scale-90"
+        aria-label="Siguiente diapositiva"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Fila Inferior: Desliza hacia la derecha (inversa) -->
+    <div class="w-full aspect-[21/9] rounded-2xl md:rounded-3xl overflow-hidden relative shadow-lg bg-stone-950">
+      <div 
+        class="flex h-full w-full transition-transform duration-700 ease-in-out"
+        :style="'transform: translate3d(-' + ((total - 1 - index) * 100) + '%, 0, 0)'"
+      >
+        {/* Usamos el mismo array pero renderizado de tal forma que index=0 muestre el último elemento. 
+            El orden de las imágenes en el DOM coincide con el array original para que la traducción
+            coincida perfectamente, pero la traducción se calcula como: (total - 1 - index) */}
+        {images.map((src, idx) => (
+          <div class="w-full h-full shrink-0 relative">
+            <img src={src} alt={`Slider inferior ${idx + 1}`} class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+            <div class="absolute bottom-4 right-6 text-white/90 text-sm font-sans tracking-widest font-light">
+              RECUERDOS B / #{idx + 1}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

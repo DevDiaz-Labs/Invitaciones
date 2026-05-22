@@ -1,0 +1,53 @@
+---
+// src/components/hero/HeroXVDrama.astro
+interface Props {
+  data?: {
+    etiqueta?: string;
+    nombres?: string;
+    nombre?: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    frase?: string;
+    imagenFondo?: string;
+    imagen?: string;
+  };
+}
+
+const { data = {} } = Astro.props;
+
+const etiqueta = data.etiqueta || "Mis XV Años";
+const nombre = data.nombres || data.nombre || "Sofía Valeria";
+const fecha = data.fechaVista || data.fechaTexto || "24 de Octubre de 2026";
+const frase = data.frase || "Una noche donde soy la protagonista de mi propia historia.";
+const imagenFondo = data.imagenFondo || data.imagen || "https://images.unsplash.com/photo-1585863953589-9a2c161be227?q=80&w=1200&auto=format&fit=crop";
+---
+
+<header class="relative w-full h-screen flex flex-col justify-end p-8 overflow-hidden bg-black text-white">
+  <div class="absolute inset-0 z-0">
+    <img src={imagenFondo} alt="Fondo Dramático" class="w-full h-full object-cover object-center opacity-80" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-lg mb-10 flex flex-col items-start text-left">
+    
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-[2px] bg-red-700"></div>
+      <span class="text-[10px] uppercase tracking-[0.4em] font-sans text-red-500 font-bold">{etiqueta}</span>
+    </div>
+    
+    <h1 class="font-serif text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-[0.85] mb-6 text-gray-100 drop-shadow-2xl">
+      {nombre}
+    </h1>
+    
+    <div class="border-l-2 border-red-700 pl-4 py-1 mb-8">
+      <p class="font-sans font-light text-sm tracking-widest text-gray-300 uppercase">
+        {fecha}
+      </p>
+    </div>
+    
+    <p class="font-serif italic text-lg text-gray-400 max-w-sm">
+      "{frase}"
+    </p>
+  </div>
+</header>

@@ -1,0 +1,267 @@
+---
+// src/components/hero/HeroXVArchFlowers.astro
+interface Props {
+  data: {
+    nombre?: string;
+    nombres?: string;
+    fechaTexto?: string;
+    fechaVista?: string;
+    imagenFondo?: string;
+    imagen?: string;
+    etiqueta?: string;
+  };
+}
+
+const { data } = Astro.props;
+
+// Safe fallbacks
+const displayNombre = data.nombre || data.nombres || "Fatima";
+const displayFecha = data.fechaVista || data.fechaTexto || "18 DE ENERO DE 2026";
+const displayEtiqueta = data.etiqueta === "Mis XV Años" ? "Mis XV" : (data.etiqueta || "Mis XV");
+const displayImagen = data.imagen || data.imagenFondo || "/imagenes/xv/ejemplo/ejemplo2.jpg";
+---
+
+<header class="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center text-center py-10 px-6 bg-[#fcf9f6] overflow-hidden select-none">
+  <!-- Subtle cotton paper texture overlay (Pure grayscale monochrome noise) -->
+  <div class="absolute inset-0 opacity-[0.7] pointer-events-none bg-paper-texture"></div>
+
+  <!-- Unified graphic card assembly -->
+  <div class="relative flex flex-col items-center w-full max-w-[340px] mx-auto">
+    <!-- Space for curved text at the top and arch frame -->
+    <div class="relative w-full flex justify-center">
+      <!-- SVG curved path for text (nestled perfectly above the arch) -->
+      <svg viewBox="0 0 320 180" class="absolute top-[14px] left-1/2 -translate-x-1/2 w-[320px] h-[180px] pointer-events-none overflow-visible z-20">
+        <path id="archTextPath" d="M 18,162 A 142,142 0 0,1 302,162" fill="none" />
+        <text class="fill-[#9b6a6c]/90 font-serif uppercase text-center font-semibold" font-size="14.5" letter-spacing="0.18em" font-family="'Cormorant Garamond', serif">
+          <textPath href="#archTextPath" startOffset="50%" text-anchor="middle">
+            {displayFecha}
+          </textPath>
+        </text>
+      </svg>
+
+      <!-- Arch Frame with Gold Foil Gradient double border -->
+      <div class="relative w-[260px] h-[360px] rounded-t-full overflow-hidden mt-14 z-10 shadow-[0_4px_20px_rgba(194,162,120,0.12)]">
+        <!-- Quinceañera Portrait -->
+        <div class="w-full h-full rounded-t-full overflow-hidden relative bg-[#eae4dd]">
+          <img 
+            src={displayImagen} 
+            alt={displayNombre} 
+            class="w-full h-full object-cover object-center scale-[1.01] transition-transform duration-700 hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/[0.02]"></div>
+        </div>
+
+        <!-- Arch Double Border SVG overlay (gives a super sharp gold foil effect) -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 260 360">
+          <defs>
+            <linearGradient id="goldFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#bfa15f" />
+              <stop offset="25%" stop-color="#fef3d6" />
+              <stop offset="50%" stop-color="#d8b26e" />
+              <stop offset="75%" stop-color="#fef3d6" />
+              <stop offset="100%" stop-color="#b58d4a" />
+            </linearGradient>
+          </defs>
+          <!-- Outer border -->
+          <path d="M 4,356 L 4,130 A 126,126 0 0,1 256,130 L 256,356" fill="none" stroke="url(#goldFoilGrad)" stroke-width="1.2" />
+          <!-- Inner border -->
+          <path d="M 8,356 L 8,130 A 122,122 0 0,1 252,130 L 252,356" fill="none" stroke="url(#goldFoilGrad)" stroke-width="0.6" opacity="0.75" />
+        </svg>
+      </div>
+
+      <!-- Watercolor Floral Wreath (Beautiful, organic, non-geometric layout) -->
+      <div class="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[390px] z-20 pointer-events-none select-none">
+        <svg viewBox="0 0 400 240" class="w-full h-auto drop-shadow-[0_6px_14px_rgba(155,106,108,0.12)] overflow-visible">
+          <defs>
+            <!-- Watercolor paint simulation gradients -->
+            <linearGradient id="peachWatercolor" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fceae5" />
+              <stop offset="40%" stop-color="#f9c0b0" />
+              <stop offset="100%" stop-color="#e3816a" />
+            </linearGradient>
+            <linearGradient id="roseWatercolor" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#fbf2ee" />
+              <stop offset="50%" stop-color="#f1aca2" />
+              <stop offset="100%" stop-color="#ce685b" />
+            </linearGradient>
+            <linearGradient id="fernBrownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#be9d8c" />
+              <stop offset="100%" stop-color="#8c6c5c" />
+            </linearGradient>
+            <linearGradient id="fernTanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#dec9b8" />
+              <stop offset="100%" stop-color="#a48c7c" />
+            </linearGradient>
+            <linearGradient id="leafSageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#bcc0b3" />
+              <stop offset="100%" stop-color="#8e9680" />
+            </linearGradient>
+            <linearGradient id="twigGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e5cf9c" />
+              <stop offset="100%" stop-color="#c5a059" />
+            </linearGradient>
+          </defs>
+
+          <!-- 1. LEFT BRANCH SYSTEM (Smooth Bezier curves) -->
+          <g opacity="0.9">
+            <!-- Stems -->
+            <path d="M 160,195 Q 85,175 55,115 Q 38,72 38,52" fill="none" stroke="url(#fernBrownGrad)" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M 140,205 Q 70,185 45,125 Q 32,85 30,65" fill="none" stroke="url(#fernTanGrad)" stroke-width="0.8" stroke-linecap="round" />
+            
+            <!-- Organic Fern Leaves (Bezier loops instead of lines) -->
+            <!-- Main stem leaves -->
+            <path d="M 120,180 Q 98,186 86,177 Q 102,168 120,180 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 100,165 Q 77,171 67,162 Q 82,152 100,165 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 80,145 Q 56,150 48,140 Q 64,130 80,145 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 65,125 Q 40,126 35,115 Q 50,108 65,125 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 52,105 Q 28,104 24,92 Q 38,86 52,105 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 43,85 Q 20,82 17,70 Q 31,65 43,85 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 38,65 Q 18,60 16,48 Q 27,43 38,65 Z" fill="url(#fernBrownGrad)" />
+
+            <!-- Secondary stem leaves -->
+            <path d="M 98,172 Q 82,185 75,178 Q 85,166 98,172 Z" fill="url(#fernTanGrad)" />
+            <path d="M 80,152 Q 62,165 55,157 Q 66,145 80,152 Z" fill="url(#fernTanGrad)" />
+            <path d="M 64,132 Q 44,143 38,135 Q 49,124 64,132 Z" fill="url(#fernTanGrad)" />
+            <path d="M 50,110 Q 28,119 24,110 Q 35,101 50,110 Z" fill="url(#fernTanGrad)" />
+            <path d="M 38,88 Q 18,94 15,85 Q 26,78 38,88 Z" fill="url(#fernTanGrad)" />
+
+            <!-- Sage Green Soft Willow Leaves -->
+            <path d="M 75,135 C 50,120 40,95 35,70 C 45,85 60,110 75,135 Z" fill="url(#leafSageGrad)" opacity="0.75" />
+            <path d="M 105,160 C 80,145 70,120 65,95 C 75,110 90,135 105,160 Z" fill="url(#leafSageGrad)" opacity="0.75" />
+          </g>
+
+          <!-- 2. RIGHT BRANCH SYSTEM (Mirrored organically) -->
+          <g opacity="0.9" transform="scale(-1, 1) translate(-400, 0)">
+            <!-- Stems -->
+            <path d="M 160,195 Q 85,175 55,115 Q 38,72 38,52" fill="none" stroke="url(#fernBrownGrad)" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M 140,205 Q 70,185 45,125 Q 32,85 30,65" fill="none" stroke="url(#fernTanGrad)" stroke-width="0.8" stroke-linecap="round" />
+            
+            <!-- Leaves -->
+            <path d="M 120,180 Q 98,186 86,177 Q 102,168 120,180 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 100,165 Q 77,171 67,162 Q 82,152 100,165 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 80,145 Q 56,150 48,140 Q 64,130 80,145 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 65,125 Q 40,126 35,115 Q 50,108 65,125 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 52,105 Q 28,104 24,92 Q 38,86 52,105 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 43,85 Q 20,82 17,70 Q 31,65 43,85 Z" fill="url(#fernBrownGrad)" />
+            <path d="M 38,65 Q 18,60 16,48 Q 27,43 38,65 Z" fill="url(#fernBrownGrad)" />
+
+            <path d="M 98,172 Q 82,185 75,178 Q 85,166 98,172 Z" fill="url(#fernTanGrad)" />
+            <path d="M 80,152 Q 62,165 55,157 Q 66,145 80,152 Z" fill="url(#fernTanGrad)" />
+            <path d="M 64,132 Q 44,143 38,135 Q 49,124 64,132 Z" fill="url(#fernTanGrad)" />
+            <path d="M 50,110 Q 28,119 24,110 Q 35,101 50,110 Z" fill="url(#fernTanGrad)" />
+            <path d="M 38,88 Q 18,94 15,85 Q 26,78 38,88 Z" fill="url(#fernTanGrad)" />
+
+            <path d="M 75,135 C 50,120 40,95 35,70 C 45,85 60,110 75,135 Z" fill="url(#leafSageGrad)" opacity="0.75" />
+            <path d="M 105,160 C 80,145 70,120 65,95 C 75,110 90,135 105,160 Z" fill="url(#leafSageGrad)" opacity="0.75" />
+          </g>
+
+          <!-- 3. GOLDEN TWIGS & WHEAT ACCENTS -->
+          <g stroke="url(#twigGoldGrad)" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.95">
+            <!-- Left Gold -->
+            <path d="M 130,190 Q 75,150 50,95" />
+            <circle cx="50" cy="95" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+            <circle cx="62" cy="115" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+            <circle cx="78" cy="138" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+            <!-- Right Gold -->
+            <path d="M 270,190 Q 325,150 350,95" />
+            <circle cx="350" cy="95" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+            <circle cx="338" cy="115" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+            <circle cx="322" cy="138" r="1.2" fill="url(#twigGoldGrad)" stroke="none" />
+          </g>
+
+          <!-- 4. WHITE STAR BLOSSOMS (Watercolor style, soft and organic) -->
+          <g fill="#fefaf2" opacity="0.9">
+            <!-- Left side blossoms -->
+            <path d="M 64,103 Q 66,97 68,103 Q 74,105 68,107 Q 66,113 64,107 Q 58,105 64,103 Z" />
+            <circle cx="66" cy="105" r="1" fill="#e5cf9c" />
+            <path d="M 96,128 Q 98,122 100,128 Q 106,130 100,132 Q 98,138 96,132 Q 90,130 96,128 Z" />
+            <circle cx="98" cy="130" r="1" fill="#e5cf9c" />
+            
+            <!-- Right side blossoms -->
+            <path d="M 334,103 Q 336,97 338,103 Q 344,105 338,107 Q 336,113 334,107 Q 328,105 334,103 Z" />
+            <circle cx="336" cy="105" r="1" fill="#e5cf9c" />
+            <path d="M 302,128 Q 304,122 306,128 Q 312,130 306,132 Q 304,138 302,132 Q 296,130 302,128 Z" />
+            <circle cx="304" cy="130" r="1" fill="#e5cf9c" />
+          </g>
+
+          <!-- 5. LEFT SIDE FLOWER (Layered Soft Watercolor Peach/Rose) -->
+          <g transform="translate(112, 160) rotate(-10)">
+            <!-- Outer delicate petals -->
+            <path d="M 0,0 C -22,-20 -32,-5 -22,12 C -12,22 5,18 0,0 Z" fill="url(#roseWatercolor)" opacity="0.85" />
+            <path d="M 0,0 C -12,22 5,30 18,18 C 28,5 12,-10 0,0 Z" fill="url(#roseWatercolor)" opacity="0.85" />
+            <path d="M 0,0 C -5,-25 22,-22 12,-5 C 8,8 -5,8 0,0 Z" fill="url(#peachWatercolor)" opacity="0.9" />
+            <!-- Inner accent petals -->
+            <path d="M -4,-4 C -16,-8 -20,4 -12,8 C -4,12 8,4 4,-4 C 0,-8 -4,-4 -4,-4 Z" fill="url(#peachWatercolor)" opacity="0.95" />
+            <circle cx="-1" cy="-1" r="4" fill="#ce685b" />
+            <circle cx="-1" cy="-1" r="1.5" fill="#fcf5e3" />
+          </g>
+
+          <!-- 6. RIGHT SIDE FLOWER (Layered Soft Watercolor Peach/Rose) -->
+          <g transform="translate(288, 160) scale(-1, 1) rotate(-10)">
+            <!-- Outer delicate petals -->
+            <path d="M 0,0 C -22,-20 -32,-5 -22,12 C -12,22 5,18 0,0 Z" fill="url(#roseWatercolor)" opacity="0.85" />
+            <path d="M 0,0 C -12,22 5,30 18,18 C 28,5 12,-10 0,0 Z" fill="url(#roseWatercolor)" opacity="0.85" />
+            <path d="M 0,0 C -5,-25 22,-22 12,-5 C 8,8 -5,8 0,0 Z" fill="url(#peachWatercolor)" opacity="0.9" />
+            <!-- Inner accent petals -->
+            <path d="M -4,-4 C -16,-8 -20,4 -12,8 C -4,12 8,4 4,-4 C 0,-8 -4,-4 -4,-4 Z" fill="url(#peachWatercolor)" opacity="0.95" />
+            <circle cx="-1" cy="-1" r="4" fill="#ce685b" />
+            <circle cx="-1" cy="-1" r="1.5" fill="#fcf5e3" />
+          </g>
+
+          <!-- 7. CENTRAL LARGE FLOWER (Soft multilayered Watercolor Peach) -->
+          <g transform="translate(200, 185)">
+            <!-- Back layers (translucent watercolor feel) -->
+            <path d="M 0,-8 C -25,-35 -50,-12 -40,12 C -30,28 -12,20 0,-8 Z" fill="url(#peachWatercolor)" opacity="0.85" />
+            <path d="M 0,-8 C 25,-35 50,-12 40,12 C 30,28 12,20 0,-8 Z" fill="url(#peachWatercolor)" opacity="0.85" />
+            <path d="M -18,8 C -38,28 -25,48 0,40 C 15,35 12,16 -18,8 Z" fill="url(#peachWatercolor)" opacity="0.85" />
+            <path d="M 18,8 C 38,28 25,48 0,40 C -15,35 -12,16 18,8 Z" fill="url(#peachWatercolor)" opacity="0.85" />
+            
+            <!-- Middle overlapping petals -->
+            <path d="M -8,-4 C -24,-20 -28,4 -16,12 C -8,20 8,12 4,-4 C 0,-12 -8,-4 -8,-4 Z" fill="url(#roseWatercolor)" opacity="0.9" />
+            <path d="M 8,-4 C 24,-20 28,4 16,12 C 8,20 -8,12 -4,-4 C 0,-12 8,-4 8,-4 Z" fill="url(#roseWatercolor)" opacity="0.9" />
+            <path d="M -8,12 C -20,24 -12,36 0,28 C 12,24 8,8 -8,12 Z" fill="url(#roseWatercolor)" opacity="0.9" />
+            <path d="M 8,12 C 20,24 12,36 0,28 C -12,24 -8,8 8,12 Z" fill="url(#roseWatercolor)" opacity="0.9" />
+
+            <!-- Inner details and soft stamens -->
+            <circle cx="0" cy="4" r="8" fill="#ce685b" />
+            <circle cx="0" cy="4" r="4.5" fill="#fdf0cd" />
+            <!-- Soft stamen filaments -->
+            <path d="M 0,4 L -3,-1 M 0,4 L 3,-1 M 0,4 L -4,3 M 0,4 L 5,3 M 0,4 L -2,7 M 0,4 L 2,7 M 0,4 L 0,0" stroke="#fcf8f2" stroke-width="0.6" opacity="0.9" />
+            <!-- Stamen heads -->
+            <circle cx="-3" cy="-1" r="0.8" fill="#fcf8f2" />
+            <circle cx="3" cy="-1" r="0.8" fill="#fcf8f2" />
+            <circle cx="-4" cy="3" r="0.8" fill="#fcf8f2" />
+            <circle cx="4" cy="3" r="0.8" fill="#fcf8f2" />
+            <circle cx="-2" cy="7" r="0.8" fill="#fcf8f2" />
+            <circle cx="2" cy="7" r="0.8" fill="#fcf8f2" />
+            <circle cx="0" cy="0" r="0.8" fill="#fcf8f2" />
+          </g>
+
+          <!-- 8. BOTTOM SUPPORTING BRANCHES -->
+          <path d="M 145,192 Q 200,210 255,192" fill="none" stroke="url(#fernBrownGrad)" stroke-width="1.5" opacity="0.5" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Bottom Typography -->
+    <div class="flex flex-col items-center mt-12 z-10 w-[300px]">
+      <!-- Elegant Script Name -->
+      <h1 class="text-[70px] md:text-[76px] font-handwriting text-[#9b6a6c]/90 leading-none mb-3 font-normal filter drop-shadow-sm mt-3" style="font-family: 'Great Vibes', cursive;">
+        {displayNombre}
+      </h1>
+      
+      <!-- Matte Gold Serif Label -->
+      <span class="text-[22px] md:text-[24px] font-serif tracking-[0.1em] text-[#bfa15f] leading-none font-medium" style="font-family: 'Cormorant Garamond', serif;">
+        {displayEtiqueta}
+      </span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .bg-paper-texture {
+    background-color: #fcf9f6;
+    /* Pure grayscale noise texture to prevent colorful chromatic pixelation in Chrome */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' result='noise'/%3E%3CfeColorMatrix type='matrix' values='0.21 0.72 0.07 0 0 0.21 0.72 0.07 0 0 0.21 0.72 0.07 0 0 0 0 0 0.025 0'/%3E%3CfeBlend mode='multiply' in='SourceGraphic' in2='noise'/%3E%3C/filter%3E%3Crect width='200' height='200' fill='%23fcf9f6' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+  }
+</style>

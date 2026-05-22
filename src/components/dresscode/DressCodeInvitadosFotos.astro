@@ -1,0 +1,167 @@
+---
+// src/components/dresscode/DressCodeInvitadosFotos.astro
+interface Props {
+  data?: {
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+      coloresNoPermitidos?: string[];
+    };
+  };
+}
+
+const { data } = Astro.props;
+
+const coloresSugeridos = data?.dressCode?.coloresSugeridos || ["#7293b5", "#5f6e85", "#706240"];
+const coloresNoPermitidos = data?.dressCode?.coloresNoPermitidos || ["#ffffff", "#a82323"];
+const nota = data?.dressCode?.nota || "";
+---
+
+<section class="py-16 px-4 bg-[#fdfbf7] flex flex-col items-center justify-center font-sans">
+  
+  <!-- Outer Title and Rings Icon -->
+  <div class="flex items-center gap-3 mb-6">
+    <h2 class="font-handwriting text-5xl text-[#c5a059] font-light">
+      Código de Vestir?
+    </h2>
+    <!-- Wedding Rings SVG -->
+    <svg class="w-12 h-12 text-[#c5a059] opacity-80" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ring 1 -->
+      <circle cx="26" cy="38" r="14" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="26" cy="38" r="11" stroke="currentColor" stroke-width="1" stroke-dasharray="2 1" />
+      <!-- Ring 2 -->
+      <circle cx="42" cy="30" r="14" stroke="currentColor" stroke-width="1.8" />
+      <!-- Ring 2 Diamond -->
+      <path d="M42 12 L47 16 L42 20 L37 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" />
+      <line x1="42" y1="12" x2="42" y2="20" stroke="currentColor" stroke-width="1" />
+    </svg>
+  </div>
+
+  <!-- White Card Container -->
+  <div class="relative w-full max-w-sm bg-white rounded-3xl p-8 shadow-xl border border-[#e8dfd8] text-center pb-24 z-10">
+    
+    <!-- Floating Blue Flowers (Left Side) -->
+    <div class="absolute -left-3 top-20 w-12 h-20 text-sky-400/50 pointer-events-none">
+      <svg class="w-full h-full" viewBox="0 0 50 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stem -->
+        <path d="M10 70 Q 20 40, 25 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Leaves -->
+        <path d="M17 50 Q 8 45, 12 40 Q 18 45, 17 50 Z" fill="currentColor"/>
+        <path d="M22 30 Q 30 25, 26 20 Q 20 25, 22 30 Z" fill="currentColor"/>
+        <!-- Flower 1 -->
+        <circle cx="25" cy="10" r="6" fill="currentColor"/>
+        <circle cx="19" cy="8" r="4" fill="currentColor" fill-opacity="0.8"/>
+        <circle cx="31" cy="12" r="4" fill="currentColor" fill-opacity="0.8"/>
+        <circle cx="25" cy="10" r="2" fill="#fff"/>
+      </svg>
+    </div>
+
+    <!-- Floating Pink Tulip (Right Side) -->
+    <div class="absolute -right-3 top-24 w-12 h-20 text-rose-300/60 pointer-events-none">
+      <svg class="w-full h-full" viewBox="0 0 50 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stem -->
+        <path d="M40 70 Q 30 40, 25 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Tulip petals -->
+        <path d="M25 20 C20 15, 20 5, 25 2 C30 5, 30 15, 25 20 Z" fill="currentColor"/>
+        <path d="M21 16 C16 11, 19 6, 23 5 C24 10, 22 14, 21 16 Z" fill="currentColor" fill-opacity="0.8"/>
+        <path d="M29 16 C34 11, 31 6, 27 5 C26 10, 28 14, 29 16 Z" fill="currentColor" fill-opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Subtitle Formal / Etiqueta -->
+    <h3 class="font-handwriting text-4xl text-[#c5a059] mb-8 font-light">
+      Formal / Etiqueta
+    </h3>
+
+    <!-- Two columns of guidelines -->
+    <div class="grid grid-cols-2 gap-4 text-center">
+      <!-- Column 1: Suggested Palette -->
+      <div class="flex flex-col items-center border-r border-[#e8dfd8] pr-2">
+        <span class="text-[10px] uppercase tracking-wider text-stone-500 font-semibold mb-4 min-h-[40px] flex items-center justify-center leading-tight">
+          Vestir de preferencia la siguiente paleta de colores
+        </span>
+        <div class="flex gap-2">
+          {coloresSugeridos.map((color) => (
+            <span 
+              class="w-7 h-7 rounded-full border border-white shadow-md transform hover:scale-110 transition-transform cursor-pointer"
+              style={`background-color: ${color}; border: 1px solid #c5a059;`}
+              title={color}
+            ></span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Column 2: Avoid Colors -->
+      <div class="flex flex-col items-center pl-2">
+        <span class="text-[10px] uppercase tracking-wider text-[#a82323]/80 font-semibold mb-4 min-h-[40px] flex items-center justify-center leading-tight">
+          Evitar vestir los colores Blanco y Rojo
+        </span>
+        <div class="flex gap-2">
+          {coloresNoPermitidos.map((color) => (
+            <span 
+              class="w-7 h-7 rounded-full border shadow-md transform hover:scale-110 transition-transform cursor-pointer relative"
+              style={`background-color: ${color}; border: 1px solid #c5a059;`}
+              title={color}
+            ></span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {nota && (
+      <div class="mt-6 pt-4 border-t border-[#e8dfd8]">
+        <p class="text-[10px] italic text-stone-500 leading-normal px-2">
+          * {nota}
+        </p>
+      </div>
+    )}
+  </div>
+
+  <!-- Overlapping Polaroid-like Photo Cards -->
+  <div class="flex gap-6 justify-center -mt-16 relative z-20 w-full max-w-sm px-4">
+    <!-- Left Polaroid (Dress) -->
+    <div class="bg-white p-2 pb-5 rounded-md shadow-2xl border border-stone-200/80 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300 w-[140px]">
+      <div class="aspect-[3/4] overflow-hidden bg-stone-100 rounded-sm">
+        <img 
+          src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=300&auto=format&fit=crop" 
+          alt="Vestido Azul" 
+          class="w-full h-full object-cover object-center"
+        />
+      </div>
+    </div>
+
+    <!-- Right Polaroid (Suit) -->
+    <div class="bg-white p-2 pb-5 rounded-md shadow-2xl border border-stone-200/80 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300 w-[140px]">
+      <div class="aspect-[3/4] overflow-hidden bg-stone-100 rounded-sm">
+        <img 
+          src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=300&auto=format&fit=crop" 
+          alt="Traje Azul" 
+          class="w-full h-full object-cover object-center"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Gold Double Hearts -->
+  <div class="w-32 h-10 text-[#c5a059] flex items-center justify-center mt-6">
+    <svg class="w-full h-full" viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 15 H40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M60 15 H90" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Heart 1 -->
+      <path d="M48 10 C46 8, 43 8, 41 10 C39 12, 39 15, 41 17 L48 24 L55 17 C57 15, 57 12, 55 10 C53 8, 50 8, 48 10 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <!-- Heart 2 -->
+      <path d="M52 10 C50 8, 47 8, 45 10 C43 12, 43 15, 45 17 L52 24 L59 17 C61 15, 61 12, 59 10 C57 8, 54 8, 52 10 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap');
+  
+  .font-handwriting {
+    font-family: 'Great Vibes', cursive;
+  }
+</style>

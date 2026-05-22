@@ -49,36 +49,40 @@ const dressCode = data?.dressCode || {
         <div class="w-16 h-16 rounded-full bg-[#758e8c]/10 border border-[#758e8c]/20 flex items-center justify-center mb-2">
           <!-- Guayabera SVG -->
           <svg class="w-8 h-8 text-[#5c7371]" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 12L24 18V56H40V18L48 12L42 8H22L16 12Z" stroke="currentColor" stroke-width="1.5" />
-            <path d="M32 8V56" stroke="currentColor" stroke-width="1.5" />
-            <path d="M22 8C22 12, 28 14, 32 14 C 36 14, 42 12, 42 8" stroke="currentColor" stroke-width="1.5" />
-            <!-- Pockets -->
-            <rect x="20" y="24" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
-            <rect x="38" y="24" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
-            <rect x="20" y="38" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
-            <rect x="38" y="38" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+            <path d="M20 14 L32 24 L44 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 14 L26 8 H38 L44 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 14 L12 20 V30 L18 28 V56 H46 V28 L52 30 V20 L44 14" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M32 24 V56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="32" cy="32" r="1.2" fill="currentColor"/>
+            <circle cx="32" cy="40" r="1.2" fill="currentColor"/>
+            <circle cx="32" cy="48" r="1.2" fill="currentColor"/>
+            <path d="M18 34 H24 V40 H18 Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+            <path d="M40 34 H46 V40 H40 Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+            <line x1="22" y1="22" x2="22" y2="56" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <line x1="42" y1="22" x2="42" y2="56" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
           </svg>
         </div>
         <span class="text-3xs uppercase tracking-widest text-[#8e8275]">Caballeros</span>
       </div>
-
+ 
       <!-- Damas (Summer Dress) -->
       <div class="flex flex-col items-center">
         <div class="w-16 h-16 rounded-full bg-[#758e8c]/10 border border-[#758e8c]/20 flex items-center justify-center mb-2">
           <!-- Summer Dress SVG -->
           <svg class="w-8 h-8 text-[#5c7371]" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 16L12 56C20 59, 44 59, 52 56L44 16H20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-            <!-- V Neck -->
-            <path d="M24 16L32 26L40 16" stroke="currentColor" stroke-width="1.5" />
-            <path d="M22 8L24 16" stroke="currentColor" stroke-width="1.5" />
-            <path d="M42 8L40 16" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="32" cy="30" r="1.5" fill="currentColor" />
-            <circle cx="32" cy="36" r="1.5" fill="currentColor" />
+            <path d="M24 10 C24 14, 26 16, 28 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M40 10 C40 14, 38 16, 36 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M24 16 C20 18, 22 28, 28 28 C30 28, 31 26, 32 26 C33 26, 34 28, 36 28 C42 28, 44 18, 40 16 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M27 28 C30 29, 34 29, 37 28" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M27 28 C22 42, 14 52, 10 58 C16 60, 24 59, 32 60 C40 59, 48 60, 54 58 C50 52, 42 42, 37 28 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M20 32 C18 42, 21 52, 23 58" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <path d="M32 29 V59" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <path d="M44 32 C46 42, 43 52, 41 58" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
           </svg>
         </div>
         <span class="text-3xs uppercase tracking-widest text-[#8e8275]">Damas</span>
       </div>
-
+ 
     </div>
 
     <p class="text-sm font-light text-[#594d40] px-4 leading-relaxed mb-6">

@@ -5,16 +5,25 @@ interface Props {
     titulo?: string;
     subtitulo?: string;
     descripcion?: string;
+    nota?: string;
     colores?: string[];
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+    };
   };
 }
 
 const { data } = Astro.props;
 
-const titulo = data?.titulo || "Lo Esencial";
-const subtitulo = data?.subtitulo || "Boho Formal";
-const descripcion = data?.descripcion || "Vestidos fluidos y trajes sin corbata estricta. Nos encantarían tonos tierra y pasteles.";
-const colores = data?.colores || ["#D48C70", "#F4EAD4", "#81B29A", "#CC9B6D", "#F3C68F"];
+const dressCode = data?.dressCode;
+const titulo = dressCode?.titulo || data?.titulo || "Lo Esencial";
+const subtitulo = dressCode?.subtitulo || data?.subtitulo || "Boho Formal";
+const descripcion = dressCode?.descripcion || data?.descripcion || "Vestidos fluidos y trajes sin corbata estricta. Nos encantarían tonos tierra y pasteles.";
+const colores = dressCode?.coloresSugeridos || data?.colores || ["#D48C70", "#F4EAD4", "#81B29A", "#CC9B6D", "#F3C68F"];
+const nota = dressCode?.nota || data?.nota || "";
 ---
 
 <section class="py-12 px-6 bg-white fade-up flex flex-col items-center text-center">
@@ -55,6 +64,11 @@ const colores = data?.colores || ["#D48C70", "#F4EAD4", "#81B29A", "#CC9B6D", "#
         </div>
       )}
     </div>
+    {nota && (
+      <p class="text-xs text-[#CC9B6D] italic mt-6 pt-4 border-t border-[#F4EAD4] w-full text-center">
+        * {nota}
+      </p>
+    )}
   </div>
 
 </section>

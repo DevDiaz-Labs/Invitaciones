@@ -3,17 +3,24 @@
 import HeroBoho from "../../components/hero/HeroBoho.astro";
 import HeroMinimalista from "../../components/hero/HeroMinimalista.astro";
 import HeroSofia from "../../components/xv-plantilla/Hero.astro";
-
 import HeroClassic from "../../components/hero/HeroClassic.astro";
-import HeroModern from "../../components/hero/HeroModern.astro";
 import HeroLuxury from "../../components/hero/HeroLuxury.astro";
 import HeroVintage from "../../components/hero/HeroVintage.astro";
 import HeroNature from "../../components/hero/HeroNature.astro";
 import HeroRomantic from "../../components/hero/HeroRomantic.astro";
+import HeroXVMiniVideoStyle from "../../components/hero/HeroXVMiniVideoStyle.astro";
+import HeroXVEditorialBold from "../../components/hero/HeroXVEditorialBold.astro";
+import HeroXVRoseGold from "../../components/hero/HeroXVRoseGold.astro";
+import HeroXVStarlight from "../../components/hero/HeroXVStarlight.astro";
+import HeroXVWatercolor from "../../components/hero/HeroXVWatercolor.astro";
+import HeroXVDrama from "../../components/hero/HeroXVDrama.astro";
+import HeroXVMinimalElegance from "../../components/hero/HeroXVMinimalElegance.astro";
+import HeroXVArchFlowers from "../../components/hero/HeroXVArchFlowers.astro";
+import HeroWeddingModernDate from "../../components/hero/HeroWeddingModernDate.astro";
+import HeroWeddingClassicArch from "../../components/hero/HeroWeddingClassicArch.astro";
+import HeroWeddingElegantPortal from "../../components/hero/HeroWeddingElegantPortal.astro";
 
 import dataXV from "../../data/clientes/ejemplo-xv.json";
-
-
 
 const mockData = {
   mostrar: true,
@@ -57,13 +64,13 @@ const mockData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test: Componentes de HERO</title>
-    
+    <title>Catálogo: Componentes Hero</title>
+
     <script src="https://cdn.tailwindcss.com" is:inline></script>
     <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Sacramento&display=swap" rel="stylesheet" />
-    
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Sacramento&display=swap" rel="stylesheet" />
+
     <script is:inline>
       tailwind.config = {
         theme: {
@@ -83,14 +90,15 @@ const mockData = {
               'boho-dorado': '#C5A059'
             },
             fontFamily: {
-              serif: ['"Cormorant Garamond"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
               handwriting: ['"Great Vibes"', 'cursive']
             }
           }
         }
       }
     </script>
-    
+
     <style is:global>
       :root {
         --gold: #b76e79;
@@ -102,8 +110,8 @@ const mockData = {
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100%;
-        background-color: #f3f4f6;
+        background-color: #0f1012;
+        color: #f3f4f6;
       }
       .font-nombres {
         font-family: 'Great Vibes', cursive !important;
@@ -117,71 +125,244 @@ const mockData = {
     </style>
   </head>
   <body>
-    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
-      
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROBOHO STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroBoho data={mockData} />
-      </div>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-neutral-900 min-h-screen pb-24">
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROMINIMALISTA STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroMinimalista data={mockData} />
-      </div>
+      <!-- Header Panel -->
+      <header class="p-8 md:p-12 text-center border-b border-white/10 bg-black/30">
+        <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold font-mono">Catálogo digital</span>
+        <h1 class="text-3xl md:text-5xl font-serif italic text-white mt-3">Componentes Hero</h1>
+        <p class="text-gray-400 text-xs md:text-sm mt-3 max-w-xl mx-auto font-sans leading-relaxed">
+          Una colección de 19 diseños de hero premium para invitaciones de XV años y bodas.
+        </p>
+      </header>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HERO XV
-      </div>
-      <div class="relative w-full">
-        <HeroSofia data={dataXV.hero} />
-      </div>
+      <!-- 1. HeroBoho -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>1. Hero Boho</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroBoho data={mockData} />
+        </div>
+      </section>
 
-      <!-- NEW COMPONENTS -->
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROCLASSIC STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroClassic data={mockData} />
-      </div>
+      <!-- 2. HeroMinimalista -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>2. Hero Minimalista</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroMinimalista data={mockData} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROMODERN STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroModern data={mockData} />
-      </div>
+      <!-- 3. HeroSofia (XV) -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>3. Hero XV Sofía</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroSofia data={dataXV.hero} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROLUXURY STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroLuxury data={mockData} />
-      </div>
+      <!-- 4. HeroClassic -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>4. Hero Classic</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroClassic data={mockData} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROVINTAGE STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroVintage data={mockData} />
-      </div>
+      <!-- 5. HeroLuxury -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>5. Hero Luxury</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroLuxury data={mockData} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HERONATURE STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroNature data={mockData} />
-      </div>
+      <!-- 6. HeroVintage -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>6. Hero Vintage</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroVintage data={mockData} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        HEROROMANTIC STYLE
-      </div>
-      <div class="relative w-full">
-        <HeroRomantic data={mockData} />
-      </div>
+      <!-- 7. HeroNature -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>7. Hero Nature</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroNature data={mockData} />
+        </div>
+      </section>
+
+      <!-- 8. HeroRomantic -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>8. Hero Romantic</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroRomantic data={mockData} />
+        </div>
+      </section>
+
+      <!-- 9. HeroXVMiniVideoStyle -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>9. Hero XV Mini Video</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVMiniVideoStyle data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 10. HeroXVEditorialBold -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>10. Hero XV Editorial Bold</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVEditorialBold data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 11. HeroXVRoseGold -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>11. Hero XV Rose Gold</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVRoseGold data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 12. HeroXVStarlight -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>12. Hero XV Starlight</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVStarlight data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 13. HeroXVWatercolor -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>13. Hero XV Watercolor</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVWatercolor data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 14. HeroXVDrama -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>14. Hero XV Drama</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVDrama data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 15. HeroXVMinimalElegance -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>15. Hero XV Minimal Elegance</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVMinimalElegance data={dataXV.hero} />
+        </div>
+      </section>
+
+      <!-- 16. HeroXVArchFlowers -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>16. Hero XV Arch Flowers</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroXVArchFlowers data={{
+            ...dataXV.hero,
+            imagen: "/imagenes/xv/ejemplo/ejemplo2.jpg"
+          }} />
+        </div>
+      </section>
+
+      <!-- 17. HeroWeddingModernDate -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>17. Hero Wedding Modern Date</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroWeddingModernDate data={{
+            ...mockData,
+            nombres: "Daniel & Nohemí",
+            fecha: "2026-12-29",
+            imagen: "/imagenes/imagenes/hero-wedding-modern-date.avif"
+          }} />
+        </div>
+      </section>
+
+      <!-- 18. HeroWeddingClassicArch -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>18. Hero Wedding Classic Arch</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroWeddingClassicArch data={{
+            ...mockData,
+            nombres: "Nuestra Boda",
+            fecha: "2026-11-22",
+            imagen: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop"
+          }} />
+        </div>
+      </section>
+
+      <!-- 19. HeroWeddingElegantPortal -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>19. Hero Wedding Elegant Portal</span>
+          
+        </div>
+        <div class="relative w-full">
+          <HeroWeddingElegantPortal data={{
+            ...mockData,
+            nombres: "Janette & Arturo",
+            invitado: "Familia Medina",
+            fecha: "2025-02-22",
+            imagen: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop"
+          }} />
+        </div>
+      </section>
 
     </main>
   </body>

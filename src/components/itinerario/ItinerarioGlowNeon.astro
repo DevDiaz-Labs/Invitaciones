@@ -1,0 +1,58 @@
+---
+// src/components/itinerario/ItinerarioGlowNeon.astro
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+---
+
+<section class="py-20 bg-[#090a0f] text-gray-100 px-6 font-sans relative overflow-hidden">
+  <!-- Glowing neon background orbs -->
+  <div class="absolute top-1/4 -left-20 w-44 h-44 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-20 w-44 h-44 rounded-full bg-pink-500/10 blur-3xl pointer-events-none"></div>
+  
+  <div class="max-w-md mx-auto relative z-10">
+    <h2 class="text-3xl font-black text-center mb-16 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">
+      Party Timeline
+    </h2>
+    
+    <div class="relative pl-8 border-l border-cyan-500/20">
+      <!-- Neon glowing vertical bar -->
+      <div class="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+      
+      <div class="space-y-12">
+        {itinerary.map((item, idx) => {
+          const isEven = idx % 2 === 0;
+          const glowColor = isEven ? 'shadow-[0_0_15px_rgba(34,211,238,0.3)] border-cyan-500' : 'shadow-[0_0_15px_rgba(236,72,153,0.3)] border-pink-500';
+          const dotColor = isEven ? 'bg-cyan-400 shadow-[0_0_8px_#22d3ee]' : 'bg-pink-500 shadow-[0_0_8px_#ec4899]';
+          return (
+            <div class="relative group">
+              <!-- Pulsing Node -->
+              <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-[#090a0f] flex items-center justify-center">
+                <div class={`w-2.5 h-2.5 rounded-full ${dotColor}`}></div>
+                <div class={`absolute inset-0 rounded-full animate-ping opacity-60 ${isEven ? 'bg-cyan-400' : 'bg-pink-500'}`}></div>
+              </div>
+              
+              <!-- Card -->
+              <div class={`bg-[#12131a]/80 backdrop-blur-md p-5 rounded-2xl border border-gray-800/80 transition-all duration-300 hover:-translate-y-1 ${glowColor}`}>
+                <div class="flex items-center justify-between">
+                  <span class={`text-xs font-mono font-bold tracking-widest ${isEven ? 'text-cyan-400' : 'text-pink-400'}`}>
+                    {item.time}
+                  </span>
+                  <span class="text-[9px] uppercase tracking-wider text-gray-500 font-mono">
+                    #Live
+                  </span>
+                </div>
+                
+                <h3 class="text-sm font-bold text-white mt-2 tracking-wide font-sans">
+                  {item.event}
+                </h3>
+                <p class="text-xs text-gray-400 mt-1 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

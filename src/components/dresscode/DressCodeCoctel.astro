@@ -42,27 +42,71 @@ const dressCode = data?.dressCode || {
       
       <!-- Hombres (Saco y Pantalón) -->
       <div class="border border-slate-100 bg-slate-50 p-4 rounded-xl flex flex-col items-center">
-        <!-- Blazer sketch -->
-        <svg class="w-10 h-12 text-slate-600 mb-2" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 6 L12 10 L20 6 L18 26 L6 26 Z" stroke="currentColor" stroke-width="1.2" />
-          <path d="M12 10 V26" stroke="currentColor" stroke-width="1.2" />
-          <path d="M12 10 L8 2 L12 0 L16 2 Z" fill="none" stroke="currentColor" stroke-width="1.2" />
-          <circle cx="12" cy="14" r="1" fill="currentColor" />
-          <circle cx="12" cy="18" r="1" fill="currentColor" />
-        </svg>
+        <div class="w-16 h-16 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center mb-2">
+          <!-- Blazer SVG -->
+          <svg class="w-8 h-8 text-slate-600" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hanger -->
+            <path d="M32 12 C32 8, 29 6, 27 6 C25 6, 25 8, 25 9 C25 11, 32 12, 32 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M20 18 L32 14 L44 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            
+            <!-- Jacket Body & Sleeves (Symmetrical) -->
+            <path d="M20 18 L14 26 V48 H19 L19 28 L22 48 Q32 50 42 48 L45 28 L45 48 H50 V26 L44 18 Z" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            
+            <!-- Neck / Lapel V Line -->
+            <path d="M20 18 L32 38 L44 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            
+            <!-- Left Lapel fold line -->
+            <path d="M20 18 L24 30 L32 38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            
+            <!-- Right Lapel fold line -->
+            <path d="M44 18 L40 30 L32 38" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            
+            <!-- Left Lapel notch outer edge -->
+            <path d="M20 18 L17 24 L22 26 L23 35 L32 38" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+            
+            <!-- Right Lapel notch outer edge -->
+            <path d="M44 18 L47 24 L42 26 L41 35 L32 38" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
+            
+            <!-- Open shirt collar lines -->
+            <path d="M27 18 L32 23 L37 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M32 23 V36" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+            
+            <!-- Buttons -->
+            <circle cx="32" cy="42" r="1.5" fill="currentColor" />
+            <circle cx="32" cy="47" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
         <span class="text-3xs uppercase font-semibold text-slate-700 tracking-wider">Saco & Pantalón</span>
       </div>
 
       <!-- Damas (Vestido Cóctel / Falda) -->
       <div class="border border-slate-100 bg-slate-50 p-4 rounded-xl flex flex-col items-center">
-        <!-- Cocktail dress sketch -->
-        <svg class="w-10 h-12 text-slate-600 mb-2" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 6 C8 8, 16 8, 17 6 L19 14 H5 Z" stroke="currentColor" stroke-width="1.2" />
-          <path d="M5 14 L3 26 C8 27, 16 27, 21 26 L19 14" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
-          <path d="M12 6 V26" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
-          <path d="M9 2 L7 6" stroke="currentColor" stroke-width="1.2" />
-          <path d="M15 2 L17 6" stroke="currentColor" stroke-width="1.2" />
-        </svg>
+        <div class="w-16 h-16 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center mb-2">
+          <!-- Cocktail Dress SVG -->
+          <svg class="w-8 h-8 text-slate-600" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hanger -->
+            <path d="M32 12 C32 8, 29 6, 27 6 C25 6, 25 8, 25 9 C25 11, 32 12, 32 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M20 18 L32 14 L44 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+            
+            <!-- Straps hanging from hanger -->
+            <path d="M24 16 V20" stroke="currentColor" stroke-width="1.2" />
+            <path d="M40 16 V20" stroke="currentColor" stroke-width="1.2" />
+            
+            <!-- Dress outline (Sweetheart neck + bust + cinched waist + flared skirt) -->
+            <path d="M24 20 C22 23, 24 26, 26 29 L16 54 C21 56, 27 54, 32 56 C37 54, 43 56, 48 54 L38 29 C40 26, 42 23, 40 20 Z" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            
+            <!-- Sweetheart neckline detail -->
+            <path d="M24 20 C27 22, 30 22, 32 21 C34 22, 37 22, 40 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            
+            <!-- Belt / Waist detail -->
+            <path d="M26 29 H38" stroke="currentColor" stroke-width="1.5" />
+            
+            <!-- Pleats / folds of the skirt -->
+            <path d="M29 29 L23 54" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+            <path d="M32 29 V56" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+            <path d="M35 29 L41 54" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+          </svg>
+        </div>
         <span class="text-3xs uppercase font-semibold text-slate-700 tracking-wider">Vestido o Palazzo</span>
       </div>
 

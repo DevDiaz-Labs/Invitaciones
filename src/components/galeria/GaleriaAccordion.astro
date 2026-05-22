@@ -1,0 +1,78 @@
+---
+// src/components/galeria/GaleriaAccordion.astro
+const { data = [] } = Astro.props;
+---
+
+<section class="w-full py-16 px-4 bg-white select-none">
+  {data.length === 0 ? (
+    <div class="text-center text-gray-400 font-serif italic py-12">No hay fotos en esta galería</div>
+  ) : (
+    <div class="max-w-6xl mx-auto">
+      {/* Title */}
+      <div class="text-center mb-10">
+        <h3 class="font-serif italic text-neutral-800 text-3xl">Instantes Compartidos</h3>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-2">Toca cada imagen para expandir</p>
+      </div>
+
+      {/* Accordion Container: flex-col on mobile, flex-row on desktop */}
+      <div 
+        class="flex flex-col md:flex-row w-full h-[550px] md:h-[450px] gap-3 overflow-hidden rounded-3xl"
+        x-data="{ active: 0 }"
+      >
+        {data.map((photo, index) => {
+          return (
+            <div 
+              class="relative transition-all duration-700 ease-out cursor-pointer overflow-hidden group rounded-2xl border border-neutral-100/50"
+              x-bind:class={`active === ${index} ? 'flex-[4] h-[280px] md:h-full' : 'flex-[0.7] h-[70px] md:h-full bg-neutral-900'`}
+              @click={`active = ${index}`}
+            >
+              {/* Image Background */}
+              <img 
+                src={photo} 
+                alt={`Acordeón ${index + 1}`}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                x-bind:class={`active === ${index} ? 'brightness-[0.9]' : 'brightness-[0.4] group-hover:brightness-[0.5]'`}
+                loading="lazy"
+              />
+
+              {/* Collapsed view indicator (Vertical text on desktop, horizontal on mobile) */}
+              <div 
+                class="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300"
+                x-show={`active !== ${index}`}
+              >
+                <div class="flex md:flex-col items-center gap-2 text-white/70">
+                  <span class="font-serif italic text-lg">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="hidden md:inline w-8 h-[1px] bg-white/40"></span>
+                  <span class="md:[writing-mode:vertical-lr] md:rotate-180 uppercase tracking-widest text-[10px] font-sans">
+                    Ver Foto
+                  </span>
+                </div>
+              </div>
+
+              {/* Expanded view Content overlay */}
+              <div 
+                class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-6 text-white transition-opacity duration-500 delay-200"
+                x-show={`active === ${index}`}
+                x-transition:enter="transition-opacity ease-out duration-500"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+              >
+                <div class="max-w-md transform translate-y-0 transition-transform duration-500 delay-300">
+                  <span class="text-amber-400 font-serif italic text-lg md:text-xl">
+                    Momento {index + 1}
+                  </span>
+                  <h4 class="font-sans font-medium uppercase tracking-widest text-xs mt-1 text-white/90">
+                    Recuerdo Especial
+                  </h4>
+                  <p class="text-white/70 text-xs md:text-sm mt-2 line-clamp-2 font-sans font-light leading-relaxed">
+                    Un instante que guardamos en el corazón para siempre, capturando la alegría de celebrar este camino juntos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
+</section>

@@ -1,0 +1,66 @@
+---
+// src/components/itinerario/ItinerarioAccordion.astro
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+---
+
+<section class="py-20 bg-stone-900 text-stone-100 px-6 font-sans">
+  <div class="max-w-md mx-auto">
+    <h2 class="text-3xl font-serif text-amber-400 text-center mb-10 italic tracking-wide">Itinerario del Día</h2>
+    
+    <div x-data="{ active: 0 }" class="space-y-4">
+      {itinerary.map((item, idx) => (
+        <div class="border border-stone-800 rounded-xl bg-stone-950/80 overflow-hidden transition-all duration-300">
+          <!-- Accordion Header -->
+          <button 
+            @click={`active = active === ${idx} ? null : ${idx}`}
+            class="w-full flex items-center justify-between p-5 text-left transition-colors duration-200 hover:bg-stone-900/60"
+            :class={`active === ${idx} ? 'bg-stone-900' : ''`}
+          >
+            <div class="flex items-center space-x-4">
+              <span class="text-xs font-mono font-bold tracking-widest text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded">
+                {item.time}
+              </span>
+              <span class="font-serif font-semibold text-stone-100 text-sm tracking-wide">
+                {item.event}
+              </span>
+            </div>
+            
+            <svg 
+              class="w-4 h-4 text-amber-400 transition-transform duration-300 transform" 
+              :class={`active === ${idx} ? 'rotate-180' : ''`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <!-- Accordion Body -->
+          <div 
+            x-show={`active === ${idx}`} 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 max-h-0"
+            x-transition:enter-end="opacity-100 max-h-40"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 max-h-40"
+            x-transition:leave-end="opacity-0 max-h-0"
+            class="overflow-hidden border-t border-stone-800/50 bg-stone-950/40"
+          >
+            <div class="p-5 text-stone-400 text-xs leading-relaxed space-y-2">
+              <p>{item.desc}</p>
+              <div class="flex items-center space-x-2 text-[10px] text-amber-400/80 font-mono mt-3 uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Ubicación en el Mapa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+// src/components/hero/HeroXVWatercolor.astro
+interface Props {
+  data?: {
+    etiqueta?: string;
+    nombres?: string;
+    nombre?: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    frase?: string;
+    imagenFondo?: string;
+    imagen?: string;
+  };
+}
+
+const { data = {} } = Astro.props;
+
+const etiqueta = data.etiqueta || "Mis XV Años";
+const nombre = data.nombres || data.nombre || "Sofía Valeria";
+const fecha = data.fechaVista || data.fechaTexto || "24 de Octubre de 2026";
+const frase = data.frase || "Pintando mi vida con los colores de la alegría.";
+const imagenFondo = data.imagenFondo || data.imagen || "https://images.unsplash.com/photo-1518049362265-d5b2a6467637?q=80&w=1200&auto=format&fit=crop";
+---
+
+<header class="relative w-full h-screen flex flex-col items-center justify-center text-center p-6 bg-white overflow-hidden">
+  <!-- Watercolor abstract background via soft CSS gradients -->
+  <div class="absolute inset-0 z-0 opacity-40 blur-3xl">
+    <div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#ffb7b2] rounded-full mix-blend-multiply"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[50%] h-[70%] bg-[#e2f0cb] rounded-full mix-blend-multiply"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[60%] h-[60%] bg-[#ffdac1] rounded-full mix-blend-multiply"></div>
+  </div>
+
+  <!-- Framed Image -->
+  <div class="relative z-10 w-48 h-48 md:w-64 md:h-64 rounded-full p-2 bg-white shadow-xl mb-8">
+    <img src={imagenFondo} alt="Retrato Acuarela" class="w-full h-full object-cover rounded-full" />
+  </div>
+
+  <div class="relative z-10 max-w-md">
+    <span class="text-xs uppercase tracking-[0.3em] font-sans text-gray-500 mb-2 block">{etiqueta}</span>
+    
+    <h1 class="font-handwriting text-6xl md:text-8xl text-gray-800 my-2">
+      {nombre}
+    </h1>
+    
+    <p class="font-sans font-medium text-sm tracking-widest text-gray-600 uppercase mt-4 mb-4">
+      {fecha}
+    </p>
+    
+    <p class="font-serif italic text-gray-500 text-sm max-w-xs mx-auto">
+      "{frase}"
+    </p>
+  </div>
+</header>

@@ -20,14 +20,14 @@ const { data, bgImage } = Astro.props;
 
 <section
     class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative border-t border-[var(--gold)]/20 overflow-hidden"
-    style={bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: rgba(var(--gold-rgb), 0.05);"}
+    style={`--gold: #a3000b; --gold-rgb: 163, 0, 11; --bg-cream: #ffeff6; ${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: var(--bg-cream); background-image: linear-gradient(rgba(var(--gold-rgb), 0.03), rgba(var(--gold-rgb), 0.03));"}`}
 >
     <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl md:text-5xl text-[var(--gold)]">
             Confirma tu asistencia
         </h3>
         <p
-            class={`${data.destacarAvisos ? "text-2xl md:text-3xl font-medium" : "text-base md:text-lg font-light"} text-[var(--dark-text)]/70 italic`}
+            class={`${data.destacarAvisos ? "text-2xl md:text-3xl font-medium" : "text-base md:text-lg font-light"} text-[var(--dark-text)] opacity-70 italic`}
         >
             Será un honor contar con tu presencia. Por favor, <strong>confírmanos antes del {data.fechaLimite}</strong>.
         </p>
@@ -51,7 +51,7 @@ const { data, bgImage } = Astro.props;
                 id="guest-name"
                 placeholder="Tu nombre completo"
                 required
-                class="w-full bg-white/10 p-5 md:p-6 rounded-3xl border border-white/10 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40"
+                class="w-full bg-white/10 p-5 md:p-6 rounded-3xl border border-white/10 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-center text-base md:text-lg text-[var(--dark-text)] placeholder:text-[var(--dark-text)] placeholder:opacity-40"
             />
 
             {
@@ -79,7 +79,7 @@ const { data, bgImage } = Astro.props;
             <div class={data.mostrarNinos !== false ? "grid grid-cols-3 gap-3 md:gap-4" : "grid grid-cols-2 gap-6 md:gap-8 max-w-sm mx-auto"}>
                 <div class="flex flex-col items-center">
                     <label
-                        class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
+                        class="block text-[9px] md:text-xs text-[var(--dark-text)] opacity-70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
                         >Adultos</label
                     >
                     <div
@@ -108,7 +108,7 @@ const { data, bgImage } = Astro.props;
 
                 <div class="flex flex-col items-center">
                     <label
-                        class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
+                        class="block text-[9px] md:text-xs text-[var(--dark-text)] opacity-70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
                         >Jóvenes</label
                     >
                     <div
@@ -138,7 +138,7 @@ const { data, bgImage } = Astro.props;
                 {data.mostrarNinos !== false && (
                     <div class="flex flex-col items-center">
                         <label
-                            class="block text-[9px] md:text-xs text-[var(--dark-text)]/70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
+                            class="block text-[9px] md:text-xs text-[var(--dark-text)] opacity-70 mb-2 uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 text-center h-8 flex items-end pb-1"
                             >Niños</label
                         >
                         <div
@@ -170,14 +170,14 @@ const { data, bgImage } = Astro.props;
             {
                 data.mostrarMensajeEspecial && (
                     <div class="mt-8 observe-me fade-up">
-                        <label class="block text-[10px] md:text-xs text-[var(--dark-text)]/70 mb-3 tracking-[0.1em] md:tracking-[0.2em] uppercase text-left px-4">
+                        <label class="block text-[10px] md:text-xs text-[var(--dark-text)] opacity-70 mb-3 tracking-[0.1em] md:tracking-[0.2em] uppercase text-left px-4">
                             Mensaje Especial
                         </label>
                         <textarea
                             id="special-message"
                             rows="3"
                             placeholder="Escribe tu mensaje especial aquí..."
-                            class="w-full bg-white/10 p-4 md:p-5 rounded-2xl border border-[var(--gold)]/40 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-sm md:text-base text-[var(--dark-text)] placeholder:text-[var(--dark-text)]/40 resize-none"
+                            class="w-full bg-white/10 p-4 md:p-5 rounded-2xl border border-[var(--gold)]/40 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] outline-none transition-all text-sm md:text-base text-[var(--dark-text)] placeholder:text-[var(--dark-text)] placeholder:opacity-40 resize-none"
                         />
                     </div>
                 )

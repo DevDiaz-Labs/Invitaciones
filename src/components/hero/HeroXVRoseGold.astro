@@ -1,0 +1,53 @@
+---
+// src/components/hero/HeroXVRoseGold.astro
+interface Props {
+  data?: {
+    etiqueta?: string;
+    nombres?: string;
+    nombre?: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    frase?: string;
+    imagenFondo?: string;
+    imagen?: string;
+  };
+}
+
+const { data = {} } = Astro.props;
+
+const etiqueta = data.etiqueta || "Mis XV Años";
+const nombre = data.nombres || data.nombre || "Sofía Valeria";
+const fecha = data.fechaVista || data.fechaTexto || "24 de Octubre de 2026";
+const frase = data.frase || "Elegancia y brillo en una noche para recordar por siempre.";
+const imagenFondo = data.imagenFondo || data.imagen || "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=1200&auto=format&fit=crop";
+---
+
+<header class="relative w-full h-screen flex flex-col justify-center items-center text-center p-6 overflow-hidden bg-[#2a1b1d] text-[#e8d5d7]">
+  <div class="absolute inset-0 z-0">
+    <img src={imagenFondo} alt="Fondo Elegante" class="w-full h-full object-cover object-center opacity-50 grayscale-[30%]" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#2a1b1d]/90 via-[#2a1b1d]/40 to-[#2a1b1d]"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-sm h-3/4 flex flex-col justify-center items-center border border-[#b76e79]/40 p-6">
+    <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#b76e79]"></div>
+    <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#b76e79]"></div>
+    <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#b76e79]"></div>
+    <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#b76e79]"></div>
+
+    <span class="text-[10px] uppercase tracking-[0.5em] text-[#b76e79] mb-6">{etiqueta}</span>
+    
+    <h1 class="font-serif text-5xl md:text-6xl font-light text-white uppercase tracking-widest leading-tight mb-8">
+      {nombre}
+    </h1>
+    
+    <div class="w-20 h-[1px] bg-[#b76e79] mb-8"></div>
+    
+    <p class="font-sans text-xs uppercase tracking-[0.2em] text-[#e8d5d7] mb-6">
+      {fecha}
+    </p>
+    
+    <p class="font-serif italic text-sm text-[#e8d5d7]/60 max-w-[200px]">
+      "{frase}"
+    </p>
+  </div>
+</header>

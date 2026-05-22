@@ -1,0 +1,86 @@
+---
+// src/components/hero/HeroXVMiniVideoStyle.astro
+interface Props {
+  data?: {
+    etiqueta?: string;
+    nombres?: string;
+    nombre?: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    frase?: string;
+    imagenFondo?: string;
+    imagen?: string;
+  };
+}
+
+const { data = {} } = Astro.props;
+
+const etiqueta = data.etiqueta || "Mis Quince Años";
+const nombre = data.nombres || data.nombre || "Sofía Valeria";
+const fecha = data.fechaVista || data.fechaTexto || "24 de Octubre de 2026";
+const frase = data.frase || "El inicio de una noche inolvidable y el comienzo de una nueva aventura.";
+const imagenFondo = data.imagenFondo || data.imagen || "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1200&auto=format&fit=crop";
+---
+
+<header class="relative w-full h-screen flex flex-col items-center justify-center text-center p-6 overflow-hidden bg-[#181313] text-[#f7eedf]">
+  <!-- Background Image - Blurred and darkened -->
+  <div class="absolute inset-0 z-0">
+    <img src={imagenFondo} alt="Quinceañera Background" class="w-full h-full object-cover object-center blur-md scale-110 opacity-40" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#181313]/90 via-[#181313]/55 to-[#181313]"></div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="relative z-10 max-w-sm w-full flex flex-col items-center gap-6">
+    
+    <!-- Floating Cinematic Photo Frame -->
+    <div class="relative p-2.5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl w-full max-w-[280px]">
+      <!-- Corner gold brackets (SVG overlay) -->
+      <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#d4af37]/60 rounded-tl-xl pointer-events-none"></div>
+      <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#d4af37]/60 rounded-tr-xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#d4af37]/60 rounded-bl-xl pointer-events-none"></div>
+      <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#d4af37]/60 rounded-br-xl pointer-events-none"></div>
+
+      <!-- Inner Picture -->
+      <div class="aspect-[3/4] w-full rounded-lg overflow-hidden relative group">
+        <img src={imagenFondo} alt="Cinematic Portrait" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+        
+        <!-- Live Badge / Play Deco Icon -->
+        <div class="absolute top-3 left-3 bg-[#d4af37] text-black text-[9px] font-bold tracking-widest px-2 py-0.5 rounded uppercase flex items-center gap-1 shadow-md">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping"></span>
+          MEMORIES
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Information Area -->
+    <div class="w-full flex flex-col items-center">
+      <!-- Etiqueta -->
+      <span class="text-[10px] uppercase tracking-[0.45em] text-[#d4af37] font-semibold mb-2 block">{etiqueta}</span>
+      
+      <!-- Name styled with large elegant serif font -->
+      <h1 class="font-serif text-4xl tracking-wide uppercase text-white my-2 leading-none drop-shadow-sm font-normal">
+        {nombre}
+      </h1>
+
+      <div class="w-12 h-[1px] bg-[#d4af37]/45 my-3"></div>
+
+      <!-- Date -->
+      <p class="font-serif italic text-base text-[#f7eedf]/80 tracking-widest mb-4">
+        {fecha}
+      </p>
+
+      <!-- Phrase -->
+      <p class="font-serif text-xs font-light text-[#f7eedf]/60 leading-relaxed italic text-center max-w-xs px-4">
+        "{frase}"
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Bottom navigation indicator -->
+  <div class="absolute bottom-6 z-10 text-[#d4af37]/60 animate-bounce">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+    </svg>
+  </div>
+</header>

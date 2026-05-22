@@ -8,16 +8,16 @@ import DressCodeIndustrial from "../../components/dresscode/DressCodeIndustrial.
 
 // Nuevos componentes premium con ilustraciones de saco y vestido
 import DressCodeEtiqueta from "../../components/dresscode/DressCodeEtiqueta.astro";
-import DressCodeGlitz from "../../components/dresscode/DressCodeGlitz.astro";
-import DressCodeChampagne from "../../components/dresscode/DressCodeChampagne.astro";
 import DressCodePlaya from "../../components/dresscode/DressCodePlaya.astro";
 import DressCodeCoctel from "../../components/dresscode/DressCodeCoctel.astro";
 
 // Variaciones extra premium super-elegantes
 import DressCodeGalaImperial from "../../components/dresscode/DressCodeGalaImperial.astro";
-import DressCodeRosadoGlam from "../../components/dresscode/DressCodeRosadoGlam.astro";
 import DressCodeJardinElegante from "../../components/dresscode/DressCodeJardinElegante.astro";
 import DressCodeVintageChic from "../../components/dresscode/DressCodeVintageChic.astro";
+
+// Cloned premium styles from screenshot
+import DressCodeInvitadosFotos from "../../components/dresscode/DressCodeInvitadosFotos.astro";
 
 const mockData = {
   mostrar: true,
@@ -47,29 +47,152 @@ const mockData = {
     { time: '18:00', event: 'Recepción', desc: 'Salón de Eventos' }
   ],
   dressCode: {
-    titulo: 'Formal',
-    subtitulo: 'Traje oscuro y vestido largo',
-    nota: 'La recepción será en un jardín, sugerimos considerar el calzado para tu comodidad.'
+    titulo: 'Formal Jardín',
+    subtitulo: 'Mujeres: Vestido midi o largo de tela fluida. Caballeros: Guayabera o traje de lino.',
+    nota: 'El evento se llevará a cabo en un hermoso jardín con césped natural. Sugerimos usar calzado adecuado (evitar tacón de aguja).'
   },
   galeria: [
     'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800',
     'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800'
   ]
 };
+
+const mockDataXV = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Formal',
+    subtitulo: 'Traje oscuro y vestido largo de noche.',
+    nota: 'Se reserva el uso del color rosa para la quinceañera.'
+  }
+};
+
+const mockDataBodaBlanco = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Rigurosa Etiqueta',
+    subtitulo: 'Esmoquin para hombres, vestido largo de gala para mujeres.',
+    nota: 'Agradecemos evitar el uso del color blanco y crema (exclusivos de la novia).'
+  }
+};
+
+const mockDataPlaya = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Playa Chic',
+    subtitulo: 'Guayabera clara y pantalón de lino, vestido fresco y ligero.',
+    nota: 'La recepción será sobre la arena. Sugerimos calzado plano o sandalias cómodas.'
+  }
+};
+
+const mockDataTerrace = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Cóctel',
+    subtitulo: 'Traje sin corbata o saco sport, vestido de cóctel corto o midi.',
+    nota: 'La recepción será en una terraza al aire libre. ¡Lleva un abrigo ligero por si refresca!'
+  }
+};
+
+const mockDataBoho = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Boho Chic',
+    subtitulo: 'Traje sin corbata, colores tierra / cálidos. Vestido bohemio y fluido.',
+    nota: 'Agradecemos evitar el color negro para sintonizar con la naturaleza rústica del lugar.'
+  }
+};
+
+const mockDataGatsby = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Elegante',
+    subtitulo: 'Traje oscuro o etiqueta para caballeros, vestido largo de noche para damas.',
+    nota: 'Agradecemos tu asistencia luciendo de lo más elegante para esta gran celebración.'
+  }
+};
+
+const mockDataBodaNegro = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Black Tie Optional',
+    subtitulo: 'Traje oscuro o esmoquin, vestido formal de noche.',
+    nota: 'El evento se llevará a cabo en un salón cerrado climatizado. ¡Te esperamos!'
+  }
+};
+
+const mockDataIndustrial = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Casual Moderno',
+    subtitulo: 'Pantalón de vestir y camisa de cuello, vestido casual elegante.',
+    nota: 'El salón cuenta con un estilo industrial moderno. Calzado cómodo sugerido para bailar.'
+  }
+};
+
+const mockDataGalaImperial = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Gala Imperial',
+    subtitulo: 'Vestido largo de noche y esmoquin o frac elegante.',
+    nota: 'Se solicita traje de gala formal. Se reserva el color blanco y perla para los novios.'
+  }
+};
+
+const mockDataVintageChic = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Vintage Chic',
+    subtitulo: 'Prendas con encaje o bordados, tonos pastel o tierras antiguos.',
+    nota: 'Una velada con aire nostálgico. Agradecemos su preferencia por la paleta de tonos vintage.'
+  }
+};
+
+const mockDataRetro = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Retro / Vintage',
+    subtitulo: 'Traje clásico de época o vestido estilo pin-up / años 50.',
+    nota: 'Se sugiere vestir con toques nostálgicos y divertidos. ¡Saca tu estilo de época!'
+  }
+};
+
+const mockDataCoctel = {
+  ...mockData,
+  dressCode: {
+    titulo: 'Cóctel Elegante',
+    subtitulo: 'Traje casual sin corbata o saco sport. Vestido corto de noche o palazzo.',
+    nota: 'La celebración será en interior. ¡Ven listo para celebrar en grande!'
+  }
+};
 ---
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test: Componentes de DRESSCODE</title>
+    <title>Catálogo: Dress Code</title>
     
     <script src="https://cdn.tailwindcss.com" is:inline></script>
     <script is:inline>
       tailwind.config = {
         theme: {
           extend: {
+            colors: {
+              boho: {
+                terracota: '#b76e79',
+                arena: '#f4e8d3',
+                eucalipto: '#81B29A',
+                rosa: '#E8C3B9',
+                dorado: '#C5A059'
+              },
+              'boho-terracota': '#b76e79',
+              'boho-arena': '#f4e8d3',
+              'boho-eucalipto': '#81B29A',
+              'boho-rosa': '#E8C3B9',
+              'boho-dorado': '#C5A059'
+            },
             fontFamily: {
-              handwriting: ['"Great Vibes"', 'cursive']
+              serif: ['"Playfair Display"', '"Noto Serif"', 'serif'],
+              handwriting: ['"Dancing Script"', 'cursive']
             }
           }
         }
@@ -77,11 +200,13 @@ const mockData = {
     </script>
     <script src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
     <style is:global>
       :root {
         --gold: #b76e79;
+        --gold-rgb: 183, 110, 121;
+        --bg-cream: #fdfbf7;
         --dark-text: #2c2523;
         --boho-arena: #f4e8d3;
         --boho-terracota: #b76e79;
@@ -90,122 +215,152 @@ const mockData = {
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100%;
-        background-color: #f3f4f6;
+        background-color: #0f1012;
+        color: #f3f4f6;
       }
     </style>
   </head>
   <body>
-    <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen pb-20">
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-neutral-900 min-h-screen pb-24">
       
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODEXV STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeXV data={mockData} />
-      </div>
+      <!-- Header Panel -->
+      <header class="p-8 md:p-12 text-center border-b border-white/10 bg-black/30">
+        <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold font-mono">Catálogo digital</span>
+        <h1 class="text-3xl md:text-5xl font-serif italic text-white mt-3">Dress Code</h1>
+        <p class="text-gray-400 text-xs md:text-sm mt-3 max-w-xl mx-auto font-sans leading-relaxed">
+          Una colección de 13 diseños de Dress Code premium con ilustraciones, sugerencias de vestimenta y paletas de colores interactivas.
+        </p>
+      </header>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODEMINIMALISTA STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeMinimalista data={mockData} />
-      </div>
+      <!-- 1. Dress Code XV -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>1. Dress Code XV</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeXV data={mockDataXV} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODEBOHO STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeBoho />
-      </div>
+      <!-- 2. Dress Code Minimalista -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>2. Dress Code Minimalista</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeMinimalista data={mockDataTerrace} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODERETRO STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeRetro data={mockData} />
-      </div>
+      <!-- 3. Dress Code Boho -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>3. Dress Code Boho</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeBoho data={mockDataBoho} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODEGATSBY STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeGatsby data={mockData} />
-      </div>
+      <!-- 4. Dress Code Retro -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>4. Dress Code Retro</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeRetro data={mockDataRetro} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODEINDUSTRIAL STYLE
-      </div>
-      <div class="relative w-full">
-        <DressCodeIndustrial data={mockData} />
-      </div>
+      <!-- 5. Dress Code Elegante -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>5. Dress Code Elegante</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeGatsby data={mockDataGatsby} />
+        </div>
+      </section>
 
-      <!-- NUEVAS VARIACIONES PREMIUM (CON ILUSTRACIONES) -->
+      <!-- 6. Dress Code Industrial -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>6. Dress Code Industrial</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeIndustrial data={mockDataIndustrial} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE ETIQUETA (Smoking & Gala)
-      </div>
-      <div class="relative w-full">
-        <DressCodeEtiqueta data={mockData} />
-      </div>
+      <!-- 7. Dress Code Etiqueta -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>7. Dress Code Etiqueta</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeEtiqueta data={mockDataBodaBlanco} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE GLITZ (Brillos & Elegante)
-      </div>
-      <div class="relative w-full">
-        <DressCodeGlitz data={mockData} />
-      </div>
+      <!-- 8. Dress Code Playa -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>8. Dress Code Playa</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodePlaya data={mockDataPlaya} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE CHAMPAGNE (Paleta de Colores)
-      </div>
-      <div class="relative w-full">
-        <DressCodeChampagne data={mockData} />
-      </div>
+      <!-- 9. Dress Code Coctel -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>9. Dress Code Coctel</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeCoctel data={mockDataCoctel} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE PLAYA (Guayabera & Lino)
-      </div>
-      <div class="relative w-full">
-        <DressCodePlaya data={mockData} />
-      </div>
+      <!-- 10. Dress Code Gala Imperial -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>10. Dress Code Gala Imperial</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeGalaImperial data={mockDataGalaImperial} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE COCTEL (Saco & Vestido Moderno)
-      </div>
-      <div class="relative w-full">
-        <DressCodeCoctel data={mockData} />
-      </div>
+      <!-- 11. Dress Code Jardin Elegante -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>11. Dress Code Jardín Elegante</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeJardinElegante data={mockData} />
+        </div>
+      </section>
 
-      <!-- VARIACIONES EXTRA PREMIUM SUPER-ELEGANTES -->
+      <!-- 12. Dress Code Vintage Chic -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>12. Dress Code Vintage Chic</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeVintageChic data={mockDataVintageChic} />
+        </div>
+      </section>
 
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE GALA IMPERIAL (Royal Azul & Oro)
-      </div>
-      <div class="relative w-full">
-        <DressCodeGalaImperial data={mockData} />
-      </div>
-
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE ROSADO GLAM (Rose Gold & Esmeralda)
-      </div>
-      <div class="relative w-full">
-        <DressCodeRosadoGlam data={mockData} />
-      </div>
-
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE JARDIN ELEGANTE (Salvia & Lino)
-      </div>
-      <div class="relative w-full">
-        <DressCodeJardinElegante data={mockData} />
-      </div>
-
-      <div class="p-4 bg-gray-100 text-center font-bold text-gray-700 border-b border-gray-200 mt-8">
-        DRESSCODE VINTAGE CHIC (Papel & Bosquejo)
-      </div>
-      <div class="relative w-full">
-        <DressCodeVintageChic data={mockData} />
-      </div>
+      <!-- 13. Dress Code Invitados Fotos -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>13. Dress Code Invitados Fotos</span>
+        </div>
+        <div class="relative w-full">
+          <DressCodeInvitadosFotos data={mockDataBodaNegro} />
+        </div>
+      </section>
 
     </main>
   </body>

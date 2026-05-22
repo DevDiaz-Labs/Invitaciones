@@ -1,105 +1,203 @@
 ---
-// RSVPMini.astro
+// RSVPMinimalista.astro
+interface Props {
+    data: {
+        telefono: string;
+        mensajeDefault: string;
+        fechaLimite?: string;
+        mostrarNinos?: boolean;
+        noNinos?: boolean;
+        mensajeNoNinos?: string;
+        pases?: {
+            mostrar: boolean;
+            cantidad: number;
+        };
+    };
+}
+
 const { data } = Astro.props;
+const fechaLimite = data?.fechaLimite || '1 de Septiembre';
+const mostrarNinos = data?.mostrarNinos !== false && data?.noNinos !== true;
+const telefono = data?.telefono || '521234567890';
+const mensajeDefault = data?.mensajeDefault || 'Confirmación de asistencia';
 ---
 
-<section class="py-10 px-4 bg-[#FAFAFA] fade-up">
+<section class="py-10 px-4 bg-[#FAFAFA] fade-up rsvp-minimalist-container">
   <div class="max-w-xl mx-auto bg-white p-8 md:p-12 shadow-sm border border-stone-100 rounded-xl">
     <h2 class="text-3xl font-serif mb-2 text-center text-stone-800">Confirmar Asistencia</h2>
-    <p class="text-center text-stone-500 font-light mb-8 text-sm">Por favor, confírmanos antes del 1 de Septiembre.</p>
+    <p class="text-center text-stone-500 font-light mb-8 text-sm">Por favor, confírmanos antes del {fechaLimite}.</p>
 
-    <div id="rsvp-success" class="hidden text-center py-12">
-      <div class="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-4">
-        <svg class="text-stone-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </div>
-      <h3 class="text-2xl font-serif mb-2">¡Gracias!</h3>
-      <p class="text-stone-500 font-light">Hemos recibido tu confirmación.</p>
-    </div>
+    {
+      !mostrarNinos && data?.mensajeNoNinos && (
+        <div class="bg-stone-50 p-4 rounded-lg border border-stone-200/50 mb-6 text-center">
+          <p class="text-xs text-stone-600 leading-relaxed font-light">{data.mensajeNoNinos}</p>
+        </div>
+      )
+    }
 
-    <form id="rsvp-form" class="space-y-6">
+    <form class="rsvp-form space-y-6">
       <div>
-        <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Nombre y Apellido</label>
+        <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-medium">Nombre y Apellido</label>
         <input 
           type="text" 
           required
-          class="w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300"
+          class="guest-name w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 transition-colors placeholder:text-stone-300 text-stone-800 text-base"
           placeholder="Ej. Familia Pérez"
         />
       </div>
 
-      <div>
-        <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">¿Asistirás?</label>
-        <div class="flex gap-4">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="attending" required class="accent-stone-800" checked />
-            <span class="font-light">Sí, ahí estaré</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="attending" required class="accent-stone-800" />
-            <span class="font-light">Lo siento, no podré</span>
-          </label>
+      {
+        data?.pases?.mostrar && (
+          <div class="text-stone-500 text-xs font-light text-center bg-stone-50 py-2 rounded">
+            Hemos reservado <span class="font-semibold text-stone-700">{data.pases.cantidad}</span> lugares para ti.
+          </div>
+        )
+      }
+
+      <div class="grid grid-cols-2 gap-6">
+        <div class="flex flex-col items-center">
+          <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-medium">Adultos</label>
+          <div class="flex items-center w-full border border-stone-200 rounded-lg overflow-hidden h-10 bg-stone-50/50">
+            <button type="button" class="decrement-btn outline-none w-10 h-full text-stone-600 text-xl font-light hover:bg-stone-100 flex items-center justify-center cursor-pointer select-none" data-target="adults">-</button>
+            <input type="number" class="adult-count w-full bg-transparent border-none outline-none text-center text-sm font-semibold text-stone-800 p-0" min="1" value="1" required readonly />
+            <button type="button" class="increment-btn outline-none w-10 h-full text-stone-600 text-base font-light hover:bg-stone-100 flex items-center justify-center cursor-pointer select-none" data-target="adults">+</button>
+          </div>
         </div>
+
+        {
+          mostrarNinos ? (
+            <div class="flex flex-col items-center">
+              <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-medium">Niños</label>
+              <div class="flex items-center w-full border border-stone-200 rounded-lg overflow-hidden h-10 bg-stone-50/50">
+                <button type="button" class="decrement-btn outline-none w-10 h-full text-stone-600 text-xl font-light hover:bg-stone-100 flex items-center justify-center cursor-pointer select-none" data-target="children">-</button>
+                <input type="number" class="child-count w-full bg-transparent border-none outline-none text-center text-sm font-semibold text-stone-800 p-0" min="0" value="0" required readonly />
+                <button type="button" class="increment-btn outline-none w-10 h-full text-stone-600 text-base font-light hover:bg-stone-100 flex items-center justify-center cursor-pointer select-none" data-target="children">+</button>
+              </div>
+            </div>
+          ) : (
+            <div class="flex flex-col items-center justify-center border border-stone-100 rounded-lg bg-stone-50/30 p-2 text-center h-14 w-full">
+              <span class="text-[9px] uppercase tracking-wider text-stone-400 font-mono leading-none">Solo Adultos</span>
+            </div>
+          )
+        }
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Adultos</label>
-          <select class="w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 font-light">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Niños</label>
-          <select class="w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 font-light">
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-          </select>
-        </div>
-      </div>
-
       <div>
-        <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Restricciones alimentarias (Opcional)</label>
+        <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-medium">Restricciones alimentarias (Opcional)</label>
         <input 
           type="text" 
-          class="w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 transition-colors font-light placeholder:text-stone-300"
+          class="special-message w-full border-b border-stone-300 bg-transparent pb-2 focus:outline-none focus:border-stone-800 transition-colors font-light placeholder:text-stone-300 text-stone-800 text-base"
           placeholder="Alergias, menú vegetariano, etc."
         />
       </div>
 
       <button 
-        id="btn-submit-rsvp"
         type="submit" 
-        class="w-full bg-stone-800 text-white py-4 mt-4 uppercase tracking-widest text-sm hover:bg-stone-900 transition-colors disabled:opacity-50"
+        class="w-full bg-stone-800 text-white py-4 mt-4 uppercase tracking-widest text-sm hover:bg-stone-900 transition-colors font-semibold"
       >
-        Confirmar
+        Confirmar por WhatsApp
       </button>
     </form>
+    
+    <div class="status-msg hidden text-center mt-4 text-xs italic text-stone-500 animate-pulse">
+      Redirigiendo a WhatsApp...
+    </div>
   </div>
 </section>
 
-<script>
+<script define:vars={{ telefonoAPI: telefono, mensajeBase: mensajeDefault, maxPasesProp: data?.pases?.cantidad || 0 }}>
   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('rsvp-form');
-    const successMsg = document.getElementById('rsvp-success');
-    const btnSubmit = document.getElementById('btn-submit-rsvp') as HTMLButtonElement;
+    document.querySelectorAll('.rsvp-minimalist-container').forEach((container) => {
+      const form = container.querySelector('.rsvp-form');
+      if (!form) return;
 
-    if(form && successMsg && btnSubmit) {
+      const guestNameInput = container.querySelector('.guest-name');
+      const adultCountInput = container.querySelector('.adult-count');
+      const childCountInput = container.querySelector('.child-count');
+      const specialMsgInput = container.querySelector('.special-message');
+      const statusMsg = container.querySelector('.status-msg');
+
+      let maxPases = maxPasesProp;
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("pases")) {
+        maxPases = parseInt(urlParams.get("pases") || "0");
+      } else {
+        const match = window.location.href.match(/-pases=(\d+)/);
+        if (match) {
+          maxPases = parseInt(match[1]);
+        }
+      }
+
+      function getTotalCount() {
+        const adults = parseInt(adultCountInput?.value || "0");
+        const children = childCountInput ? parseInt(childCountInput.value || "0") : 0;
+        return adults + children;
+      }
+
+      // Configurar botones de incremento/decremento
+      container.querySelectorAll('.increment-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+          const input = target === 'adults' ? adultCountInput : childCountInput;
+          if (input) {
+            if (maxPases > 0 && getTotalCount() >= maxPases) {
+              alert(`Solo tienes un máximo de ${maxPases} pases asignados.`);
+              return;
+            }
+            input.value = parseInt(input.value || "0") + 1;
+          }
+        });
+      });
+
+      container.querySelectorAll('.decrement-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+          const input = target === 'adults' ? adultCountInput : childCountInput;
+          if (input) {
+            const currentVal = parseInt(input.value || "0");
+            const minVal = target === 'adults' ? 1 : 0; // Mínimo 1 adulto si van a asistir
+            if (currentVal > minVal) {
+              input.value = currentVal - 1;
+            }
+          }
+        });
+      });
+
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        btnSubmit.disabled = true;
-        btnSubmit.innerText = 'Enviando...';
+        
+        const name = guestNameInput?.value || '';
+        const adults = parseInt(adultCountInput?.value || '0');
+        const children = childCountInput ? parseInt(childCountInput.value || '0') : 0;
+        const specialMsg = specialMsgInput?.value || '';
+
+        if (adults === 0) {
+          alert('Debe asistir al menos 1 adulto.');
+          return;
+        }
+
+        let text = `${mensajeBase}\nSoy ${name.trim()}, confirmo mi asistencia:\n`;
+        text += `- ${adults} adulto${adults > 1 ? "s" : ""}\n`;
+        if (children > 0) {
+          text += `- ${children} niño${children > 1 ? "s" : ""}\n`;
+        }
+        if (specialMsg.trim() !== '') {
+          text += `\nNota especial: "${specialMsg.trim()}"`;
+        }
+
+        const url = `https://wa.me/${telefonoAPI}?text=${encodeURIComponent(text.trim())}`;
+        
+        if (statusMsg) {
+          statusMsg.classList.remove('hidden');
+        }
 
         setTimeout(() => {
-          form.classList.add('hidden');
-          successMsg.classList.remove('hidden');
-        }, 1500);
+          window.open(url, '_blank');
+          if (statusMsg) {
+            statusMsg.classList.add('hidden');
+          }
+        }, 800);
       });
-    }
+    });
   });
 </script>

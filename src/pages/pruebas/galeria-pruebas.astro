@@ -1,20 +1,35 @@
 ---
-// Ubicación: src/pages/test-slider.astro
+// Ubicación: src/pages/pruebas/galeria-pruebas.astro
 
-// 1. Importa tu componente.
-// Reemplaza 'Slider' con el nombre real con el que guardaste tu archivo (ej. Carousel.astro, HeroSlider.astro)
+// Import standard components
 import GaleriaBento from "../../components/galeria/GaleriaBento.astro";
 import GaleriaFull from "../../components/galeria/GaleriaFull.astro";
 import GaleriaMini from "../../components/galeria/GaleriaMini.astro";
 
+// Import remaining new components
+import GaleriaPolaroidStack from "../../components/galeria/GaleriaPolaroidStack.astro";
+import GaleriaMasonry from "../../components/galeria/GaleriaMasonry.astro";
+import GaleriaCineFilm from "../../components/galeria/GaleriaCineFilm.astro";
+import GaleriaCircular3D from "../../components/galeria/GaleriaCircular3D.astro";
+import GaleriaAsymmetricGrid from "../../components/galeria/GaleriaAsymmetricGrid.astro";
+import GaleriaAccordion from "../../components/galeria/GaleriaAccordion.astro";
+import GaleriaTimelineGrowth from "../../components/galeria/GaleriaTimelineGrowth.astro";
+import GaleriaGlassCards from "../../components/galeria/GaleriaGlassCards.astro";
+import GaleriaTornPaper from "../../components/galeria/GaleriaTornPaper.astro";
+import GaleriaSwipeDeck from "../../components/galeria/GaleriaSwipeDeck.astro";
+import GaleriaSplitScreen from "../../components/galeria/GaleriaSplitScreen.astro";
+import GaleriaDoubleSlider from "../../components/galeria/GaleriaDoubleSlider.astro";
+
 // 2. Preparamos el mock de datos (URLs de imágenes).
-// Usaremos imágenes verticales de Unsplash simulando fotos de una pareja para encajar con la temática.
 const fotosPareja = [
     "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 1
     "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 2
     "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 3
     "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 4
-    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 5
+    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 5
+    "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 6
+    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 7
+    "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=800&auto=format&fit=crop", // Boda/Pareja 8
 ];
 ---
 
@@ -22,7 +37,7 @@ const fotosPareja = [
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Test: Componente Slider Alpine</title>
+        <title>Demo: Catálogo de Galerías Premium</title>
 
         <script
             defer
@@ -44,28 +59,163 @@ const fotosPareja = [
         </script>
 
         <style>
-            /* Reseteo básico para que ocupe toda la pantalla correctamente */
             body,
             html {
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                height: 100%;
-                background-color: #f3f4f6; /* Fondo gris claro para contrastar si el slider no ocupa el 100vh */
+                background-color: #0f1012;
+                color: #f3f4f6;
             }
         </style>
     </head>
     <body>
-        <main class="w-full max-w-md mx-auto shadow-2xl bg-white min-h-screen">
-            <GaleriaFull data={fotosPareja} />
+        <main class="w-full max-w-4xl mx-auto shadow-2xl bg-neutral-900 min-h-screen pb-24">
+            <!-- Header Panel -->
+            <header class="p-8 md:p-12 text-center border-b border-white/10 bg-black/30">
+                <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold font-mono">Catálogo digital</span>
+                <h1 class="text-3xl md:text-5xl font-serif italic text-white mt-3">Galerías de Fotos</h1>
+                <p class="text-gray-400 text-xs md:text-sm mt-3 max-w-xl mx-auto font-sans leading-relaxed">
+                    Una colección de 15 diseños interactivos de galería premium optimizados para invitaciones digitales móviles y de escritorio.
+                </p>
+            </header>
 
-            <GaleriaMini data={fotosPareja} />
+            <!-- A. GaleriaBento -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>1. Galería Bento Grid</span>
+                    
+                </div>
+                <GaleriaBento data={fotosPareja.slice(0, 5)} />
+            </section>
 
-            <GaleriaBento data={fotosPareja} />
+            <!-- B. GaleriaFull -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>2. Galería Full Screen Carousel</span>
+                    
+                </div>
+                <GaleriaFull data={fotosPareja} />
+            </section>
 
-            <div class="p-6 text-center text-gray-500 font-sans">
-                <p>Contenido debajo del slider...</p>
-            </div>
+            <!-- C. GaleriaMini -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>3. Galería Mini Aspect-Ratio Slider</span>
+                    
+                </div>
+                <GaleriaMini data={fotosPareja} />
+            </section>
+
+            <!-- 1. GaleriaPolaroidStack -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>4. Galería Polaroid Stack</span>
+                    
+                </div>
+                <GaleriaPolaroidStack data={fotosPareja} />
+            </section>
+
+            <!-- 2. GaleriaMasonry -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>5. Galería Masonry Staggered</span>
+                    
+                </div>
+                <GaleriaMasonry data={fotosPareja} />
+            </section>
+
+            <!-- 3. GaleriaCineFilm -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>6. Galería Cine Film</span>
+                    
+                </div>
+                <GaleriaCineFilm data={fotosPareja} />
+            </section>
+
+            <!-- 4. GaleriaCircular3D -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>7. Galería Circular 3D</span>
+                    
+                </div>
+                <GaleriaCircular3D data={fotosPareja} />
+            </section>
+
+            <!-- 5. GaleriaAsymmetricGrid -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>8. Galería Editorial Asimétrica</span>
+                    
+                </div>
+                <GaleriaAsymmetricGrid data={fotosPareja} />
+            </section>
+
+            <!-- 6. GaleriaAccordion -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>9. Galería Acordeón</span>
+                    
+                </div>
+                <GaleriaAccordion data={fotosPareja} />
+            </section>
+
+            <!-- 7. GaleriaTimelineGrowth -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>10. Galería Timeline Growth</span>
+                    
+                </div>
+                <GaleriaTimelineGrowth data={fotosPareja} />
+            </section>
+
+            <!-- 8. GaleriaGlassCards -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>11. Galería Glass Cards</span>
+                    
+                </div>
+                <GaleriaGlassCards data={fotosPareja} />
+            </section>
+
+            <!-- 9. GaleriaTornPaper -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>12. Galería Torn Paper</span>
+                    
+                </div>
+                <GaleriaTornPaper data={fotosPareja} />
+            </section>
+
+            <!-- 10. GaleriaSwipeDeck -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>13. Galería Swipe Deck</span>
+                    
+                </div>
+                <GaleriaSwipeDeck data={fotosPareja} />
+            </section>
+
+            <!-- 11. GaleriaSplitScreen -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>14. Galería Split Screen</span>
+                    
+                </div>
+                <GaleriaSplitScreen data={fotosPareja} />
+            </section>
+
+            <!-- 12. GaleriaDoubleSlider -->
+            <section class="border-b border-white/5">
+                <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+                    <span>15. Galería Double Slider</span>
+                    
+                </div>
+                <GaleriaDoubleSlider data={fotosPareja} />
+            </section>
+
+
         </main>
     </body>
 </html>
