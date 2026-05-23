@@ -1,0 +1,216 @@
+---
+// src/components/sobre/SobreDeslizable.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#0b1329", // Deep space navy for sleeve
+    colorSolapa = "#1c2541",
+    colorSolapaLado = "#3a506b",
+    colorSello = "#64dfdf", // Cyan satin highlights
+    colorSelloBorde = "#56c1c1",
+    colorCartaFondo = "#ffffff",
+    colorCartaTexto = "#0f172a",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#56c1c1",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Desliza para descubrir
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Presiona el estuche para abrir
+        </p>
+    </div>
+
+    <!-- Sliding viewport -->
+    <div class="envelope-container" style="perspective: 2000px; width: 340px; height: 230px; position: relative;">
+        <div
+            id="envelope-sleeve-wrapper"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Inner Letter (Slides to the right) -->
+            <div
+                id="letter-sleeve"
+                style={`position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; background: ${colorCartaFondo}; border-radius: 6px; transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.1) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; z-index: 5;`}
+            >
+                <!-- Pull tab sticking out on the right -->
+                <div 
+                    id="pull-tab"
+                    style={`position: absolute; right: -12px; top: 50%; transform: translateY(-50%); width: 12px; height: 36px; background: ${colorSello}; border-radius: 0 6px 6px 0; border: 1px solid ${colorSelloBorde}; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); transition: transform 0.3s ease;`}
+                ></div>
+
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.3rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Outer Sleeve/Box (Slides to the left) -->
+            <div
+                id="sleeve-box"
+                style={`position: absolute; inset: 0; background: linear-gradient(135deg, ${colorSobre}, ${colorSolapa}); border-radius: 8px; border: 1px solid ${colorSolapaLado}; box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 10; transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; display: flex; align-items: center; justify-content: flex-start; overflow: hidden;`}
+            >
+                <!-- Decorative Gold Stripe & Pattern -->
+                <div style={`position: absolute; left: 24px; top: 0; bottom: 0; width: 4px; background: ${colorSello}; opacity: 0.8;`}></div>
+                
+                <!-- Circular notch cutout on the right to show the letter -->
+                <div style={`position: absolute; right: -20px; top: 50%; transform: translateY(-50%); width: 40px; height: 60px; border-radius: 50%; background: ${colorFondoBase}; box-shadow: inset 4px 0 10px rgba(0,0,0,0.5);`}></div>
+                
+                <!-- Outer Text -->
+                <div class="px-10 py-6" style="text-align: left; pointer-events: none;">
+                    <div style={`font-family: ${fuenteTitulos}; font-size: 10px; color: ${colorTitulo}; letter-spacing: 0.2em; text-transform: uppercase;`}>
+                        Exclusivo para
+                    </div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; color: #faeedd; font-weight: 300; margin-top: 4px; opacity: 0.9;" set:html={nombre}>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeSleeve() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-sleeve-wrapper");
+            const sleeveBox = document.querySelector("#sleeve-box");
+            const letter = document.querySelector("#letter-sleeve");
+            const pullTab = document.querySelector("#pull-tab");
+
+            if (!envelope || !sleeveBox || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Deslizar la manga hacia la izquierda y atenuar
+                sleeveBox.style.transform = "translateX(-165px)";
+                sleeveBox.style.opacity = "0.15";
+
+                // 2. Deslizar la carta hacia la derecha y sacarla
+                letter.style.transform = "translateX(165px) scale(1.08)";
+                if (pullTab) {
+                    pullTab.style.transform = "translateY(-50%) scale(0)";
+                }
+
+                // 3. Ocultar pantalla y mostrar contenido
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1800);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3200);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeSleeve);
+        } else {
+            initEnvelopeSleeve();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeSleeve);
+    })();
+</script>

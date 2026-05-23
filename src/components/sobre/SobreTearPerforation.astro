@@ -1,0 +1,247 @@
+---
+// src/components/sobre/SobreTearPerforation.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#1e293b", // Slate ticket jacket
+    colorSolapa = "#334155",
+    colorSolapaLado = "#0f172a", // Hole color
+    colorSello = "#ec4899", // Neon pink vip accents
+    colorSelloBorde = "#db2777",
+    colorCartaFondo = "#ffffff",
+    colorCartaTexto = "#1e293b",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#ec4899",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Pase de Entrada VIP
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Desgarra la franja punteada para ingresar
+        </p>
+    </div>
+
+    <!-- Ticket envelope viewport -->
+    <div class="envelope-container" style="perspective: 2000px; width: 345px; height: 210px; position: relative;">
+        <div
+            id="envelope-ticket"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            
+            <!-- Letter Ticket Inside (Slides to the right after rip) -->
+            <div
+                id="letter-ticket"
+                style={`position: absolute; top: 10px; left: 10px; right: 70px; bottom: 10px; background: ${colorCartaFondo}; border-radius: 6px; transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.1) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; z-index: 5; border-right: 2px dashed ${colorSello};`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 8px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.2rem; color: ${colorNombre}; margin: 4px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 6px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Left Main Ticket Body (Remains, fades left) -->
+            <div
+                id="ticket-body"
+                style={`position: absolute; top: 0; bottom: 0; left: 0; right: 65px; background: linear-gradient(135deg, ${colorSobre}, ${colorSolapa}); border-radius: 8px 0 0 8px; border: 1px solid ${colorSolapa}; border-right: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10; transition: transform 0.9s ease, opacity 0.8s ease; display: flex; align-items: center; justify-content: flex-start; overflow: hidden;`}
+            >
+                <!-- Decorative punch ticket circles on top and bottom edges -->
+                <div style={`position: absolute; top: -12px; right: -12px; width: 24px; height: 24px; border-radius: 50%; background: ${colorSolapaLado}; box-shadow: inset 0 -3px 5px rgba(0,0,0,0.5);`}></div>
+                <div style={`position: absolute; bottom: -12px; right: -12px; width: 24px; height: 24px; border-radius: 50%; background: ${colorSolapaLado}; box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);`}></div>
+
+                <!-- Text -->
+                <div class="px-8 py-4" style="text-align: left; pointer-events: none;">
+                    <div style={`font-family: ${fuenteTitulos}; font-size: 9px; color: ${colorTitulo}; letter-spacing: 0.25em; text-transform: uppercase; font-weight: bold;`}>
+                        ★ TICKET DE ACCESO ★
+                    </div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; color: #faeedd; font-weight: 300; margin-top: 4px; opacity: 0.9;" set:html={nombre}>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tearable strip on the right side (Tears off and falls) -->
+            <div
+                id="ticket-tear-strip"
+                style={`position: absolute; top: 0; bottom: 0; right: 0; width: 65px; background: linear-gradient(135deg, ${colorSolapa}, ${colorSobre}); border-radius: 0 8px 8px 0; border: 1px solid ${colorSolapa}; border-left: none; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10; transition: transform 1s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 0.8s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;`}
+            >
+                <!-- Punch ticket half-circles matching the body -->
+                <div style={`position: absolute; top: -12px; left: -12px; width: 24px; height: 24px; border-radius: 50%; background: ${colorSolapaLado}; box-shadow: inset 0 -3px 5px rgba(0,0,0,0.5);`}></div>
+                <div style={`position: absolute; bottom: -12px; left: -12px; width: 24px; height: 24px; border-radius: 50%; background: ${colorSolapaLado}; box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);`}></div>
+
+                <!-- Tear Tab Label -->
+                <div style={`font-family: 'Montserrat', sans-serif; font-size: 8px; font-weight: bold; color: ${colorSello}; text-transform: uppercase; letter-spacing: 0.1em; transform: rotate(-90deg); margin-left: 10px; pointer-events: none;`}>
+                    TIRAR ➔
+                </div>
+            </div>
+
+            <!-- Perforation dotted rip indicator line -->
+            <div
+                id="rip-line"
+                style={`position: absolute; top: 0; bottom: 0; right: 64px; width: 2px; border-left: 2px dashed ${colorSello}; opacity: 0.8; z-index: 12; pointer-events: none;`}
+            >
+                <!-- Red rip light helper that animates downward -->
+                <div 
+                    id="rip-glow"
+                    style={`position: absolute; top: 0; left: -3px; width: 8px; height: 0; background: ${colorSello}; box-shadow: 0 0 10px ${colorSello}; border-radius: 50%; opacity: 0; transition: height 0.6s ease, opacity 0.2s;`}
+                ></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeTicket() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-ticket");
+            const strip = document.querySelector("#ticket-tear-strip");
+            const body = document.querySelector("#ticket-body");
+            const letter = document.querySelector("#letter-ticket");
+            const glow = document.querySelector("#rip-glow");
+
+            if (!envelope || !strip || !body || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Mostrar luz de desgarre bajando a lo largo de la perforacion
+                if (glow) {
+                    glow.style.opacity = "1";
+                    glow.style.height = "100%";
+                }
+
+                // 2. Desgarrar la franja (esperar 500ms y arrojarla hacia abajo rotada)
+                setTimeout(() => {
+                    strip.style.transform = "translate(40px, 200px) rotate(35deg)";
+                    strip.style.opacity = "0";
+                }, 400);
+
+                // 3. Deslizar la carta del pase hacia afuera por la derecha
+                setTimeout(() => {
+                    letter.style.transform = "translateX(50px) scale(1.05)";
+                    body.style.transform = "translateX(-20px)";
+                    body.style.opacity = "0.7";
+                }, 750);
+
+                // 4. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 2000);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3400);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeTicket);
+        } else {
+            initEnvelopeTicket();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeTicket);
+    })();
+</script>

@@ -1,0 +1,203 @@
+---
+// src/components/sobre/SobreDiagonalSlide.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#111827", // Dark charcoal
+    colorSolapa = "#1f2937",
+    colorSolapaLado = "#374151",
+    colorSello = "#f59e0b", // Gold accents
+    colorSelloBorde = "#d97706",
+    colorCartaFondo = "#ffffff",
+    colorCartaTexto = "#111827",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#f59e0b",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Corte Diagonal Moderno
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Haz clic para extraer en diagonal
+        </p>
+    </div>
+
+    <!-- Container for oblique slide -->
+    <div class="envelope-container" style="perspective: 2000px; width: 340px; height: 230px; position: relative;">
+        <div
+            id="envelope-diagonal"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Card Inside (Slides Up and Right at 45 deg) -->
+            <div
+                id="letter-diagonal"
+                style={`position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; background: ${colorCartaFondo}; border-radius: 6px; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 0 10px rgba(0,0,0,0.1) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; z-index: 5;`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.3rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Envelope Pocket with Diagonal Cut (Slides Down and Left) -->
+            <div
+                id="diagonal-pocket"
+                style={`position: absolute; inset: 0; background: linear-gradient(135deg, ${colorSobre}, ${colorSolapa}); border-radius: 8px; border: 1px solid ${colorSolapaLado}; box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 10; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; clip-path: polygon(0% 30%, 100% 0%, 100% 100%, 0% 100%); display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden;`}
+            >
+                <!-- Golden Diagonal Accent Foil Line -->
+                <div style={`position: absolute; top: 0; left: 0; right: 0; height: 3px; background: ${colorSello}; transform: rotate(-7.5deg) scale(1.2); transform-origin: top left; box-shadow: 0 0 10px ${colorSello}; opacity: 0.9;`}></div>
+
+                <!-- Text overlay on lower left of the sleeve -->
+                <div class="p-8" style="text-align: left; pointer-events: none;">
+                    <div style={`font-family: ${fuenteTitulos}; font-size: 10px; color: ${colorTitulo}; letter-spacing: 0.2em; text-transform: uppercase;`}>
+                        Invitado de Honor
+                    </div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; color: #faeedd; font-weight: 300; margin-top: 4px; opacity: 0.9;" set:html={nombre}>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeDiagonal() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-diagonal");
+            const pocket = document.querySelector("#diagonal-pocket");
+            const letter = document.querySelector("#letter-diagonal");
+
+            if (!envelope || !pocket || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Deslizar la carta hacia arriba y derecha a 45 grados (oblicuo)
+                letter.style.transform = "translate(160px, -160px) scale(1.05)";
+
+                // 2. Deslizar la manga hacia abajo y la izquierda
+                pocket.style.transform = "translate(-50px, 50px)";
+                pocket.style.opacity = "0.15";
+
+                // 3. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1800);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3200);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeDiagonal);
+        } else {
+            initEnvelopeDiagonal();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeDiagonal);
+    })();
+</script>

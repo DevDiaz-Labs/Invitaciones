@@ -1,0 +1,59 @@
+---
+import SobreClasico from "./SobreClasico.astro";
+import SobreCrossOrigami from "./SobreCrossOrigami.astro";
+import SobreDeslizable from "./SobreDeslizable.astro";
+import SobreDoblePuerta from "./SobreDoblePuerta.astro";
+import SobreHilosVintage from "./SobreHilosVintage.astro";
+import SobreListonMoño from "./SobreListonMoño.astro";
+import SobreBolsilloBounce from "./SobreBolsilloBounce.astro";
+import SobreDiagonalSlide from "./SobreDiagonalSlide.astro";
+import SobrePergamino from "./SobrePergamino.astro";
+import SobreTearPerforation from "./SobreTearPerforation.astro";
+
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+    tipo?: string;
+}
+
+const { tipo = "clasico" } = Astro.props;
+
+const components = {
+    "clasico": SobreClasico,
+    "sobre1": SobreClasico,
+    "default": SobreClasico,
+    "cross-origami": SobreCrossOrigami,
+    "deslizable": SobreDeslizable,
+    "doble-puerta": SobreDoblePuerta,
+    "hilos-vintage": SobreHilosVintage,
+    "liston-moño": SobreListonMoño,
+    "bolsillo-bounce": SobreBolsilloBounce,
+    "diagonal-slide": SobreDiagonalSlide,
+    "pergamino": SobrePergamino,
+    "tear-perforation": SobreTearPerforation,
+};
+
+const SelectedSobre = components[tipo as keyof typeof components] || SobreClasico;
+---
+
+<SelectedSobre {...Astro.props} />

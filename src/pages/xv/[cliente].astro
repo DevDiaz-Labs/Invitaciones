@@ -1,8 +1,8 @@
 ---
 import XVDulceLayout from "../../layouts/XV.astro";
-import Sobre1 from "../../components/ui/Sobre1.astro";
+import Sobre from "../../components/sobre/Sobre.astro";
 
-import Hero from "../../components/xv-plantilla/Hero.astro";
+import Hero from "../../components/xv-plantilla/HeroSofia.astro";
 import Carta from "../../components/xv-plantilla/Carta.astro";
 import Dedicatoria from "../../components/xv-plantilla/Dedicatoria.astro";
 import Countdown from "../../components/xv-plantilla/Countdown.astro";
@@ -61,6 +61,7 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
+const showSobre = !data.sobre || data.sobre.mostrar !== false;
 ---
 
 <XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
@@ -69,21 +70,8 @@ const { data } = Astro.props;
 
     <!-- Selector de Animación de Entrada -->
     {
-        data.sobre?.tipo === "sobre1" && (
-            <Sobre1
-                nombre={data.hero.nombre}
-                fecha={data.hero.fechaTexto}
-                evento={data.hero.etiqueta}
-                mensajeTop="Te invito a celebrar"
-                pases={data.pases}
-                {...data.sobre}
-            />
-        )
-    }
-
-    {
-        (!data.sobre?.tipo || data.sobre?.tipo === "default") && (
-            <Sobre1
+        showSobre && (
+            <Sobre
                 nombre={data.hero.nombre}
                 fecha={data.hero.fechaTexto}
                 evento={data.hero.etiqueta}
@@ -97,7 +85,9 @@ const { data } = Astro.props;
     <!-- Contenido Principal inicia oculto (el sobre lo muestra al animarse) -->
     <main
         id="invitation-content"
-        style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
+        style={showSobre 
+            ? "opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;" 
+            : "opacity: 1; transform: translateY(0); visibility: visible;"}
     >
         <Hero data={data.hero} />
         {data.carta && <Carta data={data.carta} bgImage={data.imagenesFondo?.carta} />}
@@ -132,7 +122,9 @@ const { data } = Astro.props;
 
     <div
         id="footer-content"
-        style="opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;"
+        style={showSobre 
+            ? "opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;" 
+            : "opacity: 1; visibility: visible;"}
     >
         <Footer data={{ ...data.footer, nombre: data.hero.nombre }} />
     </div>

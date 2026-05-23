@@ -1,0 +1,58 @@
+---
+// src/components/noninos/NoninosElegante.astro
+interface Props {
+  mensajeL1?: string;
+  mensajeL2?: string;
+  destacado?: string;
+  mensajeL3?: string;
+  mensajeL4?: string;
+}
+
+const {
+  mensajeL1 = "Queremos celebrar este",
+  mensajeL2 = "día como una ocasión",
+  destacado = "SOLO PARA ADULTOS.",
+  mensajeL3 = "Agradecemos su",
+  mensajeL4 = "comprensión."
+} = Astro.props;
+---
+
+<div class="noninos-elegante max-w-md mx-auto bg-[#faf8f5] p-8 rounded-2xl border border-stone-200/60 text-center shadow-sm relative overflow-hidden">
+  {/* Fine double border effect for classic luxury feel */}
+  <div class="absolute inset-2 border border-stone-300/40 rounded-xl pointer-events-none"></div>
+
+  <div class="relative z-10 py-4 flex flex-col items-center justify-center min-h-[220px]">
+    {/* Elegant top scroll/divider SVG flourish */}
+    <div class="mb-5 text-[#c5a059] opacity-80">
+      <svg viewBox="0 0 100 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-32 h-6">
+        <path d="M10 8 C 30 8, 40 2, 45 8 C 47 11, 49 11, 50 8 C 51 11, 53 11, 55 8 C 60 2, 70 8, 90 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        <path d="M35 8 C 42 8, 45 13, 50 8 C 55 13, 58 8, 65 8" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" />
+        <circle cx="50" cy="8" r="2" fill="currentColor" />
+      </svg>
+    </div>
+
+    {/* Elegant serif text */}
+    <p class="font-serif text-[#3a3530] text-base md:text-lg leading-relaxed tracking-wide font-medium">
+      {mensajeL1}<br />
+      {mensajeL2}
+    </p>
+    
+    <h4 class="font-serif text-[#b58e45] text-lg md:text-xl font-bold tracking-widest my-3 uppercase">
+      {destacado}
+    </h4>
+    
+    <p class="font-serif text-[#3a3530] text-base md:text-lg leading-relaxed tracking-wide font-medium">
+      {mensajeL3}<br />
+      {mensajeL4}
+    </p>
+
+    {/* Elegant bottom scroll/divider SVG flourish */}
+    <div class="mt-5 text-[#c5a059] opacity-80 rotate-180">
+      <svg viewBox="0 0 100 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-32 h-6">
+        <path d="M10 8 C 30 8, 40 2, 45 8 C 47 11, 49 11, 50 8 C 51 11, 53 11, 55 8 C 60 2, 70 8, 90 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+        <path d="M35 8 C 42 8, 45 13, 50 8 C 55 13, 58 8, 65 8" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" />
+        <circle cx="50" cy="8" r="2" fill="currentColor" />
+      </svg>
+    </div>
+  </div>
+</div>

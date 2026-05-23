@@ -1,0 +1,253 @@
+---
+// src/components/sobre/SobreCrossOrigami.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#1e293b", // Elegant dark slate for Origami
+    colorSolapa = "#334155",
+    colorSolapaLado = "#475569",
+    colorSello = "#d97706", // Gold seal
+    colorSelloBorde = "#b45309",
+    colorCartaFondo = "#fffdfc",
+    colorCartaTexto = "#1e293b",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#f59e0b",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+const inicial = nombre ? nombre.charAt(0).toUpperCase() : "";
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Te ha llegado un sobre de origami
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Presiona el sello para abrir
+        </p>
+    </div>
+
+    <!-- Square origami viewport -->
+    <div class="envelope-container" style="perspective: 2000px; width: 320px; height: 320px; position: relative;">
+        <div
+            id="envelope-origami"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Backboard (Base) -->
+            <div
+                class="origami-back"
+                style={`position: absolute; inset: 0; background: ${colorSobre}; border-radius: 8px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);`}
+            >
+            </div>
+
+            <!-- Letter Inside -->
+            <div
+                id="letter-origami"
+                class="origami-letter"
+                style={`position: absolute; inset: 15px; background: ${colorCartaFondo}; border-radius: 6px; transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s, opacity 0.8s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; z-index: 10; transform: scale(0.9); opacity: 0.7;`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.2rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- 3D Flaps Layout (Wrap Letter when closed) -->
+            <!-- Left Flap -->
+            <div
+                id="flap-left-origami"
+                style={`position: absolute; top: 0; left: 0; width: 160px; height: 320px; transform-origin: left; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s; z-index: 21; transform-style: preserve-3d;`}
+            >
+                <div style={`width: 0; height: 0; border-top: 160px solid transparent; border-bottom: 160px solid transparent; border-left: 160px solid ${colorSolapaLado};`}></div>
+            </div>
+
+            <!-- Right Flap -->
+            <div
+                id="flap-right-origami"
+                style={`position: absolute; top: 0; right: 0; width: 160px; height: 320px; transform-origin: right; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s; z-index: 22; transform-style: preserve-3d;`}
+            >
+                <div style={`width: 0; height: 0; border-top: 160px solid transparent; border-bottom: 160px solid transparent; border-right: 160px solid ${colorSolapaLado};`}></div>
+            </div>
+
+            <!-- Bottom Flap -->
+            <div
+                id="flap-bottom-origami"
+                style={`position: absolute; bottom: 0; left: 0; width: 320px; height: 160px; transform-origin: bottom; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s; z-index: 23; transform-style: preserve-3d;`}
+            >
+                <div style={`width: 0; height: 0; border-left: 160px solid transparent; border-right: 160px solid transparent; border-bottom: 160px solid ${colorSolapa};`}></div>
+            </div>
+
+            <!-- Top Flap -->
+            <div
+                id="flap-top-origami"
+                style={`position: absolute; top: 0; left: 0; width: 320px; height: 160px; transform-origin: top; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s; z-index: 24; transform-style: preserve-3d;`}
+            >
+                <div style={`width: 0; height: 0; border-left: 160px solid transparent; border-right: 160px solid transparent; border-top: 160px solid ${colorSolapa};`}></div>
+            </div>
+
+            <!-- Sticker Center Seal -->
+            <div
+                id="seal-origami"
+                style={`position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: ${colorSello}; border: 3px double ${colorSelloBorde}; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 30; transition: transform 0.5s ease, opacity 0.5s ease; display: flex; align-items: center; justify-content: center;`}
+            >
+                <span
+                    style={`font-family: ${fuenteNombres}; color: #fff; font-size: 26px; transform: rotate(-10deg);`}
+                >
+                    {inicial}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeOrigami() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-origami");
+            const flapTop = document.querySelector("#flap-top-origami");
+            const flapBottom = document.querySelector("#flap-bottom-origami");
+            const flapLeft = document.querySelector("#flap-left-origami");
+            const flapRight = document.querySelector("#flap-right-origami");
+            const letter = document.querySelector("#letter-origami");
+            const seal = document.querySelector("#seal-origami");
+
+            if (!envelope || !flapTop || !flapBottom || !flapLeft || !flapRight || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Desvanecer y achicar el sticker central
+                if (seal) {
+                    seal.style.transform = "translate(-50%, -50%) scale(0) rotate(45deg)";
+                    seal.style.opacity = "0";
+                }
+
+                // 2. Abrir las 4 solapas en orden
+                flapTop.style.transform = "rotateX(180deg)";
+                flapBottom.style.transform = "rotateX(-180deg)";
+                flapLeft.style.transform = "rotateY(-180deg)";
+                flapRight.style.transform = "rotateY(180deg)";
+
+                // 3. Traer la carta al frente con escala y rotación suave
+                letter.style.transform = "scale(1.15) rotate(-3deg)";
+                letter.style.opacity = "1";
+                letter.style.zIndex = "25";
+
+                // 4. Desvanecer pantalla y mostrar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1900);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3300);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeOrigami);
+        } else {
+            initEnvelopeOrigami();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeOrigami);
+    })();
+</script>

@@ -1,0 +1,220 @@
+---
+// src/components/sobre/SobreBolsilloBounce.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#1e1b4b", // Velvet Indigo pocket
+    colorSolapa = "#312e81",
+    colorSolapaLado = "#4338ca",
+    colorSello = "#f59e0b", // Gold pull rings
+    colorSelloBorde = "#d97706",
+    colorCartaFondo = "#fffefb",
+    colorCartaTexto = "#1e1b4b",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#f59e0b",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Pulsar para extraer
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Tira de la solapa dorada
+        </p>
+    </div>
+
+    <!-- Vertical pocket container with 3D space -->
+    <div class="envelope-container" style="perspective: 2000px; width: 290px; height: 320px; position: relative;">
+        <div
+            id="envelope-pocket-wrapper"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Card Inside (Slides Up with Bounce) -->
+            <div
+                id="letter-pocket"
+                style={`position: absolute; top: 40px; left: 15px; right: 15px; bottom: 10px; background: ${colorCartaFondo}; border-radius: 6px 6px 4px 4px; transition: transform 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 10px rgba(0,0,0,0.1) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; z-index: 5;`}
+            >
+                <!-- Pull Tag Ring visible above the pocket -->
+                <div 
+                    id="pull-ring"
+                    style={`position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 44px; height: 30px; background: ${colorSello}; border-radius: 20px 20px 0 0; border: 2px solid ${colorSelloBorde}; box-shadow: 0 -2px 5px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s;`}
+                >
+                    <!-- Small inner ring hole -->
+                    <div style="width: 14px; height: 14px; background: rgba(0,0,0,0.2); border-radius: 50%;"></div>
+                </div>
+
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.2rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Pocket Body (Slides down/fades out) -->
+            <div
+                id="pocket-pouch"
+                style={`position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(135deg, ${colorSobre}, ${colorSolapa}); border-radius: 0 0 8px 8px; border: 1px solid ${colorSolapaLado}; border-top: 2px solid ${colorSello}; box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 10; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; display: flex; align-items: center; justify-content: center; overflow: hidden;`}
+            >
+                <!-- Gold Foil Ornament SVG on the Pocket front -->
+                <div style="position: absolute; inset: 15px; border: 1px solid rgba(250,238,221,0.15); border-radius: 4px; opacity: 0.3; display: flex; align-items: center; justify-content: center;">
+                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="rgba(250,238,221,0.5)" stroke-width="1.5">
+                        <circle cx="50" cy="50" r="30" />
+                        <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" />
+                    </svg>
+                </div>
+                
+                <div style="z-index: 12; text-align: center; pointer-events: none;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #faeedd; opacity: 0.9;">
+                        Pase Personalizado
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopePocket() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-pocket-wrapper");
+            const pocket = document.querySelector("#pocket-pouch");
+            const letter = document.querySelector("#letter-pocket");
+            const pullRing = document.querySelector("#pull-ring");
+
+            if (!envelope || !pocket || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Extraer la carta verticalmente con rebote elástico
+                letter.style.transform = "translateY(-235px) scale(1.06)";
+                if (pullRing) {
+                    pullRing.style.transform = "translateX(-50%) scale(0.9) rotate(360deg)";
+                    pullRing.style.opacity = "0";
+                    pullRing.style.transition = "transform 0.8s ease, opacity 0.8s ease";
+                }
+
+                // 2. Deslizar la bolsa ligeramente hacia abajo y disolver
+                pocket.style.transform = "translateY(35px)";
+                pocket.style.opacity = "0.15";
+
+                // 3. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1900);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3300);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopePocket);
+        } else {
+            initEnvelopePocket();
+        }
+        document.addEventListener("astro:page-load", initEnvelopePocket);
+    })();
+</script>

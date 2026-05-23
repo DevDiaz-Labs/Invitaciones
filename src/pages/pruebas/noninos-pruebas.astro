@@ -1,13 +1,10 @@
 ---
 // src/pages/pruebas/noninos-pruebas.astro
-import NoninosBoho from "../../components/noninos/NoninosBoho.astro";
 import NoninosMinimalista from "../../components/noninos/NoninosMinimalista.astro";
 import NoninosXV from "../../components/noninos/NoninosXV.astro";
 import NoninosDivertido from "../../components/noninos/NoninosDivertido.astro";
-
-// Optional customized text examples
-const customTitulo = "Paz y Tranquilidad";
-const customMensaje = "Con el fin de permitir a todos los invitados, incluyendo a los padres, un día de descanso y relajación, nuestro día especial será solo para adultos.";
+import NoninosElegante from "../../components/noninos/NoninosElegante.astro";
+import NoninosIcono from "../../components/noninos/NoninosIcono.astro";
 ---
 
 <html lang="es">
@@ -31,67 +28,72 @@ const customMensaje = "Con el fin de permitir a todos los invitados, incluyendo 
         margin: 0;
         padding: 0;
         width: 100%;
-        background-color: #f9fafb;
+        background-color: #0f1012;
+        color: #f3f4f6;
       }
     </style>
   </head>
-  <body class="py-12">
-    <main class="w-full max-w-xl mx-auto space-y-12 px-4">
+  <body>
+    <main class="w-full max-w-md mx-auto shadow-2xl bg-neutral-900 min-h-screen pb-24">
       
-      <div class="text-center space-y-2">
-        <h1 class="text-3xl font-serif text-stone-850">Playground de Notas "No Niños"</h1>
-        <p class="text-sm text-stone-500">Visualización de las diferentes variaciones del aviso de evento exclusivo para adultos.</p>
-      </div>
+      <!-- Header Panel -->
+      <header class="p-8 md:p-12 text-center border-b border-white/10 bg-black/30">
+        <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold font-mono">Catálogo digital</span>
+        <h1 class="text-3xl md:text-5xl font-serif italic text-white mt-3">No Niños</h1>
+        <p class="text-gray-400 text-xs md:text-sm mt-3 max-w-xl mx-auto font-sans leading-relaxed">
+          Una colección de 5 de los mejores avisos para eventos exclusivos para adultos.
+        </p>
+      </header>
 
-      <!-- 1. Estilo Boho -->
-      <div class="space-y-3">
-        <div class="p-2 bg-stone-200/50 rounded-lg text-center font-mono text-xs font-bold text-stone-600 uppercase tracking-widest">
-          Estilo Boho (NoninosBoho)
+      <!-- 1. Estilo Minimalista -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>1. Estilo Minimalista</span>
         </div>
-        <div class="p-4 bg-white rounded-2xl border border-stone-200">
-          <NoninosBoho />
-        </div>
-      </div>
-
-      <!-- 2. Estilo Minimalista -->
-      <div class="space-y-3">
-        <div class="p-2 bg-stone-200/50 rounded-lg text-center font-mono text-xs font-bold text-stone-600 uppercase tracking-widest">
-          Estilo Minimalista (NoninosMinimalista)
-        </div>
-        <div class="p-4 bg-white rounded-2xl border border-stone-200">
+        <div class="p-6 bg-white">
           <NoninosMinimalista />
         </div>
-      </div>
+      </section>
 
-      <!-- 3. Estilo XV / Elegante -->
-      <div class="space-y-3">
-        <div class="p-2 bg-stone-200/50 rounded-lg text-center font-mono text-xs font-bold text-stone-600 uppercase tracking-widest">
-          Estilo Quinceañera / Clásico Gold (NoninosXV)
+      <!-- 2. Estilo Quinceañera / Clásico Gold -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>2. Estilo Quinceañera / Clásico Gold</span>
         </div>
-        <div class="p-4 bg-white rounded-2xl border border-stone-200">
+        <div class="p-6 bg-[#fffbf2]">
           <NoninosXV />
         </div>
-      </div>
+      </section>
 
-      <!-- 4. Estilo Divertido / Moderno -->
-      <div class="space-y-3">
-        <div class="p-2 bg-stone-200/50 rounded-lg text-center font-mono text-xs font-bold text-stone-600 uppercase tracking-widest">
-          Estilo Divertido / Despreocupado (NoninosDivertido)
+      <!-- 3. Estilo Divertido / Despreocupado -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>3. Estilo Divertido / Despreocupado</span>
         </div>
-        <div class="p-4 bg-white rounded-2xl border border-stone-200">
+        <div class="p-6 bg-white">
           <NoninosDivertido />
         </div>
-      </div>
+      </section>
 
-      <!-- 5. Ejemplo Personalizado (Uso de Props) -->
-      <div class="space-y-3">
-        <div class="p-2 bg-stone-200/50 rounded-lg text-center font-mono text-xs font-bold text-stone-600 uppercase tracking-widest">
-          Ejemplo con Textos Personalizados (Props)
+      <!-- 4. Estilo Elegante Clásico -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>4. Estilo Elegante Clásico</span>
         </div>
-        <div class="p-4 bg-white rounded-2xl border border-stone-200">
-          <NoninosBoho titulo={customTitulo} mensaje={customMensaje} />
+        <div class="p-6 bg-white">
+          <NoninosElegante />
         </div>
-      </div>
+      </section>
+
+      <!-- 5. Estilo Ilustrativo / Icono -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>5. Estilo Ilustrativo / Icono</span>
+        </div>
+        <div class="p-6 bg-[#fffbf2]">
+          <NoninosIcono />
+        </div>
+      </section>
 
     </main>
   </body>

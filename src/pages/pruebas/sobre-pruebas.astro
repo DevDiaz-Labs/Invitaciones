@@ -1,0 +1,82 @@
+---
+// src/pages/pruebas/sobre-pruebas.astro
+import Sobre from "../../components/sobre/Sobre.astro";
+import { basePath, defaultTipo, labels, mockPases, presets } from "../../lib/sobre-pruebas-data.ts";
+
+const tipo = defaultTipo;
+const preset = presets[tipo];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test: Componente Sobre Animado</title>
+    
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#0f172a] text-white min-h-screen flex items-center justify-center pb-24">
+    
+    <!-- El sobre animado -->
+    <Sobre
+      tipo={tipo}
+      nombre="Familia Mendoza"
+      fecha="Sábado, 15 de Octubre 2026"
+      evento="Mis XV Años"
+      mensajeTop="Te invito a celebrar"
+      pases={mockPases}
+      colorFondoBase="#0f172a"
+      {...preset}
+    />
+
+    <!-- Contenido principal que se revela al abrir el sobre -->
+    <main
+      id="invitation-content"
+      class="max-w-md w-full mx-auto p-8 bg-[#fffdfa] text-stone-850 rounded-3xl shadow-2xl text-center space-y-6"
+      style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden; z-index: 10;"
+    >
+      <h1 class="font-serif text-3xl text-amber-600">¡Sobre Abierto Exitosamente!</h1>
+      <p class="font-light text-stone-600 leading-relaxed font-sans text-sm">
+        Aquí es donde se presentaría el cuerpo completo de la invitación digital (hero, itinerario, ubicación, confirmación de asistencia, etc.).
+      </p>
+      
+      <button 
+        onclick="window.location.reload()" 
+        class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-full transition font-sans font-medium text-xs uppercase tracking-wider inline-block shadow-lg shadow-amber-600/20"
+      >
+        Cerrar y reiniciar prueba
+      </button>
+    </main>
+
+    <!-- Floating control panel -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 pointer-events-none">
+      <div class="bg-slate-900/90 backdrop-blur-md border border-slate-700/50 shadow-2xl rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-auto">
+        <div class="text-center md:text-left">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-amber-500">Diseños de Sobres Animados</h3>
+          <p class="text-[10px] text-slate-400 mt-0.5">Selecciona un modelo para probar su animación de apertura.</p>
+        </div>
+        <div class="flex flex-wrap gap-1.5 justify-center md:justify-end max-w-xl">
+          {Object.keys(presets).map((key) => {
+            const isActive = key === tipo;
+            const href = key === defaultTipo ? basePath : `${basePath}/${encodeURIComponent(key)}`;
+            return (
+              <a
+                href={href}
+                class={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  isActive
+                    ? "bg-amber-600 text-white shadow-lg shadow-amber-600/30 scale-105 border border-amber-500"
+                    : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-transparent"
+                }`}
+              >
+                {labels[key as keyof typeof labels] || key}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
