@@ -147,7 +147,6 @@ export const CATALOG = {
       { id: 'RegalosGlamour', name: 'Glamour', g: 'from-yellow-500 to-amber-900' },
       { id: 'RegalosGlassmorphism', name: 'Glass', g: 'from-blue-300 to-indigo-700' },
       { id: 'RegalosPlayero', name: 'Playero', g: 'from-sky-300 to-blue-600' },
-      { id: 'LluviaDeSobresXV', name: 'Lluvia de Sobres', g: 'from-rose-300 to-pink-600' },
     ]
   },
   reproductor: {

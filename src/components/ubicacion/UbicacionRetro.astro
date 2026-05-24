@@ -38,7 +38,7 @@ const { ceremonia, recepcion } = data || {};
             </div>
           )}
           
-          <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
             Trazar Ruta
           </a>
         </div>
@@ -57,7 +57,7 @@ const { ceremonia, recepcion } = data || {};
             </div>
           )}
           
-          <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-8 py-2 bg-[#8b7355] text-[#f4ebd0] hover:bg-[#5c4a3d] transition-colors uppercase text-sm font-bold tracking-widest rounded-sm">
             Trazar Ruta
           </a>
         </div>

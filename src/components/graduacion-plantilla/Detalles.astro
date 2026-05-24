@@ -34,7 +34,7 @@ const { data } = Astro.props;
           </div>
           
           {data.ceremonia.urlMapa && (
-            <a href={data.ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+            <a href={data.ceremonia.urlMapaDirecto || data.ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
               <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer">
                 Ver Ubicación
               </button>
@@ -60,7 +60,7 @@ const { data } = Astro.props;
           </div>
           
           {data.recepcion.urlMapa && (
-            <a href={data.recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+            <a href={data.recepcion.urlMapaDirecto || data.recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
               <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer">
                 Ver Ubicación
               </button>

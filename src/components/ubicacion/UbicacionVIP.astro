@@ -54,7 +54,7 @@ const { ceremonia, recepcion, calendario } = data || {};
           </div>
           
           {ceremonia.urlMapa && (
-            <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
               <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer bg-transparent">
                 Ver Ubicación
               </button>
@@ -80,7 +80,7 @@ const { ceremonia, recepcion, calendario } = data || {};
           </div>
           
           {recepcion.urlMapa && (
-            <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
               <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer bg-transparent">
                 Ver Ubicación
               </button>

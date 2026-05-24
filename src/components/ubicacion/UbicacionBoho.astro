@@ -39,7 +39,7 @@ const { ceremonia, recepcion, calendario } = data || {};
           <p class="text-5xl font-light text-gray-800 mb-6 font-serif">{ceremonia.hora}</p>
           <p class="text-3xl font-normal text-boho-terracota mb-4">{ceremonia.lugar}</p>
           <p class="text-xl text-gray-500 italic mb-10 max-w-xs">{ceremonia.direccion}</p>
-          <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-eucalipto border-b border-boho-eucalipto pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-terracota hover:border-boho-terracota transition-all duration-300">
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-eucalipto border-b border-boho-eucalipto pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-terracota hover:border-boho-terracota transition-all duration-300">
             Ubicación en Mapa
           </a>
         </div>
@@ -54,7 +54,7 @@ const { ceremonia, recepcion, calendario } = data || {};
           <p class="text-5xl font-light text-gray-800 mb-6 font-serif">{recepcion.hora}</p>
           <p class="text-3xl font-normal text-boho-eucalipto mb-4">{recepcion.lugar}</p>
           <p class="text-xl text-gray-500 italic mb-10 max-w-xs">{recepcion.direccion}</p>
-          <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-terracota border-b border-boho-terracota pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-eucalipto hover:border-boho-eucalipto transition-all duration-300">
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="text-boho-terracota border-b border-boho-terracota pb-1 uppercase tracking-widest text-xs font-bold hover:text-boho-eucalipto hover:border-boho-eucalipto transition-all duration-300">
             Ubicación en Mapa
           </a>
         </div>

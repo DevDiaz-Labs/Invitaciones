@@ -31,7 +31,7 @@ const { ceremonia, recepcion } = data || {};
             <p class="text-xl italic mb-4 text-[#795548]">{ceremonia.hora}</p>
             <p class="font-bold mb-2 uppercase text-sm tracking-wider">{ceremonia.lugar}</p>
             <p class="text-sm mb-8 text-[#5d4037]">{ceremonia.direccion}</p>
-            <a href={ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
               Abrir Mapa
             </a>
           </div>
@@ -52,7 +52,7 @@ const { ceremonia, recepcion } = data || {};
             <p class="text-xl italic mb-4 text-[#795548]">{recepcion.hora}</p>
             <p class="font-bold mb-2 uppercase text-sm tracking-wider">{recepcion.lugar}</p>
             <p class="text-sm mb-8 text-[#5d4037]">{recepcion.direccion}</p>
-            <a href={recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
               Abrir Mapa
             </a>
           </div>
