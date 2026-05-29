@@ -19,6 +19,7 @@ import HeroXVArchFlowers from "../../components/hero/HeroXVArchFlowers.astro";
 import HeroWeddingModernDate from "../../components/hero/HeroWeddingModernDate.astro";
 import HeroWeddingClassicArch from "../../components/hero/HeroWeddingClassicArch.astro";
 import HeroWeddingElegantPortal from "../../components/hero/HeroWeddingElegantPortal.astro";
+import HeroFloralFrame from "../../components/hero/HeroFloralFrame.astro";
 
 import dataXV from "../../data/clientes/ejemplo-xv.json";
 
@@ -360,6 +361,22 @@ const mockData = {
             invitado: "Familia Medina",
             fecha: "2025-02-22",
             imagen: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop"
+          }} />
+        </div>
+      </section>
+
+      <!-- 20. Hero Floral Frame -->
+      <section class="border-b border-white/5">
+        <div class="p-4 bg-black/20 flex justify-between items-center text-xs tracking-wider text-amber-500 uppercase font-mono">
+          <span>20. Hero Floral Frame</span>
+        </div>
+        <div class="relative w-full bg-white">
+          <HeroFloralFrame data={{
+            ...mockData,
+            nombres: "María & Juan",
+            fechaVista: "25 de Noviembre 2026",
+            frase: "Juntos es nuestro lugar favorito para estar.",
+            imagenFondo: "/imagenes/marco-floral.jpeg"
           }} />
         </div>
       </section>
