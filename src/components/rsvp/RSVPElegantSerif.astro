@@ -1,41 +1,116 @@
 ---
-const { data } = Astro.props;
+interface Props {
+  data: any;
+  bgImage?: string;
+  bgColor?: string;
+  bgSize?: string;
+  bgRepeat?: string;
+  bgPosition?: string;
+  colorTexto?: string;
+  nombre?: string;
+}
+const { data, bgImage, bgColor = "transparent", bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center", colorTexto, nombre } = Astro.props;
+const appliedColorTexto = colorTexto || data.colorTexto || 'var(--textColor, #2a3b29)';
 const titulo = data?.titulo || 'Répondez S\'il Vous Plaît';
 const mensaje = data?.mensajeDespedida || 'Su presencia es nuestro mayor regalo.';
+const textoAsistir = data?.textoAsistir || 'Acepto con gusto';
+const textoDeclinar = data?.textoDeclinar || 'Declino con pesar';
+const telefono = data?.telefono || '521234567890';
+const mensajeDefault = data?.mensajeDefault || 'Confirmación de asistencia';
+
+const quinceanera = nombre || "la quinceañera";
 ---
 
-<section class="py-16 px-4 bg-white border-y-8 border-double border-stone-800">
-  <div class="max-w-2xl mx-auto p-10 border border-stone-300 relative">
-    <div class="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-stone-800"></div>
-    <div class="absolute -top-4 -right-4 w-8 h-8 border-t border-r border-stone-800"></div>
-    <div class="absolute -bottom-4 -left-4 w-8 h-8 border-b border-l border-stone-800"></div>
-    <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-stone-800"></div>
-
-    <h2 class="text-4xl md:text-5xl font-serif mb-4 text-center text-stone-900 tracking-wide uppercase">{titulo}</h2>
-    <div class="w-16 h-px bg-stone-400 mx-auto mb-6"></div>
-    <p class="text-center text-stone-600 mb-10 font-serif italic">{mensaje}</p>
-
+<section 
+  class="py-24 px-4 border-y-8 border-double rsvp-elegant-serif-section" 
+  style={`border-color: var(--gold, #c5a059); --color-texto: ${appliedColorTexto}; background-color: ${bgColor}; ${bgImage ? `background-image: url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}
+>
+  <div class="max-w-2xl mx-auto p-10 border relative shadow-sm" style="border-color: rgba(var(--gold-rgb, 197, 160, 89), 0.3); background-color: rgba(255, 255, 255, 0.95);">
+    <!-- Decorative corners -->
+    <div class="absolute -top-4 -left-4 w-8 h-8 border-t border-l" style="border-color: var(--gold, #c5a059);"></div>
+    <div class="absolute -top-4 -right-4 w-8 h-8 border-t border-r" style="border-color: var(--gold, #c5a059);"></div>
+    <div class="absolute -bottom-4 -left-4 w-8 h-8 border-b border-l" style="border-color: var(--gold, #c5a059);"></div>
+    <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r" style="border-color: var(--gold, #c5a059);"></div>
+ 
+    <h2 class="text-3xl md:text-4xl font-serif mb-4 text-center tracking-wide uppercase" style="color: var(--gold, #c5a059);">{titulo}</h2>
+    <div class="w-16 h-px mx-auto mb-6" style="background-color: var(--gold, #c5a059);"></div>
+    <p class="text-center mb-10 font-serif italic text-base opacity-80" style="color: var(--color-texto);">{mensaje}</p>
+ 
     <form class="space-y-8 max-w-md mx-auto">
       <div>
-        <input type="text" class="w-full border-b border-stone-400 bg-transparent py-2 text-center text-stone-900 focus:outline-none focus:border-stone-900 font-serif text-lg placeholder:text-stone-300 placeholder:italic" placeholder="Nombres de los invitados" required />
+        <input 
+          type="text" 
+          class="guest-name w-full border-b py-2 text-center bg-transparent focus:outline-none font-serif text-lg transition-colors input-gold" 
+          style={`border-color: rgba(var(--gold-rgb, 197, 160, 89), 0.3); color: var(--color-texto);`} 
+          placeholder="Nombres de los invitados" 
+          required 
+        />
       </div>
-
-      <div class="flex flex-col items-center gap-4 font-serif">
+ 
+      <div class="flex flex-col items-center gap-4 font-serif text-lg">
         <label class="flex items-center gap-3 cursor-pointer group">
-          <input type="radio" name="attending" class="w-4 h-4 accent-stone-900" checked />
-          <span class="text-stone-800 text-lg group-hover:text-stone-500 transition-colors">Acepto con gusto</span>
+          <input type="radio" name="attending" value="yes" class="w-4 h-4 radio-gold" checked />
+          <span class="transition-colors" style="color: var(--color-texto); opacity: 0.85;">{textoAsistir}</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer group">
-          <input type="radio" name="attending" class="w-4 h-4 accent-stone-900" />
-          <span class="text-stone-800 text-lg group-hover:text-stone-500 transition-colors">Declino con pesar</span>
+          <input type="radio" name="attending" value="no" class="w-4 h-4 radio-gold" />
+          <span class="transition-colors" style="color: var(--color-texto); opacity: 0.85;">{textoDeclinar}</span>
         </label>
       </div>
 
       <div class="pt-6">
-        <button type="submit" class="w-full bg-stone-900 text-white font-serif py-3 px-6 uppercase tracking-widest text-sm hover:bg-stone-800 transition-colors border border-stone-900">
+        <button 
+          type="submit" 
+          class="w-full text-white font-serif py-3 px-6 uppercase tracking-widest text-sm hover:opacity-90 transition-all border shadow-md" 
+          style="background-color: var(--gold, #c5a059); border-color: var(--gold, #c5a059);"
+        >
           Enviar Respuesta
         </button>
       </div>
     </form>
   </div>
 </section>
+
+<style>
+  .input-gold:focus {
+    border-color: var(--gold, #c5a059) !important;
+  }
+  .radio-gold {
+    accent-color: var(--gold, #c5a059) !important;
+  }
+</style>
+
+<script define:vars={{ telefono, quinceanera }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.rsvp-elegant-serif-section').forEach((container) => {
+      const form = container.querySelector('form');
+      if (!form) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = container.querySelector('.guest-name');
+        const name = nameInput ? nameInput.value.trim() : '';
+
+        const attendingYes = container.querySelector('input[name="attending"][value="yes"]');
+        const isAttending = attendingYes ? attendingYes.checked : true;
+
+        if (!name) {
+          alert('Por favor, ingresa tu nombre.');
+          return;
+        }
+
+        let text = "";
+        if (isAttending) {
+          text = `¡Hola!, soy ${name} y confirmo mi asistencia a los XV años de ${quinceanera}.`;
+        } else {
+          text = `¡Hola!, soy ${name} y lamento no poder asistir a los XV años de ${quinceanera}.`;
+        }
+
+        const url = `https://wa.me/${telefono}?text=${encodeURIComponent(text.trim())}`;
+        window.open(url, '_blank');
+      });
+    });
+  });
+</script>
+

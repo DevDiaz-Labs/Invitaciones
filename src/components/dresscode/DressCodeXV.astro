@@ -12,17 +12,22 @@ interface Props {
         };
     };
     bgImage?: string;
-    bgPos?: string;
+    bgColor?: string;
+    bgSize?: string;
+    bgRepeat?: string;
+    bgPosition?: string;
+    colorTexto?: string;
 }
-const { data, bgImage, bgPos = "center" } = Astro.props;
+const { data, bgImage, bgColor, bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center", colorTexto } = Astro.props;
 
+const appliedColorTexto = colorTexto || data.colorTexto || 'var(--textColor, #333333)';
 const estilo = data?.estilo || data?.dressCode?.titulo || "Formal";
 const descripcion = data?.descripcion || data?.dressCode?.subtitulo || "Se reserva el uso del color ROSA para la quinceañera";
 ---
 
 <section
-    class="py-32 md:py-40 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[60vh] bg-[var(--bg-cream)] dresscode-xv-card"
-    style={`${bgImage ? `background-image: linear-gradient(rgba(252, 231, 243, 0.65), rgba(252, 231, 243, 0.65)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}`}
+    class="py-16 md:py-24 px-6 text-center relative overflow-hidden flex flex-col justify-center items-center min-h-[40vh] dresscode-xv-card"
+    style={`--dark-text: ${appliedColorTexto}; background-color: ${bgColor || 'var(--bg-cream)'}; ${bgImage ? `background-image: ${bgRepeat === 'repeat' ? '' : 'linear-gradient(rgba(252, 231, 243, 0.65), rgba(252, 231, 243, 0.65)), '}url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ""}`}
 >
     <div class="max-w-3xl mx-auto space-y-12 relative z-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl text-[var(--gold)]">
@@ -90,9 +95,9 @@ const descripcion = data?.descripcion || data?.dressCode?.subtitulo || "Se reser
 
 <style>
     .dresscode-xv-card {
-        --gold: #b30000;
-        --bg-cream: #fce7f3;
-        --dark-text: #333333;
+        --gold: var(--primaryColor, #b30000);
+        --bg-cream: var(--bgColor, #fce7f3);
+        --dark-text: var(--textColor, #333333);
     }
 </style>
 

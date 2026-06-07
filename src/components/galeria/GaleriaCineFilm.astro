@@ -1,14 +1,15 @@
 ---
 // src/components/galeria/GaleriaCineFilm.astro
-const { data = [] } = Astro.props;
+const { data = [], titulo, bgImage, bgColor = "transparent", bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center", mostrarMarca = true } = Astro.props;
 ---
 
 <section 
-  class="w-full py-16 bg-[#121212] overflow-hidden select-none"
+  class="w-full pt-16 pb-2 overflow-hidden select-none"
+  style={`background-color: ${bgColor}; ${bgImage ? `background-image: url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}
   x-data={`{ 
     isOpen: false, 
     currentIndex: 0, 
-    photos: ${JSON.stringify(data)},
+    photos: ${JSON.stringify(data.map(photo => typeof photo === 'string' ? photo : (photo.url || '')))},
     openLightbox(index) {
       this.currentIndex = index;
       this.isOpen = true;
@@ -31,8 +32,8 @@ const { data = [] } = Astro.props;
 >
   <!-- Title / Deco -->
   <div class="text-center mb-8 px-4">
-    <h3 class="font-serif italic text-amber-500 text-2xl tracking-wide">Nuestros Momentos de Cine</h3>
-    <div class="h-[1px] w-16 bg-amber-500/40 mx-auto mt-2"></div>
+    <h3 class="font-serif font-bold text-[var(--gold)] text-3xl tracking-wide">{titulo || 'Nuestros Momentos de Cine'}</h3>
+    <div class="h-[1px] w-16 mx-auto mt-2" style="background-color: var(--gold); opacity: 0.4;"></div>
   </div>
 
   {data.length === 0 ? (
@@ -44,6 +45,8 @@ const { data = [] } = Astro.props;
         {/* Double the array for seamless infinite marquee scrolling */}
         {[...data, ...data, ...data].map((photo, index) => {
           const originalIndex = index % data.length;
+          const imgUrl = typeof photo === 'string' ? photo : (photo.url || '');
+          const imgPosition = typeof photo === 'object' && photo.position ? photo.position : (originalIndex === 0 ? 'bottom' : ((originalIndex === 1 || originalIndex === 2 || originalIndex === 5) ? 'top' : 'center'));
           return (
             <div 
               class="relative flex-none w-[200px] md:w-[260px] bg-[#1a1a1a] p-3 border-y-8 border-dashed border-[#000] flex flex-col items-center group transition-all duration-300 hover:bg-[#262626]"
@@ -59,9 +62,10 @@ const { data = [] } = Astro.props;
               {/* Photo Frame */}
               <div class="relative w-full aspect-[4/3] bg-neutral-900 overflow-hidden my-3 border border-neutral-950">
                 <img 
-                  src={photo} 
+                  src={imgUrl} 
                   alt={`Fotograma ${originalIndex + 1}`}
                   class="w-full h-full object-cover sepia-[30%] contrast-[1.05] brightness-90 group-hover:sepia-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                  style={`object-position: ${imgPosition};`}
                   loading="lazy"
                 />
                 
@@ -78,7 +82,7 @@ const { data = [] } = Astro.props;
 
               {/* Frame counter */}
               <div class="w-full flex justify-between text-[10px] text-neutral-500 font-mono tracking-widest px-1">
-                <span>KODAK 5028</span>
+                <span>{mostrarMarca ? "KODAK 5028" : ""}</span>
                 <span>{String(originalIndex + 1).padStart(2, '0')}</span>
               </div>
             </div>
@@ -151,7 +155,7 @@ const { data = [] } = Astro.props;
               class="max-w-[95vw] max-h-[85vh] object-contain rounded border-4 border-neutral-900 shadow-2xl"
             />
             {/* Film info inside lightbox */}
-            <div class="mt-4 text-center text-amber-500 font-mono text-sm tracking-widest uppercase">
+            <div class="mt-4 text-center font-mono text-sm tracking-widest uppercase" style="color: var(--gold);">
               REEL &bull; FOTOGRAMA <span x-text="String(currentIndex + 1).padStart(2, '0')"></span>
             </div>
           </div>

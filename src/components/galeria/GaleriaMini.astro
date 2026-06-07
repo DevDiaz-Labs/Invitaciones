@@ -1,6 +1,6 @@
 ---
 // GaleriaMini.astro
-const { data } = Astro.props;
+const { data, bgImage, bgColor = "#fff7ed", bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center" } = Astro.props;
 
 const images =
     data && data.length > 0
@@ -17,13 +17,17 @@ const images =
 const imagesJson = JSON.stringify(images);
 ---
 
-<section class="py-12 bg-white fade-up">
+<section class="pt-8 pb-12" style={`background-color: ${bgColor}; ${bgImage ? `background-image: url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}>
     <div class="max-w-5xl mx-auto px-4">
+        <h3 class="text-3xl md:text-4xl text-[var(--gold)] text-center mb-10 uppercase tracking-[0.2em] observe-me fade-up" style="font-family: 'Montserrat', sans-serif; font-weight: 500;">
+            Galería
+        </h3>
         <!-- Galería súper alta: 9/16 en móviles (casi pantalla completa) y 4/5 en pantallas grandes -->
         <div
-            class="relative aspect-[9/16] md:aspect-[4/5] overflow-hidden rounded-xl bg-stone-100"
+            class="relative aspect-[9/16] md:aspect-[4/5] overflow-hidden rounded-xl bg-stone-100 observe-me fade-up"
             id="carousel-container"
             data-images={imagesJson}
+            style="transition-delay: 200ms;"
         >
             <img
                 id="carousel-img"

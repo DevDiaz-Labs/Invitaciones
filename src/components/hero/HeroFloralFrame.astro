@@ -2,43 +2,63 @@
 interface Props {
   data: {
     imagenFondo: string;
-    fechaVista: string;
-    fecha: string;
-    nombres: string;
-    frase: string;
+    fechaVista?: string;
+    fechaTexto?: string;
+    fecha?: string;
+    nombres?: string;
+    nombre?: string;
+    frase?: string;
+    etiqueta?: string;
+    colorTexto?: string;
+    colorPrincipal?: string;
+    colorFondo?: string;
   };
 }
 const { data } = Astro.props;
+const nombres = data.nombres || data.nombre || "Nombre";
+const fecha = data.fechaVista || data.fechaTexto || data.fecha || "Fecha";
+const etiqueta = data.etiqueta || "Mis XV Años";
+const frase = data.frase || "¡Prepárate para una noche mágica!";
+const textColor = data.colorTexto || "var(--dark-text)";
+const accentColor = data.colorPrincipal || "var(--gold)";
+const bgColor = data.colorFondo || "var(--bg-cream)";
 ---
-<section class="relative w-full h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-[#fbfaf5]">
-  <div class="absolute inset-0 z-0 w-full h-full max-w-lg mx-auto shadow-2xl">
+<section class="relative w-full h-[100dvh] flex flex-col items-center justify-center overflow-hidden md:py-8" style={`background-color: ${bgColor};`}>
+  <div class="relative w-full h-full max-w-lg mx-auto shadow-2xl md:max-h-[850px] overflow-hidden flex-shrink-0">
     <!-- El marco floral de fondo -->
-    <img src={data.imagenFondo} alt="Marco Floral" class="w-full h-full object-fill object-center" />
-  </div>
+    <img src={data.imagenFondo} alt="Marco Floral" class="absolute inset-0 w-full h-full object-fill object-center" />
 
-  <!-- Contenedor del texto, ajustado para encajar exactamente en el rectángulo blanco del diseño proporcionado -->
-  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-lg mx-auto h-full"
-       style="padding-top: 12%; padding-bottom: 22%; padding-left: 41%; padding-right: 11%;">
-    
-    <div class="flex flex-col items-center justify-center w-full h-full border-0 border-dashed border-gray-400 p-2 gap-4 sm:gap-6">
+    <!-- Contenedor del texto, ajustado para encajar exactamente en el rectángulo blanco -->
+    <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center w-full h-full"
+         style="padding-top: 12%; padding-bottom: 22%; padding-left: 41%; padding-right: 11%;">
       
-      <!-- Frase -->
-      <p class="text-xs sm:text-sm md:text-md font-serif text-[#4a5d23] italic leading-relaxed">
-        "{data.frase}"
-      </p>
+      <div class="flex flex-col items-center justify-center w-full h-full border-0 border-dashed border-gray-400 p-2 gap-3 sm:gap-5">
+        
+        <!-- Etiqueta (Mis XV Años) -->
+        {etiqueta && (
+          <span class="text-[0.6rem] sm:text-xs tracking-[0.25em] uppercase font-semibold" style={`color: ${accentColor};`}>
+            {etiqueta}
+          </span>
+        )}
 
-      <!-- Nombres -->
-      <h1 class="font-['Cormorant_Garamond'] text-4xl sm:text-5xl text-[#3b4c1a] font-bold leading-none">
-        {data.nombres}
-      </h1>
+        <!-- Frase -->
+        <p class="text-xs sm:text-sm font-serif italic leading-snug" style={`color: ${textColor}; opacity: 0.9;`}>
+          "{frase}"
+        </p>
 
-      <!-- Fecha -->
-      <div class="flex flex-col items-center gap-1 border-t border-b border-[#7b904b] py-2 mt-2 w-3/4">
-        <h2 class="text-[0.65rem] sm:text-xs tracking-[0.2em] uppercase text-[#5a6b33] font-semibold">
-          {data.fechaVista}
-        </h2>
+        <!-- Nombres -->
+        <h1 class="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-bold leading-none break-words w-full px-1" style={`color: ${textColor};`}>
+          {nombres}
+        </h1>
+
+        <!-- Fecha -->
+        <div class="flex flex-col items-center gap-1 border-t border-b py-2 mt-1 sm:mt-2 w-4/5" style={`border-color: ${accentColor}; opacity: 0.8;`}>
+          <h2 class="text-[0.6rem] sm:text-xs tracking-[0.15em] uppercase font-semibold" style={`color: ${accentColor};`}>
+            {fecha}
+          </h2>
+        </div>
+
       </div>
-
     </div>
   </div>
 </section>

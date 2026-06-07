@@ -2,7 +2,7 @@
   "tipo": "xv",
   "id": "marypazv2",
   "tema": {
-    "colorPrincipal": "#D4AF37",
+    "colorPrincipal": "#5a7350",
     "colorFondo": "#2a3b29",
     "colorTexto": "#Fdfbf7",
     "fuentePrincipal": "Montserrat",
@@ -14,38 +14,53 @@
     "fechaTexto": "04 de Julio 2026",
     "frase": "¡Prepárate para una noche mágica!",
     "imagenFondo": "/imagenes/marco-floral.jpeg",
+    "colorTexto": "#2a3b29",
     "componente": "HeroFloralFrame"
   },
   "dedicatoria": {
     "mostrar": true,
+    "colorFondo": "#fff7ed",
     "etiquetaPadres": "Con el amor de mis padres",
-    "padres": "Pascuala De La Cruz y Germán Gutiérrez",
-    "etiquetaAbuelos": "Y el cariño de mis abuelos",
-    "abuelos": "",
-    "etiquetaPadrinos": "Y la guía de mis padrinos de velación",
-    "padrinos": "Aun no definidos",
-    "texto": "Hay momentos en la vida que son especiales por sí solos, pero compartirlo con las personas que más quieres los convierte en irrepetibles.",
-    "componente": "CartaFloral",
-    "firmaTexto": "Con amor, Marypaz",
-    "colorTexto": "#5c3344",
-    "firmaColor": "#b5546a",
-    "colorFondo": "#fff5f8"
+    "padres": "Pascuala De La Cruz Santiago y Germán Gutiérrez Cruz",
+    "texto": "<strong>Nos enorgullece y alegra enormemente invitarte a celebrar la magia de este momento tan especial para nuestra familia.</strong>",
+    "imagenCarta": "/imagenes/xv/marypaz/carta.webp",
+    "colorTexto": "#2a3b29",
+    "componente": "CartaImagenFullScreen",
+    "mostrarMarcaGaleria": false,
+    "tituloGaleria": "Un viaje en el tiempo",
+    "imagenesGaleria": [
+      "/imagenes/xv/marypaz/mini1.webp",
+      "/imagenes/xv/marypaz/mini2.webp",
+      "/imagenes/xv/marypaz/mini3.webp",
+      "/imagenes/xv/marypaz/mini4.webp",
+      "/imagenes/xv/marypaz/mini5.webp",
+      "/imagenes/xv/marypaz/mini6.webp"
+    ]
+  },
+  "ninez": {
+    "mostrar": false,
+    "colorFondo": "#fff7ed",
+    "titulo": "Un viaje en el tiempo",
+    "mostrarMarca": false,
+    "imagenes": [],
+    "componente": "GaleriaCineFilm"
   },
   "countdown": {
-    "fechaObjetivo": "2026-07-04T08:00:00",
-    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os&dates=20261215T200000/20261216T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar!",
-    "componente": "CountdownXV"
+    "fechaObjetivo": "2026-07-04T16:00:00",
+    "colorFondo": "#fff7ed",
+    "urlCalendario": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+Marypaz&dates=20260704T160000/20260705T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar+mis+XV!&location=Parroquia+de+San+Jos%C3%A9",
+    "componente": "CountdownFlip"
   },
   "eventos": {
     "ceremonia": {
-      "hora": "Nose hrs",
+      "hora": "4:00 PM",
       "lugar": "Parroquia de San José",
       "direccion": "Jazmines 427, Altamira, 88630 Reynosa, Tamps.",
       "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.5458864708676!2d-98.27759329999999!3d26.081093499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f318b388503%3A0x5bbd1133ec74107c!2sParroquia%20San%20Jos%C3%A9!5e0!3m2!1ses-419!2smx!4v1775576374009!5m2!1ses-419!2smx",
       "urlMapaDirecto": "https://maps.app.goo.gl/9Nw5sWikKARkP693A"
     },
     "recepcion": {
-      "hora": "19:00 hrs",
+      "hora": "7:00 PM",
       "lugar": "Salón Dorothy",
       "direccion": "Av. Las Rosas #456",
       "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.133302341125!2d-98.2390628!3d26.029194099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f51d90cd601%3A0x766481a59afbb2dc!2sDorothy%20Eventos!5e0!3m2!1ses-419!2smx!4v1775575778805!5m2!1ses-419!2smx",
@@ -54,85 +69,130 @@
     "componente": "UbicacionRustica"
   },
   "itinerario": {
+    "mostrar": false,
+    "titulo": "Itinerario",
     "eventos": [
-      { "time": "17:00", "event": "Misa", "desc": "Ceremonia religiosa en la Parroquia de San José" },
-      { "time": "19:00", "event": "Recepción", "desc": "Bienvenida y cóctel en Salón Dorothy" },
-      { "time": "20:00", "event": "Vals", "desc": "El vals de la quinceañera" },
-      { "time": "21:00", "event": "Cena", "desc": "Disfruta de una deliciosa cena" },
-      { "time": "22:00", "event": "Fiesta", "desc": "¡A bailar toda la noche!" }
+      {
+        "time": "16:00",
+        "event": "Misa",
+        "desc": "Ceremonia religiosa en la Parroquia de San José"
+      },
+      {
+        "time": "19:00",
+        "event": "Recepción",
+        "desc": "Bienvenida y cóctel en Salón Dorothy"
+      },
+      {
+        "time": "20:00",
+        "event": "Vals",
+        "desc": "El vals de la quinceañera"
+      },
+      {
+        "time": "21:00",
+        "event": "Cena",
+        "desc": "Disfruta de una deliciosa cena"
+      },
+      {
+        "time": "22:00",
+        "event": "Fiesta",
+        "desc": "¡A bailar toda la noche!"
+      }
     ],
+    "colorFondo": "#fff7ed",
     "componente": "ItinerarioPolaroid"
   },
   "dressCode": {
+    "colorFondo": "#fff7ed",
+    "colorTexto": "#2a3b29",
     "estilo": "Formal",
-    "descripcion": "Se reserva el color blanco para la quinceañera. Hombres de traje oscuro, mujeres vestido largo de noche.",
+    "descripcion": "Se reserva el color VERDE para la quinceañera.",
     "colorSugerido": "#000000",
     "componente": "DressCodeXV"
   },
   "regalos": {
-    "mensaje": "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, puedes hacerlo de la siguiente manera:",
+    "colorFondo": "#fff7ed",
+    "colorTexto": "#2a3b29",
+    "mensaje": "",
     "opcionEfectivo": true,
     "opcionMesa": true,
+    "textoMesa": "Cualquier detalle que nazca de tu corazón será bienvenido y recibido en la mesa de obsequios el día del evento.",
+    "textoEfectivo": "Pero si deseas tener otro detalle conmigo, habrá un baúl para sobres con efectivo en la recepción.",
     "mostrarDatosBancarios": false,
     "amazon_liverpool": false,
     "datosBancarios": "Banco: BBVA\nCuenta: 0000 0000 0000\nCLABE: 000 000 0000 0000",
+    "layout": "vertical",
+    "tarjetaEfectivo": true,
+    "tituloEfectivo": "Lluvia de sobres",
     "componente": "RegalosXV"
   },
   "musica": {
-    "url": "/musica/marypaz.mp3",
+    "url": "/musica/marypaz.ogg",
     "componente": "ReproductorMinimalista"
   },
   "galeria": {
     "mostrar": true,
     "titulo": "GALERÍA",
     "imagenes": [
-      "/imagenes/xv/marypaz gutierrez/galeria1.webp",
-      "/imagenes/xv/marypaz gutierrez/galeria2.webp",
-      "/imagenes/xv/marypaz gutierrez/galeria3.webp",
-      "/imagenes/xv/marypaz gutierrez/galeria4.webp",
-      "/imagenes/xv/marypaz gutierrez/galeria5.webp"
+      "/imagenes/xv/marypaz/marypaz1.webp",
+      "/imagenes/xv/marypaz/marypaz2.webp",
+      "/imagenes/xv/marypaz/marypaz3.webp",
+      "/imagenes/xv/marypaz/marypaz4.webp"
     ],
     "componente": "GaleriaMini"
   },
   "rsvp": {
-    "telefono": "5215512345678",
+    "colorFondo": "#fff7ed",
+    "colorTexto": "#2a3b29",
+    "telefono": "528995046044",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a tus XV años.",
     "fechaLimite": "01 de Julio",
+    "titulo": "Confirma tu Asistencia",
+    "mensajeDespedida": "Será un honor contar con tu presencia.",
     "mostrarMensajeEspecial": true,
     "mostrarNinos": true,
+    "textoAsistir": "Asistiré",
+    "textoDeclinar": "No podré",
     "componente": "RSVPElegantSerif"
   },
   "calendario": {
-    "google": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+Marypaz&dates=20260704T230000Z/20260705T070000Z&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar+mis+XV!&location=Sal%C3%B3n+Dorothy",
-    "apple": "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:XV Años Marypaz%0ADTSTART:20260704T230000Z%0ADTEND:20260705T070000Z%0ALOCATION:Salón Dorothy%0ADESCRIPTION:¡Acompáñame a celebrar mis XV!%0AEND:VEVENT%0AEND:VCALENDAR",
-    "componente": "CalendarioXV"
+    "google": "https://www.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+Marypaz&dates=20260704T160000/20260705T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar+mis+XV!&location=Parroquia+de+San+Jos%C3%A9",
+    "apple": "data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:XV Años Marypaz%0ADTSTART:20260704T160000%0ADTEND:20260705T020000%0ALOCATION:Parroquia de San José%0ADESCRIPTION:¡Acompáñame a celebrar mis XV!%0AEND:VEVENT%0AEND:VCALENDAR",
+    "colorFondo": "#fff7ed",
+    "componente": "CalendarioBoho"
   },
   "footer": {
     "nombres": "Marypaz",
     "fechaVista": "04 de Julio 2026",
-    "hashtag": "#MisXVMarypaz",
+    "hashtag": "",
     "agradecimiento": "¡Te espero para celebrar juntos!",
     "mostrarWhatsappCTA": true,
+    "colorFondo": "#2a3b29",
+    "colorTexto": "#fff7ed",
+    "colorAccent": "#5a7350",
     "componente": "FooterVintage"
   },
   "sobre": {
     "tipo": "sobre1",
-    "colorFondoBase": "#2a3b29",
-    "colorSobre": "#1a261a",
-    "colorSolapa": "#D4AF37",
-    "colorSolapaLado": "#b89a30",
-    "colorSello": "#D4AF37",
-    "colorSelloBorde": "#b89a30",
-    "colorCartaFondo": "#fdfbf7",
-    "colorCartaTexto": "#2a3b29",
+    "colorFondoBase": "#1a2e1a",
+    "colorSobre": "#4a5e28",
+    "colorSolapa": "#e6d2b8",
+    "colorSolapaLado": "#d4c0a8",
+    "colorSello": "#b30000",
+    "colorSelloBorde": "#8c0000",
+    "colorCartaFondo": "#fffdfc",
+    "colorCartaTexto": "#3e5022",
     "fuenteNombres": "'Great Vibes', cursive",
     "fuenteTitulos": "'Montserrat', sans-serif",
-    "colorTitulo": "#D4AF37",
-    "colorNombre": "#2a3b29"
+    "colorTitulo": "#8fad52",
+    "colorNombre": "#b30000",
+    "colorMensajeTop": "#7a0000"
   },
   "pases": {
     "mostrar": false,
     "cantidad": 0
+  },
+  "imagenesFondo": {
+    "hero2": "/imagenes/flores-esquina.png"
   },
   "componentes": [
     "HeroFloralFrame",
@@ -145,7 +205,7 @@
     "ReproductorMinimalista",
     "GaleriaMini",
     "RSVPElegantSerif",
-    "CalendarioXV",
+    "CalendarioBoho",
     "FooterVintage"
   ]
 }

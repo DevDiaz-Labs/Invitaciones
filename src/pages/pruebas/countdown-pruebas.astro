@@ -5,6 +5,7 @@ import CountdownBurbujas from "../../components/countdown/CountdownBurbujas.astr
 import CountdownAnillos from "../../components/countdown/CountdownAnillos.astro";
 import CountdownSimple from "../../components/countdown/CountdownSimple.astro";
 import CountdownXV from "../../components/countdown/CountdownXV.astro";
+import CountdownFlip from "../../components/countdown/CountdownFlip.astro";
 
 // Target date set to a future date in 2026
 const mockData = {
@@ -97,6 +98,16 @@ const mockData = {
         </div>
         <div class="relative w-full">
           <CountdownXV data={mockData} />
+        </div>
+      </section>
+
+      <!-- 6. Estilo Flip Clock (Page-Flip Animation) -->
+      <section class="border-b border-white/5 bg-[#fff7ed] p-6" style="--primaryColor: #2a3b29; --textColor: #fff7ed; --gold: #5a7350;">
+        <div class="mb-4 text-xs tracking-wider text-amber-500 uppercase font-mono bg-neutral-900 p-2 rounded text-center">
+          <span>6. Estilo Flip Clock (Animación hojear página)</span>
+        </div>
+        <div class="relative w-full">
+          <CountdownFlip data={mockData} />
         </div>
       </section>
 

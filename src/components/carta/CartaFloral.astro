@@ -3,85 +3,116 @@
 interface Props {
   data: {
     mostrar: boolean;
+    etiquetaPadres?: string;
+    padres?: string;
     texto: string;
     firmaTexto?: string;
     firmaColor?: string;
+    firmaColor?: string;
     colorTexto?: string;
     colorFondo?: string;
+    imagenFondo?: string;
+    colorPrincipal?: string;
   };
+  bgImage?: string;
+  bgColor?: string;
+  bgSize?: string;
+  bgRepeat?: string;
+  bgPosition?: string;
 }
 
-const { data } = Astro.props;
-const firmaColor = data.firmaColor || '#b5546a';
-const colorTexto = data.colorTexto || '#5c3344';
+const { data, bgImage, bgColor, bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center" } = Astro.props;
+const firmaColor = data.firmaColor || 'var(--gold)';
+const colorTexto = data.colorTexto || 'var(--dark-text)';
+const appliedBgColor = bgColor || data.colorFondo || 'var(--bg-cream)';
+const accentColor = data.colorPrincipal || 'var(--gold)';
+const leafColor = 'var(--dark-text)';
+const appliedBgImage = bgImage || data.imagenFondo;
 ---
 
 {data.mostrar && (
-<section class="cf-section">
+<section class="cf-section" style={`background-color: ${appliedBgColor}; ${appliedBgImage ? `background-image: url('${appliedBgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400;1,600&family=Sacramento&display=swap" rel="stylesheet" />
 
   <div class="cf-wrapper">
     <!-- Corner flower TL -->
     <div class="cf-corner cf-tl" aria-hidden="true">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
-        <circle cx="30" cy="30" r="12" fill="#e8a0b0" opacity="0.7"/>
-        <circle cx="30" cy="30" r="6" fill="#c06080" opacity="0.8"/>
-        <ellipse cx="14" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(-30 14 30)"/>
-        <ellipse cx="46" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(30 46 30)"/>
-        <ellipse cx="30" cy="14" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
-        <ellipse cx="30" cy="46" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
-        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke="#6a8f4a" stroke-width="2" opacity="0.6"/>
-        <ellipse cx="68" cy="72" rx="8" ry="4" fill="#7aaa55" opacity="0.5" transform="rotate(40 68 72)"/>
-        <ellipse cx="62" cy="80" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(60 62 80)"/>
-        <circle cx="18" cy="55" r="6" fill="#f0bbd0" opacity="0.5"/>
-        <circle cx="18" cy="55" r="3" fill="#d07090" opacity="0.6"/>
-        <path d="M24 61 Q30 70, 22 80" fill="none" stroke="#6a8f4a" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="30" cy="30" r="12" fill={accentColor} opacity="0.7"/>
+        <circle cx="30" cy="30" r="6" fill={accentColor} opacity="0.9"/>
+        <ellipse cx="14" cy="30" rx="7" ry="4" fill={accentColor} opacity="0.6" transform="rotate(-30 14 30)"/>
+        <ellipse cx="46" cy="30" rx="7" ry="4" fill={accentColor} opacity="0.6" transform="rotate(30 46 30)"/>
+        <ellipse cx="30" cy="14" rx="7" ry="4" fill={accentColor} opacity="0.6"/>
+        <ellipse cx="30" cy="46" rx="7" ry="4" fill={accentColor} opacity="0.6"/>
+        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke={leafColor} stroke-width="2" opacity="0.4"/>
+        <ellipse cx="68" cy="72" rx="8" ry="4" fill={leafColor} opacity="0.3" transform="rotate(40 68 72)"/>
+        <ellipse cx="62" cy="80" rx="6" ry="3" fill={leafColor} opacity="0.2" transform="rotate(60 62 80)"/>
+        <circle cx="18" cy="55" r="6" fill={accentColor} opacity="0.5"/>
+        <circle cx="18" cy="55" r="3" fill={accentColor} opacity="0.7"/>
+        <path d="M24 61 Q30 70, 22 80" fill="none" stroke={leafColor} stroke-width="1.5" opacity="0.3"/>
       </svg>
     </div>
 
     <!-- Corner flower BR -->
     <div class="cf-corner cf-br" aria-hidden="true">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="transform:rotate(180deg)">
-        <circle cx="30" cy="30" r="12" fill="#e8a0b0" opacity="0.7"/>
-        <circle cx="30" cy="30" r="6" fill="#c06080" opacity="0.8"/>
-        <ellipse cx="14" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(-30 14 30)"/>
-        <ellipse cx="46" cy="30" rx="7" ry="4" fill="#e8a0b0" opacity="0.6" transform="rotate(30 46 30)"/>
-        <ellipse cx="30" cy="14" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
-        <ellipse cx="30" cy="46" rx="7" ry="4" fill="#e8a0b0" opacity="0.6"/>
-        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke="#6a8f4a" stroke-width="2" opacity="0.6"/>
-        <ellipse cx="68" cy="72" rx="8" ry="4" fill="#7aaa55" opacity="0.5" transform="rotate(40 68 72)"/>
-        <ellipse cx="62" cy="80" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(60 62 80)"/>
-        <circle cx="18" cy="55" r="6" fill="#f0bbd0" opacity="0.5"/>
-        <circle cx="18" cy="55" r="3" fill="#d07090" opacity="0.6"/>
-        <path d="M24 61 Q30 70, 22 80" fill="none" stroke="#6a8f4a" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="30" cy="30" r="12" fill={accentColor} opacity="0.7"/>
+        <circle cx="30" cy="30" r="6" fill={accentColor} opacity="0.9"/>
+        <ellipse cx="14" cy="30" rx="7" ry="4" fill={accentColor} opacity="0.6" transform="rotate(-30 14 30)"/>
+        <ellipse cx="46" cy="30" rx="7" ry="4" fill={accentColor} opacity="0.6" transform="rotate(30 46 30)"/>
+        <ellipse cx="30" cy="14" rx="7" ry="4" fill={accentColor} opacity="0.6"/>
+        <ellipse cx="30" cy="46" rx="7" ry="4" fill={accentColor} opacity="0.6"/>
+        <path d="M42 42 Q60 55, 75 65 Q80 75, 72 80 Q65 78, 62 70 Q52 60, 38 48" fill="none" stroke={leafColor} stroke-width="2" opacity="0.4"/>
+        <ellipse cx="68" cy="72" rx="8" ry="4" fill={leafColor} opacity="0.3" transform="rotate(40 68 72)"/>
+        <ellipse cx="62" cy="80" rx="6" ry="3" fill={leafColor} opacity="0.2" transform="rotate(60 62 80)"/>
+        <circle cx="18" cy="55" r="6" fill={accentColor} opacity="0.5"/>
+        <circle cx="18" cy="55" r="3" fill={accentColor} opacity="0.7"/>
+        <path d="M24 61 Q30 70, 22 80" fill="none" stroke={leafColor} stroke-width="1.5" opacity="0.3"/>
       </svg>
     </div>
 
     <!-- Top decorative branch -->
     <div class="cf-header">
       <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg" class="cf-branch-svg">
-        <path d="M10 18 Q70 8, 140 18 Q210 28, 270 18" stroke="#6a8f4a" stroke-width="1.2" fill="none" opacity="0.5"/>
-        <circle cx="140" cy="18" r="5" fill="#e8a0b0" opacity="0.8"/>
-        <circle cx="140" cy="18" r="2.5" fill="#c06080" opacity="0.9"/>
-        <circle cx="80" cy="14" r="3.5" fill="#f0c0d0" opacity="0.7"/>
-        <circle cx="200" cy="22" r="3.5" fill="#f0c0d0" opacity="0.7"/>
-        <ellipse cx="50" cy="20" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(-20 50 20)"/>
-        <ellipse cx="230" cy="16" rx="6" ry="3" fill="#7aaa55" opacity="0.4" transform="rotate(20 230 16)"/>
+        <path d="M10 18 Q70 8, 140 18 Q210 28, 270 18" stroke={leafColor} stroke-width="1.2" fill="none" opacity="0.4"/>
+        <circle cx="140" cy="18" r="5" fill={accentColor} opacity="0.8"/>
+        <circle cx="140" cy="18" r="2.5" fill={accentColor} opacity="1.0"/>
+        <circle cx="80" cy="14" r="3.5" fill={accentColor} opacity="0.6"/>
+        <circle cx="200" cy="22" r="3.5" fill={accentColor} opacity="0.6"/>
+        <ellipse cx="50" cy="20" rx="6" ry="3" fill={leafColor} opacity="0.3" transform="rotate(-20 50 20)"/>
+        <ellipse cx="230" cy="16" rx="6" ry="3" fill={leafColor} opacity="0.3" transform="rotate(20 230 16)"/>
       </svg>
     </div>
 
-    <!-- Italic intro -->
-    <p class="cf-intro">Con todo mi amor...</p>
+    <!-- Image -->
+    {data.imagenCarta && (
+      <div class="cf-imagen-carta mb-8 relative z-10 observe-me fade-up">
+        <img src={data.imagenCarta} alt="Carta" class="w-full h-auto object-contain rounded-sm shadow-md" />
+      </div>
+    )}
+
+    <!-- Padres -->
+    {data.etiquetaPadres && data.padres && (
+      <div class="cf-padres" style={`color: ${colorTexto};`}>
+        <p class="cf-etiqueta-padres">{data.etiquetaPadres}</p>
+        <p class="cf-nombres-padres">{data.padres}</p>
+      </div>
+    )}
 
     <!-- Text -->
-    <div class="cf-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+    {data.texto && (
+      <>
+        {!data.imagenCarta && <p class="cf-intro" style={`color: ${accentColor};`}>Con todo mi amor...</p>}
+        <div class="cf-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+      </>
+    )}
 
     <!-- Firma -->
     {data.firmaTexto && (
       <div class="cf-firma-wrap">
         <svg viewBox="0 0 100 16" xmlns="http://www.w3.org/2000/svg" class="cf-divider-svg">
-          <path d="M5 8 Q25 3, 50 8 Q75 13, 95 8" stroke="#b5546a" stroke-width="0.8" fill="none" opacity="0.5"/>
-          <circle cx="50" cy="8" r="2.5" fill="#b5546a" opacity="0.7"/>
+          <path d="M5 8 Q25 3, 50 8 Q75 13, 95 8" stroke={firmaColor} stroke-width="0.8" fill="none" opacity="0.5"/>
+          <circle cx="50" cy="8" r="2.5" fill={firmaColor} opacity="0.7"/>
         </svg>
         <p class="cf-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
       </div>
@@ -94,7 +125,6 @@ const colorTexto = data.colorTexto || '#5c3344';
   .cf-section {
     position: relative;
     padding: 3rem 2rem;
-    background-color: #fff5f8;
     text-align: center;
     overflow: hidden;
   }
@@ -131,9 +161,31 @@ const colorTexto = data.colorTexto || '#5c3344';
   .cf-intro {
     font-family: 'Sacramento', cursive;
     font-size: 1.8rem;
-    color: #b5546a;
     margin: 0 0 1.2rem 0;
     opacity: 0.85;
+  }
+
+  .cf-padres {
+    margin: 1rem 0 2rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cf-etiqueta-padres {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    opacity: 0.7;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .cf-nombres-padres {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin: 0;
   }
 
   .cf-text {

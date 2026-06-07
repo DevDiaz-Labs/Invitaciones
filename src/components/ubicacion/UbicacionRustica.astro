@@ -14,20 +14,42 @@ interface Props {
   data: {
     ceremonia?: Evento;
     recepcion?: Evento;
+    // Colores personalizables desde el JSON (todos opcionales, con defaults rústicos)
+    colorFondo?: string;
+    colorTarjeta?: string;
+    colorBordeTarjeta?: string;
+    colorAcento1?: string; // Ceremonia: stamp, botón, icono
+    colorAcento2?: string; // Recepción: stamp, botón, icono
+    colorTitulo?: string;
+    colorSubtitulo?: string;
+    colorTexto?: string;
+    colorPapelRasgado?: string;
   };
 }
 
 const { data } = Astro.props;
 const { ceremonia, recepcion } = data || {};
+
+// Colores con fallback a los originales rústicos
+const cFondo = data.colorFondo || '#c8b89a';
+const cTarjeta = data.colorTarjeta || '#f5f0e8';
+const cBordeTarjeta = data.colorBordeTarjeta || '#c4a87a';
+const cAcento1 = data.colorAcento1 || '#8b3a3a';
+const cAcento2 = data.colorAcento2 || '#8b6914';
+const cTitulo = data.colorTitulo || '#4a2c0a';
+const cSubtitulo = data.colorSubtitulo || '#7a5c2a';
+const cTexto = data.colorTexto || '#3a2510';
+const cPapel = data.colorPapelRasgado || '#f5f0e8';
+const cFiltroMapa = data.colorFiltroMapa || 'sepia(40%) saturate(0.8)';
 ---
 
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet" />
 
-<section class="ubr-wrap">
+<section class="ubr-wrap" style={`--ubr-fondo:${cFondo};--ubr-tarjeta:${cTarjeta};--ubr-borde:${cBordeTarjeta};--ubr-acento1:${cAcento1};--ubr-acento2:${cAcento2};--ubr-titulo:${cTitulo};--ubr-sub:${cSubtitulo};--ubr-texto:${cTexto};--ubr-papel:${cPapel};`}>
   <!-- Torn paper texture top -->
   <div class="ubr-torn-top" aria-hidden="true">
     <svg viewBox="0 0 400 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 30 L0 15 Q20 5 40 18 Q60 28 80 12 Q100 2 120 16 Q140 28 160 10 Q180 0 200 14 Q220 26 240 8 Q260 0 280 15 Q300 28 320 10 Q340 0 360 18 Q380 28 400 12 L400 30 Z" fill="#f5f0e8"/>
+      <path d="M0 30 L0 15 Q20 5 40 18 Q60 28 80 12 Q100 2 120 16 Q140 28 160 10 Q180 0 200 14 Q220 26 240 8 Q260 0 280 15 Q300 28 320 10 Q340 0 360 18 Q380 28 400 12 L400 30 Z" fill={cPapel}/>
     </svg>
   </div>
 
@@ -35,15 +57,15 @@ const { ceremonia, recepcion } = data || {};
     <!-- Compass SVG -->
     <div class="ubr-compass">
       <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
-        <circle cx="30" cy="30" r="28" stroke="#8b6914" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-        <circle cx="30" cy="30" r="20" stroke="#8b6914" stroke-width="1" opacity="0.3"/>
-        <polygon points="30,10 33,30 30,34 27,30" fill="#8b3a3a" opacity="0.85"/>
-        <polygon points="30,50 33,30 30,26 27,30" fill="#8b6914" opacity="0.7"/>
-        <circle cx="30" cy="30" r="3" fill="#8b6914"/>
-        <text x="30" y="7" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">N</text>
-        <text x="30" y="57" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">S</text>
-        <text x="4" y="32" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">O</text>
-        <text x="56" y="32" text-anchor="middle" font-size="5" fill="#8b6914" font-family="serif" opacity="0.7">E</text>
+        <circle cx="30" cy="30" r="28" stroke={cAcento2} stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+        <circle cx="30" cy="30" r="20" stroke={cAcento2} stroke-width="1" opacity="0.3"/>
+        <polygon points="30,10 33,30 30,34 27,30" fill={cAcento1} opacity="0.85"/>
+        <polygon points="30,50 33,30 30,26 27,30" fill={cAcento2} opacity="0.7"/>
+        <circle cx="30" cy="30" r="3" fill={cAcento2}/>
+        <text x="30" y="7" text-anchor="middle" font-size="5" fill={cAcento2} font-family="serif" opacity="0.7">N</text>
+        <text x="30" y="57" text-anchor="middle" font-size="5" fill={cAcento2} font-family="serif" opacity="0.7">S</text>
+        <text x="4" y="32" text-anchor="middle" font-size="5" fill={cAcento2} font-family="serif" opacity="0.7">O</text>
+        <text x="56" y="32" text-anchor="middle" font-size="5" fill={cAcento2} font-family="serif" opacity="0.7">E</text>
       </svg>
     </div>
     <h2 class="ubr-title">El Destino</h2>
@@ -56,7 +78,7 @@ const { ceremonia, recepcion } = data || {};
         <div class="ubr-card-stamp">CEREMONIA</div>
         <div class="ubr-card-inner">
           <div class="ubr-icon-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#8b3a3a" stroke-width="1.5" width="20" height="20">
+            <svg viewBox="0 0 24 24" fill="none" stroke={cAcento1} stroke-width="1.5" width="20" height="20">
               <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
             </svg>
             <h3 class="ubr-lugar">{ceremonia.lugar}</h3>
@@ -72,7 +94,7 @@ const { ceremonia, recepcion } = data || {};
                 src={ceremonia.iframeMapa || ceremonia.urlMapa}
                 width="100%"
                 height="100%"
-                style="border:0;filter:sepia(40%) saturate(0.8);"
+                style={`border:0;filter:${cFiltroMapa};`}
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -100,7 +122,7 @@ const { ceremonia, recepcion } = data || {};
         <div class="ubr-card-stamp ubr-card-stamp--dos">RECEPCIÓN</div>
         <div class="ubr-card-inner">
           <div class="ubr-icon-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#8b6914" stroke-width="1.5" width="20" height="20">
+            <svg viewBox="0 0 24 24" fill="none" stroke={cAcento2} stroke-width="1.5" width="20" height="20">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
             <h3 class="ubr-lugar">{recepcion.lugar}</h3>
@@ -116,7 +138,7 @@ const { ceremonia, recepcion } = data || {};
                 src={recepcion.iframeMapa || recepcion.urlMapa}
                 width="100%"
                 height="100%"
-                style="border:0;filter:sepia(40%) saturate(0.8);"
+                style={`border:0;filter:${cFiltroMapa};`}
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -136,14 +158,14 @@ const { ceremonia, recepcion } = data || {};
 
   <div class="ubr-torn-bottom" aria-hidden="true">
     <svg viewBox="0 0 400 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0 0 L0 15 Q20 25 40 12 Q60 2 80 18 Q100 28 120 14 Q140 2 160 18 Q180 28 200 10 Q220 2 240 18 Q260 28 280 12 Q300 2 320 18 Q340 28 360 10 Q380 2 400 16 L400 0 Z" fill="#f5f0e8"/>
+      <path d="M0 0 L0 15 Q20 25 40 12 Q60 2 80 18 Q100 28 120 14 Q140 2 160 18 Q180 28 200 10 Q220 2 240 18 Q260 28 280 12 Q300 2 320 18 Q340 28 360 10 Q380 2 400 16 L400 0 Z" fill={cPapel}/>
     </svg>
   </div>
 </section>
 
 <style>
   .ubr-wrap {
-    background: #c8b89a;
+    background: var(--ubr-fondo);
     background-image:
       repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px),
       repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px);
@@ -173,13 +195,13 @@ const { ceremonia, recepcion } = data || {};
   .ubr-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 2rem;
-    color: #4a2c0a;
+    color: var(--ubr-titulo);
     margin: 0 0 0.3rem;
     letter-spacing: 0.04em;
   }
   .ubr-sub {
     font-size: 0.82rem;
-    color: #7a5c2a;
+    color: var(--ubr-sub);
     font-style: italic;
     margin: 0;
   }
@@ -187,29 +209,29 @@ const { ceremonia, recepcion } = data || {};
     padding: 0 1.25rem 1.5rem;
   }
   .ubr-card {
-    background: #f5f0e8;
+    background: var(--ubr-tarjeta);
     border-radius: 4px;
-    border: 1.5px solid #c4a87a;
+    border: 1.5px solid var(--ubr-borde);
     box-shadow: 2px 3px 10px rgba(0,0,0,0.12), inset 0 0 0 4px rgba(196,168,122,0.1);
     position: relative;
     overflow: hidden;
   }
   .ubr-card--dos {
-    border-color: #b8955a;
+    border-color: var(--ubr-borde);
   }
   .ubr-card-stamp {
-    background: #8b3a3a;
-    color: #f5f0e8;
+    background: var(--ubr-acento1);
+    color: var(--ubr-tarjeta);
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.25em;
     padding: 0.3rem 1rem;
     text-align: center;
-    border-bottom: 1.5px solid #7a2a2a;
+    border-bottom: 1.5px solid var(--ubr-acento1);
   }
   .ubr-card-stamp--dos {
-    background: #8b6914;
-    border-bottom-color: #7a5a10;
+    background: var(--ubr-acento2);
+    border-bottom-color: var(--ubr-acento2);
   }
   .ubr-card-inner {
     padding: 1.25rem;
@@ -223,7 +245,7 @@ const { ceremonia, recepcion } = data || {};
   .ubr-lugar {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.05rem;
-    color: #3a2510;
+    color: var(--ubr-texto);
     margin: 0;
   }
   .ubr-hora-wrap {
@@ -234,20 +256,20 @@ const { ceremonia, recepcion } = data || {};
   }
   .ubr-hora-label {
     font-size: 0.75rem;
-    color: #8b6914;
+    color: var(--ubr-acento2);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
   .ubr-hora {
     font-size: 0.9rem;
-    color: #4a2c0a;
+    color: var(--ubr-titulo);
     font-weight: 600;
     font-family: 'Libre Baskerville', serif;
   }
   .ubr-dir {
     font-size: 0.78rem;
-    color: #7a5c2a;
+    color: var(--ubr-sub);
     margin: 0 0 1rem;
     line-height: 1.5;
     font-style: italic;
@@ -257,15 +279,15 @@ const { ceremonia, recepcion } = data || {};
     height: 170px;
     border-radius: 2px;
     overflow: hidden;
-    border: 1.5px solid #c4a87a;
+    border: 1.5px solid var(--ubr-borde);
     margin-bottom: 0.85rem;
   }
   .ubr-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    border: 1.5px solid #8b3a3a;
-    color: #8b3a3a;
+    border: 1.5px solid var(--ubr-acento1);
+    color: var(--ubr-acento1);
     border-radius: 2px;
     padding: 0.5rem 1.25rem;
     font-size: 0.78rem;
@@ -277,16 +299,16 @@ const { ceremonia, recepcion } = data || {};
     transition: background 0.2s, color 0.2s;
   }
   .ubr-btn--dos {
-    border-color: #8b6914;
-    color: #8b6914;
+    border-color: var(--ubr-acento2);
+    color: var(--ubr-acento2);
   }
   .ubr-btn:hover {
-    background: #8b3a3a;
-    color: #f5f0e8;
+    background: var(--ubr-acento1);
+    color: var(--ubr-tarjeta);
   }
   .ubr-btn--dos:hover {
-    background: #8b6914;
-    color: #f5f0e8;
+    background: var(--ubr-acento2);
+    color: var(--ubr-tarjeta);
   }
   .ubr-middle-divider {
     display: flex;
@@ -296,11 +318,11 @@ const { ceremonia, recepcion } = data || {};
   .ubr-rope {
     flex: 1;
     height: 2px;
-    background: repeating-linear-gradient(to right, #8b6914 0, #8b6914 6px, transparent 6px, transparent 10px);
+    background: repeating-linear-gradient(to right, var(--ubr-acento2) 0, var(--ubr-acento2) 6px, transparent 6px, transparent 10px);
     opacity: 0.5;
   }
   .ubr-knot {
-    color: #8b6914;
+    color: var(--ubr-acento2);
     padding: 0 0.75rem;
     font-size: 0.85rem;
     opacity: 0.6;

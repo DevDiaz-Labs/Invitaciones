@@ -19,8 +19,8 @@ const { data, bgImage } = Astro.props;
 ---
 
 <section
-    class="pt-8 pb-16 md:pt-10 md:pb-24 px-6 text-center rounded-t-[5rem] relative border-t border-[var(--gold)]/20 overflow-hidden"
-    style={`--gold: #a3000b; --gold-rgb: 163, 0, 11; --bg-cream: #ffeff6; ${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: var(--bg-cream); background-image: linear-gradient(rgba(var(--gold-rgb), 0.03), rgba(var(--gold-rgb), 0.03));"}`}
+    class="pt-8 pb-16 md:pt-10 md:pb-24 px-6 text-center rounded-t-[5rem] relative overflow-hidden bg-[#fdfbf7]"
+    style={bgImage ? `background-image: linear-gradient(rgba(253, 251, 247, 0.8), rgba(253, 251, 247, 0.8)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ""}
 >
     <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl md:text-5xl text-[var(--gold)]">

@@ -5,13 +5,19 @@ interface Props {
     fechaObjetivo: string;
     urlCalendario?: string;
   };
+  bgImage?: string;
+  bgColor?: string;
+  bgSize?: string;
+  bgRepeat?: string;
+  bgPosition?: string;
 }
-const { data } = Astro.props;
+const { data, bgImage, bgColor = "transparent", bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center" } = Astro.props;
 const uniqueId = `countdown-simple-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<section class="py-12 px-6 text-center bg-transparent">
+<section class="pt-12 pb-4 px-6 text-center" style={`background-color: ${bgColor}; ${bgImage ? `background-image: url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}>
   <div class="max-w-2xl mx-auto" id={uniqueId}>
+    <h3 class="text-2xl md:text-3xl uppercase tracking-[0.3em] mb-8 font-serif font-bold" style="color: var(--gold, #c5a059);">Faltan</h3>
     <div class="flex justify-center items-center gap-3 md:gap-4 max-w-xl mx-auto">
       
       <!-- Días -->

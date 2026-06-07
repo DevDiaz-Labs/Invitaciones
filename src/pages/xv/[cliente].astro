@@ -41,6 +41,7 @@ import HeroXVWatercolor from "../../components/hero/HeroXVWatercolor.astro";
 // COMPONENTES ALTERNATIVOS (Carta / Dedicatoria)
 // ============================================
 import CartaFloral from "../../components/carta/CartaFloral.astro";
+import CartaImagenFullScreen from "../../components/carta/CartaImagenFullScreen.astro";
 import CartaElegante from "../../components/carta/CartaElegante.astro";
 import CartaRustica from "../../components/carta/CartaRustica.astro";
 import CartaRomantica from "../../components/carta/CartaRomantica.astro";
@@ -59,6 +60,7 @@ import CountdownMinimalista from "../../components/countdown/CountdownMinimalist
 import CountdownSimple from "../../components/countdown/CountdownSimple.astro";
 import CountdownBurbujas from "../../components/countdown/CountdownBurbujas.astro";
 import CountdownAnillos from "../../components/countdown/CountdownAnillos.astro";
+import CountdownFlip from "../../components/countdown/CountdownFlip.astro";
 
 // ============================================
 // COMPONENTES ALTERNATIVOS (Ubicación)
@@ -141,6 +143,7 @@ import CalendarioMinimalista from "../../components/calendario/CalendarioMinimal
 import CalendarioFloral from "../../components/calendario/CalendarioFloral.astro";
 import CalendarioModerno from "../../components/calendario/CalendarioModerno.astro";
 import CalendarioVintage from "../../components/calendario/CalendarioVintage.astro";
+import CalendarioBoho from "../../components/calendario/CalendarioBoho.astro";
 
 // ============================================
 // COMPONENTES ALTERNATIVOS (Footer)
@@ -208,12 +211,12 @@ const heroMap: Record<string, any> = {
 
 const cartaMap: Record<string, any> = {
     CartaFloral, CartaElegante, CartaRustica, CartaRomantica,
-    CartaBohemia, CartaVintage, CartaModerna, CartaReal, CartaNoche, CartaJoven,
+    CartaBohemia, CartaVintage, CartaModerna, CartaReal, CartaNoche, CartaJoven, CartaImagenFullScreen,
 };
 
 const countdownMap: Record<string, any> = {
     CountdownXV, CountdownMinimalista, CountdownSimple,
-    CountdownBurbujas, CountdownAnillos,
+    CountdownBurbujas, CountdownAnillos, CountdownFlip,
 };
 
 const ubicacionMap: Record<string, any> = {
@@ -253,7 +256,7 @@ const rsvpMap: Record<string, any> = {
 
 const calendarioMap: Record<string, any> = {
     CalendarioXV, CalendarioMinimalista, CalendarioFloral,
-    CalendarioModerno, CalendarioVintage,
+    CalendarioModerno, CalendarioVintage, CalendarioBoho,
 };
 
 const footerMap: Record<string, any> = {
@@ -276,6 +279,7 @@ const GaleriaComp = data.galeria?.componente ? (galeriaMap[data.galeria.componen
 const RSVPComp = data.rsvp?.componente ? (rsvpMap[data.rsvp.componente] || RSVPDefault) : RSVPDefault;
 const CalendarioComp = data.calendario?.componente ? (calendarioMap[data.calendario.componente] || null) : null;
 const FooterComp = data.footer?.componente ? (footerMap[data.footer.componente] || FooterDefault) : FooterDefault;
+const NinezComp = data.ninez?.componente ? (galeriaMap[data.ninez.componente] || GaleriaDefault) : null;
 
 // Determinar si usamos ubicación unificada o ceremonia/recepción por separado
 const usaUbicacionUnificada = UbicacionComp !== null;
@@ -313,13 +317,10 @@ const usaUbicacionUnificada = UbicacionComp !== null;
         {data.dedicatoria?.componente ? (
             <!-- Si tiene componente alternativo de carta, usa ese con los datos de dedicatoria -->
             <CartaComp data={{
+                ...data.dedicatoria,
                 mostrar: data.dedicatoria.mostrar !== false,
-                texto: data.dedicatoria.texto,
-                firmaTexto: data.dedicatoria.firmaTexto,
-                firmaColor: data.dedicatoria.firmaColor,
-                colorTexto: data.dedicatoria.colorTexto,
-                colorFondo: data.dedicatoria.colorFondo,
-            }} />
+                imagenFondo: data.imagenesFondo?.dedicatoria || data.dedicatoria.imagenFondo,
+            }} bgSize={data.imagenesFondo?.dedicatoriaSize} bgRepeat={data.imagenesFondo?.dedicatoriaRepeat} />
         ) : (
             <>
                 {data.carta && <CartaComp data={data.carta} bgImage={data.imagenesFondo?.carta} />}
@@ -327,15 +328,23 @@ const usaUbicacionUnificada = UbicacionComp !== null;
             </>
         )}
 
+        <!-- SECCIÓN NIÑEZ (Recuerdos infantiles) -->
+        {NinezComp && data.ninez?.mostrar !== false && data.ninez?.imagenes && (
+            <NinezComp data={data.ninez.imagenes} titulo={data.ninez.titulo} bgImage={data.imagenesFondo?.ninez} bgColor={data.ninez?.colorFondo} bgSize={data.imagenesFondo?.ninezSize} bgRepeat={data.imagenesFondo?.ninezRepeat} mostrarMarca={data.ninez?.mostrarMarca} />
+        )}
+
         <!-- COUNTDOWN -->
-        {data.countdown && <CountdownComp data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
+        {data.countdown && <CountdownComp data={data.countdown} bgImage={data.imagenesFondo?.countdown} bgColor={data.countdown?.colorFondo} bgSize={data.imagenesFondo?.countdownSize} bgRepeat={data.imagenesFondo?.countdownRepeat} />}
+
+        <!-- CALENDARIO (Agregado abajo del countdown a peticion) -->
+        {CalendarioComp && data.calendario && <CalendarioComp calendario={data.calendario} bgImage={data.imagenesFondo?.calendario} bgColor={data.calendario?.colorFondo} bgSize={data.imagenesFondo?.calendarioSize} bgRepeat={data.imagenesFondo?.calendarioRepeat} />}
 
         <!-- ITINERARIO -->
-        {data.itinerario?.componente ? (
-            <ItinerarioComp data={{ itinerario: data.itinerario.eventos || data.itinerario.items || [] }} />
+        {data.itinerario && data.itinerario.mostrar !== false && (data.itinerario.componente ? (
+            <ItinerarioComp data={{ ...data.itinerario, itinerario: data.itinerario.eventos || data.itinerario.items || [] }} bgColor={data.itinerario?.colorFondo} bgImage={data.imagenesFondo?.itinerario} bgSize={data.imagenesFondo?.itinerarioSize} bgRepeat={data.imagenesFondo?.itinerarioRepeat} />
         ) : (
-            data.itinerario?.mostrar && <ItinerarioComp data={data.itinerario} bgImage={data.imagenesFondo?.itinerario} />
-        )}
+            data.itinerario.mostrar && <ItinerarioComp data={data.itinerario} bgImage={data.imagenesFondo?.itinerario} bgColor={data.itinerario?.colorFondo} bgSize={data.imagenesFondo?.itinerarioSize} bgRepeat={data.imagenesFondo?.itinerarioRepeat} />
+        ))}
 
         <!-- UBICACIÓN (unificada o separada) -->
         {usaUbicacionUnificada ? (
@@ -348,12 +357,12 @@ const usaUbicacionUnificada = UbicacionComp !== null;
         )}
 
         <!-- DRESS CODE -->
-        {data.dressCode && <DressCodeComp data={data.dressCode} bgImage={data.imagenesFondo?.dressCode || data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.dressCodePos} />}
+        {data.dressCode && <DressCodeComp data={data.dressCode} bgImage={data.imagenesFondo?.dressCode} bgColor={data.dressCode?.colorFondo} bgSize={data.imagenesFondo?.dressCodeSize} bgRepeat={data.imagenesFondo?.dressCodeRepeat} />}
 
         <!-- REGALOS -->
         {
             data.regalos && data.regalos.mostrar !== false && (
-                <RegalosComp data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.regalosPos} />
+                <RegalosComp data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgColor={data.regalos?.colorFondo} bgSize={data.imagenesFondo?.regalosSize} bgRepeat={data.imagenesFondo?.regalosRepeat} />
             )
         }
 
@@ -364,7 +373,7 @@ const usaUbicacionUnificada = UbicacionComp !== null;
         {data.hero.imagenFondo2 && <Separador image={data.hero.imagenFondo2} />}
 
         <!-- GALERÍA -->
-        {data.galeria?.mostrar && <GaleriaComp data={data.galeria?.componente ? data.galeria.imagenes : data.galeria.imagenes} />}
+        {data.galeria?.mostrar && <GaleriaComp data={data.galeria?.componente ? data.galeria.imagenes : data.galeria.imagenes} bgImage={data.imagenesFondo?.galeria} bgColor={data.galeria?.colorFondo} bgSize={data.imagenesFondo?.galeriaSize} bgRepeat={data.imagenesFondo?.galeriaRepeat} />}
 
         <!-- RSVP -->
         {
@@ -376,12 +385,16 @@ const usaUbicacionUnificada = UbicacionComp !== null;
                         pases: data.pases,
                     }}
                     bgImage={data.imagenesFondo?.rsvp}
+                    bgColor={data.rsvp?.colorFondo}
+                    bgSize={data.imagenesFondo?.rsvpSize}
+                    bgRepeat={data.imagenesFondo?.rsvpRepeat}
+                    nombre={data.footer?.nombres || data.hero?.nombre}
                 />
             )
         }
 
         <!-- CALENDARIO (solo si existe en el JSON, es nuevo) -->
-        {CalendarioComp && data.calendario && <CalendarioComp calendario={data.calendario} />}
+        {CalendarioComp && data.calendario && <CalendarioComp calendario={data.calendario} bgImage={data.imagenesFondo?.calendario} bgColor={data.calendario?.colorFondo} bgSize={data.imagenesFondo?.calendarioSize} bgRepeat={data.imagenesFondo?.calendarioRepeat} />}
 
         <!-- COMPARTIR FOTOS -->
         {data.compartirFotos?.mostrar && <CompartirFotosDefault data={data.compartirFotos} bgImage={data.imagenesFondo?.compartirFotos} />}

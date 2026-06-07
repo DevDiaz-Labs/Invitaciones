@@ -1,0 +1,70 @@
+---
+// src/components/carta/CartaImagenFullScreen.astro
+import GaleriaCineFilm from "../galeria/GaleriaCineFilm.astro";
+
+interface Props {
+  data: {
+    mostrar: boolean;
+    etiquetaPadres?: string;
+    padres?: string;
+    texto?: string;
+    imagenCarta?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+    colorPrincipal?: string;
+    imagenesGaleria?: string[];
+    tituloGaleria?: string;
+    mostrarMarcaGaleria?: boolean;
+  };
+  bgColor?: string;
+}
+
+const { data, bgColor } = Astro.props;
+const appliedBgColor = bgColor || data.colorFondo || 'var(--bg-cream)';
+const colorTexto = data.colorTexto || 'var(--dark-text)';
+const accentColor = data.colorPrincipal || 'var(--gold)';
+---
+
+{data.mostrar && (
+  <section class="flex flex-col items-center w-full" style={`background-color: ${appliedBgColor};`}>
+    
+    <!-- Imagen a pantalla completa (edge-to-edge) -->
+    {data.imagenCarta && (
+      <div class="w-full relative observe-me fade-up">
+        <img src={data.imagenCarta} alt="Carta" class="w-full h-auto block object-cover" />
+      </div>
+    )}
+
+    <!-- Galería Intermedia (Opcional) -->
+    {data.imagenesGaleria && data.imagenesGaleria.length > 0 && (
+      <div class="w-full observe-me fade-up">
+        <GaleriaCineFilm data={data.imagenesGaleria} titulo={data.tituloGaleria} bgColor="transparent" mostrarMarca={data.mostrarMarcaGaleria ?? true} />
+      </div>
+    )}
+
+    <!-- Sección de papás y texto -->
+    <div class="w-full max-w-2xl mx-auto px-6 pt-4 pb-16 text-center flex flex-col items-center gap-8">
+      
+      <!-- Padres -->
+      {data.etiquetaPadres && data.padres && (
+        <div class="observe-me fade-up" style={`color: ${colorTexto};`}>
+          <p class="text-xs sm:text-sm tracking-[0.3em] uppercase font-bold mb-4" style={`color: ${accentColor}; opacity: 0.8;`}>
+            {data.etiquetaPadres}
+          </p>
+          <p class="text-3xl sm:text-4xl font-['Cormorant_Garamond'] italic leading-snug">
+            {data.padres}
+          </p>
+        </div>
+      )}
+
+      <!-- Texto extra (Negritas) -->
+      {data.texto && (
+        <div class="observe-me fade-up" style="transition-delay: 150ms;">
+          <div class="w-16 h-[1px] mx-auto mb-8" style={`background-color: ${accentColor}; opacity: 0.3;`}></div>
+          <div class="text-lg sm:text-xl md:text-2xl leading-relaxed" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+        </div>
+      )}
+      
+    </div>
+  </section>
+)}

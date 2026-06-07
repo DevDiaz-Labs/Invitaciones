@@ -1,0 +1,286 @@
+---
+// src/components/countdown/CountdownFlip.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario?: string;
+    colorFondo?: string;
+    colorTarjeta?: string;
+    colorTextoTarjeta?: string;
+    colorEtiqueta?: string;
+    colorTitulo?: string;
+    titulo?: string;
+  };
+  bgColor?: string;
+}
+
+const { data, bgColor } = Astro.props;
+const uniqueId = `countdown-flip-${Math.random().toString(36).substr(2, 9)}`;
+
+const cFondo = data.colorFondo || bgColor || "transparent";
+const cTarjeta = data.colorTarjeta || "var(--primaryColor, #2a3b29)";
+const cTextoTarjeta = data.colorTextoTarjeta || "var(--textColor, #fff7ed)";
+const cEtiqueta = data.colorEtiqueta || "var(--gold, #5a7350)";
+const cTitulo = data.colorTitulo || "var(--gold, #5a7350)";
+const labelTitulo = data.titulo || "FALTAN";
+---
+
+<section class="py-16 px-4 text-center" style={`background-color: ${cFondo}; --c-tarjeta: ${cTarjeta}; --c-texto-tarjeta: ${cTextoTarjeta}; --c-etiqueta: ${cEtiqueta}; --c-titulo: ${cTitulo};`}>
+  <div class="max-w-xl mx-auto" id={uniqueId}>
+    <h3 class="text-xl md:text-2xl uppercase tracking-[0.35em] mb-10 font-bold font-serif header-titulo">{labelTitulo}</h3>
+    
+    <div class="flex justify-center items-center gap-4 md:gap-8 max-w-md mx-auto">
+      
+      <!-- Días -->
+      <div class="flip-unit flex flex-col items-center" data-unit="days">
+        <div class="flip-card">
+          <div class="top-static"><span class="num-text">00</span></div>
+          <div class="bottom-static"><span class="num-text">00</span></div>
+          <div class="top-flip"><span class="num-text">00</span></div>
+          <div class="bottom-flip"><span class="num-text">00</span></div>
+        </div>
+        <span class="unit-label mt-3 uppercase text-[10px] md:text-xs tracking-widest font-semibold">Días</span>
+      </div>
+
+      <!-- Horas -->
+      <div class="flip-unit flex flex-col items-center" data-unit="hours">
+        <div class="flip-card">
+          <div class="top-static"><span class="num-text">00</span></div>
+          <div class="bottom-static"><span class="num-text">00</span></div>
+          <div class="top-flip"><span class="num-text">00</span></div>
+          <div class="bottom-flip"><span class="num-text">00</span></div>
+        </div>
+        <span class="unit-label mt-3 uppercase text-[10px] md:text-xs tracking-widest font-semibold">Horas</span>
+      </div>
+
+      <!-- Minutos -->
+      <div class="flip-unit flex flex-col items-center" data-unit="minutes">
+        <div class="flip-card">
+          <div class="top-static"><span class="num-text">00</span></div>
+          <div class="bottom-static"><span class="num-text">00</span></div>
+          <div class="top-flip"><span class="num-text">00</span></div>
+          <div class="bottom-flip"><span class="num-text">00</span></div>
+        </div>
+        <span class="unit-label mt-3 uppercase text-[10px] md:text-xs tracking-widest font-semibold">Min</span>
+      </div>
+
+      <!-- Segundos -->
+      <div class="flip-unit flex flex-col items-center" data-unit="seconds">
+        <div class="flip-card">
+          <div class="top-static"><span class="num-text">00</span></div>
+          <div class="bottom-static"><span class="num-text">00</span></div>
+          <div class="top-flip"><span class="num-text">00</span></div>
+          <div class="bottom-flip"><span class="num-text">00</span></div>
+        </div>
+        <span class="unit-label mt-3 uppercase text-[10px] md:text-xs tracking-widest font-semibold">Seg</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .header-titulo {
+    color: var(--c-titulo);
+  }
+
+  .unit-label {
+    color: var(--c-etiqueta);
+  }
+
+  .flip-card {
+    position: relative;
+    width: 68px;
+    height: 90px;
+    perspective: 300px;
+    border-radius: 8px;
+    background-color: var(--c-tarjeta);
+    color: var(--c-texto-tarjeta);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Horizontal cut line across the middle */
+  .flip-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
+  }
+
+  .top-static, .bottom-static, .top-flip, .bottom-flip {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .top-static, .top-flip {
+    top: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: var(--c-tarjeta);
+    filter: brightness(0.82); /* Darken top half dynamically */
+    border-bottom: 0.5px solid rgba(0,0,0,0.2);
+  }
+
+  .top-static .num-text, .top-flip .num-text {
+    transform: translateY(50%);
+    font-size: 2.5rem;
+    line-height: 0;
+  }
+
+  .bottom-static, .bottom-flip {
+    bottom: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--c-tarjeta);
+  }
+
+  .bottom-static .num-text, .bottom-flip .num-text {
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    line-height: 0;
+  }
+
+  /* Flip Animation setups */
+  .top-flip {
+    transform-origin: 50% 100%;
+    z-index: 3;
+  }
+
+  .bottom-flip {
+    transform-origin: 50% 0%;
+    transform: rotateX(90deg);
+    z-index: 2;
+  }
+
+  /* Trigger classes */
+  .top-flip.flip-it {
+    animation: flip-top 0.35s ease-in forwards;
+  }
+
+  .bottom-flip.flip-it-bottom {
+    animation: flip-bottom 0.35s ease-out forwards;
+    animation-delay: 0.18s;
+  }
+
+  @keyframes flip-top {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-90deg); }
+  }
+
+  @keyframes flip-bottom {
+    0% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+  }
+</style>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo, uniqueId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(uniqueId);
+    if (!container) return;
+
+    const eventDate = new Date(fechaObjetivoStr).getTime();
+
+    // Map segments
+    const segments = {
+      days: container.querySelector('[data-unit="days"] .flip-card'),
+      hours: container.querySelector('[data-unit="hours"] .flip-card'),
+      minutes: container.querySelector('[data-unit="minutes"] .flip-card'),
+      seconds: container.querySelector('[data-unit="seconds"] .flip-card')
+    };
+
+    function updateFlipCard(cardEl, targetValue) {
+      if (!cardEl) return;
+      const topStatic = cardEl.querySelector('.top-static .num-text');
+      const bottomStatic = cardEl.querySelector('.bottom-static .num-text');
+      const topFlip = cardEl.querySelector('.top-flip');
+      const bottomFlip = cardEl.querySelector('.bottom-flip');
+      const topFlipText = topFlip.querySelector('.num-text');
+      const bottomFlipText = bottomFlip.querySelector('.num-text');
+
+      const currentValue = topStatic.textContent;
+      if (currentValue === targetValue) return;
+
+      // Set values on animated cards
+      topFlipText.textContent = currentValue;
+      bottomFlipText.textContent = targetValue;
+      topStatic.textContent = targetValue;
+
+      // Clear classes and trigger reflow
+      topFlip.classList.remove('flip-it');
+      bottomFlip.classList.remove('flip-it-bottom');
+      void topFlip.offsetWidth; // Reflow
+
+      // Re-trigger animations
+      topFlip.classList.add('flip-it');
+      bottomFlip.classList.add('flip-it-bottom');
+
+      // Update bottom static after transition half-completed
+      setTimeout(() => {
+        bottomStatic.textContent = targetValue;
+      }, 350);
+    }
+
+    function updateAll() {
+      const now = new Date().getTime();
+      const dist = eventDate - now;
+
+      if (dist < 0) {
+        updateFlipCard(segments.days, "00");
+        updateFlipCard(segments.hours, "00");
+        updateFlipCard(segments.minutes, "00");
+        updateFlipCard(segments.seconds, "00");
+        return;
+      }
+
+      const d = Math.floor(dist / 86400000).toString().padStart(2, "0");
+      const h = Math.floor((dist % 86400000) / 3600000).toString().padStart(2, "0");
+      const m = Math.floor((dist % 3600000) / 60000).toString().padStart(2, "0");
+      const s = Math.floor((dist % 60000) / 1000).toString().padStart(2, "0");
+
+      updateFlipCard(segments.days, d);
+      updateFlipCard(segments.hours, h);
+      updateFlipCard(segments.minutes, m);
+      updateFlipCard(segments.seconds, s);
+    }
+
+    // Initialize all values statically first
+    const initDist = eventDate - new Date().getTime();
+    if (initDist >= 0) {
+      const d = Math.floor(initDist / 86400000).toString().padStart(2, "0");
+      const h = Math.floor((initDist % 86400000) / 3600000).toString().padStart(2, "0");
+      const m = Math.floor((initDist % 3600000) / 60000).toString().padStart(2, "0");
+      const s = Math.floor((initDist % 60000) / 1000).toString().padStart(2, "0");
+
+      Object.keys(segments).forEach(key => {
+        const cardEl = segments[key];
+        if (cardEl) {
+          const val = key === "days" ? d : key === "hours" ? h : key === "minutes" ? m : s;
+          cardEl.querySelector('.top-static .num-text').textContent = val;
+          cardEl.querySelector('.bottom-static .num-text').textContent = val;
+          cardEl.querySelector('.top-flip .num-text').textContent = val;
+          cardEl.querySelector('.bottom-flip .num-text').textContent = val;
+        }
+      });
+    }
+
+    setInterval(updateAll, 1000);
+  });
+</script>
