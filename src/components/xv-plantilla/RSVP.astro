@@ -12,15 +12,38 @@ interface Props {
             cantidad: number;
         };
         mostrarNinos?: boolean;
+        destacarAvisos?: boolean;
     };
     bgImage?: string;
+    bgColor?: string;
+    colorPrincipal?: string;
+    colorTexto?: string;
 }
-const { data, bgImage } = Astro.props;
+const { data, bgImage, bgColor, colorPrincipal, colorTexto } = Astro.props;
+
+function hexToRgb(hex: string) {
+    if (!hex) return null;
+    const cleanHex = hex.trim();
+    if (cleanHex === "transparent") return null;
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(cleanHex);
+    return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : null;
+}
+
+const appliedGold = colorPrincipal || "#a3000b";
+const goldRgb = hexToRgb(appliedGold) || "163, 0, 11";
+
+// Si bgColor es transparent o no se define, usamos el color de fondo por defecto
+const hasBgColor = bgColor && bgColor !== "transparent";
+const appliedBg = hasBgColor ? bgColor : "#ffeff6";
+const bgRgb = hexToRgb(appliedBg) || "255, 239, 246";
+
+// Determinar el gradiente de overlay para la imagen
+const overlayRgb = hasBgColor ? bgRgb : "255, 255, 255";
 ---
 
 <section
     class="py-24 md:py-32 px-6 text-center rounded-t-[5rem] relative border-t border-[var(--gold)]/20 overflow-hidden"
-    style={`--gold: #a3000b; --gold-rgb: 163, 0, 11; --bg-cream: #ffeff6; ${bgImage ? `background-image: linear-gradient(rgba(255, 236, 251, 0.6), rgba(255, 236, 251, 0.6)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : "background-color: var(--bg-cream); background-image: linear-gradient(rgba(var(--gold-rgb), 0.03), rgba(var(--gold-rgb), 0.03));"}`}
+    style={`--gold: ${appliedGold}; --gold-rgb: ${goldRgb}; --bg-cream: ${bgColor || '#ffeff6'}; ${bgImage ? `background-image: linear-gradient(rgba(${overlayRgb}, 0.8), rgba(${overlayRgb}, 0.8)), url('${bgImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : `background-color: ${appliedBg}; background-image: linear-gradient(rgba(var(--gold-rgb), 0.03), rgba(var(--gold-rgb), 0.03));`}`}
 >
     <div class="max-w-xl mx-auto space-y-10 observe-me fade-up">
         <h3 class="font-titulo text-4xl md:text-5xl text-[var(--gold)]">

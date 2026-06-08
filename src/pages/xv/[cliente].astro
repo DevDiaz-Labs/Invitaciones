@@ -386,6 +386,8 @@ const usaUbicacionUnificada = UbicacionComp !== null;
                     }}
                     bgImage={data.imagenesFondo?.rsvp}
                     bgColor={data.rsvp?.colorFondo}
+                    colorPrincipal={data.tema?.colorPrincipal}
+                    colorTexto={data.rsvp?.colorTexto || data.tema?.colorTexto}
                     bgSize={data.imagenesFondo?.rsvpSize}
                     bgRepeat={data.imagenesFondo?.rsvpRepeat}
                     nombre={data.footer?.nombres || data.hero?.nombre}
