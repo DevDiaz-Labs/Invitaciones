@@ -32,28 +32,28 @@ const bgColor = data.colorFondo || "var(--bg-cream)";
     <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center w-full h-full"
          style="padding-top: 12%; padding-bottom: 22%; padding-left: 41%; padding-right: 11%;">
       
-      <div class="flex flex-col items-center justify-center w-full h-full border-0 border-dashed border-gray-400 p-2 gap-4 sm:gap-6">
+      <div class="flex flex-col items-center justify-center w-full h-full border-0 border-dashed border-gray-400 p-2 gap-3 sm:gap-5">
         
         <!-- Etiqueta (Mis XV Años) -->
         {etiqueta && (
-          <span class="text-sm sm:text-base tracking-[0.25em] uppercase font-semibold" style={`color: ${accentColor};`}>
+          <span class="text-[0.6rem] sm:text-xs tracking-[0.25em] uppercase font-semibold" style={`color: ${accentColor};`}>
             {etiqueta}
           </span>
         )}
 
         <!-- Frase -->
-        <p class="text-sm sm:text-base font-serif italic leading-snug" style={`color: ${textColor}; opacity: 0.9;`}>
+        <p class="text-xs sm:text-sm font-serif italic leading-snug" style={`color: ${textColor}; opacity: 0.9;`}>
           "{frase}"
         </p>
 
         <!-- Nombres -->
-        <h1 class="font-['Cormorant_Garamond'] text-4xl sm:text-5xl font-bold leading-none break-words w-full px-1" style={`color: ${textColor};`}>
+        <h1 class="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-bold leading-none break-words w-full px-1" style={`color: ${textColor};`}>
           {nombres}
         </h1>
 
         <!-- Fecha -->
         <div class="flex flex-col items-center gap-1 border-t border-b py-2 mt-1 sm:mt-2 w-4/5" style={`border-color: ${accentColor}; opacity: 0.8;`}>
-          <h2 class="text-xs sm:text-sm tracking-[0.15em] uppercase font-semibold" style={`color: ${accentColor};`}>
+          <h2 class="text-[0.6rem] sm:text-xs tracking-[0.15em] uppercase font-semibold" style={`color: ${accentColor};`}>
             {fecha}
           </h2>
         </div>
