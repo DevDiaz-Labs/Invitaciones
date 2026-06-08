@@ -1,0 +1,84 @@
+---
+// src/components/countdown/CountdownBurbujas.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario?: string;
+  };
+  bgImage?: string;
+}
+const { data, bgImage = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" } = Astro.props;
+const uniqueId = `countdown-bubble-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section 
+  class="py-24 px-6 text-center relative overflow-hidden bg-cover bg-center min-h-[50vh] flex flex-col justify-center items-center"
+  style={`background-image: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), url('${bgImage}');`}
+>
+  <div class="max-w-xl mx-auto relative z-10 w-full" id={uniqueId}>
+    <div class="flex flex-col items-center">
+      <!-- Fila superior: 3 burbujas -->
+      <div class="flex justify-center items-center gap-3 md:gap-6 w-full">
+        <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl flex flex-col justify-center items-center">
+          <span class="days-val block text-2xl md:text-4xl font-light text-white leading-none">00</span>
+          <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/80 mt-1 block">Días</span>
+        </div>
+        <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl flex flex-col justify-center items-center">
+          <span class="hours-val block text-2xl md:text-4xl font-light text-white leading-none">00</span>
+          <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/80 mt-1 block">Hrs</span>
+        </div>
+        <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl flex flex-col justify-center items-center">
+          <span class="minutes-val block text-2xl md:text-4xl font-light text-white leading-none">00</span>
+          <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/80 mt-1 block">Min</span>
+        </div>
+      </div>
+      
+      <!-- Fila inferior: 1 burbuja -->
+      <div class="flex justify-center items-center mt-3 md:mt-4 w-full">
+        <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl flex flex-col justify-center items-center">
+          <span class="seconds-val block text-2xl md:text-4xl font-light text-white leading-none">00</span>
+          <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/80 mt-1 block">Seg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo, uniqueId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(uniqueId);
+    if (!container) return;
+
+    const eventDate = new Date(fechaObjetivoStr).getTime();
+    const daysEl = container.querySelector(".days-val");
+    const hoursEl = container.querySelector(".hours-val");
+    const minutesEl = container.querySelector(".minutes-val");
+    const secondsEl = container.querySelector(".seconds-val");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const dist = eventDate - now;
+
+      if (dist < 0) {
+        if (daysEl) daysEl.innerText = "00";
+        if (hoursEl) hoursEl.innerText = "00";
+        if (minutesEl) minutesEl.innerText = "00";
+        if (secondsEl) secondsEl.innerText = "00";
+        return;
+      }
+
+      const d = Math.floor(dist / 86400000);
+      const h = Math.floor((dist % 86400000) / 3600000);
+      const m = Math.floor((dist % 3600000) / 60000);
+      const s = Math.floor((dist % 60000) / 1000);
+
+      if (daysEl) daysEl.innerText = d.toString().padStart(2, "0");
+      if (hoursEl) hoursEl.innerText = h.toString().padStart(2, "0");
+      if (minutesEl) minutesEl.innerText = m.toString().padStart(2, "0");
+      if (secondsEl) secondsEl.innerText = s.toString().padStart(2, "0");
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  });
+</script>

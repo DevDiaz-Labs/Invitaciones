@@ -1,0 +1,506 @@
+---
+// src/pages/configurador/index.astro
+// Configurador de Invitaciones — Wizard con Carrito de Compras
+
+const WHATSAPP = '527824127509';
+
+import { CATALOG, STEPS, PLAN_FEATURES } from '../../data/configurador/catalog.js';
+
+const catalogJSON = JSON.stringify(CATALOG);
+const stepsJSON = JSON.stringify(STEPS);
+const plansJSON = JSON.stringify(PLAN_FEATURES);
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurador de Invitaciones</title>
+  <meta name="description" content="Diseña tu invitación digital personalizada paso a paso." />
+
+  <script src="https://cdn.tailwindcss.com" is:inline></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" is:inline></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <script is:inline id="tw-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            accent: '#B76E79',
+            surface: '#161516',
+            bg: '#0F0E0F',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            script: ['Great Vibes', 'cursive'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-bg text-white font-sans antialiased min-h-screen selection:bg-accent selection:text-white overflow-x-hidden">
+
+  <!-- Inject server data -->
+  <script is:inline define:vars={{ catalogJSON, stepsJSON, plansJSON, WHATSAPP }}>
+    window.__CATALOG__ = JSON.parse(catalogJSON);
+    window.__STEPS__ = JSON.parse(stepsJSON);
+    window.__PLANS__ = JSON.parse(plansJSON);
+    window.__WHATSAPP__ = WHATSAPP;
+  </script>
+
+  <div x-data="configurator()" x-cloak>
+
+    <!-- ═══════════════ SCREEN 1: PLAN SELECTION ═══════════════ -->
+    <div x-show="screen === 'plans'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+
+      <!-- Header -->
+      <div class="text-center mb-10 max-w-lg">
+        <span class="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-bold block mb-3">Configurador</span>
+        <h1 class="font-serif italic text-4xl md:text-6xl font-bold tracking-wide mb-4 bg-gradient-to-br from-white via-white to-accent bg-clip-text text-transparent">Diseña tu Invitación</h1>
+        <p class="text-xs md:text-sm text-white/50 font-light leading-relaxed">Elige tu plan y personaliza cada sección paso a paso. Selecciona los diseños que más te gusten.</p>
+      </div>
+
+      <!-- Plan Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-4xl">
+        <template x-for="planKey in ['essential','pro','premium']" :key="planKey">
+          <button
+            @click="selectPlan(planKey)"
+            class="relative group text-left rounded-2xl p-6 md:p-8 border transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+            :class="{
+              'border-emerald-500/30 bg-emerald-950/20 hover:border-emerald-400 hover:shadow-emerald-500/10': planKey === 'essential',
+              'border-blue-500/30 bg-blue-950/20 hover:border-blue-400 hover:shadow-blue-500/10': planKey === 'pro',
+              'border-violet-500/30 bg-violet-950/20 hover:border-violet-400 hover:shadow-violet-500/10': planKey === 'premium',
+            }"
+          >
+            <!-- Popular badge -->
+            <div x-show="__PLANS__[planKey]?.popular" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-[9px] font-bold uppercase tracking-wider px-4 py-1 rounded-full shadow-lg shadow-blue-500/30">
+              Popular
+            </div>
+
+            <div class="text-2xl mb-2" x-text="__PLANS__[planKey]?.emoji"></div>
+            <h3 class="font-serif text-2xl md:text-3xl font-bold mb-1" x-text="__PLANS__[planKey]?.name"></h3>
+
+            <ul class="mt-4 space-y-2">
+              <template x-for="feat in __PLANS__[planKey]?.features" :key="feat">
+                <li class="flex items-start gap-2 text-xs text-white/70">
+                  <span class="mt-0.5 text-accent">✓</span>
+                  <span x-text="feat"></span>
+                </li>
+              </template>
+            </ul>
+
+            <div class="mt-6 w-full py-2.5 rounded-xl text-center text-xs font-semibold uppercase tracking-wider transition-colors"
+              :class="{
+                'bg-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white': planKey === 'essential',
+                'bg-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white': planKey === 'pro',
+                'bg-violet-500/20 text-violet-400 group-hover:bg-violet-500 group-hover:text-white': planKey === 'premium',
+              }"
+            >
+              Seleccionar Plan
+            </div>
+          </button>
+        </template>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════ SCREEN 2: WIZARD STEPS ═══════════════ -->
+    <div x-show="screen === 'wizard'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-12" x-transition:enter-end="opacity-100 translate-x-0" class="min-h-screen flex flex-col pb-28">
+
+      <!-- Top Bar: Progress -->
+      <div class="sticky top-0 z-50 bg-bg/90 backdrop-blur-xl border-b border-white/5 px-4 py-3">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center justify-between mb-2">
+            <button @click="goBack()" class="text-xs text-white/50 hover:text-white transition flex items-center gap-1">
+              <span>◀</span> <span x-text="stepIndex === 0 ? 'Planes' : 'Anterior'"></span>
+            </button>
+            <span class="text-[10px] uppercase tracking-widest text-white/40 font-medium">
+              Paso <span x-text="stepIndex + 1"></span> de <span x-text="filteredSteps.length"></span>
+            </span>
+            <div class="flex items-center gap-2">
+              <button @click="cartOpen = !cartOpen" class="relative text-xs text-accent hover:text-white transition">
+                🛒
+                <span x-show="cartCount > 0" x-text="cartCount" class="absolute -top-2 -right-3 bg-accent text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center"></span>
+              </button>
+            </div>
+          </div>
+          <!-- Progress bar -->
+          <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-accent to-pink-400 rounded-full transition-all duration-500 ease-out" :style="'width:' + progress + '%'"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Content -->
+      <div class="flex-grow max-w-4xl w-full mx-auto px-4 py-6">
+        <!-- Step Header -->
+        <div class="text-center mb-6">
+          <span class="text-3xl mb-2 block" x-text="currentCategory?.icon"></span>
+          <h2 class="font-serif italic text-2xl md:text-4xl font-bold mb-1" x-text="currentCategory?.label"></h2>
+          <p class="text-xs text-white/50 font-light" x-text="currentCategory?.desc"></p>
+          <a x-show="currentCategory?.preview" :href="currentCategory?.preview" target="_blank" class="inline-block mt-2 text-[10px] text-accent hover:underline uppercase tracking-wider">
+            Ver previews a tamaño completo →
+          </a>
+        </div>
+
+        <!-- Component Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          <template x-for="comp in currentCategory?.items || []" :key="comp.id">
+            <div
+              @click="toggleComponent(currentStepId, comp)"
+              class="group relative rounded-xl overflow-hidden border transition-all duration-300 text-left cursor-pointer"
+              :class="selections[currentStepId]?.id === comp.id
+                ? 'border-accent shadow-lg shadow-accent/20 scale-[1.03]'
+                : 'border-white/10 hover:border-white/25 hover:scale-[1.02]'"
+            >
+              <!-- Live Preview Iframe -->
+              <div class="relative w-full aspect-[4/5] overflow-hidden bg-black/20 pointer-events-none border-b border-white/5">
+                <iframe 
+                  loading="lazy" 
+                  :src="`/preview/${currentStepId}/${comp.id}`" 
+                  class="absolute top-0 left-0 origin-top-left border-none bg-black"
+                  style="width: 400%; height: 400%; transform: scale(0.25);"
+                  tabindex="-1"
+                ></iframe>
+              </div>
+
+              <!-- Selected Check -->
+              <div x-show="selections[currentStepId]?.id === comp.id" class="absolute top-2 right-2 w-6 h-6 bg-accent rounded-full flex items-center justify-center shadow-lg shadow-accent/40">
+                <span class="text-white text-xs font-bold">✓</span>
+              </div>
+
+              <!-- Info -->
+              <div class="p-3 bg-surface relative">
+                <div class="pr-10">
+                  <h4 class="text-xs md:text-sm font-semibold truncate" x-text="comp.name"></h4>
+                  <p class="text-[9px] text-white/40 mt-0.5 truncate" x-text="comp.id"></p>
+                </div>
+                <button 
+                  @click.stop="modal = { open: true, url: `/preview/${currentStepId}/${comp.id}?interactive=true`, title: comp.name }"
+                  class="absolute top-1/2 -translate-y-1/2 right-3 text-white/50 hover:text-accent bg-white/5 hover:bg-white/10 p-2 rounded-lg transition-all"
+                  title="Ver componente en grande"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="fixed bottom-0 left-0 right-0 z-40 bg-bg/90 backdrop-blur-xl border-t border-white/5 px-4 py-3">
+        <div class="max-w-4xl mx-auto flex items-center justify-between gap-3">
+          <button
+            x-show="!currentStepRequired"
+            @click="skipStep()"
+            class="px-5 py-2.5 rounded-xl text-xs font-medium text-white/50 hover:text-white border border-white/10 hover:border-white/25 transition"
+          >
+            Omitir sección
+          </button>
+          <div x-show="currentStepRequired" class="text-[9px] text-accent/60 uppercase tracking-wider font-medium">
+            ✦ Sección incluida
+          </div>
+
+          <button
+            @click="nextStep()"
+            class="px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-accent hover:bg-accent/80 text-white transition shadow-lg shadow-accent/20 ml-auto"
+          >
+            <span x-text="stepIndex === filteredSteps.length - 1 ? 'Ver Resumen' : 'Siguiente →'"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════ SCREEN 3: SUMMARY ═══════════════ -->
+    <div x-show="screen === 'summary'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="min-h-screen flex flex-col items-center justify-start px-4 py-12">
+
+      <div class="w-full max-w-lg">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <span class="text-5xl mb-3 block">🎉</span>
+          <h2 class="font-serif italic text-3xl md:text-5xl font-bold mb-2 bg-gradient-to-br from-white to-accent bg-clip-text text-transparent">¡Lista completa!</h2>
+          <p class="text-xs text-white/50 font-light">Revisa tu selección y envíanosla por WhatsApp.</p>
+        </div>
+
+        <!-- Plan Badge -->
+        <div class="text-center mb-6">
+          <span class="inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border"
+            :class="{
+              'bg-emerald-500/15 text-emerald-400 border-emerald-500/30': plan === 'essential',
+              'bg-blue-500/15 text-blue-400 border-blue-500/30': plan === 'pro',
+              'bg-violet-500/15 text-violet-400 border-violet-500/30': plan === 'premium',
+            }"
+            x-text="'Plan ' + __PLANS__[plan]?.name"
+          ></span>
+        </div>
+
+        <!-- Selection List -->
+        <div class="bg-surface rounded-2xl border border-white/10 overflow-hidden divide-y divide-white/5">
+          <template x-for="step in filteredSteps" :key="step.id">
+            <div class="flex items-center gap-3 px-4 py-3">
+              <span class="text-lg" x-text="__CATALOG__[step.id]?.icon || '•'"></span>
+              <div class="flex-grow min-w-0">
+                <p class="text-xs font-semibold truncate" x-text="__CATALOG__[step.id]?.label"></p>
+                <p class="text-[10px] truncate"
+                  :class="selections[step.id] ? 'text-accent' : 'text-white/30 italic'"
+                  x-text="selections[step.id] ? selections[step.id].name : 'Omitido'"
+                ></p>
+              </div>
+              <span x-show="selections[step.id]" class="text-accent text-xs">✓</span>
+              <span x-show="!selections[step.id]" class="text-white/20 text-xs">—</span>
+            </div>
+          </template>
+        </div>
+
+        <!-- Premium Note -->
+        <div x-show="plan === 'premium'" class="mt-4 px-4 py-3 bg-violet-500/10 border border-violet-500/20 rounded-xl text-xs text-violet-300">
+          <strong>✦ Plan Premium:</strong> Incluye la Sección Compartir Momentos.
+        </div>
+
+        <!-- WhatsApp Button -->
+        <a
+          :href="getWhatsAppUrl()"
+          target="_blank"
+          class="mt-6 w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-green-600 hover:bg-green-500 text-white font-semibold text-sm uppercase tracking-wider transition shadow-xl shadow-green-600/20 hover:shadow-green-500/30"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar mi selección por WhatsApp
+        </a>
+
+        <!-- Back / Restart -->
+        <div class="mt-4 flex gap-3 justify-center">
+          <button @click="screen = 'wizard'; stepIndex = filteredSteps.length - 1" class="text-xs text-white/40 hover:text-white transition underline">
+            ← Volver a editar
+          </button>
+          <button @click="resetAll()" class="text-xs text-white/40 hover:text-white transition underline">
+            Empezar de nuevo
+          </button>
+        </div>
+
+        <!-- Closing Note -->
+        <div class="mt-8 text-center px-6 py-4 border border-white/5 rounded-xl bg-white/[0.02]">
+          <p class="text-[11px] text-white/40 leading-relaxed">
+            Al enviar tu selección, nuestro equipo te contactará para personalizar los textos, colores, fotos y detalles de tu invitación. 💕
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════ CART PANEL (Slide-up) ═══════════════ -->
+    <div x-show="cartOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-y-0" x-transition:leave-end="translate-y-full" @click.outside="cartOpen = false" class="fixed bottom-0 left-0 right-0 z-[60] bg-surface/95 backdrop-blur-xl border-t border-white/10 rounded-t-3xl shadow-2xl max-h-[60vh] overflow-y-auto">
+      <div class="p-5 max-w-lg mx-auto">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-serif text-lg font-bold">🛒 Tu Selección</h3>
+          <button @click="cartOpen = false" class="text-white/40 hover:text-white text-lg">✕</button>
+        </div>
+
+        <div x-show="cartCount === 0" class="text-xs text-white/30 text-center py-6">
+          Aún no has seleccionado ningún componente.
+        </div>
+
+        <div class="space-y-2">
+          <template x-for="step in filteredSteps" :key="step.id">
+            <div x-show="selections[step.id]" class="flex items-center gap-3 px-3 py-2 bg-white/5 rounded-xl">
+              <span class="text-sm" x-text="__CATALOG__[step.id]?.icon || '•'"></span>
+              <div class="flex-grow min-w-0">
+                <p class="text-[10px] text-white/40 uppercase tracking-wider" x-text="__CATALOG__[step.id]?.label"></p>
+                <p class="text-xs font-medium text-accent truncate" x-text="selections[step.id]?.name"></p>
+              </div>
+              <button @click="selections[step.id] = null; saveState()" class="text-white/20 hover:text-red-400 text-xs transition">✕</button>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Modal -->
+    <div x-show="modal.open" x-transition.opacity x-cloak class="fixed inset-0 z-[100] flex flex-col bg-bg/95 backdrop-blur-2xl">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black">
+        <h3 class="font-serif italic text-2xl font-bold text-accent" x-text="modal.title"></h3>
+        <button @click="modal.open = false" class="text-white/50 hover:text-white p-2 bg-white/10 rounded-full transition hover:bg-white/20">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="flex-grow w-full h-full relative overflow-hidden bg-black">
+        <template x-if="modal.open">
+          <iframe :src="modal.url" class="absolute inset-0 w-full h-full border-none"></iframe>
+        </template>
+      </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div x-show="cartOpen" x-transition.opacity class="fixed inset-0 bg-black/50 z-[55]" @click="cartOpen = false"></div>
+
+  </div>
+
+  <!-- ═══════════════ ALPINE.JS LOGIC ═══════════════ -->
+  <script is:inline>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('configurator', () => ({
+        screen: 'plans',
+        plan: null,
+        stepIndex: 0,
+        selections: {},
+        cartOpen: false,
+        modal: { open: false, url: '', title: '' },
+
+        init() {
+          // Restore from localStorage
+          try {
+            const saved = localStorage.getItem('inv_configurator');
+            if (saved) {
+              const data = JSON.parse(saved);
+              if (data.plan) this.plan = data.plan;
+              if (data.selections) this.selections = data.selections;
+              if (data.screen) this.screen = data.screen;
+              if (typeof data.stepIndex === 'number') this.stepIndex = data.stepIndex;
+            }
+          } catch(e) {}
+        },
+
+        saveState() {
+          try {
+            localStorage.setItem('inv_configurator', JSON.stringify({
+              plan: this.plan,
+              selections: this.selections,
+              screen: this.screen,
+              stepIndex: this.stepIndex,
+            }));
+          } catch(e) {}
+        },
+
+        get filteredSteps() {
+          if (!this.plan) return [];
+          return window.__STEPS__.filter(s => s.plans.includes(this.plan));
+        },
+
+        get currentStepId() {
+          return this.filteredSteps[this.stepIndex]?.id || '';
+        },
+
+        get currentStepRequired() {
+          return this.filteredSteps[this.stepIndex]?.required || false;
+        },
+
+        get currentCategory() {
+          return window.__CATALOG__[this.currentStepId] || null;
+        },
+
+        get progress() {
+          if (this.filteredSteps.length === 0) return 0;
+          return Math.round(((this.stepIndex + 1) / this.filteredSteps.length) * 100);
+        },
+
+        get cartCount() {
+          return Object.values(this.selections).filter(v => v != null).length;
+        },
+
+        selectPlan(p) {
+          this.plan = p;
+          this.stepIndex = 0;
+          this.selections = {};
+          this.screen = 'wizard';
+          this.saveState();
+          window.scrollTo(0, 0);
+        },
+
+        toggleComponent(category, comp) {
+          if (this.selections[category]?.id === comp.id) {
+            this.selections[category] = null;
+          } else {
+            this.selections[category] = { id: comp.id, name: comp.name };
+          }
+          this.saveState();
+        },
+
+        nextStep() {
+          if (this.stepIndex < this.filteredSteps.length - 1) {
+            this.stepIndex++;
+            this.saveState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            this.screen = 'summary';
+            this.saveState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        },
+
+        goBack() {
+          if (this.stepIndex > 0) {
+            this.stepIndex--;
+            this.saveState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            this.screen = 'plans';
+            this.saveState();
+          }
+        },
+
+        skipStep() {
+          this.selections[this.currentStepId] = null;
+          this.nextStep();
+        },
+
+        resetAll() {
+          this.plan = null;
+          this.stepIndex = 0;
+          this.selections = {};
+          this.screen = 'plans';
+          this.cartOpen = false;
+          localStorage.removeItem('inv_configurator');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        getWhatsAppUrl() {
+          const planName = window.__PLANS__[this.plan]?.name || this.plan;
+          let msg = `🎉 *Nueva Solicitud de Invitación*\n\n`;
+          msg += `📋 *Plan:* ${planName}\n`;
+          msg += `📅 *Fecha de solicitud:* ${new Date().toLocaleDateString('es-MX')}\n\n`;
+          msg += `*Componentes seleccionados:*\n`;
+
+          this.filteredSteps.forEach(step => {
+            const cat = window.__CATALOG__[step.id];
+            const sel = this.selections[step.id];
+            const icon = cat?.icon || '•';
+            if (sel) {
+              msg += `${icon} ${cat?.label}: *${sel.name}*\n`;
+            } else {
+              msg += `${icon} ${cat?.label}: _omitido_\n`;
+            }
+          });
+
+
+
+          msg += `\n\n_Enviado desde el Configurador de Invitaciones_`;
+          return `https://wa.me/${window.__WHATSAPP__}?text=${encodeURIComponent(msg)}`;
+        },
+      }));
+    });
+  </script>
+
+  <style is:global>
+    [x-cloak] { display: none !important; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #0F0E0F;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0F0E0F; }
+    ::-webkit-scrollbar-thumb { background: #242224; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #B76E79; }
+  </style>
+</body>
+</html>

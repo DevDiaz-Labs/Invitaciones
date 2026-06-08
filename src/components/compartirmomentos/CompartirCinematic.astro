@@ -1,0 +1,44 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-32 px-6 bg-[#0a0a0a] relative flex items-center justify-center border-y border-[#333]">
+    <!-- Vignette effect -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_100%)] z-0"></div>
+    
+    <div class="relative z-10 max-w-xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-['Montserrat'] font-black text-white uppercase tracking-[0.3em] mb-6 opacity-90">
+        {data.titulo || "The Gallery"}
+      </h2>
+      
+      <div class="w-12 h-px bg-white/30 mx-auto mb-6"></div>
+      
+      <p class="text-gray-400 font-['Montserrat'] text-xs md:text-sm tracking-[0.2em] mb-12 uppercase leading-relaxed max-w-md mx-auto" set:html={data.frase || "Upload your point of view"}>
+      </p>
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-3 bg-transparent border border-white/50 text-white px-8 py-3 uppercase tracking-[0.2em] text-xs font-['Montserrat'] hover:bg-white hover:text-black transition-all duration-500"
+      >
+        <span>{data.textoBoton || "Upload"}</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+)}

@@ -1,0 +1,38 @@
+---
+// src/components/itinerario/ItinerarioEditorialBold.astro
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+---
+
+<section class="py-24 bg-white px-6 font-sans overflow-hidden">
+  <div class="max-w-md mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-serif tracking-wider text-neutral-900 uppercase font-bold">Programa</h2>
+      <div class="h-0.5 w-12 bg-neutral-900 mx-auto mt-3"></div>
+    </div>
+    
+    <div class="space-y-12">
+      {itinerary.map((item, idx) => (
+        <div class="relative min-h-[90px] pl-6 flex flex-col justify-center border-l-2 border-neutral-900">
+          <!-- Giant Background Time -->
+          <div class="absolute -top-3 left-4 text-7xl font-mono font-black text-neutral-900/5 select-none pointer-events-none tracking-tighter">
+            {item.time}
+          </div>
+          
+          <!-- Foreground content -->
+          <div class="relative z-10">
+            <span class="text-xs font-mono font-bold tracking-widest text-neutral-500 uppercase block mb-1">
+              {item.time} hs
+            </span>
+            <h3 class="text-base font-serif font-bold text-neutral-900 tracking-wide">
+              {item.event}
+            </h3>
+            <p class="text-xs text-neutral-600 mt-1 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

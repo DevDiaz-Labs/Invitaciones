@@ -1,0 +1,45 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-24 px-6 bg-slate-900 relative overflow-hidden">
+    <!-- Blurs -->
+    <div class="absolute -top-20 -left-20 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+    
+    <div class="relative z-10 max-w-md mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 text-center shadow-2xl">
+      <div class="w-16 h-16 mx-auto bg-gradient-to-tr from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30 transform rotate-3 hover:rotate-6 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+      
+      <h2 class="text-3xl font-['Plus_Jakarta_Sans'] font-bold text-white mb-4">
+        {data.titulo || "Nuestros Recuerdos"}
+      </h2>
+      <p class="text-slate-300 font-light mb-8 leading-relaxed" set:html={data.frase || "Sube aquí tus fotos y videos"}>
+      </p>
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full bg-white text-slate-900 px-6 py-4 rounded-xl font-bold uppercase tracking-wider hover:bg-slate-100 hover:shadow-lg transition-all active:scale-95"
+      >
+        {data.textoBoton || "Subir Archivos"}
+      </a>
+    </div>
+  </section>
+)}

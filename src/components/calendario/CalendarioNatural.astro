@@ -1,0 +1,198 @@
+---
+// src/components/calendario/CalendarioNatural.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="nat-wrap">
+    <!-- Leaf decorations -->
+    <svg class="nat-leaf nat-leaf-tl" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 110 Q10 80 15 40 Q20 10 40 5 Q60 10 65 40 Q70 80 40 110Z" fill="#7a9a5e" opacity="0.25"/>
+      <line x1="40" y1="110" x2="40" y2="10" stroke="#7a9a5e" stroke-width="1" opacity="0.3"/>
+      <line x1="40" y1="70" x2="20" y2="45" stroke="#7a9a5e" stroke-width="0.8" opacity="0.25"/>
+      <line x1="40" y1="55" x2="60" y2="35" stroke="#7a9a5e" stroke-width="0.8" opacity="0.25"/>
+    </svg>
+    <svg class="nat-leaf nat-leaf-br" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 10 Q10 40 15 80 Q20 110 40 115 Q60 110 65 80 Q70 40 40 10Z" fill="#8b7355" opacity="0.2"/>
+      <line x1="40" y1="10" x2="40" y2="110" stroke="#8b7355" stroke-width="1" opacity="0.25"/>
+    </svg>
+
+    <div class="nat-inner">
+      <div class="nat-icon-wrap">
+        <svg viewBox="0 0 40 40" class="nat-sun-icon" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="8" fill="none" stroke="#8b7355" stroke-width="1.5"/>
+          <line x1="20" y1="4" x2="20" y2="9" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="31" x2="20" y2="36" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="20" x2="9" y2="20" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="31" y1="20" x2="36" y2="20" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8.5" y1="8.5" x2="12" y2="12" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="28" x2="31.5" y2="31.5" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="31.5" y1="8.5" x2="28" y2="12" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="28" x2="8.5" y2="31.5" stroke="#8b7355" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h4 class="nat-title">Guarda el momento</h4>
+      <p class="nat-tagline">Marca este día especial en tu agenda</p>
+
+      <div class="nat-buttons">
+        {google && (
+          <a href={google} target="_blank" rel="noopener noreferrer" class="nat-btn nat-btn-primary">
+            <svg viewBox="0 0 24 24" class="nat-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Google Calendar
+          </a>
+        )}
+        {apple && (
+          <a href={apple} class="nat-btn nat-btn-secondary">
+            <svg viewBox="0 0 24 24" class="nat-icon" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Apple Calendar
+          </a>
+        )}
+        {outlook && (
+          <a href={outlook} target="_blank" rel="noopener noreferrer" class="nat-btn nat-btn-secondary">
+            <svg viewBox="0 0 24 24" class="nat-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+              <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+            </svg>
+            Outlook
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .nat-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #f5f0e8;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .nat-leaf {
+    position: absolute;
+    pointer-events: none;
+  }
+  .nat-leaf-tl {
+    width: 90px;
+    top: -10px;
+    left: -20px;
+    transform: rotate(-30deg);
+  }
+  .nat-leaf-br {
+    width: 70px;
+    bottom: -10px;
+    right: -15px;
+    transform: rotate(20deg);
+  }
+  .nat-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    z-index: 1;
+  }
+  .nat-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e8dfc8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(139, 115, 85, 0.2);
+  }
+  .nat-sun-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .nat-title {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #4a5c38;
+    margin: 0 0 0.3rem;
+    text-align: center;
+  }
+  .nat-tagline {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    color: #8b7355;
+    margin: 0 0 2rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font-style: italic;
+  }
+  .nat-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .nat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .nat-btn-primary {
+    background: #4a5c38;
+    color: #f5f0e8;
+    border: none;
+    box-shadow: 0 3px 12px rgba(74, 92, 56, 0.25);
+  }
+  .nat-btn-primary:hover {
+    background: #3d4d2e;
+    box-shadow: 0 5px 18px rgba(74, 92, 56, 0.35);
+    transform: translateY(-1px);
+  }
+  .nat-btn-secondary {
+    background: transparent;
+    color: #4a5c38;
+    border: 1.5px solid rgba(74, 92, 56, 0.35);
+  }
+  .nat-btn-secondary:hover {
+    background: rgba(74, 92, 56, 0.07);
+    border-color: #4a5c38;
+    transform: translateY(-1px);
+  }
+  .nat-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+</style>

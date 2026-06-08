@@ -1,0 +1,49 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-20 px-6 bg-[#FFEBEE] relative overflow-hidden">
+    <!-- Bubble Decorations -->
+    <div class="absolute top-10 left-10 w-20 h-20 bg-[#FFCDD2] rounded-full mix-blend-multiply opacity-70 animate-bounce"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-[#E1BEE7] rounded-full mix-blend-multiply opacity-70 animate-pulse"></div>
+    
+    <div class="relative z-10 max-w-lg mx-auto bg-white rounded-3xl p-10 text-center shadow-[0_10px_40px_rgba(255,192,203,0.5)]">
+      <h2 class="text-4xl font-extrabold text-[#D81B60] mb-4 font-['Plus_Jakarta_Sans'] tracking-tight">
+        {data.titulo || "¡Sube tus Fotos!"}
+      </h2>
+      
+      <p class="text-[#880E4F] font-medium text-lg mb-8" set:html={data.frase || "Queremos ver la fiesta desde tu celular"}>
+      </p>
+
+      <div class="flex justify-center mb-8">
+        <div class="w-24 h-24 bg-[#FF4081] rounded-full flex items-center justify-center text-white shadow-lg transform rotate-12 hover:rotate-0 transition-transform cursor-pointer">
+          <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+             <circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+      </div>
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block w-full bg-gradient-to-r from-[#FF4081] to-[#E040FB] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+      >
+        {data.textoBoton || "Toca Aquí"}
+      </a>
+    </div>
+  </section>
+)}

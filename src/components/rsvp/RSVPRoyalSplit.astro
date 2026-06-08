@@ -1,0 +1,135 @@
+---
+// src/components/rsvp/RSVPRoyalSplit.astro
+const { data } = Astro.props;
+---
+
+<section class="bg-[#0b0c10] text-[#c5a059] font-sans relative border-y border-[#c5a059]/25">
+  <div class="max-w-2xl mx-auto flex flex-col md:flex-row min-h-[500px]">
+    
+    <!-- Left panel: Glamour/Photo Section -->
+    <div class="md:w-5/12 bg-cover bg-center relative p-8 flex flex-col justify-end min-h-[220px] md:min-h-auto" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+      <div class="relative z-10 text-left">
+        <h3 class="font-serif italic text-white text-3xl tracking-wide">R.S.V.P.</h3>
+        <p class="text-xs text-[#c5a059] font-mono uppercase tracking-widest mt-2">Royal Split Edition</p>
+        <p class="text-[10px] text-gray-400 mt-2 leading-relaxed font-light">
+          "El amor no se mide en días, sino en las personas que compartimos el camino."
+        </p>
+      </div>
+    </div>
+
+    <!-- Right panel: Interactive Form -->
+    <div class="md:w-7/12 p-6 md:p-8 bg-[#0b0c10] flex flex-col justify-center" x-data="{
+      submitted: false,
+      formData: {
+        nombre: '',
+        asistencia: 'si',
+        eventoCoctel: true,
+        eventoBoda: true,
+        adultos: 2,
+        jovenes: 0,
+        ninos: 0,
+        bebidaFavorita: 'Vino'
+      },
+      submitForm() {
+        console.log('Royal Split RSVP:', this.formData);
+        this.submitted = true;
+      }
+    }">
+      <!-- Thanks State -->
+      <div x-show="submitted" x-transition.opacity.duration.300ms class="text-center space-y-4 py-8">
+        <div class="w-12 h-12 rounded-full border border-[#c5a059] flex items-center justify-center mx-auto text-[#c5a059] text-xl font-serif">R</div>
+        <h4 class="text-xl font-serif text-white uppercase tracking-wider">Pase Concedido</h4>
+        <p class="text-xs text-gray-400 leading-relaxed max-w-xs mx-auto" x-text="formData.asistencia === 'si' ? 'Tus pases han sido registrados en nuestra base real. ¡Los esperamos con gran entusiasmo!' : 'Agradecemos de corazón tu aviso oportuno. Que tu cariño nos acompañe.'"></p>
+        <button type="button" @click="submitted = false;" class="text-[10px] text-[#c5a059] uppercase tracking-wider font-mono hover:underline">Editar Respuesta</button>
+      </div>
+
+      <!-- Form Content -->
+      <form x-show="!submitted" @submit.prevent="submitForm" class="space-y-4 text-left">
+        
+        <div>
+          <label class="block text-[10px] uppercase tracking-widest text-[#c5a059] font-bold mb-1.5 font-mono">Nombre e Invitados</label>
+          <input type="text" required x-model="formData.nombre" class="w-full bg-[#16171f] border border-[#c5a059]/20 rounded py-2 px-3 text-white text-xs focus:outline-none focus:border-[#c5a059] font-sans" placeholder="Ej. Familia Benítez" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" @click="formData.asistencia = 'si'" :class="formData.asistencia === 'si' ? 'bg-[#c5a059] text-[#0b0c10]' : 'bg-[#16171f] text-[#c5a059] border border-[#c5a059]/20'" class="py-2 text-[10px] font-bold uppercase tracking-wider font-mono transition-all rounded">
+            ASISTIRÉ
+          </button>
+          <button type="button" @click="formData.asistencia = 'no'" :class="formData.asistencia === 'no' ? 'bg-[#c5a059] text-[#0b0c10]' : 'bg-[#16171f] text-[#c5a059] border border-[#c5a059]/20'" class="py-2 text-[10px] font-bold uppercase tracking-wider font-mono transition-all rounded">
+            NO ASISTIRÉ
+          </button>
+        </div>
+
+        <!-- Conditional sections -->
+        <div x-show="formData.asistencia === 'si'" x-transition class="space-y-4 border-t border-[#c5a059]/10 pt-3">
+          
+          <!-- Event Selector (Multi-Event) -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-widest text-[#c5a059] font-bold mb-2 font-mono">¿A qué eventos asistirás?</label>
+            <div class="space-y-2">
+              <label class="flex items-center justify-between bg-[#16171f] p-2 rounded cursor-pointer">
+                <span class="text-xs text-white">1. Cóctel de Bienvenida (18:00 hrs)</span>
+                <input type="checkbox" x-model="formData.eventoCoctel" class="rounded text-[#c5a059] focus:ring-0 bg-[#0b0c10] w-4 h-4 border-[#c5a059]/30" />
+              </label>
+              <label class="flex items-center justify-between bg-[#16171f] p-2 rounded cursor-pointer">
+                <span class="text-xs text-white">2. Banquete y Recepción (21:00 hrs)</span>
+                <input type="checkbox" x-model="formData.eventoBoda" class="rounded text-[#c5a059] focus:ring-0 bg-[#0b0c10] w-4 h-4 border-[#c5a059]/30" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Counter split (Adults, kids, youth) -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-widest text-[#c5a059] font-bold mb-2 font-mono">Número de Invitados por categoría</label>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="bg-[#16171f] p-2 rounded border border-[#c5a059]/10 text-center">
+                <span class="block text-[9px] text-gray-400 font-mono">Adultos</span>
+                <div class="flex items-center justify-center gap-2 mt-1">
+                  <button type="button" @click="if(formData.adultos > 0) formData.adultos--" class="text-xs font-bold text-[#c5a059]">-</button>
+                  <span class="text-xs text-white font-bold" x-text="formData.adultos"></span>
+                  <button type="button" @click="if(formData.adultos < 10) formData.adultos++" class="text-xs font-bold text-[#c5a059]">+</button>
+                </div>
+              </div>
+              <div class="bg-[#16171f] p-2 rounded border border-[#c5a059]/10 text-center">
+                <span class="block text-[9px] text-gray-400 font-mono">Jóvenes</span>
+                <div class="flex items-center justify-center gap-2 mt-1">
+                  <button type="button" @click="if(formData.jovenes > 0) formData.jovenes--" class="text-xs font-bold text-[#c5a059]">-</button>
+                  <span class="text-xs text-white font-bold" x-text="formData.jovenes"></span>
+                  <button type="button" @click="if(formData.jovenes < 10) formData.jovenes++" class="text-xs font-bold text-[#c5a059]">+</button>
+                </div>
+              </div>
+              <div class="bg-[#16171f] p-2 rounded border border-[#c5a059]/10 text-center">
+                <span class="block text-[9px] text-gray-400 font-mono">Niños</span>
+                <div class="flex items-center justify-center gap-2 mt-1">
+                  <button type="button" @click="if(formData.ninos > 0) formData.ninos--" class="text-xs font-bold text-[#c5a059]">-</button>
+                  <span class="text-xs text-white font-bold" x-text="formData.ninos"></span>
+                  <button type="button" @click="if(formData.ninos < 10) formData.ninos++" class="text-xs font-bold text-[#c5a059]">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Drinks choices -->
+          <div>
+            <label class="block text-[10px] uppercase tracking-widest text-[#c5a059] font-bold mb-1.5 font-mono">Bebida / Cóctel de Preferencia</label>
+            <select x-model="formData.bebidaFavorita" class="w-full bg-[#16171f] border border-[#c5a059]/20 rounded py-2 px-3 text-white text-xs focus:outline-none focus:border-[#c5a059]">
+              <option value="Vino">Vino Tinto / Blanco</option>
+              <option value="Tequila">Tequila / Mezcal</option>
+              <option value="Gin">Gin Tonic / Cócteles</option>
+              <option value="Whisky">Whisky / Bourbon</option>
+              <option value="Cerveza">Cerveza Artesanal</option>
+              <option value="Sin Alcohol">Mocktail / Bebida Sin Alcohol</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-[#d4af37] via-[#fbf5b7] to-[#aa771c] text-[#0b0c10] py-3 rounded text-xs font-bold uppercase tracking-wider transition-opacity hover:opacity-95 shadow-md shadow-amber-500/10 mt-6">
+          Registrar Confirmación Real
+        </button>
+      </form>
+      
+    </div>
+  </div>
+</section>

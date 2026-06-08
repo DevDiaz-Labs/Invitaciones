@@ -1,0 +1,359 @@
+---
+// src/components/ubicacion/UbicacionTimeline.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+<section class="ubt-wrap">
+  <div class="ubt-header">
+    <div class="ubt-title-wrap">
+      <div class="ubt-header-line"></div>
+      <h2 class="ubt-title">El Gran Día</h2>
+      <div class="ubt-header-line"></div>
+    </div>
+    <p class="ubt-subtitle">Sigue el hilo de nuestra celebración</p>
+  </div>
+
+  <div class="ubt-timeline">
+    <!-- Top cap -->
+    <div class="ubt-cap">
+      <div class="ubt-cap-dot"></div>
+    </div>
+
+    {ceremonia && (
+      <div class="ubt-item ubt-item--left">
+        <div class="ubt-node">
+          <div class="ubt-node-ring">
+            <div class="ubt-node-dot"></div>
+          </div>
+          <div class="ubt-vertical-line"></div>
+        </div>
+        <div class="ubt-card">
+          <div class="ubt-card-hora">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {ceremonia.hora}
+          </div>
+          <h3 class="ubt-card-title">{ceremonia.titulo || "Ceremonia"}</h3>
+          <p class="ubt-card-lugar">{ceremonia.lugar}</p>
+          <p class="ubt-card-dir">{ceremonia.direccion}</p>
+          {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+            <div class="ubt-map">
+              <iframe
+                src={ceremonia.iframeMapa || ceremonia.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubt-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Ver en Mapa
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- Arrow/connector between events -->
+    <div class="ubt-arrow-block">
+      <div class="ubt-arrow-stem"></div>
+      <div class="ubt-arrow-label">A continuación</div>
+      <div class="ubt-arrow-chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" width="22" height="22"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+
+    {recepcion && (
+      <div class="ubt-item ubt-item--right">
+        <div class="ubt-node">
+          <div class="ubt-node-ring ubt-node-ring--dos">
+            <div class="ubt-node-dot ubt-node-dot--dos"></div>
+          </div>
+          <div class="ubt-vertical-line ubt-vertical-line--end"></div>
+        </div>
+        <div class="ubt-card ubt-card--dos">
+          <div class="ubt-card-hora ubt-card-hora--dos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {recepcion.hora}
+          </div>
+          <h3 class="ubt-card-title">{recepcion.titulo || "Recepción"}</h3>
+          <p class="ubt-card-lugar">{recepcion.lugar}</p>
+          <p class="ubt-card-dir">{recepcion.direccion}</p>
+          {(recepcion.iframeMapa || recepcion.urlMapa) && (
+            <div class="ubt-map">
+              <iframe
+                src={recepcion.iframeMapa || recepcion.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubt-btn ubt-btn--dos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Ver en Mapa
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- Bottom cap -->
+    <div class="ubt-cap">
+      <div class="ubt-cap-dot ubt-cap-dot--end"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ubt-wrap {
+    background: linear-gradient(180deg, #fafafa 0%, #f4f4f8 100%);
+    padding: 2.5rem 1.25rem 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .ubt-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .ubt-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .ubt-header-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d1d5db);
+  }
+  .ubt-header-line:last-child {
+    background: linear-gradient(to left, transparent, #d1d5db);
+  }
+  .ubt-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ubt-subtitle {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    letter-spacing: 0.08em;
+    margin: 0;
+    font-style: italic;
+    font-family: 'Crimson Text', serif;
+  }
+  .ubt-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ubt-cap {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  .ubt-cap-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d5db;
+  }
+  .ubt-cap-dot--end {
+    background: #e5a5b5;
+  }
+  .ubt-item {
+    width: 100%;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+  .ubt-item--left {
+    flex-direction: row;
+  }
+  .ubt-item--right {
+    flex-direction: row-reverse;
+  }
+  .ubt-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 50px;
+  }
+  .ubt-node-ring {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #6366f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+    flex-shrink: 0;
+  }
+  .ubt-node-ring--dos {
+    border-color: #e5a5b5;
+    box-shadow: 0 0 0 4px rgba(229,165,181,0.1);
+  }
+  .ubt-node-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6366f1;
+  }
+  .ubt-node-dot--dos {
+    background: #e5a5b5;
+  }
+  .ubt-vertical-line {
+    width: 2px;
+    flex: 1;
+    min-height: 16px;
+    background: linear-gradient(to bottom, #c7d2fe, #fce7f3);
+  }
+  .ubt-vertical-line--end {
+    background: linear-gradient(to bottom, #fce7f3, transparent);
+  }
+  .ubt-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin: 0 0 0 0.75rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border: 1.5px solid #e0e7ff;
+    margin-bottom: 0;
+  }
+  .ubt-item--right .ubt-card {
+    margin: 0 0.75rem 0 0;
+    border-color: #fce7f3;
+  }
+  .ubt-card--dos {
+    border-color: #fce7f3;
+  }
+  .ubt-card-hora {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6366f1;
+    background: #eef2ff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+  .ubt-card-hora--dos {
+    color: #be547a;
+    background: #fdf2f5;
+  }
+  .ubt-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.25rem;
+    letter-spacing: 0.04em;
+  }
+  .ubt-card-lugar {
+    font-size: 0.82rem;
+    color: #4b5563;
+    margin: 0 0 0.2rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+  }
+  .ubt-card-dir {
+    font-size: 0.72rem;
+    color: #9ca3af;
+    margin: 0 0 0.85rem;
+    line-height: 1.4;
+  }
+  .ubt-map {
+    width: 100%;
+    height: 155px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid #e5e7eb;
+    margin-bottom: 0.75rem;
+  }
+  .ubt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #6366f1;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.45rem 1rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .ubt-btn--dos {
+    background: linear-gradient(135deg, #e5a5b5, #be547a);
+  }
+  .ubt-btn:hover {
+    opacity: 0.88;
+  }
+  .ubt-arrow-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+  .ubt-arrow-stem {
+    width: 2px;
+    height: 14px;
+    background: linear-gradient(to bottom, #c7d2fe, #fce7f3);
+  }
+  .ubt-arrow-label {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.75rem;
+    border: 1px dashed #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    white-space: nowrap;
+  }
+  .ubt-arrow-chevron {
+    margin-top: 2px;
+  }
+</style>

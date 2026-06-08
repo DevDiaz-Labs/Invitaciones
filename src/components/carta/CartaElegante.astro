@@ -1,0 +1,138 @@
+---
+// src/components/carta/CartaElegante.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#9b7d3a';
+const colorTexto = data.colorTexto || '#2d2418';
+---
+
+{data.mostrar && (
+<section class="ce-section" style={bgImage ? `background-image: linear-gradient(rgba(253,250,243,0.93),rgba(253,250,243,0.93)),url('${bgImage}'); background-size:cover; background-position:center;` : ''}>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Upright:wght@300;400&display=swap" rel="stylesheet" />
+
+  <div class="ce-wrapper">
+    <!-- Diamond top separator -->
+    <div class="ce-diamond-row" aria-hidden="true">
+      <span class="ce-line-h"></span>
+      <span class="ce-diamond">◆</span>
+      <span class="ce-diamond ce-diamond-sm">◆</span>
+      <span class="ce-diamond">◆</span>
+      <span class="ce-line-h"></span>
+    </div>
+
+    <!-- Serif heading -->
+    <p class="ce-heading">Palabras del corazón</p>
+
+    <!-- Text -->
+    <div class="ce-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+    <!-- Diamond bottom separator -->
+    <div class="ce-diamond-row ce-diamond-row-bottom" aria-hidden="true">
+      <span class="ce-line-h"></span>
+      <span class="ce-diamond ce-diamond-sm">◆</span>
+      <span class="ce-diamond">◆</span>
+      <span class="ce-diamond ce-diamond-sm">◆</span>
+      <span class="ce-line-h"></span>
+    </div>
+
+    <!-- Firma -->
+    {data.firmaTexto && (
+      <p class="ce-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+    )}
+  </div>
+</section>
+)}
+
+<style>
+  .ce-section {
+    position: relative;
+    padding: 3.5rem 2rem;
+    background-color: #fdfaf3;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .ce-wrapper {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .ce-diamond-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .ce-diamond-row-bottom {
+    margin-top: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .ce-line-h {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: #9b7d3a;
+    opacity: 0.3;
+  }
+
+  .ce-diamond {
+    color: #9b7d3a;
+    font-size: 0.55rem;
+    opacity: 0.7;
+    line-height: 1;
+  }
+
+  .ce-diamond-sm {
+    font-size: 0.35rem;
+    opacity: 0.45;
+  }
+
+  .ce-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    letter-spacing: 0.15em;
+    color: #9b7d3a;
+    margin: 0 0 2rem 0;
+    font-weight: 400;
+  }
+
+  .ce-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.75;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  .ce-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .ce-firma {
+    font-family: 'Cormorant Upright', 'Playfair Display', serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+</style>

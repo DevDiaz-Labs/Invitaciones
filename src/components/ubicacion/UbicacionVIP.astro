@@ -1,0 +1,123 @@
+---
+// src/components/ubicacion/UbicacionVIP.astro
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  fecha?: string;
+  urlMapa: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+    calendario?: {
+      google?: string;
+      apple?: string;
+    };
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion, calendario } = data || {};
+---
+
+<section class="py-24 bg-grad-bg relative w-full border-t border-grad-secondary/20">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display font-light gold-gradient-text tracking-widest mb-4">Los Eventos</h2>
+      <div class="h-px w-32 bg-grad-secondary mx-auto mb-8 opacity-50"></div>
+    </div>
+
+    <!-- Contenedor Grid -->
+    <div class="grid md:grid-cols-2 gap-12 mt-12 relative">
+      <!-- Decoración de línea vertical central en PC -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-grad-secondary/30 -translate-x-1/2"></div>
+
+      <!-- Ceremonia -->
+      {ceremonia && (
+        <div class="flex flex-col items-center text-center p-8 border border-grad-secondary/20 rounded-sm bg-grad-bg/50 backdrop-blur-sm relative fade-in">
+          <div class="absolute -top-6 bg-grad-bg px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-serif text-white mt-4 mb-2">{ceremonia.titulo || "Ceremonia"}</h3>
+          <p class="text-grad-secondary font-sans tracking-widest uppercase mb-4 text-sm">{ceremonia.hora}</p>
+          <div class="space-y-1 mb-8">
+            <p class="text-lg text-gray-200 font-medium">{ceremonia.lugar}</p>
+            <p class="text-gray-400 font-light text-sm">{ceremonia.direccion}</p>
+          </div>
+          
+          {ceremonia.urlMapa && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+              <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer bg-transparent">
+                Ver Ubicación
+              </button>
+            </a>
+          )}
+        </div>
+      )}
+
+      <!-- Recepción -->
+      {recepcion && (
+        <div class="flex flex-col items-center text-center p-8 border border-grad-secondary/20 rounded-sm bg-grad-bg/50 backdrop-blur-sm relative fade-in" style="animation-delay: 0.3s">
+          <div class="absolute -top-6 bg-grad-bg px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-grad-secondary mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-serif text-white mt-4 mb-2">{recepcion.titulo || "Recepción"}</h3>
+          <p class="text-grad-secondary font-sans tracking-widest uppercase mb-4 text-sm">{recepcion.hora}</p>
+          <div class="space-y-1 mb-8">
+            <p class="text-lg text-gray-200 font-medium">{recepcion.lugar}</p>
+            <p class="text-gray-400 font-light text-sm">{recepcion.direccion}</p>
+          </div>
+          
+          {recepcion.urlMapa && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mb-4 w-full block">
+              <button class="w-full py-3 px-6 border border-grad-secondary text-grad-secondary hover:bg-grad-secondary hover:text-black transition-all duration-300 tracking-widest text-xs uppercase cursor-pointer bg-transparent">
+                Ver Ubicación
+              </button>
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+
+  </div>
+</section>
+
+<style>
+  /* Fallbacks for dark/gold variables if not loaded in root config */
+  .bg-grad-bg {
+    background-color: #0d0d0d;
+  }
+  .bg-grad-bg\/50 {
+    background-color: rgba(13, 13, 13, 0.5);
+  }
+  .text-grad-secondary {
+    color: #d4a373;
+  }
+  .border-grad-secondary\/20 {
+    border-color: rgba(212, 163, 115, 0.2);
+  }
+  .bg-grad-secondary {
+    background-color: #d4a373;
+  }
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #fff 30%, #d4a373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hover\:bg-grad-secondary:hover {
+    background-color: #d4a373;
+    color: #000;
+  }
+</style>

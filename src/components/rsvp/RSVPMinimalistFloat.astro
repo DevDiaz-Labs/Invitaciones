@@ -1,0 +1,100 @@
+---
+// src/components/rsvp/RSVPMinimalistFloat.astro
+const { data } = Astro.props;
+---
+
+<section class="py-12 px-6 bg-white text-gray-900 font-sans border-b border-gray-100">
+  <div class="max-w-md mx-auto" x-data="{
+    submitted: false,
+    nombreFocus: false,
+    cancionFocus: false,
+    formData: {
+      nombre: '',
+      asistencia: 'si',
+      adultos: 2,
+      ninos: 0,
+      cancion: ''
+    },
+    submitForm() {
+      console.log('Minimalist Float RSVP:', this.formData);
+      this.submitted = true;
+    }
+  }">
+    <div class="text-center mb-8">
+      <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold block">R S V P</span>
+      <h3 class="text-2xl font-light text-gray-800 tracking-wide mt-1">Presencia & Confirmación</h3>
+    </div>
+
+    <!-- Thanks view -->
+    <div x-show="submitted" x-transition.opacity.duration.300ms class="text-center py-10 space-y-3 bg-gray-50 border border-gray-150 p-6 rounded-xl">
+      <!-- Checked Animated Circle -->
+      <div class="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center mx-auto text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <h4 class="text-md font-medium text-gray-900">Confirmación Guardada</h4>
+      <p class="text-xs text-gray-500 leading-relaxed" x-text="formData.asistencia === 'si' ? 'Tus pases han sido registrados. Esperamos verte pronto.' : 'Lamentamos que no nos acompañes. Gracias por informarnos.'"></p>
+      <button type="button" @click="submitted = false" class="text-[10px] uppercase tracking-wider text-gray-400 underline pt-2">Editar</button>
+    </div>
+
+    <!-- Form content -->
+    <form x-show="!submitted" @submit.prevent="submitForm" class="space-y-6 text-left">
+      
+      <!-- Name Input with floating labels -->
+      <div class="relative border-b border-gray-200 py-2">
+        <label :class="(nombreFocus || formData.nombre.length > 0) ? '-translate-y-4 scale-75 text-gray-500' : 'translate-y-0 text-gray-400'" class="absolute left-0 top-2 text-xs transition-all duration-300 pointer-events-none origin-top-left">Nombre Completo</label>
+        <input type="text" required x-model="formData.nombre" @focus="nombreFocus = true" @blur="nombreFocus = false" class="w-full bg-transparent border-none focus:outline-none text-xs text-gray-800 pt-2" />
+      </div>
+
+      <!-- Attendance selection -->
+      <div>
+        <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-2">¿Asistirás al evento?</label>
+        <div class="flex gap-4">
+          <label class="flex items-center gap-2 cursor-pointer py-2 px-3 border border-gray-200 rounded hover:bg-gray-50 flex-1">
+            <input type="radio" value="si" x-model="formData.asistencia" class="text-gray-800 focus:ring-0 w-4 h-4 border-gray-300" />
+            <span class="text-xs text-gray-600">Sí, asistiré</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer py-2 px-3 border border-gray-200 rounded hover:bg-gray-50 flex-1">
+            <input type="radio" value="no" x-model="formData.asistencia" class="text-gray-800 focus:ring-0 w-4 h-4 border-gray-300" />
+            <span class="text-xs text-gray-600">No asistiré</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Conditional guest counts -->
+      <div x-show="formData.asistencia === 'si'" x-transition class="space-y-5 border-t border-gray-100 pt-4">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <span class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1.5">Pases Adultos</span>
+            <div class="flex items-center justify-between border border-gray-200 rounded px-2 py-1 bg-white">
+              <button type="button" @click="if(formData.adultos > 1) formData.adultos--" class="text-gray-400 font-bold px-1 text-sm">-</button>
+              <span class="text-xs text-gray-700 font-medium" x-text="formData.adultos"></span>
+              <button type="button" @click="if(formData.adultos < 8) formData.adultos++" class="text-gray-400 font-bold px-1 text-sm">+</button>
+            </div>
+          </div>
+          <div>
+            <span class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1.5">Pases Niños</span>
+            <div class="flex items-center justify-between border border-gray-200 rounded px-2 py-1 bg-white">
+              <button type="button" @click="if(formData.ninos > 0) formData.ninos--" class="text-gray-400 font-bold px-1 text-sm">-</button>
+              <span class="text-xs text-gray-700 font-medium" x-text="formData.ninos"></span>
+              <button type="button" @click="if(formData.ninos < 8) formData.ninos++" class="text-gray-400 font-bold px-1 text-sm">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Song Suggestion floating labels -->
+        <div class="relative border-b border-gray-200 py-2">
+          <label :class="(cancionFocus || formData.cancion.length > 0) ? '-translate-y-4 scale-75 text-gray-500' : 'translate-y-0 text-gray-400'" class="absolute left-0 top-2 text-xs transition-all duration-300 pointer-events-none origin-top-left">¿Alguna canción especial para la pista?</label>
+          <input type="text" x-model="formData.cancion" @focus="cancionFocus = true" @blur="cancionFocus = false" class="w-full bg-transparent border-none focus:outline-none text-xs text-gray-800 pt-2" />
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-gray-900 text-white py-3 text-xs uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300 font-medium">
+        Enviar Confirmación
+      </button>
+
+    </form>
+  </div>
+</section>

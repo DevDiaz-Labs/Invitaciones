@@ -1,23 +1,159 @@
 ---
 import XVDulceLayout from "../../layouts/XV.astro";
-import Sobre1 from "../../components/ui/Sobre1.astro";
+import Sobre from "../../components/sobre/Sobre.astro";
 
-import Hero from "../../components/xv-plantilla/Hero.astro";
-import Carta from "../../components/xv-plantilla/Carta.astro";
-import Dedicatoria from "../../components/xv-plantilla/Dedicatoria.astro";
-import Countdown from "../../components/xv-plantilla/Countdown.astro";
-import Ceremonia from "../../components/xv-plantilla/Ceremonia.astro";
-import Recepcion from "../../components/xv-plantilla/Recepcion.astro";
-import DressCode from "../../components/xv-plantilla/DressCode.astro";
-import Itinerario from "../../components/xv-plantilla/Itinerario.astro";
-import LluviaDeSobres from "../../components/xv-plantilla/LluviaDeSobres.astro";
-import Galeria from "../../components/boda-plantilla/Galeria.astro";
-import Regalos from "../../components/xv-plantilla/Regalos.astro";
-import RSVP from "../../components/xv-plantilla/RSVP.astro";
-import CompartirFotos from "../../components/xv-plantilla/CompartirFotos.astro";
-import Footer from "../../components/xv-plantilla/Footer.astro";
-import MusicPlayer from "../../components/xv-plantilla/MusicPlayer.astro";
+// ============================================
+// COMPONENTES DEFAULT (los originales de siempre)
+// ============================================
+import HeroDefault from "../../components/xv-plantilla/HeroSofia.astro";
+import CartaDefault from "../../components/xv-plantilla/Carta.astro";
+import DedicatoriaDefault from "../../components/xv-plantilla/Dedicatoria.astro";
+import CountdownDefault from "../../components/xv-plantilla/Countdown.astro";
+import CeremoniaDefault from "../../components/xv-plantilla/Ceremonia.astro";
+import RecepcionDefault from "../../components/xv-plantilla/Recepcion.astro";
+import DressCodeDefault from "../../components/xv-plantilla/DressCode.astro";
+import ItinerarioDefault from "../../components/xv-plantilla/Itinerario.astro";
+import LluviaDeSobresDefault from "../../components/xv-plantilla/LluviaDeSobres.astro";
+import GaleriaDefault from "../../components/boda-plantilla/Galeria.astro";
+import RegalosDefault from "../../components/xv-plantilla/Regalos.astro";
+import RSVPDefault from "../../components/xv-plantilla/RSVP.astro";
+import CompartirFotosDefault from "../../components/xv-plantilla/CompartirFotos.astro";
+import FooterDefault from "../../components/xv-plantilla/Footer.astro";
+import MusicPlayerDefault from "../../components/xv-plantilla/MusicPlayer.astro";
 import Separador from "../../components/xv-plantilla/Separador.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Hero)
+// ============================================
+import HeroFloralFrame from "../../components/hero/HeroFloralFrame.astro";
+import HeroBoho from "../../components/hero/HeroBoho.astro";
+import HeroMinimalista from "../../components/hero/HeroMinimalista.astro";
+import HeroXVArchFlowers from "../../components/hero/HeroXVArchFlowers.astro";
+import HeroXVDrama from "../../components/hero/HeroXVDrama.astro";
+import HeroXVEditorialBold from "../../components/hero/HeroXVEditorialBold.astro";
+import HeroXVMiniVideoStyle from "../../components/hero/HeroXVMiniVideoStyle.astro";
+import HeroXVMinimalElegance from "../../components/hero/HeroXVMinimalElegance.astro";
+import HeroXVRoseGold from "../../components/hero/HeroXVRoseGold.astro";
+import HeroXVStarlight from "../../components/hero/HeroXVStarlight.astro";
+import HeroXVWatercolor from "../../components/hero/HeroXVWatercolor.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Carta / Dedicatoria)
+// ============================================
+import CartaFloral from "../../components/carta/CartaFloral.astro";
+import CartaImagenFullScreen from "../../components/carta/CartaImagenFullScreen.astro";
+import CartaElegante from "../../components/carta/CartaElegante.astro";
+import CartaRustica from "../../components/carta/CartaRustica.astro";
+import CartaRomantica from "../../components/carta/CartaRomantica.astro";
+import CartaBohemia from "../../components/carta/CartaBohemia.astro";
+import CartaVintage from "../../components/carta/CartaVintage.astro";
+import CartaModerna from "../../components/carta/CartaModerna.astro";
+import CartaReal from "../../components/carta/CartaReal.astro";
+import CartaNoche from "../../components/carta/CartaNoche.astro";
+import CartaJoven from "../../components/carta/CartaJoven.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Countdown)
+// ============================================
+import CountdownXV from "../../components/countdown/CountdownXV.astro";
+import CountdownMinimalista from "../../components/countdown/CountdownMinimalista.astro";
+import CountdownSimple from "../../components/countdown/CountdownSimple.astro";
+import CountdownBurbujas from "../../components/countdown/CountdownBurbujas.astro";
+import CountdownAnillos from "../../components/countdown/CountdownAnillos.astro";
+import CountdownFlip from "../../components/countdown/CountdownFlip.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Ubicación)
+// ============================================
+import UbicacionRustica from "../../components/ubicacion/UbicacionRustica.astro";
+import UbicacionTimeline from "../../components/ubicacion/UbicacionTimeline.astro";
+import UbicacionNatural from "../../components/ubicacion/UbicacionNatural.astro";
+import UbicacionNocturna from "../../components/ubicacion/UbicacionNocturna.astro";
+import UbicacionRosada from "../../components/ubicacion/UbicacionRosada.astro";
+import UbicacionFiesta from "../../components/ubicacion/UbicacionFiesta.astro";
+import UbicacionLujo from "../../components/ubicacion/UbicacionLujo.astro";
+import UbicacionMapaFull from "../../components/ubicacion/UbicacionMapaFull.astro";
+import UbicacionMiniMapas from "../../components/ubicacion/UbicacionMiniMapas.astro";
+import UbicacionVintage from "../../components/ubicacion/UbicacionVintage.astro";
+import UbicacionBoho from "../../components/ubicacion/UbicacionBoho.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Itinerario)
+// ============================================
+import ItinerarioPolaroid from "../../components/itinerario/ItinerarioPolaroid.astro";
+import ItinerarioClassic from "../../components/itinerario/ItinerarioClassic.astro";
+import ItinerarioElegant from "../../components/itinerario/ItinerarioElegant.astro";
+import ItinerarioTimeline from "../../components/itinerario/ItinerarioTimeline.astro";
+import ItinerarioMinimalista from "../../components/itinerario/ItinerarioMinimalista.astro";
+import ItinerarioAccordion from "../../components/itinerario/ItinerarioAccordion.astro";
+import ItinerarioRoyalGold from "../../components/itinerario/ItinerarioRoyalGold.astro";
+import ItinerarioMetro from "../../components/itinerario/ItinerarioMetro.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (DressCode)
+// ============================================
+import DressCodeXV from "../../components/dresscode/DressCodeXV.astro";
+import DressCodeBoho from "../../components/dresscode/DressCodeBoho.astro";
+import DressCodeEtiqueta from "../../components/dresscode/DressCodeEtiqueta.astro";
+import DressCodeVintageChic from "../../components/dresscode/DressCodeVintageChic.astro";
+import DressCodeGalaImperial from "../../components/dresscode/DressCodeGalaImperial.astro";
+import DressCodePlaya from "../../components/dresscode/DressCodePlaya.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Regalos)
+// ============================================
+import RegalosXV from "../../components/regalos/RegalosXV.astro";
+import RegalosBoda from "../../components/regalos/RegalosBoda.astro";
+import RegalosElegante from "../../components/regalos/RegalosElegante.astro";
+import RegalosBoho from "../../components/regalos/RegalosBoho.astro";
+import RegalosGlamour from "../../components/regalos/RegalosGlamour.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Reproductor)
+// ============================================
+import ReproductorMinimalista from "../../components/reproductor/ReproductorMinimalista.astro";
+import ReproductorXV from "../../components/reproductor/ReproductorXV.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Galería)
+// ============================================
+import GaleriaMini from "../../components/galeria/GaleriaMini.astro";
+import GaleriaMasonry from "../../components/galeria/GaleriaMasonry.astro";
+import GaleriaPolaroidStack from "../../components/galeria/GaleriaPolaroidStack.astro";
+import GaleriaCineFilm from "../../components/galeria/GaleriaCineFilm.astro";
+import GaleriaGlassCards from "../../components/galeria/GaleriaGlassCards.astro";
+import GaleriaSwipeDeck from "../../components/galeria/GaleriaSwipeDeck.astro";
+import GaleriaBento from "../../components/galeria/GaleriaBento.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (RSVP)
+// ============================================
+import RSVPElegantSerif from "../../components/rsvp/RSVPElegantSerif.astro";
+import RSVPMinimalista from "../../components/rsvp/RSVPMinimalista.astro";
+import RSVPBoho from "../../components/rsvp/RSVPBoho.astro";
+import RSVPXV from "../../components/rsvp/RSVPXV.astro";
+import RSVPChicPopup from "../../components/rsvp/RSVPChicPopup.astro";
+import RSVPDigitalEnvelope from "../../components/rsvp/RSVPDigitalEnvelope.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Calendario)
+// ============================================
+import CalendarioXV from "../../components/calendario/CalendarioXV.astro";
+import CalendarioMinimalista from "../../components/calendario/CalendarioMinimalista.astro";
+import CalendarioFloral from "../../components/calendario/CalendarioFloral.astro";
+import CalendarioModerno from "../../components/calendario/CalendarioModerno.astro";
+import CalendarioVintage from "../../components/calendario/CalendarioVintage.astro";
+import CalendarioBoho from "../../components/calendario/CalendarioBoho.astro";
+
+// ============================================
+// COMPONENTES ALTERNATIVOS (Footer)
+// ============================================
+import FooterVintage from "../../components/footer/FooterVintage.astro";
+import FooterBoho from "../../components/footer/FooterBoho.astro";
+import FooterElegant from "../../components/footer/FooterElegant.astro";
+import FooterMinimalista from "../../components/footer/FooterMinimalista.astro";
+import FooterXV from "../../components/footer/FooterXV.astro";
+import FooterClassic from "../../components/footer/FooterClassic.astro";
 
 import * as fs from "fs";
 import * as path from "path";
@@ -61,6 +197,92 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
+const showSobre = !data.sobre || data.sobre.mostrar !== false;
+
+// ============================================
+// MAPAS DE COMPONENTES - Aquí se conecta el nombre del JSON con el componente real
+// Si un JSON no tiene campo "componente", se usa el DEFAULT (el original de siempre)
+// ============================================
+const heroMap: Record<string, any> = {
+    HeroFloralFrame, HeroBoho, HeroMinimalista, HeroXVArchFlowers,
+    HeroXVDrama, HeroXVEditorialBold, HeroXVMiniVideoStyle,
+    HeroXVMinimalElegance, HeroXVRoseGold, HeroXVStarlight, HeroXVWatercolor,
+};
+
+const cartaMap: Record<string, any> = {
+    CartaFloral, CartaElegante, CartaRustica, CartaRomantica,
+    CartaBohemia, CartaVintage, CartaModerna, CartaReal, CartaNoche, CartaJoven, CartaImagenFullScreen,
+};
+
+const countdownMap: Record<string, any> = {
+    CountdownXV, CountdownMinimalista, CountdownSimple,
+    CountdownBurbujas, CountdownAnillos, CountdownFlip,
+};
+
+const ubicacionMap: Record<string, any> = {
+    UbicacionRustica, UbicacionTimeline, UbicacionNatural, UbicacionNocturna,
+    UbicacionRosada, UbicacionFiesta, UbicacionLujo, UbicacionMapaFull,
+    UbicacionMiniMapas, UbicacionVintage, UbicacionBoho,
+};
+
+const itinerarioMap: Record<string, any> = {
+    ItinerarioPolaroid, ItinerarioClassic, ItinerarioElegant,
+    ItinerarioTimeline, ItinerarioMinimalista, ItinerarioAccordion,
+    ItinerarioRoyalGold, ItinerarioMetro,
+};
+
+const dressCodeMap: Record<string, any> = {
+    DressCodeXV, DressCodeBoho, DressCodeEtiqueta,
+    DressCodeVintageChic, DressCodeGalaImperial, DressCodePlaya,
+};
+
+const regalosMap: Record<string, any> = {
+    RegalosXV, RegalosBoda, RegalosElegante, RegalosBoho, RegalosGlamour,
+};
+
+const reproductorMap: Record<string, any> = {
+    ReproductorMinimalista, ReproductorXV,
+};
+
+const galeriaMap: Record<string, any> = {
+    GaleriaMini, GaleriaMasonry, GaleriaPolaroidStack,
+    GaleriaCineFilm, GaleriaGlassCards, GaleriaSwipeDeck, GaleriaBento,
+};
+
+const rsvpMap: Record<string, any> = {
+    RSVPElegantSerif, RSVPMinimalista, RSVPBoho, RSVPXV,
+    RSVPChicPopup, RSVPDigitalEnvelope,
+};
+
+const calendarioMap: Record<string, any> = {
+    CalendarioXV, CalendarioMinimalista, CalendarioFloral,
+    CalendarioModerno, CalendarioVintage, CalendarioBoho,
+};
+
+const footerMap: Record<string, any> = {
+    FooterVintage, FooterBoho, FooterElegant,
+    FooterMinimalista, FooterXV, FooterClassic,
+};
+
+// ============================================
+// RESOLVER COMPONENTES - Si el JSON tiene "componente", usa ese; si no, usa el default
+// ============================================
+const HeroComp = data.hero?.componente ? (heroMap[data.hero.componente] || HeroDefault) : HeroDefault;
+const CartaComp = data.dedicatoria?.componente ? (cartaMap[data.dedicatoria.componente] || CartaDefault) : CartaDefault;
+const CountdownComp = data.countdown?.componente ? (countdownMap[data.countdown.componente] || CountdownDefault) : CountdownDefault;
+const UbicacionComp = data.eventos?.componente ? (ubicacionMap[data.eventos.componente] || null) : null;
+const ItinerarioComp = data.itinerario?.componente ? (itinerarioMap[data.itinerario.componente] || ItinerarioDefault) : ItinerarioDefault;
+const DressCodeComp = data.dressCode?.componente ? (dressCodeMap[data.dressCode.componente] || DressCodeDefault) : DressCodeDefault;
+const RegalosComp = data.regalos?.componente ? (regalosMap[data.regalos.componente] || RegalosDefault) : RegalosDefault;
+const ReproductorComp = data.musica?.componente ? (reproductorMap[data.musica.componente] || MusicPlayerDefault) : MusicPlayerDefault;
+const GaleriaComp = data.galeria?.componente ? (galeriaMap[data.galeria.componente] || GaleriaDefault) : GaleriaDefault;
+const RSVPComp = data.rsvp?.componente ? (rsvpMap[data.rsvp.componente] || RSVPDefault) : RSVPDefault;
+const CalendarioComp = data.calendario?.componente ? (calendarioMap[data.calendario.componente] || null) : null;
+const FooterComp = data.footer?.componente ? (footerMap[data.footer.componente] || FooterDefault) : FooterDefault;
+const NinezComp = data.ninez?.componente ? (galeriaMap[data.ninez.componente] || GaleriaDefault) : null;
+
+// Determinar si usamos ubicación unificada o ceremonia/recepción por separado
+const usaUbicacionUnificada = UbicacionComp !== null;
 ---
 
 <XVDulceLayout title={data.hero.etiqueta} tema={data.tema}>
@@ -69,21 +291,8 @@ const { data } = Astro.props;
 
     <!-- Selector de Animación de Entrada -->
     {
-        data.sobre?.tipo === "sobre1" && (
-            <Sobre1
-                nombre={data.hero.nombre}
-                fecha={data.hero.fechaTexto}
-                evento={data.hero.etiqueta}
-                mensajeTop="Te invito a celebrar"
-                pases={data.pases}
-                {...data.sobre}
-            />
-        )
-    }
-
-    {
-        (!data.sobre?.tipo || data.sobre?.tipo === "default") && (
-            <Sobre1
+        showSobre && (
+            <Sobre
                 nombre={data.hero.nombre}
                 fecha={data.hero.fechaTexto}
                 evento={data.hero.etiqueta}
@@ -97,45 +306,115 @@ const { data } = Astro.props;
     <!-- Contenido Principal inicia oculto (el sobre lo muestra al animarse) -->
     <main
         id="invitation-content"
-        style="opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;"
+        style={showSobre 
+            ? "opacity: 0; transform: translateY(20px); transition: opacity 1s ease 1.5s, transform 1s ease 1.5s, visibility 0s 1.5s; visibility: hidden;" 
+            : "opacity: 1; transform: translateY(0); visibility: visible;"}
     >
-        <Hero data={data.hero} />
-        {data.carta && <Carta data={data.carta} bgImage={data.imagenesFondo?.carta} />}
-        {data.dedicatoria && <Dedicatoria data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
-        {data.countdown && <Countdown data={data.countdown} bgImage={data.imagenesFondo?.countdown} />}
-        {data.itinerario?.mostrar && <Itinerario data={data.itinerario} bgImage={data.imagenesFondo?.itinerario} />}
-        {data.eventos?.ceremonia && <Ceremonia data={data.eventos.ceremonia} bgImage={data.imagenesFondo?.ceremonia} />}
-        {data.eventos?.recepcion && <Recepcion data={data.eventos.recepcion} bgImage={data.imagenesFondo?.recepcion} />}
-        {data.dressCode && <DressCode data={data.dressCode} bgImage={data.imagenesFondo?.dressCode || data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.dressCodePos} />}
+        <!-- HERO -->
+        <HeroComp data={data.hero} />
+
+        <!-- CARTA / DEDICATORIA -->
+        {data.dedicatoria?.componente ? (
+            <!-- Si tiene componente alternativo de carta, usa ese con los datos de dedicatoria -->
+            <CartaComp data={{
+                ...data.dedicatoria,
+                mostrar: data.dedicatoria.mostrar !== false,
+                imagenFondo: data.imagenesFondo?.dedicatoria || data.dedicatoria.imagenFondo,
+            }} bgSize={data.imagenesFondo?.dedicatoriaSize} bgRepeat={data.imagenesFondo?.dedicatoriaRepeat} />
+        ) : (
+            <>
+                {data.carta && <CartaComp data={data.carta} bgImage={data.imagenesFondo?.carta} />}
+                {data.dedicatoria && <DedicatoriaDefault data={data.dedicatoria} bgImage={data.imagenesFondo?.dedicatoria} />}
+            </>
+        )}
+
+        <!-- SECCIÓN NIÑEZ (Recuerdos infantiles) -->
+        {NinezComp && data.ninez?.mostrar !== false && data.ninez?.imagenes && (
+            <NinezComp data={data.ninez.imagenes} titulo={data.ninez.titulo} bgImage={data.imagenesFondo?.ninez} bgColor={data.ninez?.colorFondo} bgSize={data.imagenesFondo?.ninezSize} bgRepeat={data.imagenesFondo?.ninezRepeat} mostrarMarca={data.ninez?.mostrarMarca} />
+        )}
+
+        <!-- COUNTDOWN -->
+        {data.countdown && <CountdownComp data={data.countdown} bgImage={data.imagenesFondo?.countdown} bgColor={data.countdown?.colorFondo} bgSize={data.imagenesFondo?.countdownSize} bgRepeat={data.imagenesFondo?.countdownRepeat} />}
+
+        <!-- CALENDARIO (Agregado abajo del countdown a peticion) -->
+        {CalendarioComp && data.calendario && <CalendarioComp calendario={data.calendario} bgImage={data.imagenesFondo?.calendario} bgColor={data.calendario?.colorFondo} bgSize={data.imagenesFondo?.calendarioSize} bgRepeat={data.imagenesFondo?.calendarioRepeat} />}
+
+        <!-- ITINERARIO -->
+        {data.itinerario && data.itinerario.mostrar !== false && (data.itinerario.componente ? (
+            <ItinerarioComp data={{ ...data.itinerario, itinerario: data.itinerario.eventos || data.itinerario.items || [] }} bgColor={data.itinerario?.colorFondo} bgImage={data.imagenesFondo?.itinerario} bgSize={data.imagenesFondo?.itinerarioSize} bgRepeat={data.imagenesFondo?.itinerarioRepeat} />
+        ) : (
+            data.itinerario.mostrar && <ItinerarioComp data={data.itinerario} bgImage={data.imagenesFondo?.itinerario} bgColor={data.itinerario?.colorFondo} bgSize={data.imagenesFondo?.itinerarioSize} bgRepeat={data.imagenesFondo?.itinerarioRepeat} />
+        ))}
+
+        <!-- UBICACIÓN (unificada o separada) -->
+        {usaUbicacionUnificada ? (
+            <UbicacionComp data={data.eventos} />
+        ) : (
+            <>
+                {data.eventos?.ceremonia && <CeremoniaDefault data={data.eventos.ceremonia} bgImage={data.imagenesFondo?.ceremonia} />}
+                {data.eventos?.recepcion && <RecepcionDefault data={data.eventos.recepcion} bgImage={data.imagenesFondo?.recepcion} />}
+            </>
+        )}
+
+        <!-- DRESS CODE -->
+        {data.dressCode && <DressCodeComp data={data.dressCode} bgImage={data.imagenesFondo?.dressCode} bgColor={data.dressCode?.colorFondo} bgSize={data.imagenesFondo?.dressCodeSize} bgRepeat={data.imagenesFondo?.dressCodeRepeat} />}
+
+        <!-- REGALOS -->
         {
             data.regalos && data.regalos.mostrar !== false && (
-                <Regalos data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgPos={data.imagenesFondo?.regalosPos} />
+                <RegalosComp data={data.regalos} nombre={data.hero.nombre} bgImage={data.imagenesFondo?.regalos} bgColor={data.regalos?.colorFondo} bgSize={data.imagenesFondo?.regalosSize} bgRepeat={data.imagenesFondo?.regalosRepeat} />
             )
         }
-        {data.lluviaDeSobres?.mostrar && <LluviaDeSobres data={data.lluviaDeSobres} />}
+
+        <!-- LLUVIA DE SOBRES (solo si existe, sin alternativa por ahora) -->
+        {data.lluviaDeSobres?.mostrar && <LluviaDeSobresDefault data={data.lluviaDeSobres} />}
+
+        <!-- SEPARADOR -->
         {data.hero.imagenFondo2 && <Separador image={data.hero.imagenFondo2} />}
-        {data.galeria?.mostrar && <Galeria data={data.galeria.imagenes} />}
+
+        <!-- GALERÍA -->
+        {data.galeria?.mostrar && <GaleriaComp data={data.galeria?.componente ? data.galeria.imagenes : data.galeria.imagenes} bgImage={data.imagenesFondo?.galeria} bgColor={data.galeria?.colorFondo} bgSize={data.imagenesFondo?.galeriaSize} bgRepeat={data.imagenesFondo?.galeriaRepeat} />}
+
+        <!-- RSVP -->
         {
             data.rsvp && (
-                <RSVP
+                <RSVPComp
                     data={{
                         ...data.rsvp,
                         urlCalendario: data.countdown?.urlCalendario,
                         pases: data.pases,
                     }}
                     bgImage={data.imagenesFondo?.rsvp}
+                    bgColor={data.rsvp?.colorFondo}
+                    colorPrincipal={data.tema?.colorPrincipal}
+                    colorTexto={data.rsvp?.colorTexto || data.tema?.colorTexto}
+                    bgSize={data.imagenesFondo?.rsvpSize}
+                    bgRepeat={data.imagenesFondo?.rsvpRepeat}
+                    nombre={data.footer?.nombres || data.hero?.nombre}
                 />
             )
         }
-        {data.compartirFotos?.mostrar && <CompartirFotos data={data.compartirFotos} bgImage={data.imagenesFondo?.compartirFotos} />}
+
+        <!-- CALENDARIO (solo si existe en el JSON, es nuevo) -->
+        {CalendarioComp && data.calendario && <CalendarioComp calendario={data.calendario} bgImage={data.imagenesFondo?.calendario} bgColor={data.calendario?.colorFondo} bgSize={data.imagenesFondo?.calendarioSize} bgRepeat={data.imagenesFondo?.calendarioRepeat} />}
+
+        <!-- COMPARTIR FOTOS -->
+        {data.compartirFotos?.mostrar && <CompartirFotosDefault data={data.compartirFotos} bgImage={data.imagenesFondo?.compartirFotos} />}
     </main>
 
     <div
         id="footer-content"
-        style="opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;"
+        style={showSobre 
+            ? "opacity: 0; transition: opacity 1s ease 1.5s; visibility: hidden;" 
+            : "opacity: 1; visibility: visible;"}
     >
-        <Footer data={{ ...data.footer, nombre: data.hero.nombre }} />
+        <FooterComp data={{ ...data.footer, nombre: data.hero.nombre, fechaVista: data.hero.fechaTexto }} />
     </div>
 
-    {data.musica?.url && <MusicPlayer url={data.musica.url} />}
+    <!-- REPRODUCTOR DE MÚSICA -->
+    {data.musica?.componente ? (
+        <ReproductorComp audioSrc={data.musica.url} />
+    ) : (
+        data.musica?.url && <MusicPlayerDefault url={data.musica.url} />
+    )}
 </XVDulceLayout>

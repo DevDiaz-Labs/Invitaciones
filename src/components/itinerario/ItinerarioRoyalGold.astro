@@ -1,0 +1,62 @@
+---
+// src/components/itinerario/ItinerarioRoyalGold.astro
+const { data } = Astro.props;
+const itinerary = data?.itinerario || [];
+
+// Helper to convert number to roman numerals for steps
+const toRoman = (num) => {
+  const map = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+  let roman = '';
+  for (let key in map) {
+    while (num >= map[key]) {
+      roman += key;
+      num -= map[key];
+    }
+  }
+  return roman;
+};
+---
+
+<section class="py-24 bg-[#0a231c] text-[#dfcfb0] px-6 font-sans relative overflow-hidden">
+  <!-- Elegant ornate frame borders in corners -->
+  <div class="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-[#dfcfb0]/30 pointer-events-none"></div>
+  <div class="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#dfcfb0]/30 pointer-events-none"></div>
+  <div class="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#dfcfb0]/30 pointer-events-none"></div>
+  <div class="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-[#dfcfb0]/30 pointer-events-none"></div>
+  
+  <div class="max-w-md mx-auto relative z-10 border border-[#dfcfb0]/15 p-8 rounded-2xl bg-[#081e18]/85">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-serif text-[#dfcfb0] font-light tracking-widest uppercase">
+        Itinerario
+      </h2>
+      <div class="flex items-center justify-center gap-3 mt-4">
+        <div class="w-8 h-px bg-[#dfcfb0]/30"></div>
+        <span class="text-xs italic font-serif text-[#dfcfb0]/70">Gala Imperial</span>
+        <div class="w-8 h-px bg-[#dfcfb0]/30"></div>
+      </div>
+    </div>
+    
+    <div class="space-y-12">
+      {itinerary.map((item, idx) => (
+        <div class="relative pl-10 border-l border-[#dfcfb0]/20 pb-2">
+          <!-- Roman Numeral Marker -->
+          <div class="absolute -left-[14px] top-0 w-7 h-7 rounded-full bg-[#0a231c] border border-[#dfcfb0]/30 flex items-center justify-center text-[9px] font-serif font-bold text-[#dfcfb0] tracking-tighter">
+            {toRoman(idx + 1)}
+          </div>
+          
+          <div>
+            <span class="text-sm font-serif font-semibold text-[#dfcfb0] block tracking-wider">
+              {item.time} hrs
+            </span>
+            <h3 class="text-base font-serif font-light text-[#dfcfb0] mt-1.5 tracking-wide">
+              {item.event}
+            </h3>
+            <p class="text-xs text-[#dfcfb0]/60 mt-1 leading-relaxed font-light font-serif italic">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

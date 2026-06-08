@@ -1,0 +1,53 @@
+---
+const { data } = Astro.props;
+---
+
+<footer class="bg-[#111b27] py-16 px-6 text-center select-none">
+  <div class="max-w-2xl mx-auto flex flex-col items-center">
+    <!-- Divider Line -->
+    <div class="w-36 h-[1px] bg-[#E8C3B9]/20 mb-8"></div>
+
+    <!-- Names -->
+    <h2 class="font-handwriting text-5xl md:text-6xl mb-6 text-[#E8C3B9] leading-tight font-light">
+      {data.nombres}
+    </h2>
+
+    <!-- Date -->
+    <p class="font-serif text-lg md:text-xl tracking-[0.25em] mb-6 uppercase text-[#ffffff]/80 font-light">
+      {data.fechaVista}
+    </p>
+
+    <!-- Hashtag -->
+    <a
+      href={`https://www.instagram.com/explore/tags/${data.hashtag.replace("#", "")}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-serif italic text-2xl text-[#C5A059] hover:text-[#E8C3B9] transition-colors duration-300 block mb-4"
+    >
+      {data.hashtag}
+    </a>
+
+    <!-- Divider Line -->
+    <div class="w-36 h-[1px] bg-[#E8C3B9]/20 mt-8 mb-8"></div>
+
+    <!-- DevDiaz Labs Credit -->
+    <a
+      href="https://wa.me/527824127509?text=Hola,%20vi%20una%20invitación%20digital%20y%20me%20gustaría%20más%20información."
+      target="_blank"
+      class="text-xs text-[#ffffff]/40 font-sans hover:text-[#C5A059] hover:opacity-100 transition-all duration-300"
+    >
+      Desarrollado con ♥ por DevDiaz-Labs
+    </a>
+  </div>
+</footer>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+  .font-handwriting {
+    font-family: 'Great Vibes', cursive;
+  }
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+</style>

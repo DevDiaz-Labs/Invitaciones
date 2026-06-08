@@ -1,0 +1,53 @@
+---
+// src/components/calendario/CalendarioXV.astro
+interface Props {
+  calendario?: {
+    google?: string;
+    apple?: string;
+  } | string;
+}
+
+const { calendario } = Astro.props;
+
+// Determine calendar link
+let link = "";
+if (typeof calendario === "string") {
+  link = calendario;
+} else if (calendario) {
+  link = calendario.google || calendario.apple || "";
+}
+---
+
+{link && (
+  <div class="pb-16 px-4 bg-[#fdfbf7] flex flex-col items-center w-full">
+    <h4 class="font-titulo text-lg md:text-xl mb-8 tracking-[0.4em] uppercase text-[var(--gold,#c5a059)]">Agendar fecha</h4>
+    <div class="mt-2">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-[11px] inline-block"
+      >
+        Agendar en mi Calendario
+      </a>
+    </div>
+  </div>
+)}
+
+<style>
+  .font-titulo {
+    font-family: 'Playfair Display', 'Noto Serif', serif;
+  }
+  .btn-gold {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    transition: all 0.4s ease;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  .btn-gold:hover {
+    background-color: var(--gold);
+    color: white;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+  }
+</style>

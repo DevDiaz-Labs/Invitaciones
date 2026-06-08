@@ -1,0 +1,156 @@
+---
+// src/components/dresscode/DressCodeJardinElegante.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+      coloresNoPermitidos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: 'Jardín Elegante',
+  subtitulo: 'Código: Formal Jardín. Mujeres: Vestido midi o largo de tela fluida. Hombres: Traje claro o de lino.',
+  nota: 'Favor de considerar que el evento será en jardín con césped, sugerimos calzado de tacón grueso o cuña.',
+  coloresSugeridos: ['#A9C2B0', '#D1C2A5', '#E6DFD3', '#8C9B8E', '#D9AF9E'],
+  coloresNoPermitidos: ['#FFFFFF', '#000000']
+};
+---
+
+<section class="py-16 px-6 bg-[#f4f7f5] text-[#3b473e] flex flex-col justify-center items-center relative overflow-hidden">
+  
+  <!-- Subtle green leaves backgrounds -->
+  <div class="absolute -top-10 -left-10 opacity-10 pointer-events-none text-[#7d9282]">
+    <svg class="w-40 h-40" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M40,10 C50,30 30,50 10,60 C20,40 30,20 40,10 Z M60,30 C70,45 55,60 40,70 C48,55 55,40 60,30 Z"/>
+    </svg>
+  </div>
+  <div class="absolute -bottom-10 -right-10 opacity-10 pointer-events-none text-[#7d9282] rotate-180">
+    <svg class="w-40 h-40" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M40,10 C50,30 30,50 10,60 C20,40 30,20 40,10 Z M60,30 C70,45 55,60 40,70 C48,55 55,40 60,30 Z"/>
+    </svg>
+  </div>
+
+  <div class="max-w-md w-full border border-[#d6e0d9] bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl text-center relative border-t-4 border-t-[#7d9282]">
+    
+    <span class="text-[10px] uppercase tracking-[0.3em] text-[#7d9282] font-semibold mb-2 block">Código de Vestimenta</span>
+    <h2 class="text-3xl font-serif tracking-wider text-[#354338] uppercase mb-1">
+      {dressCode.titulo}
+    </h2>
+
+    <div class="w-16 h-[2px] bg-[#c7d5cb] mx-auto my-4"></div>
+
+    <!-- Suit & Dress Side-by-Side SVG Illustration -->
+    <div class="flex justify-center items-center gap-12 my-8">
+      
+      <!-- Hombres Suit Card -->
+      <div class="flex flex-col items-center">
+        <div class="p-4 rounded-xl bg-[#f0f4f1] border border-[#e2ebd8] text-[#59695d]">
+          <svg class="w-14 h-16" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Suit jacket sketch -->
+            <path d="M15 20 L25 72 H 45 L 55 20 L 45 15 H 25 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <!-- Lapels -->
+            <path d="M25 15 L32 38 L25 46" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M45 15 L38 38 L45 46" stroke="currentColor" stroke-width="1.5"/>
+            <!-- Open collar V -->
+            <path d="M30 15 L35 22 L40 15" stroke="currentColor" stroke-width="1.2"/>
+            <!-- Tiny flower lapel pin -->
+            <circle cx="28" cy="24" r="1.5" fill="#d9af9e"/>
+            <path d="M28 25.5 V 29" stroke="#7d9282" stroke-width="1"/>
+            <!-- Pocket contour -->
+            <line x1="20" y1="36" x2="27" y2="36" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </div>
+        <span class="text-xs uppercase tracking-wider text-[#354338] font-semibold mt-3">Caballeros</span>
+        <span class="text-[9px] text-[#7d9282]">Guayabera o Traje Claro</span>
+      </div>
+
+      <!-- Mujeres Dress Card -->
+      <div class="flex flex-col items-center">
+        <div class="p-4 rounded-xl bg-[#f0f4f1] border border-[#e2ebd8] text-[#59695d]">
+          <svg class="w-14 h-16" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Flowing strap dress sketch -->
+            <path d="M22 15 C 24 18, 46 18, 48 15 L 45 35 C 41 40, 48 62, 54 75 C 48 76, 22 76, 16 75 C 22 62, 29 40, 25 35 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.02"/>
+            <!-- Shoulder Straps -->
+            <path d="M25 15 V 9" stroke="currentColor" stroke-width="1"/>
+            <path d="M45 15 V 9" stroke="currentColor" stroke-width="1"/>
+            <!-- V-neck detail -->
+            <path d="M25 15 C 30 21, 40 21, 45 15" stroke="currentColor" stroke-width="1.2"/>
+            <!-- Gasa layers / folds -->
+            <path d="M25 35 C 30 50, 24 66, 20 74" stroke="currentColor" stroke-width="0.8" stroke-dasharray="1 1"/>
+            <path d="M35 35 V 75" stroke="currentColor" stroke-width="0.8"/>
+            <path d="M45 35 C 40 50, 46 66, 50 74" stroke="currentColor" stroke-width="0.8" stroke-dasharray="1 1"/>
+          </svg>
+        </div>
+        <span class="text-xs uppercase tracking-wider text-[#354338] font-semibold mt-3">Damas</span>
+        <span class="text-[9px] text-[#7d9282]">Vestido Largo / Midi</span>
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <p class="text-xs md:text-sm font-light text-[#59695d] leading-relaxed mb-6 px-3">
+      {dressCode.subtitulo}
+    </p>
+
+    <!-- Color Palettes Section -->
+    {(dressCode.coloresSugeridos || dressCode.coloresNoPermitidos) && (
+      <div class="mt-6 pt-5 border-t border-[#e2ebd8] flex flex-col gap-4">
+        
+        {dressCode.coloresSugeridos && dressCode.coloresSugeridos.length > 0 && (
+          <div class="flex flex-col items-center">
+            <span class="text-[9px] uppercase tracking-wider text-[#7d9282] font-semibold mb-2">Paleta de Colores Sugerida</span>
+            <div class="flex gap-2 justify-center">
+              {dressCode.coloresSugeridos.map((color: string) => (
+                <div 
+                  class="w-7 h-7 rounded-full border border-white shadow-sm transform hover:scale-110 transition-all cursor-pointer group relative"
+                  style={`background-color: ${color};`}
+                >
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#354338] text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{color}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {dressCode.coloresNoPermitidos && dressCode.coloresNoPermitidos.length > 0 && (
+          <div class="flex flex-col items-center">
+            <span class="text-[9px] uppercase tracking-wider text-red-600/70 font-semibold mb-2">Evitar usar estos colores</span>
+            <div class="flex gap-2 justify-center">
+              {dressCode.coloresNoPermitidos.map((color: string) => (
+                <div class="relative group cursor-pointer">
+                  <div 
+                    class="w-7 h-7 rounded-full border border-white shadow-sm opacity-40"
+                    style={`background-color: ${color};`}
+                  />
+                  <!-- Cross overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-8 h-[1px] bg-red-600 rotate-45"></div>
+                  </div>
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#354338] text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Restringido</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
+    )}
+
+    {dressCode.nota && (
+      <div class="mt-6 pt-4 border-t border-[#d6e0d9]">
+        <p class="text-[10px] italic text-[#7d9282] leading-normal px-2">
+          * {dressCode.nota}
+        </p>
+      </div>
+    )}
+
+  </div>
+</section>

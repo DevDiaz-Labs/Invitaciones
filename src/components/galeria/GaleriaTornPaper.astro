@@ -1,0 +1,152 @@
+---
+// src/components/galeria/GaleriaTornPaper.astro
+const { data = [] } = Astro.props;
+---
+
+<section 
+  class="w-full py-16 px-4 bg-[#ede6db] relative overflow-hidden select-none"
+  x-data={`{ 
+    isOpen: false, 
+    currentIndex: 0, 
+    photos: ${JSON.stringify(data)},
+    openLightbox(index) {
+      this.currentIndex = index;
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.isOpen = false;
+      document.body.style.overflow = '';
+    },
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.photos.length;
+    },
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.photos.length) % this.photos.length;
+    }
+  }`}
+  @keydown.escape.window="closeLightbox()"
+  @keydown.arrow-right.window="next()"
+  @keydown.arrow-left.window="prev()"
+>
+  {/* Craft paper background grid line deco */}
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+  <div class="max-w-6xl mx-auto relative">
+    {/* Heading */}
+    <div class="text-center mb-16">
+      <h3 class="font-serif italic text-stone-800 text-3xl">Nuestro Álbum de Recortes</h3>
+      <p class="text-xs uppercase tracking-widest text-stone-600 mt-2">Detalles pegados con amor</p>
+      <div class="h-[1px] w-20 bg-stone-400 mx-auto mt-4"></div>
+    </div>
+
+    {data.length === 0 ? (
+      <div class="text-center text-stone-500 font-serif italic py-12">No hay fotos en esta galería</div>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 items-center justify-center">
+        {data.map((photo, index) => {
+          // Precalculate hand-taped rotation angles for scrapbook feel
+          const rotations = [-2.5, 3, -1.8, 2.2, -3.2, 1.5];
+          const rot = rotations[index % rotations.length];
+          
+          return (
+            <div 
+              class="relative bg-white p-4 pb-8 shadow-[0_10px_20px_rgba(0,0,0,0.06),0_3px_6px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.12),0_5px_10px_rgba(0,0,0,0.06)] border border-stone-200/40 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] cursor-pointer"
+              style={`transform: rotate(${rot}deg);`}
+              @click={`openLightbox(${index})`}
+            >
+              {/* Washi Tape overlay */}
+              <div 
+                class="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-amber-100/40 border border-amber-200/30 shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-[1px] pointer-events-none select-none z-20"
+                style={`transform: rotate(${-rot * 0.8}deg); clip-path: polygon(0% 15%, 5% 0%, 95% 5%, 100% 20%, 98% 85%, 90% 100%, 10% 95%, 0% 80%);`}
+              ></div>
+
+              {/* Photo Frame using torn-paper clip path */}
+              <div 
+                class="relative w-full aspect-[4/3] bg-stone-100 overflow-hidden"
+                style="clip-path: polygon(1% 2%, 12% 0%, 25% 3%, 38% 1%, 50% 4%, 62% 2%, 75% 5%, 88% 2%, 99% 4%, 97% 18%, 100% 35%, 98% 50%, 100% 68%, 97% 85%, 99% 97%, 88% 95%, 75% 98%, 62% 96%, 50% 99%, 38% 95%, 25% 97%, 12% 94%, 1% 96%, 3% 82%, 0% 50%, 2% 18%);"
+              >
+                <img 
+                  src={photo} 
+                  alt={`Scrapbook photo ${index + 1}`}
+                  class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
+                />
+                
+                {/* Paper texture shader overlay */}
+                <div class="absolute inset-0 bg-[#fbf6ef]/10 pointer-events-none mix-blend-overlay"></div>
+              </div>
+
+              {/* Handwritten text caption */}
+              <div class="mt-4 text-center">
+                <span class="font-serif italic text-stone-600 text-sm">
+                  Colección &bull; Recuerdo {index + 1}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    {/* Lightbox Modal */}
+    <template x-teleport="body">
+      <div 
+        x-show="isOpen" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/95 p-4 md:p-8 select-none"
+        style="display: none;"
+      >
+        {/* Close Button */}
+        <button 
+          @click="closeLightbox()"
+          class="absolute top-4 right-4 z-[110] p-3 text-stone-600 hover:text-stone-800 bg-[#ede6db] border border-stone-300 rounded-full transition-colors duration-200 shadow-md"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Navigation Controls */}
+        <button 
+          @click="prev()"
+          class="absolute left-4 z-[110] p-3 text-stone-600 hover:text-stone-800 bg-[#ede6db] border border-stone-300 rounded-full transition-colors duration-200 shadow-md"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <button 
+          @click="next()"
+          class="absolute right-4 z-[110] p-3 text-stone-600 hover:text-stone-800 bg-[#ede6db] border border-stone-300 rounded-full transition-colors duration-200 shadow-md"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+
+        {/* Content Display */}
+        <div class="relative max-w-full max-h-full flex flex-col items-center justify-center">
+          <div class="bg-white p-4 pb-10 shadow-2xl border border-stone-200 max-w-[95vw] max-h-[85vh] rounded-md">
+            <img 
+              x-bind:src="photos[currentIndex]" 
+              alt="Scrapbook Zoom" 
+              class="max-w-full max-h-[70vh] object-contain rounded"
+            />
+            <div class="mt-4 text-center">
+              <span class="font-serif italic text-stone-700 text-base">
+                Recuerdo de Nuestro Álbum &bull; <span x-text="currentIndex + 1"></span> de <span x-text="photos.length"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>

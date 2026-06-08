@@ -1,0 +1,98 @@
+---
+// src/components/carta/CartaGeometrica.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+---
+
+{data.mostrar && (
+<section class="cgeo-section">
+  <div class="cgeo-container">
+    <div class="cgeo-box">
+      <div class="cgeo-deco1"></div>
+      <div class="cgeo-deco2"></div>
+      <div class="cgeo-text" set:html={data.texto}></div>
+      {data.firmaTexto && (
+        <div class="cgeo-firma-container">
+          <span class="cgeo-firma">{data.firmaTexto}</span>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cgeo-section {
+    padding: 3rem 1rem;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  .cgeo-container {
+    max-width: 400px;
+    position: relative;
+  }
+  .cgeo-box {
+    background: #fff;
+    border: 2px solid #222;
+    padding: 3rem 2rem;
+    position: relative;
+    box-shadow: 8px 8px 0px #ff5722;
+  }
+  .cgeo-deco1 {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 30px;
+    height: 30px;
+    background: #ffc107;
+    border: 2px solid #222;
+  }
+  .cgeo-deco2 {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background: #03a9f4;
+    border: 2px solid #222;
+    border-radius: 50%;
+  }
+  .cgeo-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
+    text-align: center;
+  }
+  .cgeo-text :global(br) {
+    margin-bottom: 1rem;
+    display: block;
+    content: "";
+  }
+  .cgeo-firma-container {
+    margin-top: 2rem;
+    text-align: right;
+  }
+  .cgeo-firma {
+    background: #222;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>

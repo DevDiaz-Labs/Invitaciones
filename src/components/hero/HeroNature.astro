@@ -1,0 +1,24 @@
+---
+interface Props {
+  data: {
+    imagenFondo: string;
+    fechaVista: string;
+    fecha: string;
+    nombres: string;
+    frase: string;
+  };
+}
+const { data } = Astro.props;
+---
+<section class="relative w-full h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-[#e8eedd]">
+  <div class="absolute inset-0 z-0">
+    <img src={data.imagenFondo} alt="Fondo" class="w-full h-full object-cover object-center opacity-70" />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#2c3e2d]/80 via-[#2c3e2d]/40 to-transparent"></div>
+  </div>
+  <div class="relative z-10 flex flex-col items-center px-4 max-w-4xl w-full h-full justify-end pb-24">
+    <svg class="w-20 h-20 text-[#a3b899] mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2C12,2 8,6 8,12C8,18 12,22 12,22C12,22 16,18 16,12C16,6 12,2 12,2Z" /></svg>
+    <h1 class="font-serif text-6xl md:text-8xl text-white font-medium mb-4">{data.nombres}</h1>
+    <p class="text-lg md:text-xl font-light text-[#d0e0c8] italic max-w-2xl mb-6">"{data.frase}"</p>
+    <h2 class="text-xs md:text-sm tracking-[0.4em] uppercase text-[#a3b899] font-bold">{data.fechaVista}</h2>
+  </div>
+</section>

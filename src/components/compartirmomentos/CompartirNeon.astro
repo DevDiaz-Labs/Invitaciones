@@ -1,0 +1,48 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-24 px-6 bg-black relative overflow-hidden flex flex-col items-center">
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.1)_1px,transparent_1px)] bg-[size:20px_20px] [transform:perspective(500px)_rotateX(60deg)] origin-bottom opacity-30"></div>
+    
+    <div class="relative z-10 max-w-lg mx-auto text-center">
+      <div class="inline-block p-4 rounded-full border-2 border-[#0ff] mb-8" style="box-shadow: 0 0 15px #0ff, inset 0 0 15px #0ff;">
+        <svg class="w-10 h-10 text-[#0ff]" style="filter: drop-shadow(0 0 5px #0ff);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#f0f] to-[#0ff] mb-6" style="text-shadow: 0 0 10px rgba(255,0,255,0.5);">
+        {data.titulo || "Cyber Moments"}
+      </h2>
+      
+      <p class="text-white text-lg font-mono mb-10 tracking-wider" style="text-shadow: 0 0 5px #fff;" set:html={data.frase || "Sube tus archivos al mainframe"}>
+      </p>
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative inline-flex group"
+      >
+        <div class="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+        <button class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-mono rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+          {data.textoBoton || "UPLOAD"}
+        </button>
+      </a>
+    </div>
+  </section>
+)}

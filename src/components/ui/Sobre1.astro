@@ -168,68 +168,75 @@ const inicial = nombre.charAt(0).toUpperCase();
 </div>
 
 <script is:inline>
-    // Inicialización al cargar la página o cuando Astro navega (por view transitions)
-    document.addEventListener("DOMContentLoaded", initEnvelope);
-    document.addEventListener("astro:page-load", initEnvelope);
+    (function() {
+        function initEnvelope() {
+            const envelopeScreen = document.getElementById("envelope-screen");
+            const envelope = document.getElementById("envelope");
+            const flap = document.getElementById("flap");
+            const letter = document.getElementById("letter");
+            const seal = document.getElementById("seal");
+            const invitationContent = document.getElementById("invitation-content");
+            const footerContent = document.getElementById("footer-content");
 
-    function initEnvelope() {
-        const envelopeScreen = document.getElementById("envelope-screen");
-        const envelope = document.getElementById("envelope");
-        const flap = document.getElementById("flap");
-        const letter = document.getElementById("letter");
-        const seal = document.getElementById("seal");
-        const invitationContent = document.getElementById("invitation-content");
-        const footerContent = document.getElementById("footer-content");
+            if (!envelope || !flap || !letter) return; // Si no existe, no hacemos nada
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
 
-        if (!envelope || !flap || !letter) return; // Si no existe, no hacemos nada
+            // Asegurar que el contenido principal inicie oculto si existe la pantalla
+            if (envelopeScreen && invitationContent) {
+                invitationContent.style.opacity = "0";
+                invitationContent.style.visibility = "hidden";
+            }
 
-        // Asegurar que el contenido principal inicie oculto si existe la pantalla
-        if (envelopeScreen && invitationContent) {
-            invitationContent.style.opacity = "0";
-            invitationContent.style.visibility = "hidden";
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                // 1. Abrir sobre
+                flap.style.transform = "rotateX(180deg)";
+                if (seal) seal.style.opacity = "0";
+
+                // 2. Subir carta
+                letter.style.transform = "translateY(-160px)";
+                letter.style.zIndex = "25";
+
+                // 3. Esconder sobre y mostrar contenido
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1800);
+
+                // 4. Remover el sobre por completo del DOM
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3200);
+            });
         }
 
-        let opened = false;
-
-        envelope.addEventListener("click", () => {
-            if (opened) return;
-            opened = true;
-
-            // 1. Abrir sobre
-            flap.style.transform = "rotateX(180deg)";
-            if (seal) seal.style.opacity = "0";
-
-            // 2. Subir carta
-            letter.style.transform = "translateY(-160px)";
-            letter.style.zIndex = "25";
-
-            // 3. Esconder sobre y mostrar contenido
-            setTimeout(() => {
-                if (envelopeScreen) {
-                    envelopeScreen.style.opacity = "0";
-                    envelopeScreen.style.visibility = "hidden";
-                }
-
-                if (invitationContent) {
-                    invitationContent.style.opacity = "1";
-                    invitationContent.style.transform = "translateY(0)";
-                    invitationContent.style.visibility = "visible";
-                }
-
-                if (footerContent) {
-                    footerContent.style.opacity = "1";
-                    footerContent.style.visibility = "visible";
-                }
-
-                window.scrollTo(0, 0);
-            }, 1800);
-
-            // 4. Remover el sobre por completo del DOM
-            setTimeout(() => {
-                if (envelopeScreen) {
-                    envelopeScreen.style.display = "none";
-                }
-            }, 3200);
-        });
-    }
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelope);
+        } else {
+            initEnvelope();
+        }
+        document.addEventListener("astro:page-load", initEnvelope);
+    })();
 </script>

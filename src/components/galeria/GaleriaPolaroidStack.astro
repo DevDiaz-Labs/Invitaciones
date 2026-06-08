@@ -1,0 +1,139 @@
+---
+// src/components/galeria/GaleriaPolaroidStack.astro
+const { data = [], titulo = "Nuestra Historia" } = Astro.props;
+---
+
+<section class="relative w-full py-16 px-4 bg-[#faf8f5] overflow-hidden flex flex-col items-center justify-center min-h-[500px]">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 opacity-40 pointer-events-none" style="background-image: radial-gradient(#d3c7b9 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+  {data.length === 0 ? (
+    <div class="text-center text-gray-400 font-serif italic">No hay fotos en esta galería</div>
+  ) : (
+    <div 
+      class="relative w-full max-w-[320px] h-[400px] flex items-center justify-center cursor-pointer select-none"
+      x-data={`{
+        active: 0,
+        total: ${data.length},
+        swipeX: 0,
+        startX: 0,
+        isSwiping: false,
+        animating: false,
+        
+        startSwipe(e) {
+          if (this.animating) return;
+          this.startX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+          this.isSwiping = true;
+          this.swipeX = 0;
+        },
+        moveSwipe(e) {
+          if (!this.isSwiping || this.animating) return;
+          const currentX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+          this.swipeX = currentX - this.startX;
+        },
+        endSwipe(e) {
+          if (!this.isSwiping || this.animating) return;
+          this.isSwiping = false;
+          if (Math.abs(this.swipeX) > 50) {
+            this.discardCard(this.swipeX > 0 ? 1 : -1);
+          } else if (Math.abs(this.swipeX) < 10) {
+            // Fue un simple toque/clic
+            this.discardCard(-1);
+          } else {
+            this.swipeX = 0;
+          }
+        },
+        discardCard(dir) {
+          this.animating = true;
+          this.swipeX = dir * 400; // Slide out of screen
+          
+          setTimeout(() => {
+            // Move active to next
+            this.active = (this.active + 1) % this.total;
+            this.swipeX = 0;
+            this.animating = false;
+          }, 350);
+        }
+      }`}
+      @mousedown="startSwipe"
+      @mousemove="moveSwipe"
+      @mouseup="endSwipe"
+      @mouseleave="endSwipe"
+      @touchstart="startSwipe"
+      @touchmove="moveSwipe"
+      @touchend="endSwipe"
+    >
+      {data.map((photo, index) => {
+        // Pre-calculate natural offsets and rotations for a rustic pile look
+        const rotations = [-4, 3, -2, 5, -5, 2, -3, 4];
+        const rot = rotations[index % rotations.length];
+        
+        return (
+          <div
+            class="absolute w-[290px] h-[360px] bg-white p-4 pb-10 rounded shadow-md border border-gray-100 flex flex-col justify-between transition-all duration-300 ease-out origin-bottom select-none pointer-events-none"
+            style={`transform-origin: 50% 100%;`}
+            x-data={`{ idx: ${index} }`}
+            x-show="true"
+            x-bind:style={`
+              let diff = (idx - active + total) % total;
+              let isTop = diff === 0;
+              let isSecond = diff === 1;
+              let isThird = diff === 2;
+              
+              if (isTop) {
+                return {
+                  zIndex: 30,
+                  opacity: 1,
+                  transform: 'translate3d(' + swipeX + 'px, ' + (Math.abs(swipeX) * -0.05) + 'px, 0) rotate(' + (${rot} + (swipeX * 0.05)) + 'deg)',
+                  transition: isSwiping ? 'none' : 'transform 0.3s ease-out, opacity 0.3s ease-out'
+                };
+              } else if (isSecond) {
+                return {
+                  zIndex: 20,
+                  opacity: 0.95,
+                  transform: 'translate3d(0, -8px, 0) scale(0.96) rotate(${rot * 0.6}deg)',
+                  transition: 'transform 0.4s ease-out, opacity 0.4s ease-out'
+                };
+              } else if (isThird) {
+                return {
+                  zIndex: 10,
+                  opacity: 0.9,
+                  transform: 'translate3d(0, -16px, 0) scale(0.92) rotate(${rot * 0.3}deg)',
+                  transition: 'transform 0.4s ease-out, opacity 0.4s ease-out'
+                };
+              } else {
+                return {
+                  zIndex: 0,
+                  opacity: 0,
+                  transform: 'translate3d(0, -24px, 0) scale(0.88) rotate(0deg)',
+                  transition: 'transform 0.4s ease-out, opacity 0.4s ease-out'
+                };
+              }
+            `}
+          >
+            {/* Polaroid Photo Frame */}
+            <div class="relative w-full h-[260px] bg-gray-100 overflow-hidden rounded-sm pointer-events-none select-none">
+              <img 
+                src={photo} 
+                alt={`Foto de recuerdo ${index + 1}`}
+                class="w-full h-full object-cover select-none pointer-events-none"
+                draggable="false"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
+            </div>
+
+            {/* Handwriting or Serif style footer */}
+            <div class="pt-4 flex flex-col items-center justify-center">
+              <span class="font-serif italic text-gray-700 text-base tracking-wide pointer-events-none select-none">
+                {titulo} &bull; {index + 1}
+              </span>
+              <span class="text-[10px] uppercase tracking-widest text-amber-600/70 mt-1 pointer-events-none select-none">
+                Arrastra o toca para ver más
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )}
+</section>

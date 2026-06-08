@@ -1,0 +1,128 @@
+---
+// src/components/hero/HeroBoho.astro
+interface Props {
+  data: {
+    imagenFondo: string;
+    fechaVista: string;
+    fecha: string;
+    nombres: string;
+    frase: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="relative w-full h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+    .font-handwriting {
+      font-family: 'Great Vibes', cursive !important;
+    }
+    .text-boho-arena {
+      color: #F4F1DE !important;
+    }
+    .bg-boho-arena {
+      background-color: #F4F1DE !important;
+    }
+    .text-boho-terracota {
+      color: #CD5C5C !important;
+    }
+    .border-boho-arena\/30 {
+      border-color: rgba(244, 241, 222, 0.3) !important;
+    }
+    .from-boho-terracota\/20 {
+      --tw-gradient-from: rgba(205, 92, 92, 0.2) var(--tw-gradient-from-position) !important;
+      --tw-gradient-to: rgba(205, 92, 92, 0) var(--tw-gradient-to-position) !important;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+    }
+    .hover\:border-boho-dorado:hover {
+      border-color: #C5A059 !important;
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <!-- Fondo con filtro -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={data.imagenFondo} 
+      alt="Pareja" 
+      class="w-full h-full object-cover object-center" 
+    />
+    <!-- Filtro oscuro y cálido -->
+    <div class="absolute inset-0 bg-black/40 bg-gradient-to-t from-boho-terracota/20 to-black/30 backdrop-contrast-125"></div>
+  </div>
+
+  <div class="relative z-10 text-white px-4 fade-in flex flex-col items-center max-w-4xl pt-20">
+    <h2 class="text-xl md:text-2xl tracking-[0.2em] uppercase font-light mb-4 drop-shadow-md">
+      {data.fechaVista}
+    </h2>
+    <h1 class="font-handwriting text-7xl md:text-9xl text-boho-arena font-normal drop-shadow-lg mb-6 transform -rotate-2">
+      {data.nombres}
+    </h1>
+    <p class="text-lg md:text-2xl font-light italic mb-12 drop-shadow-md">
+      "{data.frase}"
+    </p>
+
+    <!-- Contador Simple para UI (lógica se puede agregar luego) -->
+    <div x-data="countdown()" x-init="init()" class="flex gap-4 md:gap-8 mb-12">
+      <template x-for="(value, unit) in getTime()" :key="unit">
+        <div class="flex flex-col items-center bg-black/20 backdrop-blur-sm rounded-lg p-3 md:p-4 border border-boho-arena/30 min-w-[70px] md:min-w-[90px]">
+          <span class="text-3xl md:text-5xl font-semibold mb-1" x-text="value"></span>
+          <span class="text-xs md:text-sm uppercase tracking-widest text-boho-arena" x-text="unit"></span>
+        </div>
+      </template>
+    </div>
+
+    <a href="#rsvp" class="bg-boho-arena text-boho-terracota px-8 py-3 rounded-full uppercase tracking-wider text-sm font-semibold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg border border-transparent hover:border-boho-dorado">
+      Confirmar mi compañía
+    </a>
+  </div>
+  
+  <!-- Hoja decorativa inferior (SVG de ejemplo) -->
+  <div class="absolute bottom-0 w-full flex justify-center pb-4 opacity-70 animate-bounce cursor-pointer" onclick="const next = document.getElementById('historia') || document.querySelector('section:nth-of-type(2)'); if(next) next.scrollIntoView({behavior: 'smooth'})">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-boho-arena" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+<script is:inline define:vars={{ targetDate: data.fecha }}>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('countdown', () => ({
+      targetDate: new Date(targetDate + 'T00:00:00').getTime(),
+      now: new Date().getTime(),
+      
+      init() {
+        setInterval(() => {
+          this.now = new Date().getTime();
+        }, 1000);
+      },
+      
+      getTime() {
+        let distance = this.targetDate - this.now;
+        if (distance < 0) return { días: '00', horas: '00', mins: '00', segs: '00' };
+        
+        let d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let s = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        return {
+          días: d.toString().padStart(2, '0'),
+          horas: h.toString().padStart(2, '0'),
+          mins: m.toString().padStart(2, '0'),
+          segs: s.toString().padStart(2, '0')
+        };
+      }
+    }))
+  })
+</script>
+

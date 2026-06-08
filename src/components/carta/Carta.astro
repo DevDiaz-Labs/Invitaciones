@@ -1,0 +1,156 @@
+---
+// src/components/carta/Carta.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    fuente?: string;
+    estilo?: "simple" | "recuadro";
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorBorde?: string;
+    colorFondoRecuadro?: string;
+    mostrarAdorno?: boolean;
+    tamanoTexto?: string;
+    colorTexto?: string;
+  };
+}
+
+const { data } = Astro.props;
+
+// Defaults
+const estilo = data.estilo || "simple";
+const firmaColor = data.firmaColor || "var(--gold, #c5a059)";
+const colorBorde = data.colorBorde || "rgba(0,0,0,0.08)";
+const colorFondoRecuadro = data.colorFondoRecuadro || "#fffdf8";
+const tamanoTexto = data.tamanoTexto || "text-lg md:text-xl";
+---
+
+{data.mostrar && (
+<section 
+    class="relative py-20 md:py-24 px-6 overflow-hidden text-center w-full" 
+>
+    <!-- Google Fonts Loader if custom font is requested -->
+    {data.fuente && data.fuente !== "Montserrat" && data.fuente !== "Playfair Display" && data.fuente !== "Great Vibes" && data.fuente !== "Dancing Script" && data.fuente !== "Sacramento" && (
+        <link href={`https://fonts.googleapis.com/css2?family=${data.fuente.replace(' ', '+')}:wght@300;400;700&display=swap`} rel="stylesheet" />
+    )}
+
+    {/* ============ SIMPLE STYLE ============ */}
+    {estilo === "simple" && (
+        <div class="max-w-3xl mx-auto space-y-8 relative z-10 observe-me fade-up">
+            <div 
+                class={`${tamanoTexto} leading-relaxed italic font-serif`}
+                style={`color: ${data.colorTexto || 'var(--dark-text, #2c2523)'}; ${data.fuente ? `font-family: '${data.fuente}', serif;` : ""}`}
+                set:html={data.texto}
+            >
+            </div>
+        </div>
+    )}
+
+    {/* ============ BOX STYLE (RECUADRO) ============ */}
+    {estilo === "recuadro" && (
+        <div class="max-w-md mx-auto relative z-10 observe-me fade-up px-2">
+            <div 
+                class="carta-recuadro"
+                style={`
+                    background: ${colorFondoRecuadro};
+                    border: 1px solid ${colorBorde};
+                    border-radius: 12px;
+                    padding: 3rem 1.5rem;
+                    box-shadow: 
+                        0 10px 30px rgba(0, 0, 0, 0.04),
+                        inset 0 0 60px rgba(0, 0, 0, 0.01);
+                    position: relative;
+                `}
+            >
+                {/* Upper decorative divider line */}
+                <div style={`width: 50px; height: 1px; background: ${firmaColor}; margin: 0 auto 2rem; opacity: 0.3;`}></div>
+
+                {/* Letter Body Text */}
+                <div 
+                    class={`${tamanoTexto} leading-[1.6] carta-texto font-serif`}
+                    style={`color: ${data.colorTexto || 'var(--dark-text, #2c2523)'}; opacity: ${data.colorTexto ? '1' : '0.9'}; ${data.fuente ? `font-family: '${data.fuente}', serif; letter-spacing: 0.02em;` : ""}`}
+                    set:html={data.texto}
+                >
+                </div>
+
+                {/* Signature / Author */}
+                {data.firmaTexto && (
+                    <div class="mt-8">
+                        <div style={`width: 40px; height: 1px; background: ${firmaColor}; margin: 0 auto 1.5rem; opacity: 0.2;`}></div>
+                        <p 
+                            class="text-sm md:text-base font-bold tracking-[0.2em] uppercase font-sans"
+                            style={`color: ${firmaColor};`}
+                        >
+                            {data.firmaTexto}
+                        </p>
+                    </div>
+                )}
+
+                {/* Decorative SVG Crown/Roses */}
+                {data.mostrarAdorno && (
+                    <div class="mt-6 flex justify-center">
+                        <svg 
+                            viewBox="0 0 200 80" 
+                            class="w-36 h-14 opacity-80"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <!-- Central Heart/Element -->
+                            <path d="M100 35 C100 20, 85 15, 85 25 C85 32, 100 42, 100 42 C100 42, 115 32, 115 25 C115 15, 100 20, 100 35Z" 
+                                  fill={firmaColor} opacity="0.85"/>
+                            
+                            <!-- Left scrolls -->
+                            <path d="M80 38 Q60 28, 40 35 Q25 40, 30 48 Q35 55, 50 48 Q60 43, 75 40" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.7"/>
+                            <path d="M75 42 Q55 35, 35 42 Q22 47, 28 53 Q34 58, 48 52" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Right scrolls -->
+                            <path d="M120 38 Q140 28, 160 35 Q175 40, 170 48 Q165 55, 150 48 Q140 43, 125 40" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.7"/>
+                            <path d="M125 42 Q145 35, 165 42 Q178 47, 172 53 Q166 58, 152 52" 
+                                  fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Left Rose/Leaf accent -->
+                            <circle cx="55" cy="45" r="6" fill={firmaColor} opacity="0.6"/>
+                            <circle cx="55" cy="45" r="3.5" fill={firmaColor} opacity="0.8"/>
+                            <path d="M49 47 Q47 52, 50 55" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.6"/>
+                            <path d="M52 49 Q48 54, 46 56" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Right Rose/Leaf accent -->
+                            <circle cx="145" cy="45" r="6" fill={firmaColor} opacity="0.6"/>
+                            <circle cx="145" cy="45" r="3.5" fill={firmaColor} opacity="0.8"/>
+                            <path d="M151 47 Q153 52, 150 55" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.6"/>
+                            <path d="M148 49 Q152 54, 154 56" fill="none" stroke="#5a7a3a" stroke-width="1" opacity="0.5"/>
+
+                            <!-- Small leaves -->
+                            <ellipse cx="45" cy="50" rx="3" ry="1.5" fill="#5a7a3a" opacity="0.3" transform="rotate(-30 45 50)"/>
+                            <ellipse cx="155" cy="50" rx="3" ry="1.5" fill="#5a7a3a" opacity="0.3" transform="rotate(30 155 50)"/>
+                        </svg>
+                    </div>
+                )}
+            </div>
+        </div>
+    )}
+</section>
+)}
+
+<style>
+    .carta-texto :global(br) {
+        content: "";
+        display: block;
+        margin-bottom: 1.2rem;
+    }
+
+    .carta-recuadro {
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .carta-recuadro:hover {
+        transform: translateY(-5px);
+    }
+
+    .carta-texto {
+        font-weight: 300;
+    }
+</style>

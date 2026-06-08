@@ -1,0 +1,266 @@
+---
+// src/components/sobre/SobreHilosVintage.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#a77953", // Kraft paper brown
+    colorSolapa = "#bf936c",
+    colorSolapaLado = "#8b5f39",
+    colorSello = "#6b21a8", // Purple details for buttons
+    colorSelloBorde = "#581c87",
+    colorCartaFondo = "#fffcf7",
+    colorCartaTexto = "#5c3d24",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#dfb48c",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Sobre Vintage de Hilos
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Toca el sobre para desatar e ingresar
+        </p>
+    </div>
+
+    <!-- 3D Perspective container -->
+    <div class="envelope-container" style="perspective: 2000px;">
+        <div
+            id="envelope-vintage"
+            class="envelope-wrapper"
+            style="position: relative; width: 340px; height: 230px; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Back board (Kraft) -->
+            <div
+                class="vintage-back"
+                style={`position: absolute; inset: 0; background: ${colorSobre}; border-radius: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);`}
+            >
+            </div>
+
+            <!-- Letter Inside -->
+            <div
+                id="letter-vintage"
+                style={`position: absolute; top: 8px; left: 12px; right: 12px; bottom: 8px; background: ${colorCartaFondo}; border-radius: 4px; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s; box-shadow: 0 0 10px rgba(0,0,0,0.15) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.4rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Front Side Panels (Overlap on sides) -->
+            <div
+                class="vintage-front-panels"
+                style="position: absolute; inset: 0; border-radius: 6px; overflow: hidden; pointer-events: none; z-index: 20;"
+            >
+                <div
+                    style={`position: absolute; top: 0; left: 0; bottom: 0; width: 30px; background: ${colorSolapaLado}; opacity: 0.85; box-shadow: 2px 0 5px rgba(0,0,0,0.1);`}
+                ></div>
+                <div
+                    style={`position: absolute; top: 0; right: 0; bottom: 0; width: 30px; background: ${colorSolapaLado}; opacity: 0.85; box-shadow: -2px 0 5px rgba(0,0,0,0.1);`}
+                ></div>
+                <div
+                    style={`position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: ${colorSolapa}; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); border-top: 1px solid rgba(255,255,255,0.05);`}
+                ></div>
+            </div>
+
+            <!-- Bottom Button (Fixed on body) -->
+            <div
+                id="button-bottom"
+                style="position: absolute; bottom: 85px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; background: #3d2314; border-radius: 50%; border: 3px double #d97706; z-index: 25; box-shadow: 0 2px 5px rgba(0,0,0,0.4);"
+            >
+                <!-- Central hole of the button -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; background: #1e1009; border-radius: 50%;"></div>
+            </div>
+
+            <!-- Top Flap (Rotates) -->
+            <div
+                id="flap-vintage"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 115px; transform-origin: top; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; z-index: 30;"
+            >
+                <div
+                    style={`position: absolute; inset: 0; background: ${colorSolapa}; border-radius: 6px 6px 0 0; clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 50% 100%, 0% 30%); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25)); backface-visibility: hidden;`}
+                >
+                </div>
+                
+                <!-- Top Button (Rotates with flap) -->
+                <div
+                    id="button-top"
+                    style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; background: #3d2314; border-radius: 50%; border: 3px double #d97706; z-index: 32; box-shadow: 0 2px 5px rgba(0,0,0,0.4); backface-visibility: hidden;"
+                >
+                    <!-- Central hole of the button -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; background: #1e1009; border-radius: 50%;"></div>
+                </div>
+            </div>
+
+            <!-- Wrapping String SVG -->
+            <svg
+                id="vintage-string"
+                style="position: absolute; top: 100px; left: 145px; width: 50px; height: 50px; z-index: 35; pointer-events: none; transition: transform 0.8s ease-in-out, opacity 0.6s ease; transform-origin: center;"
+                viewBox="0 0 50 50"
+            >
+                <!-- A nice loop connecting both buttons -->
+                <path
+                    d="M25 8 C35 8, 35 42, 25 42 C15 42, 15 8, 25 8 Z M25 8 C15 8, 15 42, 25 42 C35 42, 35 8, 25 8 Z"
+                    fill="none"
+                    stroke="#faeedd"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-dasharray="4,2"
+                    style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));"
+                />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeVintage() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-vintage");
+            const flap = document.querySelector("#flap-vintage");
+            const letter = document.querySelector("#letter-vintage");
+            const string = document.querySelector("#vintage-string");
+
+            if (!envelope || !flap || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Desatar el hilo (animar rotación y encogimiento)
+                if (string) {
+                    string.style.transform = "rotate(720deg) scale(0)";
+                    string.style.opacity = "0";
+                }
+
+                // 2. Abrir solapa con pequeño retardo para dejar que el hilo se desate
+                setTimeout(() => {
+                    flap.style.transform = "rotateX(180deg)";
+                }, 300);
+
+                // 3. Subir carta
+                setTimeout(() => {
+                    letter.style.transform = "translateY(-160px)";
+                    letter.style.zIndex = "25";
+                }, 800);
+
+                // 4. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 2000);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3400);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeVintage);
+        } else {
+            initEnvelopeVintage();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeVintage);
+    })();
+</script>

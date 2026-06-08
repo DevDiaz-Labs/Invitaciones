@@ -1,0 +1,89 @@
+---
+// src/components/dresscode/DressCodeEtiqueta.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: data?.estilo || 'Etiqueta Rigurosa',
+  subtitulo: data?.descripcion || 'Vestido largo de gala & Smoking / Traje oscuro',
+  nota: 'Se solicita evitar el color blanco y beige (exclusivo de la novia).'
+};
+---
+
+<section class="py-16 px-6 bg-gradient-to-b from-[#111] to-[#1c1c1c] text-white flex flex-col justify-center items-center relative overflow-hidden">
+  <!-- Subtle Background Decor -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full border border-amber-500"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full border border-amber-500"></div>
+  </div>
+
+  <div class="max-w-md w-full border border-amber-500/30 bg-black/40 backdrop-blur-md p-8 rounded-2xl shadow-2xl text-center relative">
+    <!-- Top Tiny Diamond -->
+    <div class="flex justify-center mb-6">
+      <div class="w-3 h-3 bg-amber-500 rotate-45"></div>
+    </div>
+
+    <span class="text-xs uppercase tracking-[0.25em] text-amber-500/80 font-semibold mb-2 block">Dress Code</span>
+    <h2 class="text-3xl font-serif tracking-widest text-amber-100 uppercase mb-3">{dressCode.titulo}</h2>
+    
+    <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto my-4"></div>
+
+    <!-- Dual Silhouette Graphics -->
+    <div class="flex justify-center items-center gap-12 my-8">
+      <!-- Tuxedo Card -->
+      <div class="flex flex-col items-center">
+        <div class="p-4 rounded-full bg-amber-500/5 border border-amber-500/20 mb-3 hover:border-amber-500/50 transition-colors">
+          <svg class="w-12 h-16 text-amber-400" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 24L24 64H40L54 24L44 12H20L10 24Z" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" />
+            <path d="M24 12H40L32 36L24 12Z" fill="white" stroke="currentColor" stroke-width="1.5" />
+            <path d="M20 12L28 34L24 36L14 18L20 12Z" fill="currentColor" />
+            <path d="M44 12L36 34L40 36L50 18L44 12Z" fill="currentColor" />
+            <path d="M26 16L32 20L38 16L36 24L32 22L28 24L26 16Z" fill="#111827" />
+            <circle cx="32" cy="20" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <span class="text-2xs uppercase tracking-widest text-amber-200/60 font-light">Caballeros</span>
+      </div>
+
+      <!-- Dress Card -->
+      <div class="flex flex-col items-center">
+        <div class="p-4 rounded-full bg-amber-500/5 border border-amber-500/20 mb-3 hover:border-amber-500/50 transition-colors">
+          <svg class="w-12 h-16 text-amber-400" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 30L10 70C18 73 46 73 54 70L44 30H20Z" fill="currentColor" fill-opacity="0.05" stroke="currentColor" stroke-width="1.5" />
+            <path d="M22 14C24 16 28 17 32 17C36 17 40 16 42 14L44 30H20L22 14Z" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="1.5" />
+            <path d="M24 8V14" stroke="currentColor" stroke-width="1.5" />
+            <path d="M40 8V14" stroke="currentColor" stroke-width="1.5" />
+            <path d="M20 29C28 31 36 31 44 29" stroke="currentColor" stroke-width="2" />
+            <path d="M26 30L20 68" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+            <path d="M32 30V69" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+            <path d="M38 30L44 68" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" />
+          </svg>
+        </div>
+        <span class="text-2xs uppercase tracking-widest text-amber-200/60 font-light">Damas</span>
+      </div>
+    </div>
+
+    <p class="text-sm md:text-base font-light text-gray-300 px-4 leading-relaxed mb-6">
+      {dressCode.subtitulo}
+    </p>
+
+    {dressCode.nota && (
+      <div class="border-t border-amber-500/10 pt-4 mt-4">
+        <p class="text-xs italic text-amber-500/70">
+          * {dressCode.nota}
+        </p>
+      </div>
+    )}
+  </div>
+</section>

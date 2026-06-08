@@ -1,0 +1,69 @@
+---
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  fecha?: string;
+  urlMapa: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<section class="py-16 px-4 bg-gray-900 text-green-400 font-mono relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, .3) 25%, rgba(0, 255, 0, .3) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .3) 75%, rgba(0, 255, 0, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 255, 0, .3) 25%, rgba(0, 255, 0, .3) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .3) 75%, rgba(0, 255, 0, .3) 76%, transparent 77%, transparent); background-size: 50px 50px;"></div>
+  
+  <div class="max-w-4xl mx-auto relative z-10">
+    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 drop-shadow-[0_0_10px_rgba(74,222,128,0.8)] uppercase">Ubicación</h2>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {ceremonia && (
+        <div class="border-2 border-green-500 p-6 bg-black/60 shadow-[0_0_15px_rgba(34,197,94,0.5)] hover:shadow-[0_0_25px_rgba(34,197,94,0.8)] transition-all">
+          <h3 class="text-2xl font-bold mb-4 text-green-300 uppercase">&gt; {ceremonia.titulo || "Ceremonia"}</h3>
+          <p class="text-xl mb-2 text-white">[{ceremonia.hora}]</p>
+          <p class="mb-1 text-green-200">{ceremonia.lugar}</p>
+          <p class="text-sm mb-6 text-gray-400">{ceremonia.direccion}</p>
+          
+          {ceremonia.iframeMapa && (
+            <div class="w-full h-48 mb-6 border border-green-500/50 opacity-80 hover:opacity-100 transition-opacity filter sepia-[0.8] hue-rotate-[90deg]">
+              <iframe src={ceremonia.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black uppercase tracking-wider font-bold transition-colors">
+            INICIAR NAVEGACIÓN
+          </a>
+        </div>
+      )}
+
+      {recepcion && (
+        <div class="border-2 border-blue-500 p-6 bg-black/60 shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all">
+          <h3 class="text-2xl font-bold mb-4 text-blue-300 uppercase">&gt; {recepcion.titulo || "Recepción"}</h3>
+          <p class="text-xl mb-2 text-white">[{recepcion.hora}]</p>
+          <p class="mb-1 text-blue-200">{recepcion.lugar}</p>
+          <p class="text-sm mb-6 text-gray-400">{recepcion.direccion}</p>
+          
+          {recepcion.iframeMapa && (
+            <div class="w-full h-48 mb-6 border border-blue-500/50 opacity-80 hover:opacity-100 transition-opacity filter sepia-[0.8] hue-rotate-[180deg]">
+              <iframe src={recepcion.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-black uppercase tracking-wider font-bold transition-colors">
+            INICIAR NAVEGACIÓN
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

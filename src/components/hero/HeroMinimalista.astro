@@ -1,0 +1,103 @@
+---
+// HeroMini.astro
+const { data } = Astro.props;
+
+// Parámetros por defecto extraídos del código React
+const bgImage = data?.bgImage || "https://images.unsplash.com/photo-1529636798458-92182e662485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80";
+const nombres = data?.nombres || "Sofía & Mateo";
+const fecha = data?.fechaVista || "24 de Octubre, 2026";
+const weddingDateString = data?.fechaRaw || "2026-10-24T17:00:00"; 
+const calendarUrl = data?.calendarUrl || "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Sof%C3%ADa+y+Mateo&dates=20261024T230000Z/20261025T080000Z&details=Nuestra+mayor+aventura+comienza+aqu%C3%AD.&location=Hacienda+San+Carlos";
+---
+
+<header class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={bgImage} 
+      alt="Pareja" 
+      class="w-full h-full object-cover object-top opacity-90"
+    />
+    <div class="absolute inset-0 bg-black/30"></div> <!-- Overlay sutil -->
+  </div>
+  
+  <div class="relative z-10 text-center text-white px-4 mt-20">
+    <h2 class="text-sm md:text-base tracking-[0.3em] uppercase mb-6 font-light">Nos casamos</h2>
+    <h1 class="text-6xl md:text-8xl font-serif mb-6 drop-shadow-md">{nombres}</h1>
+    <p class="text-xl md:text-2xl font-light italic mb-12">{fecha}</p>
+    
+    <a 
+      href={calendarUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-8 py-3 border border-white/80 hover:bg-white hover:text-stone-900 transition-colors duration-300 rounded uppercase tracking-wider text-sm"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+        <line x1="10" y1="14" x2="14" y2="14"></line>
+        <line x1="12" y1="12" x2="12" y2="16"></line>
+      </svg>
+      Agendar Fecha
+    </a>
+  </div>
+
+  <!-- Cuenta Regresiva Flotante -->
+  <div class="absolute bottom-10 z-10 w-full px-4" data-wedding-date={weddingDateString} id="countdown-container">
+    <div class="max-w-2xl mx-auto grid grid-cols-4 gap-4 text-center text-white backdrop-blur-md bg-white/10 p-6 rounded-lg border border-white/20">
+      <div class="flex flex-col">
+        <span class="text-3xl md:text-5xl font-serif" id="cd-days">0</span>
+        <span class="text-xs uppercase tracking-widest mt-2">Días</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl md:text-5xl font-serif" id="cd-hours">0</span>
+        <span class="text-xs uppercase tracking-widest mt-2">Hrs</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl md:text-5xl font-serif" id="cd-minutes">0</span>
+        <span class="text-xs uppercase tracking-widest mt-2">Min</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-3xl md:text-5xl font-serif" id="cd-seconds">0</span>
+        <span class="text-xs uppercase tracking-widest mt-2">Seg</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('countdown-container');
+    if (!container) return;
+
+    const weddingDateStr = container.dataset.weddingDate;
+    const weddingDate = new Date(weddingDateStr!).getTime();
+
+    const elDays = document.getElementById('cd-days');
+    const elHours = document.getElementById('cd-hours');
+    const elMins = document.getElementById('cd-minutes');
+    const elSecs = document.getElementById('cd-seconds');
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        if(elDays) elDays.innerText = '0';
+        if(elHours) elHours.innerText = '0';
+        if(elMins) elMins.innerText = '0';
+        if(elSecs) elSecs.innerText = '0';
+        return;
+      }
+
+      if(elDays) elDays.innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString();
+      if(elHours) elHours.innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString();
+      if(elMins) elMins.innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString();
+      if(elSecs) elSecs.innerText = Math.floor((distance % (1000 * 60)) / 1000).toString();
+    };
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  });
+</script>

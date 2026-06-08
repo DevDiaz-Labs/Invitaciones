@@ -1,0 +1,245 @@
+---
+// src/components/sobre/SobreClasico.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#7a0000",
+    colorSolapa = "#e6d2b8",
+    colorSolapaLado = "#d4c0a8",
+    colorSello = "#b30000",
+    colorSelloBorde = "#8c0000",
+    colorCartaFondo = "#fffdfc",
+    colorCartaTexto = "#b30000",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#e6d2b8",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+const inicial = nombre ? nombre.charAt(0).toUpperCase() : "";
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Tienes una invitación especial
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Toca el sobre para abrir
+        </p>
+    </div>
+
+    <div class="envelope-container" style="perspective: 2000px;">
+        <div
+            id="envelope-clasico"
+            class="envelope-wrapper"
+            style="position: relative; width: 340px; height: 230px; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Back -->
+            <div
+                class="env-back"
+                style={`position: absolute; inset: 0; background: ${colorSobre}; border-radius: 6px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);`}
+            >
+            </div>
+
+            <!-- Letter Inside -->
+            <div
+                id="letter-clasico"
+                class="env-letter"
+                style={`position: absolute; top: 5px; left: 10px; right: 10px; bottom: 5px; background: ${colorCartaFondo}; border-radius: 4px; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s; box-shadow: 0 0 10px rgba(0,0,0,0.2) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.5rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Flaps Container -->
+            <div
+                class="env-flaps"
+                style="position: absolute; inset: 0; border-radius: 6px; overflow: hidden; pointer-events: none; z-index: 20;"
+            >
+                <div
+                    class="env-flap-left"
+                    style={`position: absolute; top: 0; left: 0; border-top: 115px solid transparent; border-bottom: 115px solid transparent; border-left: 170px solid ${colorSolapaLado};`}
+                >
+                </div>
+                <div
+                    class="env-flap-right"
+                    style={`position: absolute; top: 0; right: 0; border-top: 115px solid transparent; border-bottom: 115px solid transparent; border-right: 170px solid ${colorSolapaLado};`}
+                >
+                </div>
+                <div
+                    class="env-flap-bottom"
+                    style={`position: absolute; bottom: 0; left: 0; border-left: 170px solid transparent; border-right: 170px solid transparent; border-bottom: 140px solid ${colorSolapa}; filter: drop-shadow(0 -2px 4px rgba(0,0,0,0.1));`}
+                >
+                </div>
+            </div>
+
+            <!-- Top Flap (Rotates) -->
+            <div
+                id="flap-clasico"
+                class="env-top-wrapper"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 140px; transform-origin: top; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; z-index: 30;"
+            >
+                <div
+                    class="env-top-flap"
+                    style={`position: absolute; top: 0; left: 0; border-left: 170px solid transparent; border-right: 170px solid transparent; border-top: 130px solid ${colorSolapa}; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); backface-visibility: hidden;`}
+                >
+                </div>
+                <div
+                    class="wax-seal"
+                    id="seal-clasico"
+                    style={`position: absolute; top: 105px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: ${colorSello}; border-radius: 50%; box-shadow: inset 0 0 8px #5c0000, 0 4px 8px rgba(0,0,0,0.4); border: 2px solid ${colorSelloBorde}; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; font-weight: 400;`}
+                >
+                    <span
+                        style={`font-family: ${fuenteNombres}; color: #faeedd; font-size: 24px;`}
+                    >
+                        {inicial}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeClasico() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-clasico");
+            const flap = document.querySelector("#flap-clasico");
+            const letter = document.querySelector("#letter-clasico");
+            const seal = document.querySelector("#seal-clasico");
+
+            if (!envelope || !flap || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Abrir solapa
+                flap.style.transform = "rotateX(180deg)";
+                if (seal) {
+                    seal.style.opacity = "0";
+                    seal.style.transform = "translateX(-50%) scale(0.8)";
+                    seal.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+                }
+
+                // 2. Subir carta
+                letter.style.transform = "translateY(-160px)";
+                letter.style.zIndex = "25";
+
+                // 3. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1800);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3200);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeClasico);
+        } else {
+            setTimeout(initEnvelopeClasico, 0);
+        }
+        document.addEventListener("astro:page-load", initEnvelopeClasico);
+    })();
+</script>

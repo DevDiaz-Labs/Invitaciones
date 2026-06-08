@@ -1,0 +1,159 @@
+---
+// src/components/galeria/GaleriaAsymmetricGrid.astro
+const { data = [] } = Astro.props;
+---
+
+<section 
+  class="w-full py-20 px-6 bg-[#FAF9F6]"
+  x-data={`{ 
+    isOpen: false, 
+    currentIndex: 0, 
+    photos: ${JSON.stringify(data)},
+    openLightbox(index) {
+      this.currentIndex = index;
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.isOpen = false;
+      document.body.style.overflow = '';
+    },
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.photos.length;
+    },
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.photos.length) % this.photos.length;
+    }
+  }`}
+  @keydown.escape.window="closeLightbox()"
+  @keydown.arrow-right.window="next()"
+  @keydown.arrow-left.window="prev()"
+>
+  <div class="max-w-5xl mx-auto">
+    {/* Editorial Title Block */}
+    <div class="mb-16 border-l-2 border-stone-850 pl-6 py-2">
+      <p class="text-xs uppercase tracking-[0.2em] text-stone-500 font-sans">Portafolio de Recuerdos</p>
+      <h2 class="font-serif text-3xl md:text-4xl text-stone-850 italic mt-2">Detalles & Emociones</h2>
+    </div>
+
+    {data.length === 0 ? (
+      <div class="text-center text-stone-400 font-serif italic py-12">No hay fotos en esta galería</div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-stretch">
+        {data.map((photo, index) => {
+          // Define a beautiful layout pattern using Tailwind grid and offset spans
+          const pattern = index % 5;
+          let layoutClass = "";
+          let wrapperClass = "";
+          
+          switch (pattern) {
+            case 0: // Tall Focal Item
+              layoutClass = "md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto";
+              wrapperClass = "relative";
+              break;
+            case 1: // Offset Side Item
+              layoutClass = "md:col-span-1 md:row-span-1 aspect-[3/4] md:translate-y-8";
+              wrapperClass = "relative";
+              break;
+            case 2: // Standard Item
+              layoutClass = "md:col-span-1 md:row-span-1 aspect-[1/1]";
+              wrapperClass = "relative";
+              break;
+            case 3: // Vertical Tall Item
+              layoutClass = "md:col-span-1 md:row-span-2 aspect-[2/3] md:-translate-y-6";
+              wrapperClass = "relative";
+              break;
+            case 4: // Horizontal Wide Item
+              layoutClass = "md:col-span-2 md:row-span-1 aspect-[16/9] md:translate-y-2";
+              wrapperClass = "relative";
+              break;
+            default:
+              layoutClass = "aspect-[1/1]";
+              wrapperClass = "relative";
+          }
+          
+          return (
+            <div 
+              class={`group relative overflow-hidden bg-stone-100 border border-stone-200/50 p-2 md:p-3 transition-all duration-700 hover:shadow-xl hover:bg-white cursor-pointer ${layoutClass}`}
+              @click={`openLightbox(${index})`}
+            >
+              {/* Image Frame Wrapper */}
+              <div class="relative w-full h-full overflow-hidden">
+                <img 
+                  src={photo} 
+                  alt={`Editorial ${index + 1}`}
+                  class="w-full h-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                
+                {/* Minimal Overlay & Elegant Numbering */}
+                <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-colors duration-500"></div>
+                <div class="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <span class="font-serif italic text-white text-lg drop-shadow-md">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    {/* Lightbox Modal */}
+    <template x-teleport="body">
+      <div 
+        x-show="isOpen" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-stone-950/95 p-4 md:p-8 select-none"
+        style="display: none;"
+      >
+        {/* Close Button */}
+        <button 
+          @click="closeLightbox()"
+          class="absolute top-4 right-4 z-[110] p-3 text-stone-300 hover:text-white bg-stone-900/60 rounded-full transition-colors duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Navigation Controls */}
+        <button 
+          @click="prev()"
+          class="absolute left-4 z-[110] p-3 text-stone-300 hover:text-white bg-stone-900/60 rounded-full transition-colors duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <button 
+          @click="next()"
+          class="absolute right-4 z-[110] p-3 text-stone-300 hover:text-white bg-stone-900/60 rounded-full transition-colors duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+
+        {/* Content Display */}
+        <div class="relative max-w-full max-h-full flex flex-col items-center justify-center">
+          <img 
+            x-bind:src="photos[currentIndex]" 
+            alt="Editorial Zoom" 
+            class="max-w-[95vw] max-h-[85vh] object-contain shadow-2xl border border-stone-800"
+          />
+          <div class="mt-4 text-stone-400 font-serif italic text-sm tracking-widest">
+            Detalle <span x-text="currentIndex + 1"></span> &mdash; <span x-text="photos.length"></span>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>

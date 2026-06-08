@@ -1,0 +1,55 @@
+---
+// LluviaDeSobres.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo: string;
+    frase: string;
+    imagen: string;
+  };
+}
+const { data } = Astro.props;
+---
+
+{data.mostrar && data.imagen && (
+  <section
+    class="relative w-full overflow-hidden observe-me fade-up"
+    style={`
+      background-image: url('${data.imagen}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 600px;
+    `}
+  >
+    <!-- Sin overlay requerido por el usuario -->
+
+    <!-- Contenido sobre la imagen -->
+    <div class="relative z-10 flex flex-col items-center justify-between h-full min-h-[600px] py-20 px-6 text-center">
+
+      <!-- Título arriba -->
+      <div class="w-full">
+        <h3
+          class="font-titulo text-5xl md:text-6xl tracking-wide text-[var(--gold)]"
+        >
+          {data.titulo}
+        </h3>
+        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto;"></div>
+      </div>
+
+      <!-- Espacio central (aquí está el sobre en la imagen) -->
+      <div class="flex-1"></div>
+
+      <!-- Frase abajo -->
+      <div class="w-full max-w-md mx-auto">
+        <div style="height: 1px; width: 100px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 1.2rem;"></div>
+        <p
+          class="italic text-base md:text-lg leading-relaxed text-[var(--dark-text)]/90"
+        >
+          {data.frase}
+        </p>
+      </div>
+
+    </div>
+  </section>
+)}

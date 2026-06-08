@@ -1,0 +1,42 @@
+---
+interface Props {
+  data: {
+    mensaje: string;
+    banco?: string;
+    tiendaURL?: string;
+  };
+}
+const { data } = Astro.props;
+const mensaje = data?.mensaje || "";
+const banco = data?.banco || "";
+const tiendaURL = data?.tiendaURL || "#";
+---
+<section class="py-24 px-6 bg-[#FAFAFA] relative overflow-hidden">
+  <!-- Geometric shapes -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-coral-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
+  
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-black text-gray-900 tracking-tighter mb-4">REGALOS</h2>
+      <div class="w-16 h-2 bg-gradient-to-r from-teal-400 to-rose-400 mx-auto mb-8"></div>
+      <p class="text-lg text-gray-600 font-medium max-w-2xl mx-auto">{mensaje}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-tr-3xl rounded-bl-3xl shadow-[8px_8px_0px_0px_rgba(20,184,166,0.2)] border-2 border-teal-100">
+        <h3 class="text-2xl font-bold text-teal-800 mb-4 flex items-center gap-2">
+          <div class="w-3 h-3 bg-teal-400 rotate-45"></div> Banco
+        </h3>
+        <pre class="font-sans text-gray-600 whitespace-pre-wrap">{banco}</pre>
+      </div>
+      
+      <div class="bg-white p-8 rounded-tl-3xl rounded-br-3xl shadow-[8px_8px_0px_0px_rgba(251,113,133,0.2)] border-2 border-rose-100 flex flex-col justify-center">
+        <h3 class="text-2xl font-bold text-rose-800 mb-4 flex items-center gap-2">
+          <div class="w-3 h-3 bg-rose-400 rounded-full"></div> Tienda
+        </h3>
+        <a href={tiendaURL} target="_blank" class="block text-center bg-rose-500 text-white font-bold py-4 rounded-xl hover:bg-rose-600 hover:-translate-y-1 transition-transform shadow-lg">Ir a la Mesa</a>
+      </div>
+    </div>
+  </div>
+</section>

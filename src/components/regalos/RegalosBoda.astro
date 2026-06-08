@@ -1,0 +1,61 @@
+---
+// src/components/regalos/RegalosBoda.astro
+interface Props {
+  data: {
+    mensaje: string;
+    banco?: string;
+    tiendaURL?: string;
+  };
+}
+
+const { data } = Astro.props;
+
+const mensaje = data?.mensaje || "Nuestra mayor alegría es tu presencia, pero si deseas tener un detalle...";
+const banco = data?.banco || "Banco: BBVA\nCuenta: 1234 5678 9012\nCLABE: 012 345 6789 0123";
+const tiendaURL = data?.tiendaURL || "https://amazon.com.mx/wedding";
+---
+
+<section class="py-24 px-6 bg-white relative text-center">
+  <div class="max-w-4xl mx-auto space-y-12">
+    
+    <!-- Icono decorativo de casa/sobre -->
+    <div class="inline-block p-4 rounded-full bg-[#81B29A]/10 text-[#81B29A] mb-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5m0 0l-1.5 1m1.5-1l1.5-1m-1.5 1L12 16" />
+      </svg>
+    </div>
+    
+    <!-- Mensaje Emocional -->
+    <p class="text-2xl text-stone-600 italic mb-8 max-w-2xl mx-auto font-light leading-relaxed">
+      "{mensaje}"
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto text-center">
+      
+      <!-- Tarjeta Transferencia -->
+      <div class="bg-stone-50/50 rounded-3xl p-8 shadow-sm border border-stone-100 flex flex-col items-center justify-center">
+        <h4 class="text-xl font-serif text-[#CD5C5C] mb-4 tracking-wide uppercase font-semibold">
+          Transferencia
+        </h4>
+        <pre class="text-base text-stone-600 font-sans whitespace-pre-wrap leading-relaxed">{banco}</pre>
+      </div>
+      
+      <!-- Tarjeta Mesa de Regalos -->
+      <div class="bg-stone-50/50 rounded-3xl p-8 shadow-sm border border-stone-100 flex flex-col items-center justify-center">
+        <h4 class="text-xl font-serif text-[#81B29A] mb-6 tracking-wide uppercase font-semibold">
+          Mesa de Regalos
+        </h4>
+        <a 
+          href={tiendaURL} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="bg-[#F4F1DE] hover:bg-[#81B29A] text-stone-700 hover:text-white px-8 py-3.5 rounded-full uppercase tracking-wider text-xs font-semibold hover:shadow-md transition-all duration-300 shadow-sm"
+        >
+          Ver Regalos
+        </a>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>

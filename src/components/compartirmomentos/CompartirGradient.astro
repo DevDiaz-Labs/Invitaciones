@@ -1,0 +1,47 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-24 px-6 relative overflow-hidden bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
+    <div class="relative z-10 max-w-md mx-auto text-center text-white">
+      
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-8 shadow-xl">
+        <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+        </svg>
+      </div>
+
+      <h2 class="text-4xl font-extrabold mb-4 font-['Plus_Jakarta_Sans'] tracking-tight drop-shadow-md">
+        {data.titulo || "Comparte la Magia"}
+      </h2>
+      
+      <p class="text-white/90 text-lg mb-10 font-light drop-shadow-sm" set:html={data.frase || "Sube tus fotos a nuestra galería compartida"}>
+      </p>
+
+      {data.hashtag && (
+        <p class="text-white font-bold text-xl mb-8 drop-shadow-md">{data.hashtag}</p>
+      )}
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block w-full bg-white text-pink-600 font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all"
+      >
+        {data.textoBoton || "Añadir Fotos"}
+      </a>
+    </div>
+  </section>
+)}

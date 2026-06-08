@@ -1,0 +1,241 @@
+---
+// src/components/sobre/SobrePergamino.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#854d0e", // Antique gold/bronze caps
+    colorSolapa = "#fef08a",
+    colorSolapaLado = "#ca8a04",
+    colorSello = "#991b1b", // Royal red seal ribbon
+    colorSelloBorde = "#7f1d1d",
+    colorCartaFondo = "#fefcbf", // Parchment paper tone
+    colorCartaTexto = "#451a03",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#ca8a04",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Pergamino Real
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Toca el pergamino para desenrollar
+        </p>
+    </div>
+
+    <!-- Scroll Container -->
+    <div class="envelope-container" style="perspective: 2000px; width: 340px; height: 320px; position: relative; display: flex; align-items: center; justify-content: center;">
+        <div
+            id="envelope-scroll"
+            class="envelope-wrapper"
+            style="position: relative; width: 340px; height: 60px; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+        >
+            
+            <!-- Parchment Paper Body (Expands Vertically) -->
+            <div
+                id="parchment-paper"
+                style={`position: absolute; width: 300px; height: 20px; background: ${colorCartaFondo}; border-left: 2px solid ${colorSobre}; border-right: 2px solid ${colorSobre}; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 2px; transition: height 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s ease; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0px 20px; z-index: 5; opacity: 0.95;`}
+            >
+                <!-- Inner Content (Fades in) -->
+                <div 
+                    id="parchment-content"
+                    style="opacity: 0; transition: opacity 0.6s ease 0.6s; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;"
+                >
+                    <div
+                        style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                    >
+                        {mensajeTop}
+                    </div>
+                    <div
+                        style={`font-family: ${fuenteNombres}; font-size: 2.3rem; color: ${colorNombre}; margin: 8px 0;`}
+                        set:html={nombre}
+                    >
+                    </div>
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                    >
+                        {fecha}
+                    </div>
+                    {pases?.mostrar && (
+                        <div
+                            style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                        >
+                            {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <!-- Top Roller Cap -->
+            <div
+                id="roller-top"
+                style={`position: absolute; top: 15px; width: 330px; height: 26px; background: linear-gradient(to bottom, #8a5a36 0%, #d5a97f 40%, #cca47b 60%, #8a5a36 100%); border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 10; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;`}
+            >
+                <!-- Left handle cap -->
+                <div style={`position: absolute; left: -10px; top: -4px; width: 12px; height: 34px; background: ${colorSobre}; border-radius: 50% 0 0 50%; box-shadow: inset 1px 1px 3px rgba(255,255,255,0.4);`}></div>
+                <!-- Right handle cap -->
+                <div style={`position: absolute; right: -10px; top: -4px; width: 12px; height: 34px; background: ${colorSobre}; border-radius: 0 50% 50% 0; box-shadow: inset 1px 1px 3px rgba(255,255,255,0.4);`}></div>
+            </div>
+
+            <!-- Bottom Roller Cap -->
+            <div
+                id="roller-bottom"
+                style={`position: absolute; bottom: 15px; width: 330px; height: 26px; background: linear-gradient(to bottom, #8a5a36 0%, #d5a97f 40%, #cca47b 60%, #8a5a36 100%); border-radius: 6px; box-shadow: 0 -2px 5px rgba(0,0,0,0.3); z-index: 10; transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); transform-origin: center;`}
+            >
+                <div style={`position: absolute; left: -10px; top: -4px; width: 12px; height: 34px; background: ${colorSobre}; border-radius: 50% 0 0 50%;`}></div>
+                <div style={`position: absolute; right: -10px; top: -4px; width: 12px; height: 34px; background: ${colorSobre}; border-radius: 0 50% 50% 0;`}></div>
+            </div>
+
+            <!-- Center Ribbon Tie (Splits/Fades Out when closed) -->
+            <div
+                id="scroll-ribbon"
+                style={`position: absolute; width: 44px; height: 58px; background: ${colorSello}; border: 1px solid ${colorSelloBorde}; box-shadow: 0 3px 8px rgba(0,0,0,0.4); z-index: 15; transition: transform 0.6s ease, opacity 0.5s ease; border-radius: 3px; display: flex; align-items: center; justify-content: center;`}
+            >
+                <!-- Gold seal emblem -->
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: #fbbf24; border: 1px solid #d97706; display: flex; align-items: center; justify-content: center;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#451a03" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeScroll() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-scroll");
+            const paper = document.querySelector("#parchment-paper");
+            const paperContent = document.querySelector("#parchment-content");
+            const rollerTop = document.querySelector("#roller-top");
+            const rollerBottom = document.querySelector("#roller-bottom");
+            const ribbon = document.querySelector("#scroll-ribbon");
+
+            if (!envelope || !paper || !rollerTop || !rollerBottom) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Eliminar la cinta/sello
+                if (ribbon) {
+                    ribbon.style.transform = "scaleY(0)";
+                    ribbon.style.opacity = "0";
+                }
+
+                // 2. Mover los rodillos hacia los extremos verticalmente
+                rollerTop.style.transform = "translateY(-130px)";
+                rollerBottom.style.transform = "translateY(130px)";
+
+                // 3. Expandir la altura del pergamino
+                paper.style.height = "260px";
+                paper.style.padding = "20px";
+                
+                // 4. Mostrar el contenido interior
+                if (paperContent) {
+                    paperContent.style.opacity = "1";
+                }
+
+                // 5. Revelar invitación
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 2000);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3400);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeScroll);
+        } else {
+            initEnvelopeScroll();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeScroll);
+    })();
+</script>

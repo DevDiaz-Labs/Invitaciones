@@ -1,0 +1,35 @@
+---
+const { data } = Astro.props;
+const titulo = data?.titulo || 'Confirmación';
+const mensaje = data?.mensajeDespedida || 'Por favor indica si podrás asistir a nuestro evento.';
+---
+
+<section class="py-16 px-6 bg-teal-50">
+  <div class="max-w-lg mx-auto bg-teal-800 p-10 rounded-none shadow-[12px_12px_0_0_rgba(15,118,110,0.3)]">
+    <h2 class="text-3xl font-bold mb-2 text-teal-50 uppercase tracking-widest">{titulo}</h2>
+    <div class="w-12 h-1 bg-teal-400 mb-6"></div>
+    <p class="text-teal-200 mb-8 font-light">{mensaje}</p>
+
+    <form class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-teal-300 mb-2 uppercase">Nombre Invitado</label>
+        <input type="text" class="w-full bg-teal-900/50 border border-teal-600 px-4 py-3 text-teal-50 focus:outline-none focus:border-teal-300 transition-colors" required />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <label class="cursor-pointer">
+          <input type="radio" name="attending" class="peer sr-only" checked />
+          <div class="text-center px-4 py-4 border border-teal-600 peer-checked:bg-teal-600 peer-checked:text-white text-teal-300 transition-colors font-medium uppercase text-sm">Asistiré</div>
+        </label>
+        <label class="cursor-pointer">
+          <input type="radio" name="attending" class="peer sr-only" />
+          <div class="text-center px-4 py-4 border border-teal-600 peer-checked:bg-teal-600 peer-checked:text-white text-teal-300 transition-colors font-medium uppercase text-sm">No Asistiré</div>
+        </label>
+      </div>
+
+      <button type="submit" class="w-full bg-teal-400 hover:bg-teal-300 text-teal-900 font-bold py-4 uppercase tracking-widest transition-colors mt-6">
+        Enviar
+      </button>
+    </form>
+  </div>
+</section>

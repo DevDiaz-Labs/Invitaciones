@@ -1,0 +1,20 @@
+---
+const { data } = Astro.props;
+const dressCode = data?.dressCode || {
+  titulo: 'Formal',
+  subtitulo: 'Traje oscuro y vestido largo.',
+  nota: 'El evento será formal y elegante. Agradecemos tu asistencia.'
+};
+---
+<section class="py-24 px-4 bg-white fade-up flex justify-center">
+  <div class="flex flex-col items-center justify-center p-12 bg-stone-50 rounded-2xl border border-stone-100 max-w-md w-full">
+    <h2 class="text-3xl font-serif mb-6 text-stone-800">Dress Code</h2>
+    <div class="text-center mb-8">
+      <span class="block text-xl font-medium tracking-wide uppercase mb-2">{dressCode.titulo}</span>
+      <span class="block text-stone-500 font-light text-sm italic">{dressCode.subtitulo}</span>
+    </div>
+    <p class="text-center text-sm text-stone-400 font-light max-w-xs">
+      {dressCode.nota}
+    </p>
+  </div>
+</section>

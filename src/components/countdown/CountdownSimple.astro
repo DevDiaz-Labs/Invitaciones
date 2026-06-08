@@ -1,0 +1,88 @@
+---
+// src/components/countdown/CountdownSimple.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario?: string;
+  };
+  bgImage?: string;
+  bgColor?: string;
+  bgSize?: string;
+  bgRepeat?: string;
+  bgPosition?: string;
+}
+const { data, bgImage, bgColor = "transparent", bgSize = "cover", bgRepeat = "no-repeat", bgPosition = "center" } = Astro.props;
+const uniqueId = `countdown-simple-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section class="pt-12 pb-4 px-6 text-center" style={`background-color: ${bgColor}; ${bgImage ? `background-image: url('${bgImage}'); background-size: ${bgSize}; background-position: ${bgPosition}; background-repeat: ${bgRepeat};` : ''}`}>
+  <div class="max-w-2xl mx-auto" id={uniqueId}>
+    <h3 class="text-2xl md:text-3xl uppercase tracking-[0.3em] mb-8 font-serif font-bold" style="color: var(--gold, #c5a059);">Faltan</h3>
+    <div class="flex justify-center items-center gap-3 md:gap-4 max-w-xl mx-auto">
+      
+      <!-- Días -->
+      <div class="w-16 h-20 md:w-24 md:h-28 bg-white border border-gray-200/80 rounded-2xl shadow-sm flex flex-col justify-center items-center">
+        <span class="days-val block text-2xl md:text-4xl font-semibold text-slate-800 leading-none">00</span>
+        <span class="text-[8px] md:text-[10px] uppercase tracking-wider text-slate-500 mt-2 block font-medium">Días</span>
+      </div>
+
+      <!-- Horas -->
+      <div class="w-16 h-20 md:w-24 md:h-28 bg-white border border-gray-200/80 rounded-2xl shadow-sm flex flex-col justify-center items-center">
+        <span class="hours-val block text-2xl md:text-4xl font-semibold text-slate-800 leading-none">00</span>
+        <span class="text-[8px] md:text-[10px] uppercase tracking-wider text-slate-500 mt-2 block font-medium">Horas</span>
+      </div>
+
+      <!-- Minutos -->
+      <div class="w-16 h-20 md:w-24 md:h-28 bg-white border border-gray-200/80 rounded-2xl shadow-sm flex flex-col justify-center items-center">
+        <span class="minutes-val block text-2xl md:text-4xl font-semibold text-slate-800 leading-none">00</span>
+        <span class="text-[8px] md:text-[10px] uppercase tracking-wider text-slate-500 mt-2 block font-medium">Min</span>
+      </div>
+
+      <!-- Segundos -->
+      <div class="w-16 h-20 md:w-24 md:h-28 bg-white border border-gray-200/80 rounded-2xl shadow-sm flex flex-col justify-center items-center">
+        <span class="seconds-val block text-2xl md:text-4xl font-semibold text-slate-800 leading-none">00</span>
+        <span class="text-[8px] md:text-[10px] uppercase tracking-wider text-slate-500 mt-2 block font-medium">Seg</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo, uniqueId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(uniqueId);
+    if (!container) return;
+
+    const eventDate = new Date(fechaObjetivoStr).getTime();
+    const daysEl = container.querySelector(".days-val");
+    const hoursEl = container.querySelector(".hours-val");
+    const minutesEl = container.querySelector(".minutes-val");
+    const secondsEl = container.querySelector(".seconds-val");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const dist = eventDate - now;
+
+      if (dist < 0) {
+        if (daysEl) daysEl.innerText = "00";
+        if (hoursEl) hoursEl.innerText = "00";
+        if (minutesEl) minutesEl.innerText = "00";
+        if (secondsEl) secondsEl.innerText = "00";
+        return;
+      }
+
+      const d = Math.floor(dist / 86400000);
+      const h = Math.floor((dist % 86400000) / 3600000);
+      const m = Math.floor((dist % 3600000) / 60000);
+      const s = Math.floor((dist % 60000) / 1000);
+
+      if (daysEl) daysEl.innerText = d.toString().padStart(2, "0");
+      if (hoursEl) hoursEl.innerText = h.toString().padStart(2, "0");
+      if (minutesEl) minutesEl.innerText = m.toString().padStart(2, "0");
+      if (secondsEl) secondsEl.innerText = s.toString().padStart(2, "0");
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  });
+</script>

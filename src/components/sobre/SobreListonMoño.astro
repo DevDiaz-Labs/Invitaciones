@@ -1,0 +1,266 @@
+---
+// src/components/sobre/SobreListonMoño.astro
+interface Props {
+    nombre: string;
+    fecha: string;
+    evento?: string;
+    mensajeTop?: string;
+    pases?: {
+        mostrar: boolean;
+        cantidad: number;
+        texto?: string;
+    };
+    colorFondoBase?: string;
+    colorSobre?: string;
+    colorSolapa?: string;
+    colorSolapaLado?: string;
+    colorSello?: string;
+    colorSelloBorde?: string;
+    colorCartaFondo?: string;
+    colorCartaTexto?: string;
+    fuenteNombres?: string;
+    fuenteTitulos?: string;
+    colorTitulo?: string;
+    colorNombre?: string;
+    colorMensajeTop?: string;
+}
+
+const {
+    nombre,
+    fecha,
+    evento = "Mis XV Años",
+    mensajeTop = "Te invito a celebrar",
+    pases,
+    colorFondoBase = "#0f172a",
+    colorSobre = "#064e3b", // Emerald green card
+    colorSolapa = "#047857",
+    colorSolapaLado = "#065f46",
+    colorSello = "#fbbf24", // Gold satin ribbon
+    colorSelloBorde = "#d97706",
+    colorCartaFondo = "#fffefc",
+    colorCartaTexto = "#064e3b",
+    fuenteNombres = "'Great Vibes', cursive",
+    fuenteTitulos = "'Cinzel', serif",
+    colorTitulo = "#fbbf24",
+    colorNombre = colorCartaTexto,
+    colorMensajeTop,
+} = Astro.props;
+
+const resolvedColorMensajeTop = colorMensajeTop ?? colorSobre;
+---
+
+<div
+    id="envelope-screen"
+    class="envelope-screen-overlay fixed inset-0 z-[99]"
+    style={`background-color: ${colorFondoBase}; transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out; display: flex; align-items: center; justify-content: center; flex-direction: column;`}
+>
+    <div class="text-center mb-8 px-4">
+        <h2
+            style={`font-family: ${fuenteTitulos}; letter-spacing: 0.2em; text-transform: uppercase; color: #faeedd; margin-bottom: 8px;`}
+        >
+            Lazo de Satén
+        </h2>
+        <p
+            style={`font-family: ${fuenteNombres}; font-size: 3rem; color: ${colorTitulo};`}
+        >
+            {evento}
+        </p>
+        <p
+            style="font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 300; margin-top: 24px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em;"
+        >
+            Presiona el lazo dorado para desatar
+        </p>
+    </div>
+
+    <!-- Container for Ribbon -->
+    <div class="envelope-container" style="perspective: 2000px; width: 340px; height: 230px; position: relative;">
+        <div
+            id="envelope-ribbon"
+            class="envelope-wrapper"
+            style="position: absolute; inset: 0; transition: transform 0.4s ease; transform-style: preserve-3d; cursor: pointer;"
+        >
+            <!-- Card Back -->
+            <div
+                class="ribbon-back"
+                style={`position: absolute; inset: 0; background: ${colorSobre}; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);`}
+            >
+            </div>
+
+            <!-- Letter Inside -->
+            <div
+                id="letter-ribbon"
+                style={`position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; background: ${colorCartaFondo}; border-radius: 6px; transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s, opacity 0.8s ease; box-shadow: 0 0 10px rgba(0,0,0,0.1) inset; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 5; transform: scale(0.9); opacity: 0.8;`}
+            >
+                <div
+                    style={`font-family: ${fuenteTitulos}; font-size: 10px; letter-spacing: 0.2em; color: ${resolvedColorMensajeTop}; text-transform: uppercase; font-weight: 600;`}
+                >
+                    {mensajeTop}
+                </div>
+                <div
+                    style={`font-family: ${fuenteNombres}; font-size: 2.4rem; color: ${colorNombre}; margin: 8px 0;`}
+                    set:html={nombre}
+                >
+                </div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: #6b7280; text-transform: uppercase; font-weight: 600;"
+                >
+                    {fecha}
+                </div>
+                {pases?.mostrar && (
+                    <div
+                        style="font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 0.1em; color: #6b7280; text-transform: uppercase; margin-top: 10px; font-style: italic; opacity: 0.8;"
+                    >
+                        {pases.texto || "Invitación válida para:"} {pases.cantidad} pases
+                    </div>
+                )}
+            </div>
+
+            <!-- Card Front Cover Flaps (Upper & Lower) -->
+            <div
+                id="cover-top"
+                style={`position: absolute; top: 0; left: 0; right: 0; height: 115px; background: ${colorSolapa}; border-radius: 8px 8px 0 0; z-index: 10; transform-origin: top; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.15);`}
+            >
+                <!-- Decorative Border -->
+                <div style={`position: absolute; inset: 8px 8px 0 8px; border: 1px solid ${colorSello}; opacity: 0.2; border-radius: 4px 4px 0 0;`}></div>
+            </div>
+            
+            <div
+                id="cover-bottom"
+                style={`position: absolute; bottom: 0; left: 0; right: 0; height: 115px; background: ${colorSolapaLado}; border-radius: 0 0 8px 8px; z-index: 10; transform-origin: bottom; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s; box-shadow: 0 -2px 5px rgba(0,0,0,0.15);`}
+            >
+                <div style={`position: absolute; inset: 0 8px 8px 8px; border: 1px solid ${colorSello}; opacity: 0.2; border-radius: 0 0 4px 4px;`}></div>
+            </div>
+
+            <!-- Vertical Ribbon Strap -->
+            <div
+                id="ribbon-vertical"
+                style={`position: absolute; top: 0; bottom: 0; left: 155px; width: 30px; background: ${colorSello}; z-index: 15; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease; box-shadow: 0 0 5px rgba(0,0,0,0.2);`}
+            ></div>
+
+            <!-- Horizontal Ribbon Strap -->
+            <div
+                id="ribbon-horizontal"
+                style={`position: absolute; top: 100px; left: 0; right: 0; height: 30px; background: ${colorSello}; z-index: 15; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease; box-shadow: 0 0 5px rgba(0,0,0,0.2);`}
+            ></div>
+
+            <!-- Satin Ribbon Bow (Center knot) -->
+            <div
+                id="ribbon-bow"
+                style="position: absolute; top: 90px; left: 145px; width: 50px; height: 50px; z-index: 20; transition: transform 0.8s ease-in-out, opacity 0.6s ease;"
+            >
+                <!-- Bow SVGs -->
+                <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                    <!-- Left loop -->
+                    <path d="M 50 50 C 15 20, 10 70, 50 50 Z" fill={colorSello} stroke={colorSelloBorde} stroke-width="2" />
+                    <!-- Right loop -->
+                    <path d="M 50 50 C 85 20, 90 70, 50 50 Z" fill={colorSello} stroke={colorSelloBorde} stroke-width="2" />
+                    <!-- Left tail -->
+                    <path d="M 50 50 C 30 70, 20 90, 10 95 L 15 80 Z" fill={colorSello} stroke={colorSelloBorde} stroke-width="1.5" />
+                    <!-- Right tail -->
+                    <path d="M 50 50 C 70 70, 80 90, 90 95 L 85 80 Z" fill={colorSello} stroke={colorSelloBorde} stroke-width="1.5" />
+                    <!-- Central knot -->
+                    <circle cx="50" cy="50" r="12" fill={colorSello} stroke={colorSelloBorde} stroke-width="2" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function() {
+        function initEnvelopeRibbon() {
+            const envelopeScreen = document.querySelector("#envelope-screen");
+            const envelope = document.querySelector("#envelope-ribbon");
+            const bow = document.querySelector("#ribbon-bow");
+            const ribVert = document.querySelector("#ribbon-vertical");
+            const ribHoriz = document.querySelector("#ribbon-horizontal");
+            const coverTop = document.querySelector("#cover-top");
+            const coverBottom = document.querySelector("#cover-bottom");
+            const letter = document.querySelector("#letter-ribbon");
+
+            if (!envelope || !coverTop || !coverBottom || !letter) return;
+            if (envelope.dataset.envelopeInitialized) return;
+            envelope.dataset.envelopeInitialized = "true";
+
+            // Hide invitation content initially (if it is already in DOM)
+            const invitationContentInit = document.querySelector("#invitation-content");
+            if (envelopeScreen && invitationContentInit) {
+                invitationContentInit.style.opacity = "0";
+                invitationContentInit.style.visibility = "hidden";
+            }
+
+            let opened = false;
+
+            envelope.addEventListener("click", () => {
+                if (opened) return;
+                opened = true;
+
+                const invitationContent = document.querySelector("#invitation-content");
+                const footerContent = document.querySelector("#footer-content");
+
+                // 1. Desatar el lazo (rotar, deslizar abajo y desaparecer)
+                if (bow) {
+                    bow.style.transform = "translateY(80px) rotate(45deg) scale(0.5)";
+                    bow.style.opacity = "0";
+                }
+
+                // 2. Deslizar cintas horizontal y vertical hacia los bordes
+                if (ribVert) {
+                    ribVert.style.transform = "scaleY(0)";
+                    ribVert.style.opacity = "0";
+                }
+                if (ribHoriz) {
+                    ribHoriz.style.transform = "scaleX(0)";
+                    ribHoriz.style.opacity = "0";
+                }
+
+                // 3. Plegar/abrir solapas en 3D
+                setTimeout(() => {
+                    coverTop.style.transform = "rotateX(110deg)";
+                    coverBottom.style.transform = "rotateX(-110deg)";
+                }, 300);
+
+                // 4. Pop-out de la carta
+                setTimeout(() => {
+                    letter.style.transform = "scale(1.08) translateZ(40px)";
+                    letter.style.opacity = "1";
+                    letter.style.zIndex = "25";
+                }, 750);
+
+                // 5. Revelar contenido
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.opacity = "0";
+                        envelopeScreen.style.visibility = "hidden";
+                    }
+
+                    if (invitationContent) {
+                        invitationContent.style.opacity = "1";
+                        invitationContent.style.transform = "translateY(0)";
+                        invitationContent.style.visibility = "visible";
+                    }
+
+                    if (footerContent) {
+                        footerContent.style.opacity = "1";
+                        footerContent.style.visibility = "visible";
+                    }
+
+                    window.scrollTo(0, 0);
+                }, 1900);
+
+                setTimeout(() => {
+                    if (envelopeScreen) {
+                        envelopeScreen.style.display = "none";
+                    }
+                }, 3300);
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initEnvelopeRibbon);
+        } else {
+            initEnvelopeRibbon();
+        }
+        document.addEventListener("astro:page-load", initEnvelopeRibbon);
+    })();
+</script>

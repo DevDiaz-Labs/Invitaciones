@@ -1,0 +1,200 @@
+---
+// src/components/calendario/CalendarioFiesta.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="cf-wrap">
+    <!-- Confetti dots decoration -->
+    <div class="cf-confetti" aria-hidden="true">
+      <span class="cf-dot cf-d1"></span>
+      <span class="cf-dot cf-d2"></span>
+      <span class="cf-dot cf-d3"></span>
+      <span class="cf-dot cf-d4"></span>
+      <span class="cf-dot cf-d5"></span>
+      <span class="cf-dot cf-d6"></span>
+      <span class="cf-dot cf-d7"></span>
+      <span class="cf-dot cf-d8"></span>
+    </div>
+
+    <div class="cf-emoji-row">🎉 🎊 🥳</div>
+    <h4 class="cf-title">¡Apunta la Fecha!</h4>
+    <p class="cf-subtitle">No faltes a la fiesta</p>
+
+    <div class="cf-buttons">
+      {google && (
+        <a href={google} target="_blank" rel="noopener noreferrer" class="cf-btn cf-google">
+          <svg viewBox="0 0 24 24" class="cf-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Google Calendar
+        </a>
+      )}
+      {apple && (
+        <a href={apple} class="cf-btn cf-apple">
+          <svg viewBox="0 0 24 24" class="cf-icon" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          Apple Calendar
+        </a>
+      )}
+      {outlook && (
+        <a href={outlook} target="_blank" rel="noopener noreferrer" class="cf-btn cf-outlook">
+          <svg viewBox="0 0 24 24" class="cf-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+            <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+          </svg>
+          Outlook
+        </a>
+      )}
+    </div>
+
+    <div class="cf-footer">🎶 ¡Te esperamos! 🎶</div>
+  </div>
+)}
+
+<style>
+  .cf-wrap {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 30%, #feca57 60%, #ff6b81 100%);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cf-confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .cf-dot {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .cf-d1 { width: 14px; height: 14px; background: #fff; top: 12%; left: 8%; }
+  .cf-d2 { width: 10px; height: 10px; background: #a29bfe; top: 25%; left: 88%; }
+  .cf-d3 { width: 18px; height: 18px; background: #fff; top: 70%; left: 5%; }
+  .cf-d4 { width: 8px; height: 8px; background: #fd79a8; top: 82%; left: 90%; }
+  .cf-d5 { width: 12px; height: 12px; background: #55efc4; top: 45%; left: 92%; }
+  .cf-d6 { width: 16px; height: 16px; background: #a29bfe; top: 60%; left: 78%; }
+  .cf-d7 { width: 10px; height: 10px; background: #fff; top: 15%; left: 75%; }
+  .cf-d8 { width: 14px; height: 14px; background: #fd79a8; top: 40%; left: 3%; }
+
+  .cf-emoji-row {
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.4rem;
+    animation: cf-bounce 1.5s ease-in-out infinite alternate;
+    position: relative;
+    z-index: 1;
+  }
+  @keyframes cf-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+  }
+  .cf-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: #fff;
+    margin: 0 0 0.2rem;
+    text-shadow: 2px 3px 6px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cf-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+    margin: 0 0 2rem;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cf-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 290px;
+    position: relative;
+    z-index: 1;
+  }
+  .cf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+  }
+  .cf-google {
+    background: #fff;
+    color: #ff6b6b;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .cf-google:hover {
+    background: #fff8f8;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+  .cf-apple {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+  }
+  .cf-apple:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-2px);
+  }
+  .cf-outlook {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+  }
+  .cf-outlook:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-2px);
+  }
+  .cf-icon {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+  }
+  .cf-footer {
+    margin-top: 1.75rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+</style>

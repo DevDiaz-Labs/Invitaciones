@@ -1,0 +1,47 @@
+---
+// src/components/noninos/NoninosIcono.astro
+interface Props {
+  texto?: string;
+  colorFondo?: string;
+  colorIcono?: string;
+}
+
+const {
+  texto = "No niños",
+  colorFondo = "bg-[#f3eae0]",
+  colorIcono = "text-[#9a7d5a]"
+} = Astro.props;
+---
+
+<div class={`noninos-icono max-w-md mx-auto ${colorFondo} p-8 rounded-2xl text-center flex flex-col items-center justify-center`}>
+  {/* Circular crossed-out baby face icon */}
+  <div class={`mb-4 ${colorIcono}`}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-16 h-16 stroke-current" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      {/* Outer prohibition ring */}
+      <circle cx="50" cy="50" r="40" stroke-width="3" />
+      <line x1="21.7" y1="21.7" x2="78.3" y2="78.3" stroke-width="3" />
+      
+      {/* Baby face contour */}
+      <circle cx="50" cy="52" r="15" stroke-width="2.5" />
+      
+      {/* Left and Right Ears */}
+      <path d="M35 48 C 32 48, 32 56, 35 56" stroke-width="2" />
+      <path d="M65 48 C 68 48, 68 56, 65 56" stroke-width="2" />
+      
+      {/* Hair curl on top */}
+      <path d="M50 37 C 50 32, 53 32, 52 30 C 51 28, 48 31, 50 37" stroke-width="2" />
+      
+      {/* Eyes (dots) */}
+      <circle cx="44" cy="48" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="56" cy="48" r="1.5" fill="currentColor" stroke="none" />
+      
+      {/* Smile */}
+      <path d="M46 56 Q 50 60 54 56" stroke-width="2" />
+    </svg>
+  </div>
+
+  {/* Clean spaced serif text */}
+  <p class="font-serif text-[#4e453c] text-sm md:text-base tracking-[0.25em] font-medium uppercase mt-2">
+    · {texto} ·
+  </p>
+</div>

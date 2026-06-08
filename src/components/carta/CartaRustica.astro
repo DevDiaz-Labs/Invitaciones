@@ -1,0 +1,161 @@
+---
+// src/components/carta/CartaRustica.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#7a5230';
+const colorTexto = data.colorTexto || '#3d2b1a';
+---
+
+{data.mostrar && (
+<section class="cru-section" style={bgImage ? `background-image: linear-gradient(rgba(224,200,168,0.88),rgba(224,200,168,0.88)),url('${bgImage}'); background-size:cover; background-position:center;` : ''}>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <div class="cru-wrapper">
+    <!-- Torn top edge SVG -->
+    <div class="cru-tear-top" aria-hidden="true">
+      <svg viewBox="0 0 400 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="cru-tear-svg">
+        <path d="M0 24 Q20 8, 40 16 Q60 24, 80 10 Q100 0, 130 14 Q155 24, 175 8 Q195 0, 220 18 Q245 24, 265 6 Q285 0, 310 16 Q330 24, 355 10 Q375 0, 400 20 L400 24 Z" fill="#e0c8a8"/>
+      </svg>
+    </div>
+
+    <div class="cru-paper">
+      <!-- Ruled lines (decorative) -->
+      <div class="cru-lines" aria-hidden="true">
+        {Array.from({length: 8}).map(() => (
+          <div class="cru-line-rule"></div>
+        ))}
+      </div>
+
+      <!-- Content -->
+      <div class="cru-content">
+        <!-- Handwritten title -->
+        <p class="cru-title">Una carta para ti...</p>
+
+        <!-- Text -->
+        <div class="cru-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+        <!-- Ink blot decoration -->
+        <div class="cru-inkblot" aria-hidden="true">
+          <svg viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" width="60" height="20">
+            <path d="M10 10 Q20 5, 30 10 Q40 15, 50 10" stroke="#7a5230" stroke-width="1.5" fill="none" opacity="0.4"/>
+            <circle cx="30" cy="10" r="2" fill="#7a5230" opacity="0.35"/>
+          </svg>
+        </div>
+
+        <!-- Firma -->
+        {data.firmaTexto && (
+          <p class="cru-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+        )}
+      </div>
+    </div>
+
+    <!-- Torn bottom edge SVG -->
+    <div class="cru-tear-bottom" aria-hidden="true">
+      <svg viewBox="0 0 400 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="cru-tear-svg">
+        <path d="M0 0 Q20 16, 40 8 Q60 0, 80 14 Q100 24, 130 10 Q155 0, 175 16 Q195 24, 220 6 Q245 0, 265 18 Q285 24, 310 8 Q330 0, 355 14 Q375 24, 400 4 L400 0 Z" fill="#e0c8a8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cru-section {
+    position: relative;
+    padding: 1rem 1.5rem;
+    background-color: #c8a87a;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cru-wrapper {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .cru-tear-top, .cru-tear-bottom {
+    position: relative;
+    line-height: 0;
+  }
+
+  .cru-tear-svg {
+    width: 100%;
+    height: 24px;
+    display: block;
+  }
+
+  .cru-paper {
+    background: #e0c8a8;
+    position: relative;
+    padding: 2rem 1.8rem 2.2rem;
+    box-shadow: 2px 4px 18px rgba(80,50,20,0.2), -1px 1px 8px rgba(80,50,20,0.1);
+  }
+
+  .cru-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2.5rem 0;
+    pointer-events: none;
+  }
+
+  .cru-line-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(100,70,30,0.12);
+  }
+
+  .cru-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cru-title {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #7a5230;
+    margin: 0 0 1.2rem 0;
+    opacity: 0.9;
+  }
+
+  .cru-text {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 2;
+    letter-spacing: 0.02em;
+  }
+
+  .cru-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .cru-inkblot {
+    display: flex;
+    justify-content: center;
+    margin: 1.2rem 0 0.4rem;
+  }
+
+  .cru-firma {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+  }
+</style>

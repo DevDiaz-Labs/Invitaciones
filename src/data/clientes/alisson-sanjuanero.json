@@ -106,6 +106,8 @@
     ]
   },
   "rsvp": {
+    "colorFondo": "transparent",
+    "colorTexto": "#000000",
     "telefono": "5218125960990",
     "mensajeDefault": "¡Hola! Confirmo mi asistencia a los XV años de Alisson Sanjuánero.",
     "fechaLimite": "30 de Mayo",

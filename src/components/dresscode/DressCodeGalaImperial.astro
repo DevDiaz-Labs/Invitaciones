@@ -1,0 +1,209 @@
+---
+// src/components/dresscode/DressCodeGalaImperial.astro
+interface Props {
+  data: {
+    estilo?: string;
+    descripcion?: string;
+    dressCode?: {
+      titulo?: string;
+      subtitulo?: string;
+      nota?: string;
+      coloresSugeridos?: string[];
+      coloresNoPermitidos?: string[];
+    };
+  };
+}
+const { data } = Astro.props;
+
+const dressCode = data?.dressCode || {
+  titulo: 'Gala Imperial',
+  subtitulo: 'Rigurosa etiqueta: Vestido largo de noche y esmoquin o traje oscuro formal.',
+  nota: 'Agradecemos evitar el uso de prendas color blanco, marfil o beige.',
+  coloresSugeridos: ['#1A2E40', '#0F1E2D', '#D4AF37', '#5C1D24', '#3E5C56'],
+  coloresNoPermitidos: ['#FFFFFF', '#F5F5DC']
+};
+---
+
+<section class="py-16 px-6 bg-gradient-to-b from-[#0a0f1d] via-[#121a2e] to-[#0a0f1d] text-white flex flex-col justify-center items-center relative overflow-hidden">
+  <!-- Glowing gold background element -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#d4af37]/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+  <!-- Ornate corner decorations in SVG -->
+  <div class="absolute inset-0 pointer-events-none opacity-20">
+    <svg class="absolute top-6 left-6 w-16 h-16 text-[#d4af37]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 10 H90 M10 10 V90 M10 20 H50 M20 10 V50 M30 30 L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+    </svg>
+    <svg class="absolute top-6 right-6 w-16 h-16 text-[#d4af37] rotate-90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 10 H90 M10 10 V90 M10 20 H50 M20 10 V50 M30 30 L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+    </svg>
+    <svg class="absolute bottom-6 left-6 w-16 h-16 text-[#d4af37] -rotate-90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 10 H90 M10 10 V90 M10 20 H50 M20 10 V50 M30 30 L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+    </svg>
+    <svg class="absolute bottom-6 right-6 w-16 h-16 text-[#d4af37] rotate-180" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 10 H90 M10 10 V90 M10 20 H50 M20 10 V50 M30 30 L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+    </svg>
+  </div>
+
+  <div class="max-w-md w-full border border-[#d4af37]/30 bg-black/40 backdrop-blur-md p-8 rounded-2xl shadow-3xl text-center relative border-t-[3px] border-t-[#d4af37]">
+    
+    <span class="text-xs uppercase tracking-[0.3em] text-[#d4af37] font-semibold mb-2 block">Código de Vestimenta</span>
+    <h2 class="text-3xl font-serif tracking-widest text-amber-100 uppercase mb-3">{dressCode.titulo}</h2>
+    
+    <div class="flex justify-center items-center gap-3 my-4">
+      <div class="w-10 h-[1px] bg-gradient-to-r from-transparent to-[#d4af37]"></div>
+      <div class="w-2 h-2 border border-[#d4af37] rotate-45 bg-[#d4af37]/20"></div>
+      <div class="w-10 h-[1px] bg-gradient-to-l from-transparent to-[#d4af37]"></div>
+    </div>
+
+    <!-- Tuxedo & Evening Gown Side-by-Side Premium Display -->
+    <div class="flex justify-center items-center gap-12 my-8">
+      
+      <!-- Tuxedo SVG Card -->
+      <div class="group flex flex-col items-center">
+        <div class="p-5 rounded-xl bg-gradient-to-b from-[#16223f] to-[#0c1322] border border-[#d4af37]/20 shadow-lg group-hover:border-[#d4af37]/60 group-hover:shadow-[#d4af37]/10 transition-all duration-500 transform group-hover:-translate-y-1">
+          <!-- Tuxedo vector drawing -->
+          <svg class="w-16 h-20 text-[#d4af37]" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background glow shape -->
+            <path d="M20 15 L60 15 L68 45 L50 90 L30 90 L12 45 Z" fill="url(#tuxGlow)" opacity="0.08"/>
+            
+            <!-- Outer jacket outline -->
+            <path d="M15 30 L30 85 L50 85 L65 30 L55 20 L25 20 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            
+            <!-- White Shirt V-shape -->
+            <path d="M30 20 L50 20 L40 50 Z" fill="#ffffff" stroke="currentColor" stroke-width="1"/>
+            
+            <!-- Tuxedo Lapels -->
+            <path d="M25 20 L35 50 L30 85" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.15"/>
+            <path d="M55 20 L45 50 L50 85" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.15"/>
+            
+            <!-- Bow tie -->
+            <path d="M34 26 L40 30 L46 26 L44 32 L40 30 L36 32 Z" fill="#121a2e" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="40" cy="29" r="1.5" fill="#d4af37"/>
+            
+            <!-- Gold Pocket Square -->
+            <path d="M22 42 L28 38 L27 43 Z" fill="#d4af37"/>
+            <line x1="20" y1="44" x2="29" y2="44" stroke="currentColor" stroke-width="1.5"/>
+            
+            <!-- Buttons -->
+            <circle cx="40" cy="62" r="2" fill="#d4af37"/>
+            <circle cx="40" cy="72" r="2" fill="#d4af37"/>
+            
+            <defs>
+              <linearGradient id="tuxGlow" x1="40" y1="15" x2="40" y2="90" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#d4af37"/>
+                <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="text-xs uppercase tracking-widest text-[#d4af37]/80 font-serif mt-3 block">Caballeros</span>
+        <span class="text-[10px] text-gray-400 font-light mt-0.5">Traje Oscuro o Smoking</span>
+      </div>
+
+      <!-- Evening Gown SVG Card -->
+      <div class="group flex flex-col items-center">
+        <div class="p-5 rounded-xl bg-gradient-to-b from-[#16223f] to-[#0c1322] border border-[#d4af37]/20 shadow-lg group-hover:border-[#d4af37]/60 group-hover:shadow-[#d4af37]/10 transition-all duration-500 transform group-hover:-translate-y-1">
+          <!-- Gown vector drawing -->
+          <svg class="w-16 h-20 text-[#d4af37]" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background glow shape -->
+            <path d="M25 20 L55 20 L68 90 L12 90 Z" fill="url(#dressGlow)" opacity="0.08"/>
+            
+            <!-- Bodice (Corset) -->
+            <path d="M28 22 C29 28, 33 30, 40 30 C47 30, 51 28, 52 22 L55 42 C48 44, 32 44, 25 42 Z" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.1"/>
+            
+            <!-- Straps -->
+            <path d="M28 22 C29 18, 30 13, 31 8" stroke="currentColor" stroke-width="1"/>
+            <path d="M52 22 C51 18, 50 13, 49 8" stroke="currentColor" stroke-width="1"/>
+            
+            <!-- Belt / Waistband detail -->
+            <path d="M25 42 C32 44, 48 44, 55 42" stroke="currentColor" stroke-width="2"/>
+            <circle cx="40" cy="43" r="2.5" fill="#ffffff" stroke="#d4af37" stroke-width="1"/>
+            
+            <!-- Skirt details (voluminous) -->
+            <path d="M25 42 L12 90 C 25 93, 55 93, 68 90 L55 42 Z" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.05"/>
+            
+            <!-- Skirt folds/lines -->
+            <path d="M30 43 C33 60, 30 80, 24 89" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1"/>
+            <path d="M40 43 V 90" stroke="currentColor" stroke-width="1"/>
+            <path d="M50 43 C47 60, 50 80, 56 89" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1"/>
+            
+            <!-- Necklace dot -->
+            <circle cx="40" cy="12" r="1.5" fill="#d4af37"/>
+            
+            <defs>
+              <linearGradient id="dressGlow" x1="40" y1="20" x2="40" y2="90" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#d4af37"/>
+                <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="text-xs uppercase tracking-widest text-[#d4af37]/80 font-serif mt-3 block">Damas</span>
+        <span class="text-[10px] text-gray-400 font-light mt-0.5">Vestido Largo de Noche</span>
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm font-light text-gray-300 px-4 leading-relaxed mb-6">
+      {dressCode.subtitulo}
+    </p>
+
+    <!-- Color Palettes Section -->
+    {(dressCode.coloresSugeridos || dressCode.coloresNoPermitidos) && (
+      <div class="mt-6 pt-6 border-t border-[#d4af37]/20 flex flex-col gap-4">
+        
+        {dressCode.coloresSugeridos && dressCode.coloresSugeridos.length > 0 && (
+          <div class="flex flex-col items-center">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] mb-3">Paleta de Colores Sugerida</span>
+            <div class="flex gap-3 justify-center">
+              {dressCode.coloresSugeridos.map((color: string) => (
+                <div 
+                  class="w-8 h-8 rounded-full border border-white/10 shadow-lg transform hover:scale-110 transition-transform duration-300 relative group"
+                  style={`background-color: ${color};`}
+                >
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-black text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{color}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {dressCode.coloresNoPermitidos && dressCode.coloresNoPermitidos.length > 0 && (
+          <div class="flex flex-col items-center mt-2">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-red-400/80 mb-3">Colores Restringidos</span>
+            <div class="flex gap-3 justify-center">
+              {dressCode.coloresNoPermitidos.map((color: string) => (
+                <div class="relative group">
+                  <div 
+                    class="w-8 h-8 rounded-full border border-white/10 shadow-lg opacity-50"
+                    style={`background-color: ${color};`}
+                  />
+                  <!-- Cross overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-9 h-[2px] bg-red-500 rotate-45 rounded"></div>
+                  </div>
+                  <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-black text-white text-[8px] py-0.5 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Evitar</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
+    )}
+
+    {dressCode.nota && (
+      <div class="mt-6 pt-4 border-t border-[#d4af37]/10">
+        <p class="text-[11px] italic text-[#d4af37]/60">
+          * {dressCode.nota}
+        </p>
+      </div>
+    )}
+
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-16 px-6 bg-[#FFE5B4] relative overflow-hidden border-y-8 border-black">
+    <div class="max-w-md mx-auto bg-white border-4 border-black p-8 text-center" style="box-shadow: 12px 12px 0px 0px #FF57A6;">
+      <div class="w-20 h-20 mx-auto bg-[#42E6A4] border-4 border-black rounded-full flex items-center justify-center mb-6 -mt-14" style="box-shadow: 4px 4px 0px 0px #000;">
+        <svg class="w-10 h-10 text-black" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3h6v2H9V9zm0 4h4v2H9v-2z" />
+        </svg>
+      </div>
+      
+      <h2 class="text-3xl font-black text-black uppercase mb-4 tracking-tighter transform -rotate-2">
+        {data.titulo || "90s Vibes"}
+      </h2>
+      <div class="h-1 w-full bg-black mb-4"></div>
+      
+      <p class="text-black font-bold mb-8 text-lg" set:html={data.frase || "¡Pasa las fotos!"}>
+      </p>
+
+      {data.hashtag && (
+        <div class="bg-[#FF57A6] inline-block px-4 py-2 border-2 border-black mb-6 transform rotate-2">
+          <p class="text-white font-black text-xl">{data.hashtag}</p>
+        </div>
+      )}
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block w-full bg-[#00D4FF] text-black border-4 border-black px-6 py-4 font-black text-xl uppercase hover:bg-[#FFD700] hover:translate-y-1 transition-all"
+        style="box-shadow: 6px 6px 0px 0px #000;"
+      >
+        {data.textoBoton || "SUBIR"}
+      </a>
+    </div>
+  </section>
+)}

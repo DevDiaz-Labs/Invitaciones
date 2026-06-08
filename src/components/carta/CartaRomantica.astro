@@ -1,0 +1,211 @@
+---
+// src/components/carta/CartaRomantica.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#8b6914';
+const colorTexto = data.colorTexto || '#3d2b1f';
+---
+
+{data.mostrar && (
+<section class="cr-section" style={bgImage ? `background-image: url('${bgImage}'); background-size: cover; background-position: center;` : ''}>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+
+  <div class="cr-overlay"></div>
+
+  <div class="cr-wrapper">
+    <!-- Outer double border frame -->
+    <div class="cr-frame-outer">
+      <div class="cr-frame-inner">
+
+        <!-- Corner ornaments -->
+        <div class="cr-corner cr-corner-tl">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="cr-corner-svg">
+            <path d="M2 2 L2 38 M2 2 L38 2" stroke="#8b6914" stroke-width="1.5" fill="none"/>
+            <path d="M8 8 L8 34 M8 8 L34 8" stroke="#8b6914" stroke-width="0.8" fill="none"/>
+            <circle cx="8" cy="8" r="3" fill="#8b6914" opacity="0.7"/>
+            <path d="M14 8 Q16 14, 8 16" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="cr-corner cr-corner-tr">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="cr-corner-svg" style="transform:scaleX(-1)">
+            <path d="M2 2 L2 38 M2 2 L38 2" stroke="#8b6914" stroke-width="1.5" fill="none"/>
+            <path d="M8 8 L8 34 M8 8 L34 8" stroke="#8b6914" stroke-width="0.8" fill="none"/>
+            <circle cx="8" cy="8" r="3" fill="#8b6914" opacity="0.7"/>
+            <path d="M14 8 Q16 14, 8 16" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="cr-corner cr-corner-bl">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="cr-corner-svg" style="transform:scaleY(-1)">
+            <path d="M2 2 L2 38 M2 2 L38 2" stroke="#8b6914" stroke-width="1.5" fill="none"/>
+            <path d="M8 8 L8 34 M8 8 L34 8" stroke="#8b6914" stroke-width="0.8" fill="none"/>
+            <circle cx="8" cy="8" r="3" fill="#8b6914" opacity="0.7"/>
+            <path d="M14 8 Q16 14, 8 16" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="cr-corner cr-corner-br">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="cr-corner-svg" style="transform:scale(-1,-1)">
+            <path d="M2 2 L2 38 M2 2 L38 2" stroke="#8b6914" stroke-width="1.5" fill="none"/>
+            <path d="M8 8 L8 34 M8 8 L34 8" stroke="#8b6914" stroke-width="0.8" fill="none"/>
+            <circle cx="8" cy="8" r="3" fill="#8b6914" opacity="0.7"/>
+            <path d="M14 8 Q16 14, 8 16" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <!-- Top ornament -->
+        <div class="cr-top-ornament">
+          <svg viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" width="160" height="24">
+            <path d="M10 15 Q50 5, 100 15 Q150 25, 190 15" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.6"/>
+            <path d="M10 15 Q50 25, 100 15 Q150 5, 190 15" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.4"/>
+            <circle cx="100" cy="15" r="4" fill="#8b6914" opacity="0.8"/>
+            <circle cx="55" cy="13" r="2" fill="#8b6914" opacity="0.5"/>
+            <circle cx="145" cy="17" r="2" fill="#8b6914" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <!-- Text body -->
+        <div class="cr-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+        <!-- Divider -->
+        <div class="cr-divider">
+          <span class="cr-divider-line"></span>
+          <span class="cr-divider-diamond">◆</span>
+          <span class="cr-divider-line"></span>
+        </div>
+
+        <!-- Firma -->
+        {data.firmaTexto && (
+          <p class="cr-firma" style={`color: ${firmaColor};`}>{data.firmaTexto}</p>
+        )}
+
+        <!-- Bottom ornament -->
+        <div class="cr-bottom-ornament">
+          <svg viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" width="120" height="18">
+            <path d="M10 15 Q50 5, 100 15 Q150 25, 190 15" stroke="#8b6914" stroke-width="1" fill="none" opacity="0.5"/>
+            <circle cx="100" cy="15" r="3" fill="#8b6914" opacity="0.6"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cr-section {
+    position: relative;
+    padding: 3rem 1.5rem;
+    background-color: #f5ead8;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cr-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at center, rgba(245,234,216,0.92) 0%, rgba(230,210,180,0.85) 100%);
+    z-index: 0;
+  }
+
+  .cr-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .cr-frame-outer {
+    border: 2px solid #8b6914;
+    border-radius: 2px;
+    padding: 4px;
+    background: rgba(245,234,216,0.6);
+    box-shadow: 0 4px 24px rgba(90,60,20,0.18), inset 0 0 30px rgba(200,170,100,0.12);
+  }
+
+  .cr-frame-inner {
+    border: 1px solid rgba(139,105,20,0.5);
+    padding: 2.5rem 1.8rem 2rem;
+    position: relative;
+    background: rgba(255,250,240,0.7);
+  }
+
+  .cr-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+  }
+  .cr-corner-tl { top: -2px; left: -2px; }
+  .cr-corner-tr { top: -2px; right: -2px; }
+  .cr-corner-bl { bottom: -2px; left: -2px; }
+  .cr-corner-br { bottom: -2px; right: -2px; }
+  .cr-corner-svg { width: 100%; height: 100%; }
+
+  .cr-top-ornament {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .cr-text {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 2;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  .cr-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .cr-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 1.6rem 0 1rem;
+  }
+
+  .cr-divider-line {
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: #8b6914;
+    opacity: 0.4;
+  }
+
+  .cr-divider-diamond {
+    color: #8b6914;
+    font-size: 0.6rem;
+    opacity: 0.7;
+  }
+
+  .cr-firma {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .cr-bottom-ornament {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.2rem;
+  }
+</style>

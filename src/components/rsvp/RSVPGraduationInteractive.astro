@@ -1,0 +1,137 @@
+---
+// src/components/rsvp/RSVPGraduationInteractive.astro
+const { data } = Astro.props;
+---
+
+<section class="py-12 px-6 bg-[#0c0d12] text-white font-sans relative border-b border-yellow-500/10">
+  
+  <!-- Glittering dark particles / background layout -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(218,165,32,0.05),transparent)] pointer-events-none"></div>
+
+  <div class="max-w-md mx-auto relative z-10" x-data="{
+    code: '',
+    checked: false,
+    maxPasses: 4,
+    usedPasses: 2,
+    submitted: false,
+    nombre: '',
+    asistencia: 'si',
+    errorMessage: '',
+    checkCode() {
+      if (!this.code.trim()) {
+        this.errorMessage = 'Por favor ingresa un código.';
+        return;
+      }
+      // Simulate code validation: length determines max passes
+      this.errorMessage = '';
+      this.maxPasses = (this.code.length % 3) + 3; // returns 3, 4, or 5
+      this.usedPasses = this.maxPasses;
+      this.checked = true;
+    },
+    submitForm() {
+      if (this.usedPasses > this.maxPasses) {
+        alert('No puedes confirmar más pases de los asignados.');
+        return;
+      }
+      console.log('Graduation VIP RSVP:', {
+        nombre: this.nombre,
+        asistencia: this.asistencia,
+        pasesUsados: this.usedPasses,
+        codigo: this.code
+      });
+      this.submitted = true;
+    }
+  }">
+    <div class="text-center mb-8">
+      <span class="text-xs uppercase tracking-widest text-amber-500 font-semibold font-mono">Pase de Acceso VIP</span>
+      <h3 class="text-3xl font-serif mt-1 text-white">Confirmación Graduación / Gala</h3>
+      <div class="h-[1px] w-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-4"></div>
+    </div>
+
+    <!-- Thank you View -->
+    <div x-show="submitted" x-transition class="bg-neutral-900 border border-amber-500/20 p-8 rounded-2xl text-center shadow-xl">
+      <div class="w-12 h-12 bg-amber-500/10 border border-amber-500 text-amber-500 rounded-full flex items-center justify-center mx-auto text-xl mb-4 font-mono">🎓</div>
+      <h4 class="text-lg font-serif text-white uppercase tracking-wider">Acceso Autorizado</h4>
+      <p class="text-xs text-gray-400 leading-relaxed mt-2" x-text="asistencia === 'si' ? `Tu mesa y ${usedPasses} pases han sido asegurados. ¡Prepárate para la gran noche de gala!` : 'Lamentamos que no puedas asistir. Tus pases serán reasignados. ¡Gracias!'"></p>
+      <button type="button" @click="submitted = false; checked = false; code = '';" class="text-xs text-amber-500 underline font-mono tracking-wider mt-4">Reiniciar Registro</button>
+    </div>
+
+    <!-- Form Content -->
+    <div x-show="!submitted" class="bg-neutral-900/60 border border-white/5 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
+      
+      <!-- STEP 1: Code Verification -->
+      <div x-show="!checked" class="space-y-4">
+        <p class="text-xs text-gray-400 leading-relaxed text-center">
+          Introduce el código de confirmación impreso en tu pase para desbloquear tus entradas digitales.
+        </p>
+        
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-amber-500 font-mono mb-2">Código de Invitación</label>
+          <div class="flex gap-2">
+            <input type="text" x-model="code" class="flex-1 bg-black border border-white/10 rounded-lg py-2 px-3 text-sm text-white uppercase font-mono tracking-widest focus:outline-none focus:border-amber-500" placeholder="Ej. GRAD-2026" />
+            <button type="button" @click="checkCode()" class="bg-amber-500 text-black font-bold text-xs px-4 py-2.5 rounded-lg font-mono uppercase tracking-wider hover:bg-amber-400 transition-colors">
+              Validar
+            </button>
+          </div>
+          <span x-show="errorMessage" x-text="errorMessage" class="block text-[10px] text-red-500 font-mono mt-1"></span>
+        </div>
+      </div>
+
+      <!-- STEP 2: Main RSVP Form (Unlocks after code is checked) -->
+      <form x-show="checked" @submit.prevent="submitForm" class="space-y-5 text-left" x-transition>
+        
+        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+          <span class="text-xs font-mono text-amber-500" x-text="`CÓDIGO: ${code}`"></span>
+          <button type="button" @click="checked = false" class="text-[10px] text-gray-400 hover:text-white font-mono uppercase">Cambiar Código</button>
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-mono mb-1">Nombre Completo del Titular</label>
+          <input type="text" required x-model="nombre" class="w-full bg-black border border-white/10 rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-amber-500" placeholder="Ingresa tu nombre" />
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-mono mb-2">¿Asistirás a la Gala?</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" @click="asistencia = 'si'" :class="asistencia === 'si' ? 'bg-amber-500/20 border-amber-500 text-amber-500' : 'bg-black border-white/5 text-gray-500'" class="border rounded-lg py-2 text-center text-xs font-mono font-bold">ASISTIRÉ</button>
+            <button type="button" @click="asistencia = 'no'" :class="asistencia === 'no' ? 'bg-pink-900/20 border-pink-700/40 text-pink-400' : 'bg-black border-white/5 text-gray-500'" class="border rounded-lg py-2 text-center text-xs font-mono font-bold">DECLINAR</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Passes Selector -->
+        <div x-show="asistencia === 'si'" x-transition class="space-y-4 border-t border-white/5 pt-3">
+          
+          <div class="flex justify-between items-center bg-black p-3 rounded-lg border border-white/5">
+            <div>
+              <span class="block text-xs font-semibold">Pases Disponibles</span>
+              <span class="text-[10px] text-gray-500 font-mono" x-text="`Máximo permitido: ${maxPasses}`"></span>
+            </div>
+            <div class="text-right">
+              <span class="text-lg font-mono font-bold text-amber-500" x-text="maxPasses"></span>
+              <span class="text-[9px] text-gray-400 block font-mono">pases</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-mono mb-2">¿Cuántos pases utilizarás?</label>
+            <div class="flex items-center gap-4 bg-black p-3 rounded-lg border border-white/5 justify-between">
+              <span class="text-xs text-gray-300">Pases Confirmados</span>
+              <div class="flex items-center gap-3">
+                <button type="button" @click="if(usedPasses > 1) usedPasses--" class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center font-bold text-lg text-amber-500">-</button>
+                <span class="w-6 text-center font-mono font-bold text-sm text-white" x-text="usedPasses"></span>
+                <button type="button" @click="if(usedPasses < maxPasses) usedPasses++" class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center font-bold text-lg text-amber-500">+</button>
+              </div>
+            </div>
+            <span x-show="usedPasses > maxPasses" class="block text-[10px] text-red-500 font-mono mt-1">Excedes el número máximo de pases.</span>
+          </div>
+
+        </div>
+
+        <button type="submit" class="w-full bg-amber-500 text-black py-3 rounded-lg uppercase tracking-wider text-xs font-bold font-mono hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/10">
+          Confirmar Pases de Gala
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>

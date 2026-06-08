@@ -1,0 +1,171 @@
+---
+// src/components/carta/CartaJoven.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+const firmaColor = data.firmaColor || '#7c3aed';
+const colorTexto = data.colorTexto || '#1e1b4b';
+---
+
+{data.mostrar && (
+<section class="cj-section" style={bgImage ? `background-image: url('${bgImage}'); background-size:cover; background-position:center;` : ''}>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  {bgImage && <div class="cj-overlay"></div>}
+
+  <div class="cj-wrapper">
+    <!-- Colorful top bar -->
+    <div class="cj-rainbow-bar" aria-hidden="true"></div>
+
+    <!-- Emoji decoration -->
+    <div class="cj-emoji-row" aria-hidden="true">
+      <span>✨</span>
+      <span>🎀</span>
+      <span>✨</span>
+    </div>
+
+    <!-- Card -->
+    <div class="cj-card">
+      <!-- Tag label -->
+      <span class="cj-tag">¡Mis palabras para ti!</span>
+
+      <!-- Text -->
+      <div class="cj-text" style={`color: ${colorTexto};`} set:html={data.texto}></div>
+
+      <!-- Firma area -->
+      {data.firmaTexto && (
+        <div class="cj-firma-wrap">
+          <div class="cj-firma-badge" style={`background: ${firmaColor};`}>
+            {data.firmaTexto}
+          </div>
+        </div>
+      )}
+    </div>
+
+    <!-- Bottom decorative dots -->
+    <div class="cj-dots" aria-hidden="true">
+      <span class="cj-dot" style="background:#f472b6;"></span>
+      <span class="cj-dot" style="background:#a78bfa;"></span>
+      <span class="cj-dot" style="background:#60a5fa;"></span>
+      <span class="cj-dot" style="background:#34d399;"></span>
+      <span class="cj-dot" style="background:#fbbf24;"></span>
+    </div>
+  </div>
+</section>
+)}
+
+<style>
+  .cj-section {
+    position: relative;
+    padding: 2.5rem 1.5rem;
+    background: linear-gradient(135deg, #fdf2ff 0%, #eff6ff 50%, #fdf2ff 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cj-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(250,240,255,0.88);
+    z-index: 0;
+  }
+
+  .cj-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .cj-rainbow-bar {
+    height: 5px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #f472b6, #a78bfa, #60a5fa, #34d399, #fbbf24);
+    margin-bottom: 1.4rem;
+  }
+
+  .cj-emoji-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .cj-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem 1.6rem;
+    box-shadow: 0 4px 20px rgba(124,58,237,0.1), 0 1px 3px rgba(0,0,0,0.06);
+    border: 1.5px solid rgba(167,139,250,0.2);
+  }
+
+  .cj-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #f0e6ff, #e0ecff);
+    color: #7c3aed;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin-bottom: 1.4rem;
+  }
+
+  .cj-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+  }
+
+  .cj-text :global(br) {
+    content: "";
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .cj-firma-wrap {
+    margin-top: 1.6rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cj-firma-badge {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 30px;
+  }
+
+  .cj-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+  }
+
+  .cj-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+</style>

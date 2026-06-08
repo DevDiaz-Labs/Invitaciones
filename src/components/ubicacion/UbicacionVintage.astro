@@ -1,0 +1,70 @@
+---
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  urlMapa: string;
+  iframeMapa?: string;
+}
+interface Props {
+  data: { ceremonia?: Evento; recepcion?: Evento; };
+}
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<section class="py-20 px-4 bg-[#fdf5e6] text-[#3e2723]" style="background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');">
+  <div class="max-w-4xl mx-auto border-double border-8 border-[#5d4037] p-8 md:p-16 bg-white/50">
+    <div class="text-center mb-12">
+      <p class="text-sm uppercase tracking-[0.3em] text-[#795548] mb-4">Información del Evento</p>
+      <h2 class="text-4xl md:text-5xl font-serif text-[#3e2723] border-y border-[#3e2723] py-4 inline-block px-12">
+        Ubicaciones
+      </h2>
+    </div>
+    
+    <div class="space-y-16">
+      {ceremonia && (
+        <div class="flex flex-col md:flex-row gap-8 items-center border-b border-dashed border-[#8d6e63] pb-16">
+          <div class="md:w-1/2 text-center md:text-left">
+            <h3 class="text-2xl font-serif font-bold mb-4 text-[#4e342e]">{ceremonia.titulo || "Ceremonia"}</h3>
+            <p class="text-xl italic mb-4 text-[#795548]">{ceremonia.hora}</p>
+            <p class="font-bold mb-2 uppercase text-sm tracking-wider">{ceremonia.lugar}</p>
+            <p class="text-sm mb-8 text-[#5d4037]">{ceremonia.direccion}</p>
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
+              Abrir Mapa
+            </a>
+          </div>
+          <div class="md:w-1/2 w-full">
+            {ceremonia.iframeMapa && (
+              <div class="w-full h-56 p-2 bg-white border border-[#d7ccc8] shadow-sm transform rotate-1">
+                <iframe src={ceremonia.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="sepia"></iframe>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {recepcion && (
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+          <div class="md:w-1/2 text-center md:text-right">
+            <h3 class="text-2xl font-serif font-bold mb-4 text-[#4e342e]">{recepcion.titulo || "Recepción"}</h3>
+            <p class="text-xl italic mb-4 text-[#795548]">{recepcion.hora}</p>
+            <p class="font-bold mb-2 uppercase text-sm tracking-wider">{recepcion.lugar}</p>
+            <p class="text-sm mb-8 text-[#5d4037]">{recepcion.direccion}</p>
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-2 border border-[#4e342e] text-[#4e342e] hover:bg-[#4e342e] hover:text-[#fdf5e6] transition-colors uppercase text-xs tracking-widest font-bold">
+              Abrir Mapa
+            </a>
+          </div>
+          <div class="md:w-1/2 w-full">
+            {recepcion.iframeMapa && (
+              <div class="w-full h-56 p-2 bg-white border border-[#d7ccc8] shadow-sm transform -rotate-1">
+                <iframe src={recepcion.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="sepia"></iframe>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

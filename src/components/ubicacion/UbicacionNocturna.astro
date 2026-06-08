@@ -1,0 +1,291 @@
+---
+// src/components/ubicacion/UbicacionNocturna.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<section class="ubn-wrap">
+  <!-- Stars background -->
+  <div class="ubn-stars" aria-hidden="true">
+    <span style="top:8%;left:15%">✦</span>
+    <span style="top:5%;left:55%">✧</span>
+    <span style="top:12%;left:80%">✦</span>
+    <span style="top:18%;left:30%">✧</span>
+    <span style="top:22%;left:70%">✦</span>
+    <span style="top:45%;left:5%">✧</span>
+    <span style="top:55%;left:92%">✦</span>
+    <span style="top:78%;left:18%">✧</span>
+    <span style="top:88%;left:65%">✦</span>
+    <span style="top:95%;left:40%">✧</span>
+  </div>
+
+  <div class="ubn-header">
+    <div class="ubn-moon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#d4b896" stroke-width="1.5" width="36" height="36">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </div>
+    <h2 class="ubn-title">Donde & Cuándo</h2>
+    <div class="ubn-line">
+      <span class="ubn-star-inline">✦</span>
+    </div>
+  </div>
+
+  <div class="ubn-events">
+    {ceremonia && (
+      <div class="ubn-event">
+        <div class="ubn-event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4b896" stroke-width="1.5" width="22" height="22">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="ubn-event-content">
+          <h3 class="ubn-event-title">{ceremonia.titulo || "Ceremonia"}</h3>
+          <span class="ubn-event-time">{ceremonia.hora}</span>
+          <p class="ubn-event-lugar">{ceremonia.lugar}</p>
+          <p class="ubn-event-dir">{ceremonia.direccion}</p>
+          {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+            <div class="ubn-map">
+              <iframe
+                src={ceremonia.iframeMapa || ceremonia.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;filter:invert(90%) hue-rotate(180deg) saturate(0.6);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubn-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Abrir en Maps
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    <div class="ubn-separator">
+      <div class="ubn-sep-line"></div>
+      <svg viewBox="0 0 24 24" fill="#d4b896" width="18" height="18"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="ubn-sep-line"></div>
+    </div>
+
+    {recepcion && (
+      <div class="ubn-event">
+        <div class="ubn-event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4b896" stroke-width="1.5" width="22" height="22">
+            <path d="M8 22h8M12 2v20M20 7H4l4 5-4 5h16l-4-5 4-5z"/>
+          </svg>
+        </div>
+        <div class="ubn-event-content">
+          <h3 class="ubn-event-title">{recepcion.titulo || "Recepción"}</h3>
+          <span class="ubn-event-time">{recepcion.hora}</span>
+          <p class="ubn-event-lugar">{recepcion.lugar}</p>
+          <p class="ubn-event-dir">{recepcion.direccion}</p>
+          {(recepcion.iframeMapa || recepcion.urlMapa) && (
+            <div class="ubn-map">
+              <iframe
+                src={recepcion.iframeMapa || recepcion.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;filter:invert(90%) hue-rotate(180deg) saturate(0.6);"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubn-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Abrir en Maps
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ubn-wrap {
+    background: linear-gradient(170deg, #0d0c14 0%, #18152a 50%, #0d0c14 100%);
+    padding: 2.5rem 1.25rem 2.5rem;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ubn-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .ubn-stars span {
+    position: absolute;
+    color: rgba(212,184,150,0.35);
+    font-size: 0.7rem;
+    animation: ubn-twinkle 3s infinite alternate;
+  }
+  .ubn-stars span:nth-child(even) {
+    animation-delay: 1.5s;
+    font-size: 0.5rem;
+    color: rgba(212,184,150,0.2);
+  }
+  @keyframes ubn-twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 0.8; }
+  }
+  .ubn-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .ubn-moon {
+    margin: 0 auto 0.75rem;
+    width: 52px;
+    height: 52px;
+    background: rgba(212,184,150,0.08);
+    border: 1px solid rgba(212,184,150,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ubn-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #e8dcc8;
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .ubn-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(212,184,150,0.5);
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+  }
+  .ubn-star-inline {
+    color: #d4b896;
+    font-size: 0.75rem;
+  }
+  .ubn-events {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ubn-event {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,184,150,0.18);
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .ubn-event-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(212,184,150,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(212,184,150,0.06);
+  }
+  .ubn-event-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .ubn-event-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.25rem;
+    color: #d4b896;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.03em;
+  }
+  .ubn-event-time {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(212,184,150,0.7);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .ubn-event-lugar {
+    font-size: 0.9rem;
+    color: #c8bfb0;
+    margin: 0 0 0.25rem;
+    font-weight: 500;
+  }
+  .ubn-event-dir {
+    font-size: 0.78rem;
+    color: rgba(200,191,176,0.55);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .ubn-map {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(212,184,150,0.2);
+    margin-bottom: 0.85rem;
+  }
+  .ubn-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid rgba(212,184,150,0.5);
+    color: #d4b896;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ubn-btn:hover {
+    background: rgba(212,184,150,0.15);
+  }
+  .ubn-separator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 0;
+  }
+  .ubn-sep-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,184,150,0.3), transparent);
+  }
+</style>

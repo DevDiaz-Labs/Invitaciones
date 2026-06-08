@@ -1,0 +1,142 @@
+---
+// src/components/countdown/CountdownAnillos.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario?: string;
+  };
+}
+const { data } = Astro.props;
+const uniqueId = `countdown-rings-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section class="py-16 px-6 text-center bg-transparent">
+  <div class="max-w-md mx-auto" id={uniqueId}>
+    <div class="grid grid-cols-2 gap-8 justify-items-center">
+      
+      <!-- Días -->
+      <div class="relative w-28 h-28 flex flex-col justify-center items-center">
+        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="rgba(0, 0, 0, 0.05)" stroke-width="5" fill="transparent" />
+          <circle class="days-ring transition-all duration-1000 ease-linear" cx="50" cy="50" r="40" stroke="var(--gold,#0ea5e9)" stroke-width="5" fill="transparent"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" />
+        </svg>
+        <div class="absolute inset-0 flex flex-col justify-center items-center">
+          <span class="days-val text-2xl font-semibold text-[var(--dark-text,#2c2523)] leading-none">00</span>
+          <span class="text-[9px] uppercase tracking-wider text-[var(--dark-text,#2c2523)] opacity-60 mt-1 block">Días</span>
+        </div>
+      </div>
+
+      <!-- Horas -->
+      <div class="relative w-28 h-28 flex flex-col justify-center items-center">
+        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="rgba(0, 0, 0, 0.05)" stroke-width="5" fill="transparent" />
+          <circle class="hours-ring transition-all duration-1000 ease-linear" cx="50" cy="50" r="40" stroke="var(--gold,#0ea5e9)" stroke-width="5" fill="transparent"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" />
+        </svg>
+        <div class="absolute inset-0 flex flex-col justify-center items-center">
+          <span class="hours-val text-2xl font-semibold text-[var(--dark-text,#2c2523)] leading-none">00</span>
+          <span class="text-[9px] uppercase tracking-wider text-[var(--dark-text,#2c2523)] opacity-60 mt-1 block">Horas</span>
+        </div>
+      </div>
+
+      <!-- Minutos -->
+      <div class="relative w-28 h-28 flex flex-col justify-center items-center">
+        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="rgba(0, 0, 0, 0.05)" stroke-width="5" fill="transparent" />
+          <circle class="minutes-ring transition-all duration-1000 ease-linear" cx="50" cy="50" r="40" stroke="var(--gold,#0ea5e9)" stroke-width="5" fill="transparent"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" />
+        </svg>
+        <div class="absolute inset-0 flex flex-col justify-center items-center">
+          <span class="minutes-val text-2xl font-semibold text-[var(--dark-text,#2c2523)] leading-none">00</span>
+          <span class="text-[9px] uppercase tracking-wider text-[var(--dark-text,#2c2523)] opacity-60 mt-1 block">Min</span>
+        </div>
+      </div>
+
+      <!-- Segundos -->
+      <div class="relative w-28 h-28 flex flex-col justify-center items-center">
+        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="rgba(0, 0, 0, 0.05)" stroke-width="5" fill="transparent" />
+          <circle class="seconds-ring transition-all duration-300 ease-linear" cx="50" cy="50" r="40" stroke="var(--gold,#0ea5e9)" stroke-width="5" fill="transparent"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" />
+        </svg>
+        <div class="absolute inset-0 flex flex-col justify-center items-center">
+          <span class="seconds-val text-2xl font-semibold text-[var(--dark-text,#2c2523)] leading-none">00</span>
+          <span class="text-[9px] uppercase tracking-wider text-[var(--dark-text,#2c2523)] opacity-60 mt-1 block">Seg</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo, uniqueId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(uniqueId);
+    if (!container) return;
+
+    const eventDate = new Date(fechaObjetivoStr).getTime();
+    
+    // Rings
+    const daysRing = container.querySelector(".days-ring");
+    const hoursRing = container.querySelector(".hours-ring");
+    const minutesRing = container.querySelector(".minutes-ring");
+    const secondsRing = container.querySelector(".seconds-ring");
+
+    // Values
+    const daysEl = container.querySelector(".days-val");
+    const hoursEl = container.querySelector(".hours-val");
+    const minutesEl = container.querySelector(".minutes-val");
+    const secondsEl = container.querySelector(".seconds-val");
+
+    const circumference = 251.2;
+
+    function setRingProgress(ring, ratio) {
+      if (!ring) return;
+      const offset = circumference * (1 - ratio);
+      ring.style.strokeDashoffset = offset;
+    }
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const dist = eventDate - now;
+
+      if (dist < 0) {
+        if (daysEl) daysEl.innerText = "00";
+        if (hoursEl) hoursEl.innerText = "00";
+        if (minutesEl) minutesEl.innerText = "00";
+        if (secondsEl) secondsEl.innerText = "00";
+        
+        setRingProgress(daysRing, 0);
+        setRingProgress(hoursRing, 0);
+        setRingProgress(minutesRing, 0);
+        setRingProgress(secondsRing, 0);
+        return;
+      }
+
+      const d = Math.floor(dist / 86400000);
+      const h = Math.floor((dist % 86400000) / 3600000);
+      const m = Math.floor((dist % 3600000) / 60000);
+      const s = Math.floor((dist % 60000) / 1000);
+
+      if (daysEl) daysEl.innerText = d.toString().padStart(2, "0");
+      if (hoursEl) hoursEl.innerText = h.toString().padStart(2, "0");
+      if (minutesEl) minutesEl.innerText = m.toString().padStart(2, "0");
+      if (secondsEl) secondsEl.innerText = s.toString().padStart(2, "0");
+
+      // Progress rings calculations (Days is out of 30, Hours out of 24, etc.)
+      const dRatio = Math.min(d / 30, 1);
+      const hRatio = h / 24;
+      const mRatio = m / 60;
+      const sRatio = s / 60;
+
+      setRingProgress(daysRing, dRatio);
+      setRingProgress(hoursRing, hRatio);
+      setRingProgress(minutesRing, mRatio);
+      setRingProgress(secondsRing, sRatio);
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  });
+</script>

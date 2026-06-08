@@ -1,0 +1,86 @@
+---
+// src/components/carta/CartaBotanica.astro
+interface Props {
+  data: {
+    mostrar: boolean;
+    texto: string;
+    firmaTexto?: string;
+    firmaColor?: string;
+    colorTexto?: string;
+    colorFondo?: string;
+  };
+  bgImage?: string;
+}
+
+const { data, bgImage } = Astro.props;
+---
+
+{data.mostrar && (
+<section class="cbot-section">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <div class="cbot-card">
+    <svg class="cbot-leaf cbot-leaf-top" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 0 C70 20 90 40 50 100 C10 40 30 20 50 0 Z" fill="#e0eed5" />
+    </svg>
+    <div class="cbot-text" set:html={data.texto}></div>
+    {data.firmaTexto && (
+      <div class="cbot-firma">{data.firmaTexto}</div>
+    )}
+    <svg class="cbot-leaf cbot-leaf-bottom" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 0 C70 20 90 40 50 100 C10 40 30 20 50 0 Z" fill="#e0eed5" />
+    </svg>
+  </div>
+</section>
+)}
+
+<style>
+  .cbot-section {
+    padding: 4rem 1.5rem;
+    background-color: #f4f6f3;
+    display: flex;
+    justify-content: center;
+  }
+  .cbot-card {
+    background: #fff;
+    max-width: 400px;
+    padding: 4rem 2.5rem;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(76, 106, 76, 0.1);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .cbot-leaf {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+  }
+  .cbot-leaf-top {
+    top: 1.5rem;
+  }
+  .cbot-leaf-bottom {
+    bottom: 1.5rem;
+    transform: translateX(-50%) rotate(180deg);
+  }
+  .cbot-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: #4a5d4e;
+    line-height: 1.8;
+  }
+  .cbot-text :global(br) {
+    margin-bottom: 0.8rem;
+    display: block;
+    content: "";
+  }
+  .cbot-firma {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #3b4d3f;
+  }
+</style>

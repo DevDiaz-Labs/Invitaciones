@@ -1,0 +1,300 @@
+---
+// src/pages/preview/[categoria]/[id].astro
+import { CATALOG } from '../../../data/configurador/catalog.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const [catId, category] of Object.entries(CATALOG)) {
+    for (const item of category.items) {
+      paths.push({ params: { categoria: catId, id: item.id } });
+    }
+  }
+  return paths;
+}
+
+const { categoria, id } = Astro.params;
+
+// Find all components dynamically
+const allComponents = import.meta.glob('/src/components/**/*.astro');
+
+let Component;
+for (const path in allComponents) {
+  if (path.endsWith(`/${id}.astro`)) {
+    Component = (await allComponents[path]()).default;
+    break;
+  }
+}
+
+// Genérico Mock Data aplicable a cualquier componente
+// Genérico Mock Data aplicable a cualquier componente
+const mockData = {
+  mostrar: true,
+  nombres: 'Ana & Carlos',
+  titulo: 'Sección de Prueba',
+  fechaVista: '24 de Octubre de 2026',
+  fechaTexto: '24 de Octubre de 2026',
+  fecha: '2026-10-24',
+  frase: 'Con la bendición del amor, unimos nuestras vidas.',
+  imagenFondo: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+  imagen: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+  hashtag: '#AnaYCarlos',
+  mensaje: 'Esperamos contar con tu presencia',
+  texto: 'Hace quince años Dios me regaló la vida,<br/>y hoy agradezco la dicha de compartir este día con ustedes.<br/>Gracias por formar parte de mi historia y guiar mi camino con su cariño.',
+  urlSpotify: 'https://open.spotify.com/playlist/37i9dQZF1DWV7EzJMK2FUI',
+  banco: 'BBVA',
+  cuenta: '0123456789',
+  clabe: '012345678901234567',
+  titular: 'Ana Sofia Valdes',
+  amazon: '#',
+  liverpool: '#',
+  
+  // Countdown properties
+  fechaObjetivo: '2026-10-24T17:00:00',
+  urlCalendario: 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Gran+Evento&dates=20261024T220000Z/20261025T070000Z',
+
+  // Ubicación / Mapa properties
+  ceremonia: {
+    titulo: "Ceremonia Religiosa",
+    hora: "5:00 PM",
+    lugar: "Parroquia San Nicolás de Tolentino",
+    direccion: "Porfirio Díaz 301, Centro, 66400 San Nicolás de los Garza, N.L.",
+    urlMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57494.86451052193!2d-100.32446332089843!3d25.7563889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662958aa47c624b%3A0x664162c39ee5666c!2sParroquia%20San%20Nicol%C3%A1s%20de%20Tolentino!5e0!3m2!1ses-419!2smx!4v1777948217738!5m2!1ses-419!2smx",
+    urlMapaDirecto: "https://maps.app.goo.gl/nChdbuvJd5tXGrDMA",
+    iframeMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57494.86451052193!2d-100.32446332089843!3d25.7563889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662958aa47c624b%3A0x664162c39ee5666c!2sParroquia%20San%20Nicol%C3%A1s%20de%20Tolentino!5e0!3m2!1ses-419!2smx!4v1777948217738!5m2!1ses-419!2smx"
+  },
+  recepcion: {
+    titulo: "Recepción",
+    hora: "7:00 PM",
+    lugar: "Salón La Cúpula",
+    direccion: "Calle Mariano Matamoros 1270 A, San Nicolás de los Garza, N.L.",
+    urlMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.1547545697626!2d-100.29724060000002!3d25.76545149999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86629483c92138dd%3A0x1a303f693d501479!2sLa%20C%C3%BApula!5e0!3m2!1ses-419!2smx!4v1777948266752!5m2!1ses-419!2smx",
+    urlMapaDirecto: "https://maps.app.goo.gl/qAZBTAwonZYxcu2eA",
+    iframeMapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.1547545697626!2d-100.29724060000002!3d25.76545149999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86629483c92138dd%3A0x1a303f693d501479!2sLa%20C%C3%BApula!5e0!3m2!1ses-419!2smx!4v1777948266752!5m2!1ses-419!2smx"
+  },
+  notaEmocional: "Nuestra mayor alegría es poder compartir este día tan especial con las personas que más amamos.",
+  
+  // RSVP properties
+  telefono: '527824127509',
+  numeroWhatsapp: '527824127509',
+  mensajeDefault: 'Confirmación de asistencia',
+  fechaLimite: '24 de Octubre de 2026',
+  mensajeDespedida: '¡Tu confirmación alegra nuestro corazón!',
+  mostrarMensajeEspecial: true,
+  pases: Object.assign({ mostrar: true, cantidad: 2 }, { toString() { return '2'; } }),
+  mostrarNinos: false,
+
+  // Eventos/Itinerario list arrays
+  eventos: [
+    { hora: '16:00', nombre: 'Ceremonia', lugar: 'Templo Expiatorio', icono: 'iglesia' },
+    { hora: '18:00', nombre: 'Recepción', lugar: 'Salón de Eventos', icono: 'fiesta' }
+  ],
+  itinerario: [
+    { time: '16:00', event: 'Ceremonia', desc: 'Templo Expiatorio' },
+    { time: '18:00', event: 'Recepción', desc: 'Salón de Eventos' }
+  ],
+
+  // Dresscode properties
+  dressCode: {
+    titulo: 'Formal',
+    subtitulo: 'Traje oscuro y vestido largo',
+    nota: 'La recepción será en un jardín, sugerimos considerar el calzado.'
+  },
+  subtitulo: 'Traje oscuro y vestido largo',
+  nota: 'La recepción será en un jardín, sugerimos considerar el calzado.',
+
+  // Regalos properties
+  regalos: {
+    mostrar: true,
+    mensaje: "Mi mayor regalo es tu presencia, pero si deseas obsequiarme algo, lo recibiré con mucho cariño.",
+    opcionEfectivo: true,
+    opcionMesa: true,
+    layout: "vertical",
+    textoMesa: "Si deseas hacernos un regalo, te dejamos algunas sugerencias.",
+    textoEfectivo: "Lluvia de sobres: es la tradición de regalar efectivo en un sobre.",
+    tarjetaEfectivo: true,
+    mostrarDatosBancarios: true,
+    amazon_liverpool: true,
+    datosBancarios: "BBVA CLABE: 012345678901234567",
+    banco: 'BBVA',
+    cuenta: '0123456789',
+    clabe: '012345678901234567',
+    titular: 'Ana Sofia Valdes',
+    amazon: '#',
+    liverpool: '#',
+  },
+  opcionEfectivo: true,
+  opcionMesa: true,
+  textoMesa: "Si deseas hacernos un regalo, te dejamos algunas sugerencias.",
+  textoEfectivo: "Lluvia de sobres: es la tradición de regalar efectivo en un sobre.",
+  tarjetaEfectivo: true,
+  mostrarDatosBancarios: true,
+  amazon_liverpool: true,
+  datosBancarios: "BBVA CLABE: 012345678901234567",
+
+  // Music Player properties
+  musica: {
+    url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+  },
+
+  // Carta properties
+  firmaTexto: 'SOFIA VALERIA',
+  firmaColor: '#c5a059',
+  colorBorde: 'rgba(197, 160, 89, 0.2)',
+  colorFondoRecuadro: '#fffdf8',
+  mostrarAdorno: true,
+
+  // General calendars
+  calendario: {
+    google: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Gran+Evento&dates=20261024T220000Z/20261025T070000Z&details=¡Los+esperamos!",
+    apple: "#"
+  },
+
+  // Gallery array
+  galeria: [
+    'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=800&auto=format&fit=crop'
+  ],
+  invitado: 'Familia Valdes',
+  pasesTexto: '2 pases'
+};
+
+// Determine if this is an XV Years themed component
+const isXVComponent = id.toLowerCase().includes('xv') || id === 'HeroSofia';
+
+// Build customized mock data for the specific component to ensure maximum fidelity
+let componentData = { ...mockData };
+
+if (isXVComponent) {
+  componentData = {
+    ...componentData,
+    nombre: 'Sofia Valeria',
+    nombres: 'Sofia Valeria',
+    etiqueta: 'Mis XV Años',
+    fechaTexto: '15 de Diciembre 2026',
+    fechaVista: '15 de Diciembre 2026',
+    fechaObjetivo: '2026-12-15T20:00:00',
+    frase: '¡Prepárate para una noche mágica!',
+    imagenFondo: '/imagenes/xv/ejemplo/ejemplo2.jpg',
+    imagen: '/imagenes/xv/ejemplo/ejemplo2.jpg',
+    invitado: 'Familia Valdes',
+    pases: Object.assign({ mostrar: true, cantidad: 2 }, { toString() { return '2'; } }),
+    galeria: [
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop'
+    ]
+  };
+} else {
+  // Boda / General default names and labels
+  componentData = {
+    ...componentData,
+    nombre: 'Ana & Carlos',
+    etiqueta: 'Nuestra Boda',
+  };
+}
+
+let bodyBgColor = '#FAF6F0';
+if (isXVComponent) {
+  bodyBgColor = '#ffecfb';
+}
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview: {id}</title>
+  
+  <script src="https://cdn.tailwindcss.com" is:inline></script>
+  <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <script is:inline id="tw-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            accent: '#B76E79',
+            surface: '#161516',
+            bg: '#0F0E0F',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            script: ['Great Vibes', 'cursive'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style is:global define:vars={{ bodyBg: bodyBgColor }}>
+    :root {
+      --gold: #b76e79;
+      --dark-text: #2c2523;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bodyBg) !important;
+      background-image: none !important;
+      overflow-x: hidden;
+      /* Remove scrollbar */
+      scrollbar-width: none; 
+      -ms-overflow-style: none;
+    }
+    body::-webkit-scrollbar { 
+      display: none; 
+    }
+    .font-nombres { font-family: 'Great Vibes', cursive !important; }
+    
+    /* Disable all pointer events to prevent clicking links inside the preview */
+    .preview-wrapper {
+      pointer-events: none !important;
+      user-select: none;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Force the component's root section or div to fill the card height and center its contents */
+    .preview-wrapper > section,
+    .preview-wrapper > div,
+    .preview-wrapper > main {
+      flex-grow: 1;
+      min-height: 100vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+    }
+
+    iframe {
+      border: none;
+    }
+  </style>
+</head>
+<body class="bg-bg text-white font-sans antialiased">
+  <div class="preview-wrapper w-full relative">
+    {Component ? <Component data={categoria.includes('galeria') ? componentData.galeria : componentData} params={{ nombre: 'Prueba' }} /> : (
+      <div class="flex items-center justify-center h-screen">
+        <p class="text-white/50 text-sm">Preview no disponible</p>
+      </div>
+    )}
+  </div>
+  <script>
+    if (window.location.search.includes('interactive=true')) {
+      document.querySelector('.preview-wrapper').classList.remove('preview-wrapper');
+    }
+  </script>
+</body>
+</html>

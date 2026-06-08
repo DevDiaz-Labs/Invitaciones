@@ -1,0 +1,50 @@
+---
+interface Props {
+  data: {
+    mensaje: string;
+    opcionEfectivo?: boolean;
+    opcionMesa?: boolean;
+    textoEfectivo?: string;
+    textoMesa?: string;
+  };
+}
+const { data } = Astro.props;
+---
+<section class="py-24 px-6 bg-[#E8F1F2] text-[#13293D]">
+  <div class="max-w-4xl mx-auto bg-white p-10 md:p-16 rounded-[40px] shadow-xl relative">
+    <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#1B98E0] rounded-full mix-blend-multiply opacity-20 filter blur-xl"></div>
+    <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-[#006494] rounded-full mix-blend-multiply opacity-20 filter blur-xl"></div>
+    
+    <div class="relative z-10">
+      <h2 class="text-3xl font-bold text-center mb-8 text-[#006494]">Sugerencia de Regalos</h2>
+      <p class="text-center text-lg text-[#247BA0] mb-12 italic">"{data.mensaje}"</p>
+      
+      <div class="space-y-8">
+        {data.opcionEfectivo && (
+          <div class="flex items-start gap-6 bg-[#F4F9FA] p-6 rounded-2xl">
+            <div class="w-14 h-14 shrink-0 bg-[#1B98E0] rounded-full flex items-center justify-center text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Sobres</h3>
+              <p class="text-[#13293D]/80 leading-relaxed">{data.textoEfectivo}</p>
+            </div>
+          </div>
+        )}
+        
+        {data.opcionMesa && (
+          <div class="flex items-start gap-6 bg-[#F4F9FA] p-6 rounded-2xl">
+            <div class="w-14 h-14 shrink-0 bg-[#247BA0] rounded-full flex items-center justify-center text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Mesa de Regalos</h3>
+              <p class="text-[#13293D]/80 leading-relaxed mb-4">{data.textoMesa}</p>
+              <button class="text-sm font-bold text-[#006494] hover:text-[#1B98E0] underline underline-offset-4">Ver opciones</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

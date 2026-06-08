@@ -1,0 +1,88 @@
+---
+// src/components/countdown/CountdownMinimalista.astro
+interface Props {
+  data: {
+    fechaObjetivo: string;
+    urlCalendario?: string;
+  };
+}
+const { data } = Astro.props;
+const uniqueId = `countdown-min-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section class="py-16 px-6 text-center bg-transparent">
+  <div 
+    class="max-w-2xl mx-auto opacity-0 translate-y-4 transition-all duration-1000 ease-out" 
+    id={uniqueId}
+  >
+    <div class="grid grid-cols-4 gap-4 md:gap-12 max-w-xl mx-auto">
+      <div class="text-center">
+        <span class="days-val block text-5xl md:text-7xl font-serif text-[var(--dark-text,#2c2523)] font-medium leading-none">00</span>
+        <span class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--dark-text,#2c2523)] opacity-60 mt-3 block font-sans">Días</span>
+      </div>
+      <div class="text-center">
+        <span class="hours-val block text-5xl md:text-7xl font-serif text-[var(--dark-text,#2c2523)] font-medium leading-none">00</span>
+        <span class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--dark-text,#2c2523)] opacity-60 mt-3 block font-sans">Horas</span>
+      </div>
+      <div class="text-center">
+        <span class="minutes-val block text-5xl md:text-7xl font-serif text-[var(--dark-text,#2c2523)] font-medium leading-none">00</span>
+        <span class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--dark-text,#2c2523)] opacity-60 mt-3 block font-sans">Min</span>
+      </div>
+      <div class="text-center">
+        <span class="seconds-val block text-5xl md:text-7xl font-serif text-[var(--dark-text,#2c2523)] font-medium leading-none">00</span>
+        <span class="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--dark-text,#2c2523)] opacity-60 mt-3 block font-sans">Seg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fechaObjetivoStr: data.fechaObjetivo, uniqueId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(uniqueId);
+    if (!container) return;
+
+    // Simple observer to fade in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          container.classList.remove("opacity-0", "translate-y-4");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    const eventDate = new Date(fechaObjetivoStr).getTime();
+    const daysEl = container.querySelector(".days-val");
+    const hoursEl = container.querySelector(".hours-val");
+    const minutesEl = container.querySelector(".minutes-val");
+    const secondsEl = container.querySelector(".seconds-val");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const dist = eventDate - now;
+
+      if (dist < 0) {
+        if (daysEl) daysEl.innerText = "00";
+        if (hoursEl) hoursEl.innerText = "00";
+        if (minutesEl) minutesEl.innerText = "00";
+        if (secondsEl) secondsEl.innerText = "00";
+        return;
+      }
+
+      const d = Math.floor(dist / 86400000);
+      const h = Math.floor((dist % 86400000) / 3600000);
+      const m = Math.floor((dist % 3600000) / 60000);
+      const s = Math.floor((dist % 60000) / 1000);
+
+      if (daysEl) daysEl.innerText = d.toString().padStart(2, "0");
+      if (hoursEl) hoursEl.innerText = h.toString().padStart(2, "0");
+      if (minutesEl) minutesEl.innerText = m.toString().padStart(2, "0");
+      if (secondsEl) secondsEl.innerText = s.toString().padStart(2, "0");
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  });
+</script>

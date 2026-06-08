@@ -1,0 +1,120 @@
+---
+// src/components/rsvp/RSVPDigitalEnvelope.astro
+const { data } = Astro.props;
+---
+
+<section class="py-12 px-6 bg-[#161210] text-[#f2ebe5] font-sans relative overflow-hidden">
+  <div 
+    class="max-w-md mx-auto relative z-10" 
+    data-telefono={data?.telefono || '521234567890'} 
+    data-mensaje={data?.mensajeDefault || 'Confirmación de Asistencia'}
+    x-data="{
+      submitted: false,
+      formData: {
+        nombre: '',
+        asistencia: 'si',
+        adultos: 2,
+        ninos: 0,
+        menu: 'regular'
+      },
+      submitForm() {
+        console.log('Digital Envelope RSVP:', this.formData);
+        const tel = $el.getAttribute('data-telefono');
+        const msgBase = $el.getAttribute('data-mensaje');
+        let text = msgBase + '\nSoy ' + this.formData.nombre.trim() + ', ';
+        if (this.formData.asistencia === 'si') {
+          text += 'confirmo mi asistencia:\n- ' + this.formData.adultos + ' adulto(s)';
+          if (this.formData.ninos > 0) {
+            text += '\n- ' + this.formData.ninos + ' niño(s)';
+          }
+          text += '\n- Menú: ' + this.formData.menu;
+        } else {
+          text += 'no podré asistir.';
+        }
+        const url = 'https://wa.me/' + tel + '?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+        this.submitted = true;
+      }
+    }"
+  >
+    <div class="text-center mb-6">
+      <span class="text-xs uppercase tracking-widest text-[#d4af37] font-semibold font-mono">Confirmar Asistencia</span>
+      <h2 class="text-3xl font-serif mt-1 text-[#f2ebe5]">Invitación Digital</h2>
+    </div>
+
+    <!-- Form Container -->
+    <div class="relative w-full">
+      
+      <!-- Card Content -->
+      <div class="bg-[#241c17] border border-[#d4af37]/20 rounded-2xl p-6 shadow-2xl relative">
+        
+        <!-- Thanks State -->
+        <div x-show="submitted" class="text-center py-10 space-y-4">
+          <div class="text-[#d4af37] text-5xl">♥</div>
+          <h3 class="text-xl font-serif text-[#f2ebe5]">¡Asistencia Registrada!</h3>
+          <p class="text-gray-400 text-xs leading-relaxed" x-text="formData.asistencia === 'si' ? 'Guardamos tus datos de menú. ¡Prepárate para festejar!' : 'Gracias por avisarnos. Te extrañaremos mucho en el evento.'"></p>
+          <button type="button" @click="submitted = false;" class="text-xs text-[#d4af37] underline font-mono tracking-wider">Modificar Respuesta</button>
+        </div>
+
+        <!-- Form content -->
+        <form x-show="!submitted" @submit.prevent="submitForm" class="space-y-4 text-left">
+          <div class="flex justify-between items-center border-b border-[#d4af37]/10 pb-2">
+            <span class="text-xs font-mono text-[#d4af37]">CONFIRMACIÓN RSVP</span>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-[#d4af37] mb-1 font-mono">Nombre de la Familia o Invitado</label>
+            <input type="text" required x-model="formData.nombre" class="w-full bg-[#1c1511] border border-[#d4af37]/20 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-[#d4af37] text-xs" placeholder="Ej. Sr. y Sra. Gómez" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" @click="formData.asistencia = 'si'" :class="formData.asistencia === 'si' ? 'bg-[#d4af37]/20 border-[#d4af37] text-[#d4af37]' : 'bg-[#1c1511] border-[#d4af37]/10 text-gray-400'" class="border rounded-lg py-2.5 text-center text-xs font-semibold font-mono">
+              SÍ ASISTIRÉ
+            </button>
+            <button type="button" @click="formData.asistencia = 'no'" :class="formData.asistencia === 'no' ? 'bg-pink-900/20 border-pink-700/40 text-pink-400' : 'bg-[#1c1511] border-[#d4af37]/10 text-gray-400'" class="border rounded-lg py-2.5 text-center text-xs font-semibold font-mono">
+              NO ASISTIRÉ
+            </button>
+          </div>
+
+          <!-- Conditional details -->
+          <div x-show="formData.asistencia === 'si'" x-transition class="space-y-4 border-t border-[#d4af37]/10 pt-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1 font-mono">Adultos</label>
+                <div class="flex items-center justify-between bg-[#1c1511] border border-[#d4af37]/10 rounded-lg px-2 py-1">
+                  <button type="button" @click="if(formData.adultos > 1) formData.adultos--" class="text-gray-400 px-1 font-bold">-</button>
+                  <span class="text-xs font-mono font-bold" x-text="formData.adultos"></span>
+                  <button type="button" @click="if(formData.adultos < 10) formData.adultos++" class="text-gray-400 px-1 font-bold">+</button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1 font-mono">Niños</label>
+                <div class="flex items-center justify-between bg-[#1c1511] border border-[#d4af37]/10 rounded-lg px-2 py-1">
+                  <button type="button" @click="if(formData.ninos > 0) formData.ninos--" class="text-gray-400 px-1 font-bold">-</button>
+                  <span class="text-xs font-mono font-bold" x-text="formData.ninos"></span>
+                  <button type="button" @click="if(formData.ninos < 10) formData.ninos++" class="text-gray-400 px-1 font-bold">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1 font-mono">Preferencia de Menú</label>
+              <select x-model="formData.menu" class="w-full bg-[#1c1511] border border-[#d4af37]/20 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-[#d4af37] text-xs">
+                <option value="regular">Menú Regular (Corte de Carne)</option>
+                <option value="pescado">Menú Pescado / Marisco</option>
+                <option value="vegetariano">Menú Vegetariano</option>
+                <option value="infantil">Menú Infantil (Menores)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-[#d4af37] text-black py-2.5 rounded-lg uppercase tracking-wider text-xs font-bold hover:bg-[#c5a059] transition-colors mt-4">
+            Enviar Respuestas
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,65 @@
+---
+interface Evento {
+  titulo?: string;
+  lugar: string;
+  direccion: string;
+  hora: string;
+  urlMapa: string;
+  iframeMapa?: string;
+}
+interface Props {
+  data: { ceremonia?: Evento; recepcion?: Evento; };
+}
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<section class="py-20 px-4 bg-[#fdfbf7] relative overflow-hidden">
+  <!-- Decoraciones Acuarela (Simuladas con divs blur) -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-pink-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal-200/50 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <h2 class="text-5xl md:text-6xl text-center text-[#8d6e63] mb-16" style="font-family: 'Dancing Script', cursive;">Nos acompañarás en...</h2>
+    
+    <div class="grid md:grid-cols-2 gap-12">
+      {ceremonia && (
+        <div class="bg-white/70 backdrop-blur-sm p-8 rounded-[2rem] shadow-sm border border-pink-100 flex flex-col items-center text-center">
+          <h3 class="text-3xl text-pink-400 mb-2" style="font-family: 'Dancing Script', cursive;">{ceremonia.titulo || "Ceremonia"}</h3>
+          <p class="text-xl text-gray-600 mb-4 font-light">{ceremonia.hora}</p>
+          <p class="text-gray-800 font-medium mb-2">{ceremonia.lugar}</p>
+          <p class="text-gray-500 text-sm mb-6 font-light">{ceremonia.direccion}</p>
+          
+          {ceremonia.iframeMapa && (
+            <div class="w-full h-48 mb-6 rounded-xl overflow-hidden opacity-90 border-4 border-white shadow-sm">
+              <iframe src={ceremonia.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-6 py-2 bg-pink-100 text-pink-700 hover:bg-pink-200 rounded-full transition-colors text-sm font-medium tracking-wide">
+            Ver ubicación
+          </a>
+        </div>
+      )}
+
+      {recepcion && (
+        <div class="bg-white/70 backdrop-blur-sm p-8 rounded-[2rem] shadow-sm border border-teal-100 flex flex-col items-center text-center">
+          <h3 class="text-3xl text-teal-500 mb-2" style="font-family: 'Dancing Script', cursive;">{recepcion.titulo || "Recepción"}</h3>
+          <p class="text-xl text-gray-600 mb-4 font-light">{recepcion.hora}</p>
+          <p class="text-gray-800 font-medium mb-2">{recepcion.lugar}</p>
+          <p class="text-gray-500 text-sm mb-6 font-light">{recepcion.direccion}</p>
+          
+          {recepcion.iframeMapa && (
+            <div class="w-full h-48 mb-6 rounded-xl overflow-hidden opacity-90 border-4 border-white shadow-sm">
+              <iframe src={recepcion.iframeMapa} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          )}
+          
+          <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="mt-auto px-6 py-2 bg-teal-100 text-teal-700 hover:bg-teal-200 rounded-full transition-colors text-sm font-medium tracking-wide">
+            Ver ubicación
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

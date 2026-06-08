@@ -1,0 +1,46 @@
+---
+interface Props {
+  data: {
+    mostrar: boolean;
+    titulo?: string;
+    frase?: string;
+    urlBoton?: string;
+    textoBoton?: string;
+    hashtag?: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+{data.mostrar && (
+  <section class="py-20 px-6 bg-[#f4e8d3] relative overflow-hidden flex flex-col items-center">
+    <!-- Arch decoration -->
+    <div class="absolute top-0 w-full h-32 bg-[#e6d5b8] rounded-b-full opacity-50 z-0"></div>
+    
+    <div class="relative z-10 w-full max-w-sm mx-auto bg-white/70 backdrop-blur-sm rounded-t-[100px] p-10 text-center border border-[#d4bca0] shadow-lg">
+      <svg class="w-12 h-12 mx-auto mb-6 text-[#9a7b5c]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <h2 class="text-3xl font-['Playfair_Display'] text-[#5c4a3d] mb-4 italic">
+        {data.titulo || "Captura el Instante"}
+      </h2>
+      <p class="text-[#7d6b5d] font-['Montserrat'] font-light text-sm mb-8 leading-relaxed" set:html={data.frase || "Comparte tus momentos con nosotros"}>
+      </p>
+      
+      {data.hashtag && (
+        <p class="text-[#9a7b5c] font-bold tracking-widest mb-6 font-['Montserrat']">{data.hashtag}</p>
+      )}
+
+      <a 
+        href={data.urlBoton || "#"} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#9a7b5c] text-white px-8 py-3 rounded-full font-['Montserrat'] text-xs tracking-[0.2em] uppercase hover:bg-[#7d6b5d] transition-colors"
+      >
+        {data.textoBoton || "Subir Fotos"}
+      </a>
+    </div>
+  </section>
+)}

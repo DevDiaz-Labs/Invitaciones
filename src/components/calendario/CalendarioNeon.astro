@@ -1,0 +1,249 @@
+---
+// src/components/calendario/CalendarioNeon.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="cn-wrap">
+    <div class="cn-grid-bg"></div>
+    <div class="cn-scanlines"></div>
+
+    <div class="cn-header">
+      <div class="cn-bracket cn-bracket-left">&#91;</div>
+      <h4 class="cn-title">AGENDA EL EVENTO</h4>
+      <div class="cn-bracket cn-bracket-right">&#93;</div>
+    </div>
+
+    <div class="cn-divider">
+      <span class="cn-dot"></span>
+      <span class="cn-line"></span>
+      <span class="cn-dot"></span>
+    </div>
+
+    <div class="cn-buttons">
+      {google && (
+        <a href={google} target="_blank" rel="noopener noreferrer" class="cn-btn cn-btn-cyan">
+          <svg viewBox="0 0 24 24" class="cn-icon" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>GOOGLE CALENDAR</span>
+          <span class="cn-arrow">›</span>
+        </a>
+      )}
+      {apple && (
+        <a href={apple} class="cn-btn cn-btn-magenta">
+          <svg viewBox="0 0 24 24" class="cn-icon" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span>APPLE CALENDAR</span>
+          <span class="cn-arrow">›</span>
+        </a>
+      )}
+      {outlook && (
+        <a href={outlook} target="_blank" rel="noopener noreferrer" class="cn-btn cn-btn-yellow">
+          <svg viewBox="0 0 24 24" class="cn-icon" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+            <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+          </svg>
+          <span>OUTLOOK</span>
+          <span class="cn-arrow">›</span>
+        </a>
+      )}
+    </div>
+
+    <div class="cn-footer">
+      <span class="cn-blink">_</span>
+      <span class="cn-footer-text">SISTEMA LISTO</span>
+      <span class="cn-blink">_</span>
+    </div>
+  </div>
+)}
+
+<style>
+  .cn-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #080b14;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cn-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+  .cn-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cn-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cn-bracket {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.6rem;
+    color: #00f5ff;
+    text-shadow: 0 0 10px #00f5ff, 0 0 20px #00f5ff;
+    line-height: 1;
+  }
+  .cn-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #00f5ff;
+    text-shadow: 0 0 8px #00f5ff, 0 0 20px rgba(0,245,255,0.5);
+    margin: 0;
+    text-align: center;
+  }
+  .cn-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cn-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ff00ff;
+    box-shadow: 0 0 6px #ff00ff;
+  }
+  .cn-line {
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ff00ff, transparent);
+  }
+  .cn-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    z-index: 1;
+  }
+  .cn-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.75rem 1.2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.25s ease;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .cn-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .cn-btn:hover::before { opacity: 1; }
+  .cn-btn-cyan {
+    color: #00f5ff;
+    border-color: #00f5ff;
+    box-shadow: 0 0 8px rgba(0,245,255,0.3), inset 0 0 8px rgba(0,245,255,0.05);
+  }
+  .cn-btn-cyan::before { background: rgba(0,245,255,0.08); }
+  .cn-btn-cyan:hover {
+    box-shadow: 0 0 20px rgba(0,245,255,0.6), inset 0 0 15px rgba(0,245,255,0.1);
+  }
+  .cn-btn-magenta {
+    color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 8px rgba(255,0,255,0.3), inset 0 0 8px rgba(255,0,255,0.05);
+  }
+  .cn-btn-magenta::before { background: rgba(255,0,255,0.08); }
+  .cn-btn-magenta:hover {
+    box-shadow: 0 0 20px rgba(255,0,255,0.6), inset 0 0 15px rgba(255,0,255,0.1);
+  }
+  .cn-btn-yellow {
+    color: #f0e040;
+    border-color: #f0e040;
+    box-shadow: 0 0 8px rgba(240,224,64,0.3), inset 0 0 8px rgba(240,224,64,0.05);
+  }
+  .cn-btn-yellow::before { background: rgba(240,224,64,0.08); }
+  .cn-btn-yellow:hover {
+    box-shadow: 0 0 20px rgba(240,224,64,0.6), inset 0 0 15px rgba(240,224,64,0.1);
+  }
+  .cn-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .cn-arrow {
+    margin-left: auto;
+    font-size: 1.1rem;
+  }
+  .cn-footer {
+    margin-top: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cn-footer-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: rgba(0,245,255,0.4);
+  }
+  .cn-blink {
+    font-family: 'Orbitron', monospace;
+    color: #00f5ff;
+    font-size: 0.8rem;
+    animation: cn-blink 1.2s step-end infinite;
+  }
+  @keyframes cn-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

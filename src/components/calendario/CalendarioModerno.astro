@@ -1,0 +1,236 @@
+---
+// src/components/calendario/CalendarioModerno.astro
+interface Props {
+  calendario: {
+    google?: string;
+    apple?: string;
+    outlook?: string;
+  };
+}
+
+const { calendario } = Astro.props;
+const { google, apple, outlook } = calendario || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+{calendario && (google || apple || outlook) && (
+  <div class="cm-wrap">
+    <!-- Gradient blobs -->
+    <div class="cm-blob cm-blob-1"></div>
+    <div class="cm-blob cm-blob-2"></div>
+
+    <div class="cm-inner">
+      <div class="cm-badge">PRÓXIMAMENTE</div>
+
+      <h4 class="cm-title">Guarda el evento</h4>
+
+      <p class="cm-desc">Sincroniza con tu calendario favorito y recibe un recordatorio.</p>
+
+      <div class="cm-card-row">
+        {google && (
+          <a href={google} target="_blank" rel="noopener noreferrer" class="cm-card">
+            <div class="cm-card-icon cm-icon-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="cm-card-text">
+              <span class="cm-card-label">Agendar en</span>
+              <span class="cm-card-name">Google</span>
+            </div>
+            <div class="cm-card-arrow">→</div>
+          </a>
+        )}
+        {apple && (
+          <a href={apple} class="cm-card">
+            <div class="cm-card-icon cm-icon-purple">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+              </svg>
+            </div>
+            <div class="cm-card-text">
+              <span class="cm-card-label">Agendar en</span>
+              <span class="cm-card-name">Apple</span>
+            </div>
+            <div class="cm-card-arrow">→</div>
+          </a>
+        )}
+        {outlook && (
+          <a href={outlook} target="_blank" rel="noopener noreferrer" class="cm-card">
+            <div class="cm-card-icon cm-icon-indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+                <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+              </svg>
+            </div>
+            <div class="cm-card-text">
+              <span class="cm-card-label">Agendar en</span>
+              <span class="cm-card-name">Outlook</span>
+            </div>
+            <div class="cm-card-arrow">→</div>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .cm-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #0f0c29;
+    background: linear-gradient(135deg, #0f0c29 0%, #1a1040 40%, #24243e 100%);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cm-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    opacity: 0.25;
+  }
+  .cm-blob-1 {
+    width: 200px;
+    height: 200px;
+    background: #7b2ff7;
+    top: -60px;
+    right: -60px;
+  }
+  .cm-blob-2 {
+    width: 160px;
+    height: 160px;
+    background: #2563eb;
+    bottom: -50px;
+    left: -40px;
+  }
+  .cm-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cm-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(123,47,247,0.3), rgba(37,99,235,0.3));
+    border: 1px solid rgba(123,47,247,0.5);
+    color: #a78bfa;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .cm-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.6rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 30%, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cm-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    margin: 0 0 2rem;
+    line-height: 1.5;
+    max-width: 240px;
+  }
+  .cm-card-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+  }
+  .cm-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+  }
+  .cm-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(167,139,250,0.4);
+    transform: translateX(3px);
+  }
+  .cm-card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cm-card-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .cm-icon-blue {
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: #fff;
+  }
+  .cm-icon-purple {
+    background: linear-gradient(135deg, #7b2ff7, #a78bfa);
+    color: #fff;
+  }
+  .cm-icon-indigo {
+    background: linear-gradient(135deg, #4338ca, #6366f1);
+    color: #fff;
+  }
+  .cm-card-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .cm-card-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .cm-card-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 600;
+  }
+  .cm-card-arrow {
+    color: rgba(255,255,255,0.3);
+    font-size: 1rem;
+    transition: color 0.25s, transform 0.25s;
+  }
+  .cm-card:hover .cm-card-arrow {
+    color: #a78bfa;
+    transform: translateX(2px);
+  }
+</style>

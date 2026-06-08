@@ -1,0 +1,97 @@
+---
+const { data } = Astro.props;
+---
+
+<section id="rsvp" class="pt-10 pb-16 px-6 bg-boho-terracota text-white relative">
+  <!-- Textura svg sutil -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+  <div class="max-w-3xl mx-auto text-center relative z-10" x-data="rsvpForm()">
+    <h2 class="font-handwriting text-5xl md:text-7xl mb-6 text-boho-arena transform -rotate-2">
+      {data.titulo}
+    </h2>
+    <p class="text-xl md:text-2xl font-light mb-12">
+      Por favor, confírmanos tu asistencia antes de que sea tarde.
+    </p>
+
+    <!-- Estado de éxito -->
+    <div x-show="submitted" x-transition class="bg-white/10 backdrop-blur border border-boho-arena/50 p-8 rounded-2xl">
+      <h3 class="text-3xl font-handwriting text-boho-arena mb-4">¡Gracias!</h3>
+      <p class="text-xl">{data.mensajeDespedida}</p>
+    </div>
+
+    <!-- Formulario -->
+    <form x-show="!submitted" @submit.prevent="submitForm" class="text-left space-y-6 bg-white text-gray-800 p-8 md:p-12 rounded-2xl shadow-2xl relative">
+      <div>
+        <label class="block text-sm font-semibold uppercase tracking-widest text-boho-terracota mb-2">Nombre y Apellido</label>
+        <input type="text" required x-model="formData.nombre" class="w-full border-b-2 border-gray-200 py-2 px-1 focus:outline-none focus:border-boho-eucalipto transition-colors bg-transparent text-lg" placeholder="Ej. Familia Pérez" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold uppercase tracking-widest text-boho-terracota mb-2">¿Podrás acompañarnos?</label>
+        <div class="flex flex-col sm:flex-row gap-4 mt-3">
+          <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-lg hover:bg-gray-50 flex-1">
+            <input type="radio" value="si" x-model="formData.asistencia" class="text-boho-eucalipto focus:ring-boho-eucalipto w-5 h-5">
+            <span class="text-lg">Sí, con gusto</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-lg hover:bg-gray-50 flex-1">
+            <input type="radio" value="no" x-model="formData.asistencia" class="text-boho-terracota w-5 h-5 focus:ring-boho-terracota">
+            <span class="text-lg">Los acompañaré en espíritu</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Solo mostrar si asiste -->
+      <div x-show="formData.asistencia === 'si'" x-transition class="space-y-6">
+        <div>
+          <label class="block text-sm font-semibold uppercase tracking-widest text-boho-terracota mb-2">N° de Invitados</label>
+          <select x-model="formData.invitados" class="w-full border-b-2 border-gray-200 py-2 px-1 focus:outline-none focus:border-boho-eucalipto bg-transparent text-lg">
+            <option value="1">1 persona</option>
+            <option value="2">2 personas</option>
+            <option value="3">3 personas</option>
+            <option value="4">4 personas</option>
+            <option value="5">5 personas (Familia)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold uppercase tracking-widest text-boho-terracota mb-2">Alergias o Restricciones Alimentarias</label>
+          <input type="text" x-model="formData.alergias" class="w-full border-b-2 border-gray-200 py-2 px-1 focus:outline-none focus:border-boho-eucalipto transition-colors bg-transparent text-lg" placeholder="Ej. Vegano, alergia al maní..." />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold uppercase tracking-widest text-boho-terracota mb-2">¿Qué canción te haría bailar toda la noche?</label>
+          <input type="text" x-model="formData.cancion" class="w-full border-b-2 border-gray-200 py-2 px-1 focus:outline-none focus:border-boho-eucalipto transition-colors bg-transparent text-lg text-boho-dorado" placeholder="Título - Artista" />
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-boho-terracota text-white py-4 rounded-full uppercase tracking-widest text-sm font-bold hover:bg-boho-eucalipto transition-colors duration-300 mt-8 shadow-lg">
+        Enviar Confirmación
+      </button>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('rsvpForm', () => ({
+      submitted: false,
+      formData: {
+        nombre: '',
+        asistencia: 'si',
+        invitados: '1',
+        alergias: '',
+        cancion: ''
+      },
+      submitForm() {
+        // Aquí iría la lógica para enviar a Google Sheets
+        console.log('Datos enviados:', this.formData);
+        
+        // Simular envío
+        setTimeout(() => {
+          this.submitted = true;
+        }, 500);
+      }
+    }))
+  })
+</script>

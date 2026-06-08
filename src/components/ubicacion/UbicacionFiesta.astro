@@ -1,0 +1,279 @@
+---
+// src/components/ubicacion/UbicacionFiesta.astro
+interface Evento {
+  titulo?: string;
+  lugar?: string;
+  direccion?: string;
+  hora?: string;
+  urlMapa?: string;
+  urlMapaDirecto?: string;
+  iframeMapa?: string;
+}
+
+interface Props {
+  data: {
+    ceremonia?: Evento;
+    recepcion?: Evento;
+  };
+}
+
+const { data } = Astro.props;
+const { ceremonia, recepcion } = data || {};
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+<section class="ubf-wrap">
+  <!-- Confetti-like dots -->
+  <div class="ubf-confetti" aria-hidden="true">
+    <span class="ubf-dot" style="top:6%;left:8%;background:#ff6b6b;transform:rotate(25deg)"></span>
+    <span class="ubf-dot" style="top:4%;left:45%;background:#ffd93d;width:8px;height:8px;border-radius:2px"></span>
+    <span class="ubf-dot" style="top:8%;left:80%;background:#6bcb77;transform:rotate(45deg);border-radius:1px"></span>
+    <span class="ubf-dot" style="top:14%;left:25%;background:#4d96ff;width:6px;height:6px"></span>
+    <span class="ubf-dot" style="top:12%;left:68%;background:#ff6b6b;width:5px;height:9px;border-radius:2px"></span>
+    <span class="ubf-dot" style="bottom:10%;left:12%;background:#ffd93d;transform:rotate(30deg);border-radius:1px"></span>
+    <span class="ubf-dot" style="bottom:8%;left:55%;background:#ff6b6b;width:7px;height:7px"></span>
+    <span class="ubf-dot" style="bottom:12%;left:88%;background:#6bcb77;transform:rotate(60deg)"></span>
+  </div>
+
+  <div class="ubf-header">
+    <div class="ubf-emoji">🎉</div>
+    <h2 class="ubf-title">¡Aquí nos vemos!</h2>
+    <p class="ubf-sub">Prepárate para una noche increíble</p>
+  </div>
+
+  <div class="ubf-cards">
+    {ceremonia && (
+      <div class="ubf-card ubf-card--1">
+        <div class="ubf-card-ribbon">Ceremonia</div>
+        <div class="ubf-card-body">
+          <div class="ubf-time-pill">
+            <span class="ubf-time-emoji">⏰</span>
+            {ceremonia.hora}
+          </div>
+          <h3 class="ubf-card-lugar">{ceremonia.lugar}</h3>
+          <p class="ubf-card-dir">{ceremonia.direccion}</p>
+          {(ceremonia.iframeMapa || ceremonia.urlMapa) && (
+            <div class="ubf-map">
+              <iframe
+                src={ceremonia.iframeMapa || ceremonia.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(ceremonia.urlMapaDirecto || ceremonia.urlMapa) && (
+            <a href={ceremonia.urlMapaDirecto || ceremonia.urlMapa} target="_blank" rel="noopener noreferrer" class="ubf-btn ubf-btn--1">
+              📍 ¡Cómo llegar!
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+
+    <div class="ubf-arrow-wrap" aria-hidden="true">
+      <div class="ubf-arrow-line"></div>
+      <div class="ubf-arrow-icon">🎊</div>
+      <div class="ubf-arrow-line"></div>
+    </div>
+
+    {recepcion && (
+      <div class="ubf-card ubf-card--2">
+        <div class="ubf-card-ribbon ubf-card-ribbon--2">¡La Fiesta!</div>
+        <div class="ubf-card-body">
+          <div class="ubf-time-pill ubf-time-pill--2">
+            <span class="ubf-time-emoji">🕖</span>
+            {recepcion.hora}
+          </div>
+          <h3 class="ubf-card-lugar">{recepcion.lugar}</h3>
+          <p class="ubf-card-dir">{recepcion.direccion}</p>
+          {(recepcion.iframeMapa || recepcion.urlMapa) && (
+            <div class="ubf-map">
+              <iframe
+                src={recepcion.iframeMapa || recepcion.urlMapa}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          )}
+          {(recepcion.urlMapaDirecto || recepcion.urlMapa) && (
+            <a href={recepcion.urlMapaDirecto || recepcion.urlMapa} target="_blank" rel="noopener noreferrer" class="ubf-btn ubf-btn--2">
+              📍 ¡Cómo llegar!
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ubf-wrap {
+    background: linear-gradient(135deg, #fff9f0 0%, #fff0f8 50%, #f0f8ff 100%);
+    padding: 2.5rem 1.25rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ubf-confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .ubf-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .ubf-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .ubf-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+  .ubf-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.4rem;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .ubf-sub {
+    font-size: 0.88rem;
+    color: #888;
+    margin: 0;
+    font-weight: 600;
+  }
+  .ubf-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ubf-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .ubf-card--1 {
+    border: 2px solid #ffb3ba;
+    background: linear-gradient(135deg, #fff 80%, #fff9f0 100%);
+  }
+  .ubf-card--2 {
+    border: 2px solid #b3d9ff;
+    background: linear-gradient(135deg, #fff 80%, #f0f8ff 100%);
+  }
+  .ubf-card-ribbon {
+    background: linear-gradient(135deg, #ff6b6b, #ff8c94);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    text-align: center;
+  }
+  .ubf-card-ribbon--2 {
+    background: linear-gradient(135deg, #4d96ff, #6bb5ff);
+  }
+  .ubf-card-body {
+    padding: 1.25rem;
+  }
+  .ubf-time-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255,107,107,0.1);
+    border: 1.5px solid rgba(255,107,107,0.25);
+    color: #ff6b6b;
+    border-radius: 20px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .ubf-time-pill--2 {
+    background: rgba(77,150,255,0.1);
+    border-color: rgba(77,150,255,0.25);
+    color: #4d96ff;
+  }
+  .ubf-time-emoji {
+    font-size: 0.9rem;
+  }
+  .ubf-card-lugar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin: 0 0 0.35rem;
+  }
+  .ubf-card-dir {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .ubf-map {
+    width: 100%;
+    height: 175px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid rgba(0,0,0,0.08);
+    margin-bottom: 0.85rem;
+  }
+  .ubf-btn {
+    display: block;
+    text-align: center;
+    border-radius: 50px;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .ubf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .ubf-btn--1 {
+    background: linear-gradient(135deg, #ff6b6b, #ff8c94);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+  }
+  .ubf-btn--2 {
+    background: linear-gradient(135deg, #4d96ff, #6bb5ff);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(77,150,255,0.35);
+  }
+  .ubf-arrow-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+  .ubf-arrow-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, #ffd93d, #ff6b6b);
+    opacity: 0.4;
+  }
+  .ubf-arrow-icon {
+    font-size: 1.4rem;
+  }
+</style>

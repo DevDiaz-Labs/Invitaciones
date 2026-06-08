@@ -1,0 +1,24 @@
+---
+interface Props {
+  data: {
+    imagenFondo: string;
+    fechaVista: string;
+    fecha: string;
+    nombres: string;
+    frase: string;
+  };
+}
+const { data } = Astro.props;
+---
+<section class="relative w-full h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-[#f4e4bc]">
+  <div class="absolute inset-0 z-0">
+    <img src={data.imagenFondo} alt="Fondo" class="w-full h-full object-cover object-center sepia-[0.8] opacity-60" />
+    <div class="absolute inset-0 bg-[#3e2723]/30 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')] opacity-50 mix-blend-overlay"></div>
+  </div>
+  <div class="relative z-10 flex flex-col items-center px-4 max-w-4xl p-10 bg-[#fef9e7]/80 rounded-full aspect-square justify-center shadow-2xl border-8 border-double border-[#8d6e63]">
+    <h1 class="font-['Cormorant_Garamond'] text-6xl md:text-8xl text-[#4e342e] font-bold mb-4">{data.nombres}</h1>
+    <h2 class="text-sm md:text-md tracking-[0.2em] uppercase text-[#5d4037] mb-4 font-bold border-t border-b border-[#8d6e63] py-2">{data.fechaVista}</h2>
+    <p class="text-md md:text-lg font-serif text-[#4e342e] italic max-w-xs leading-relaxed">"{data.frase}"</p>
+  </div>
+</section>

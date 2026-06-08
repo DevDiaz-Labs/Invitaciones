@@ -1,0 +1,36 @@
+---
+interface Props {
+  data: {
+    mensaje: string;
+    banco?: string;
+    tiendaURL?: string;
+  };
+}
+const { data } = Astro.props;
+const mensaje = data?.mensaje || "";
+const banco = data?.banco || "";
+const tiendaURL = data?.tiendaURL || "#";
+---
+<section class="py-20 px-6 bg-[#FAF9F6] relative text-[#5C4A44] font-sans">
+  <div class="max-w-4xl mx-auto flex flex-col items-center">
+    <div class="w-16 h-16 border-2 border-[#D8A48F] rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-[#D8A48F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+    </div>
+    <h2 class="text-4xl font-serif text-[#C0856D] mb-4 text-center">Detalles de Regalo</h2>
+    <p class="text-xl text-center italic mb-12 max-w-2xl text-[#8E7970]">{mensaje}</p>
+    
+    <div class="flex flex-col md:flex-row gap-8 w-full justify-center">
+      <div class="flex-1 bg-white p-8 rounded-[40px] shadow-sm border border-[#EBE5DE] relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-[#F2EAE5] rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+        <h3 class="text-2xl font-serif text-[#9A7B6B] mb-4">Transferencia</h3>
+        <pre class="font-sans whitespace-pre-wrap text-[#75665E] leading-relaxed">{banco}</pre>
+      </div>
+      
+      <div class="flex-1 bg-white p-8 rounded-[40px] shadow-sm border border-[#EBE5DE] relative overflow-hidden group flex flex-col items-center justify-center">
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-[#E2E6D8] rounded-tr-full -z-10 group-hover:scale-110 transition-transform"></div>
+        <h3 class="text-2xl font-serif text-[#788264] mb-6">Mesa de Regalos</h3>
+        <a href={tiendaURL} target="_blank" class="px-8 py-3 bg-[#8C9872] text-white rounded-full hover:bg-[#788264] transition-colors shadow-md">Descubrir más</a>
+      </div>
+    </div>
+  </div>
+</section>
