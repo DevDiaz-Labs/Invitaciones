@@ -126,7 +126,7 @@
     "componente": "RegalosXV"
   },
   "musica": {
-    "url": "/musica/marypaz.ogg",
+    "url": "/musica/marypaz.mp3",
     "componente": "ReproductorMinimalista",
     "autoplay": true
   },

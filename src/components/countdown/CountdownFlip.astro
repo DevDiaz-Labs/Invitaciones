@@ -223,14 +223,15 @@ const labelTitulo = data.titulo || "FALTAN";
       bottomFlipText.textContent = targetValue;
       topStatic.textContent = targetValue;
 
-      // Clear classes and trigger reflow
+      // Clear classes and trigger reflow via rAF (no forced synchronous layout)
       topFlip.classList.remove('flip-it');
       bottomFlip.classList.remove('flip-it-bottom');
-      void topFlip.offsetWidth; // Reflow
-
-      // Re-trigger animations
-      topFlip.classList.add('flip-it');
-      bottomFlip.classList.add('flip-it-bottom');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          topFlip.classList.add('flip-it');
+          bottomFlip.classList.add('flip-it-bottom');
+        });
+      });
 
       // Update bottom static after transition half-completed
       setTimeout(() => {
