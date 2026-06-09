@@ -60,7 +60,7 @@
       "urlMapaDirecto": "https://maps.app.goo.gl/9Nw5sWikKARkP693A"
     },
     "recepcion": {
-      "hora": "7:00 PM",
+      "hora": "6:00 PM",
       "lugar": "Salón Dorothy",
       "direccion": "Av. Las Rosas #456",
       "urlMapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.133302341125!2d-98.2390628!3d26.029194099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f51d90cd601%3A0x766481a59afbb2dc!2sDorothy%20Eventos!5e0!3m2!1ses-419!2smx!4v1775575778805!5m2!1ses-419!2smx",
@@ -78,7 +78,7 @@
         "desc": "Ceremonia religiosa en la Parroquia de San José"
       },
       {
-        "time": "19:00",
+        "time": "18:00",
         "event": "Recepción",
         "desc": "Bienvenida y cóctel en Salón Dorothy"
       },
@@ -127,7 +127,8 @@
   },
   "musica": {
     "url": "/musica/marypaz.ogg",
-    "componente": "ReproductorMinimalista"
+    "componente": "ReproductorMinimalista",
+    "autoplay": true
   },
   "galeria": {
     "mostrar": true,
