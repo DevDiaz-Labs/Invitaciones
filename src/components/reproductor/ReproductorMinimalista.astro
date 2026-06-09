@@ -1,9 +1,13 @@
 ---
 export interface Props {
   audioSrc?: string;
+  autoplay?: boolean;
 }
 
-const { audioSrc = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Pachelbel_-_Canon_in_D_Major.ogg" } = Astro.props;
+const { 
+  audioSrc = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Pachelbel_-_Canon_in_D_Major.ogg",
+  autoplay = false
+} = Astro.props;
 ---
 
 <!-- Reproductor de Música Oculto e Icono Flotante -->
@@ -32,48 +36,72 @@ const { audioSrc = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Pachelbe
   </svg>
 </button>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('audioPlayer') as HTMLAudioElement;
-    const btn = document.getElementById('toggleMusicBtn');
-    const iconMusic = document.getElementById('iconMusic');
-    const iconPause = document.getElementById('iconPause');
-    
-    let isPlaying = false;
+<script define:vars={{ autoplay }}>
+  (function() {
+    function initMusicPlayer() {
+      const audio = document.getElementById('audioPlayer');
+      const btn = document.getElementById('toggleMusicBtn');
+      const iconMusic = document.getElementById('iconMusic');
+      const iconPause = document.getElementById('iconPause');
+      
+      if (!btn || !audio || !iconMusic || !iconPause) return;
+      if (btn.dataset.musicInitialized) return;
+      btn.dataset.musicInitialized = "true";
 
-    if (btn && audio && iconMusic && iconPause) {
-      // Toggle on click (button)
-      btn.addEventListener('click', () => {
-        if (isPlaying) {
-          audio.pause();
-          iconPause.classList.add('hidden');
-          iconPause.classList.remove('block');
-          iconMusic.classList.add('block');
-          iconMusic.classList.remove('hidden');
-        } else {
-          audio.play().catch(e => console.log('Autoplay prevent:', e));
+      let isPlaying = false;
+
+      function startPlaying() {
+        if (isPlaying || !audio) return;
+        audio.play().catch(e => console.log('Autoplay prevent:', e));
+        isPlaying = true;
+        if (iconMusic && iconPause) {
           iconMusic.classList.add('hidden');
           iconMusic.classList.remove('block');
           iconPause.classList.add('block');
           iconPause.classList.remove('hidden');
         }
-        isPlaying = !isPlaying;
+      }
+
+      function stopPlaying() {
+        if (!isPlaying || !audio) return;
+        audio.pause();
+        isPlaying = false;
+        if (iconMusic && iconPause) {
+          iconPause.classList.add('hidden');
+          iconPause.classList.remove('block');
+          iconMusic.classList.add('block');
+          iconMusic.classList.remove('hidden');
+        }
+      }
+
+      // Toggle manual con el botón
+      btn.addEventListener('click', () => {
+        if (isPlaying) {
+          stopPlaying();
+        } else {
+          startPlaying();
+        }
       });
 
-      // Auto-play when envelope is opened
-      const envelope = document.getElementById('envelope');
-      if (envelope) {
-        envelope.addEventListener('click', () => {
-          if (!isPlaying) {
-            audio.play().catch(e => console.log('Autoplay prevent:', e));
-            isPlaying = true;
-            iconMusic.classList.add('hidden');
-            iconMusic.classList.remove('block');
-            iconPause.classList.add('block');
-            iconPause.classList.remove('hidden');
-          }
-        });
+      // Autoplay al abrir el sobre (solo si autoplay=true en el JSON)
+      if (autoplay) {
+        const envelopeClasico = document.getElementById('envelope-clasico');
+        if (envelopeClasico) {
+          envelopeClasico.addEventListener('click', () => {
+            // Esperamos a que termine la animación del sobre (~1800ms) para empezar
+            setTimeout(() => {
+              startPlaying();
+            }, 1800);
+          }, { once: true }); // once: true para que solo dispare en el primer clic
+        }
       }
     }
-  });
+
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', initMusicPlayer);
+    } else {
+      initMusicPlayer();
+    }
+    document.addEventListener('astro:page-load', initMusicPlayer);
+  })();
 </script>

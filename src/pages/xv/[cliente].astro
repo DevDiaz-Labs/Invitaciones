@@ -413,7 +413,7 @@ const usaUbicacionUnificada = UbicacionComp !== null;
 
     <!-- REPRODUCTOR DE MÚSICA -->
     {data.musica?.componente ? (
-        <ReproductorComp audioSrc={data.musica.url} />
+        <ReproductorComp audioSrc={data.musica.url} autoplay={data.musica.autoplay === true} />
     ) : (
         data.musica?.url && <MusicPlayerDefault url={data.musica.url} />
     )}
