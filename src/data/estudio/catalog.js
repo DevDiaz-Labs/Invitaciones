@@ -1,6 +1,6 @@
 export const CATALOG = {
   hero: {
-    label: 'Portada / Hero',
+    label: 'Inicio',
     icon: '✨',
     desc: 'La primera impresión de tu invitación. Tu nombre, fecha y foto de portada.',
     preview: '/pruebas/hero-pruebas',
@@ -27,7 +27,7 @@ export const CATALOG = {
     ]
   },
   carta: {
-    label: 'Carta / Dedicatoria',
+    label: 'Dedicatoria',
     icon: '💌',
     desc: 'Un mensaje personal y emotivo para tus invitados.',
     preview: '/pruebas/carta-pruebas',
@@ -63,7 +63,7 @@ export const CATALOG = {
     ]
   },
   ubicacion: {
-    label: 'Ubicación / Mapa',
+    label: 'Ubicación',
     icon: '📍',
     desc: 'Muestra la ceremonia y recepción con mapas interactivos.',
     preview: '/pruebas/ubicacion-pruebas',
@@ -270,7 +270,7 @@ export const CATALOG = {
     ]
   },
   footer: {
-    label: 'Footer / Cierre',
+    label: 'Pie de página',
     icon: '🎀',
     desc: 'El cierre elegante de tu invitación digital.',
     preview: '/pruebas/footer-pruebas',
@@ -288,59 +288,96 @@ export const CATALOG = {
 };
 
 export const STEPS = [
-  { id: 'hero',        plans: ['essential','pro','premium'], required: true  },
-  { id: 'carta',       plans: ['essential','pro','premium'], required: false },
-  { id: 'countdown',   plans: ['essential','pro','premium'], required: true  },
-  { id: 'ubicacion',   plans: ['essential','pro','premium'], required: true  },
-  { id: 'itinerario',  plans: ['pro','premium'],             required: false },
-  { id: 'dresscode',   plans: ['essential','pro','premium'], required: false },
-  { id: 'regalos',     plans: ['essential','pro','premium'], required: false },
-  { id: 'reproductor', plans: ['pro','premium'],             required: false },
-  { id: 'galeria',     plans: ['pro','premium'],             required: false },
-  { id: 'rsvp',        plans: ['essential','pro','premium'], required: true  },
-  { id: 'noninos',     plans: ['essential','pro','premium'], required: false },
-  { id: 'calendario',  plans: ['essential','pro','premium'], required: false },
-  { id: 'compartirmomentos', plans: ['premium'],             required: false },
-  { id: 'footer',      plans: ['essential','pro','premium'], required: true  },
+  { id: 'hero',        plans: ['express','essential','pro','premium'], required: true  },
+  { id: 'carta',       plans: ['essential','pro','premium'],           required: false },
+  { id: 'countdown',   plans: ['essential','pro','premium'],           required: true  },
+  { id: 'ubicacion',   plans: ['express','essential','pro','premium'], required: true  },
+  { id: 'itinerario',  plans: ['pro','premium'],                       required: false },
+  { id: 'dresscode',   plans: ['essential','pro','premium'],           required: false },
+  { id: 'regalos',     plans: ['essential','pro','premium'],           required: false },
+  { id: 'reproductor', plans: ['pro','premium'],                       required: false },
+  { id: 'galeria',     plans: ['pro','premium'],                       required: false },
+  { id: 'rsvp',        plans: ['express','essential','pro','premium'], required: true  },
+  { id: 'noninos',     plans: ['essential','pro','premium'],           required: false },
+  { id: 'calendario',  plans: ['essential','pro','premium'],           required: false },
+  { id: 'compartirmomentos', plans: ['premium'],                       required: false },
+  { id: 'footer',      plans: ['express','essential','pro','premium'], required: true  },
 ];
 
 export const PLAN_FEATURES = {
+  express: {
+    name: 'Express',
+    price: '$150 MXN',
+    delivery: 'Menos de 24h',
+    color: 'teal',
+    emoji: '🚀',
+    features: [
+      'Estructura base predefinida (Save the Date)',
+      'Ubicación vinculada a Google Maps',
+      'Botón de confirmación vía WhatsApp',
+      'Vigencia hasta 2 días posteriores al evento',
+    ]
+  },
   essential: {
     name: 'Essential',
+    price: '$350 MXN',
+    delivery: 'Menos de 24h',
     color: 'emerald',
     emoji: '🟢',
     features: [
-      'Portada (Hero) personalizada',
-      'Carta / Dedicatoria',
+      'Todo lo del plan Express',
+      'Fotografía principal y colores personalizados',
       'Contador regresivo en tiempo real',
-      'Mapa interactivo integrado',
       'Código de vestimenta',
-      'Sección de regalos',
-      'Guardar en calendario',
-      'RSVP (confirmar asistencia)',
-      'Nota No Niños (opcional)',
-      'Footer personalizado',
+      'Detalles de mesa de regalos / sobres',
+      'Guardar en calendario (iOS & Android)',
+      'Vigencia hasta 1 semana después del evento',
     ]
   },
   pro: {
     name: 'Pro',
+    price: '$500 MXN',
+    delivery: '48 horas',
     color: 'blue',
     emoji: '🔵',
     popular: true,
     features: [
       'Todo lo del plan Essential',
-      'Reproductor de música',
-      'Galería de fotos interactiva',
-      'Itinerario del evento',
+      'Personalización a medida (hasta 3 rondas)',
+      'Ambientación con música de fondo',
+      'Galería de fotos (hasta 5 imágenes)',
+      'Pases personalizados dinámicos',
+      'Itinerario detallado de actividades',
+      'Vigencia hasta 2 semanas después del evento',
     ]
   },
   premium: {
     name: 'Premium',
-    color: 'violet',
-    emoji: '🟣',
+    price: '$900 MXN',
+    delivery: '5 días hábiles',
+    color: 'amber',
+    emoji: '👑',
     features: [
       'Todo lo del plan Pro',
-      'Sección Compartir Momentos',
+      'GESTIÓN AVANZADA: Panel privado de anfitrión',
+      'Secciones ilimitadas (arquitectura flexible)',
+      'Memoria Colectiva (subida de fotos de invitados)',
+      'Galería extendida (hasta 10 fotos HD)',
+      'Vigencia extendida por 1 mes completo',
     ]
   },
 };
+
+export const EXPRESS_DESIGNS = [
+  { id: "std-simple", name: "Classic Simple", desc: "Diseño elegante y minimalista original", badge: "Classic", img: "/xv/std-simple" },
+  { id: "std-1", name: "Rose Gold Luxury", desc: "Bordes oro rosa y estética clásica formal", badge: "Luxury", img: "/xv/std-1" },
+  { id: "std-2", name: "Editorial Light", desc: "Estilo revista de moda con marco curvo", badge: "Modern", img: "/xv/std-2" },
+  { id: "std-3", name: "Emerald & Gold", desc: "Verde esmeralda y detalles en oro satinado", badge: "Enchanted", img: "/xv/std-3" },
+  { id: "std-4", name: "Cyber-Glow Neon", desc: "Estética club juvenil con tonos neón", badge: "Party", img: "/xv/std-4" },
+  { id: "std-5", name: "Fairytale Celestial", desc: "Sueño estrellado en tonos lavanda y plata", badge: "Celestial", img: "/xv/std-5" },
+  { id: "std-6", name: "Boho Terracotta", desc: "Estética rústica, orgánica y cálida", badge: "Boho", img: "/xv/std-6" },
+  { id: "std-7", name: "Midnight Navy", desc: "Gran gala nocturna en azul marino y plata", badge: "Gala", img: "/xv/std-7" },
+  { id: "std-8", name: "Vintage Romance", desc: "Estilo carta de amor con aire nostálgico", badge: "Vintage", img: "/xv/std-8" },
+  { id: "std-9", name: "Modern Split", desc: "Asimetría contemporánea y colores berry", badge: "Editorial", img: "/xv/std-9" },
+  { id: "std-10", name: "Golden Glamour", desc: "Obsidiana con marcos de oro metálico VIP", badge: "VIP", img: "/xv/std-10" }
+];

@@ -47,12 +47,24 @@
         <main class="flex-grow flex flex-col lg:flex-row relative min-h-screen">
             <!-- Floating Back to Catalog Button -->
             <a
+                id="smart-back-btn"
                 href="/xv/catalogo"
                 class="fixed top-4 left-4 z-50 bg-black/60 hover:bg-black/85 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest flex items-center gap-2 border border-white/20 transition-all shadow-lg"
             >
-                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
-                Catálogo
+                <span id="smart-back-icon" class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_back</span>
+                <span id="smart-back-text">Catálogo</span>
             </a>
+            <script>
+                if (document.referrer.includes('/estudio')) {
+                    const btn = document.getElementById('smart-back-btn');
+                    if (btn) {
+                        btn.href = 'javascript:void(0)';
+                        btn.onclick = function(e) { e.preventDefault(); window.close(); };
+                        document.getElementById('smart-back-text').innerText = 'Cerrar';
+                        document.getElementById('smart-back-icon').innerText = 'close';
+                    }
+                }
+            </script>
             <!-- Left Side / Background Photo Area -->
             <div class="relative w-full lg:w-1/2 min-h-[40vh] lg:min-h-screen flex-shrink-0">
                 <img
